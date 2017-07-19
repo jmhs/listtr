@@ -3,13 +3,26 @@ import cookieParser from 'cookie-parser';
 import Debug from 'debug';
 import express from 'express';
 import logger from 'morgan';
+import passport from 'passport';
 // import favicon from 'serve-favicon';
 import path from 'path';
 import lessMiddleware from 'less-middleware';
 import index from './routes/index';
 
+import dotenv from 'dotenv';
+
 const app = express();
 const debug = Debug('backend:app');
+
+/**
+ * Load environment variables from .env file, where API keys and passwords are configured.
+ */
+dotenv.load({ path: '.env' });
+
+/**
+ * API keys and Passport configuration.
+ */
+const passportConfig = require('./config/passport');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
