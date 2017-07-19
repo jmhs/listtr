@@ -7,7 +7,7 @@
   border-color: #0FB28A;
 }
 
-#loginForm {
+#signupForm {
   margin: 0 10px 10px 10px;
 }
 
@@ -16,33 +16,28 @@
   font-style: italic;
 }
 
-#formHeader {
-  background: #0FB28A;
+#loginBtn {
+  background: white;
   border-color: #0FB28A;
+  color: black;
+  margin-top: 10px;
 }
 
-#loginBtnl {
-  margin-top: 10px;
+#signupBtn {
   background: #0FB28A;
   border-color: #0FB28A;
   color: white;
+  margin-top: 10px;
 }
 
-#signupBtnl {
+#homeBtn {
   background: white;
   border-color: #0FB28A;
   color: black;
   margin-top: 10px;
 }
 
-#homeBtnl {
-  background: white;
-  border-color: #0FB28A;
-  color: black;
-  margin-top: 10px;
-}
-
-#loginContainer {
+#signupContainer {
   border-color: #0FB28A;
   box-shadow: 2px 2px 2px lightgray;
 }

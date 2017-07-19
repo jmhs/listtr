@@ -8,6 +8,7 @@ import {connect} from 'react-redux'
 
 import Home from '../Home/Home'
 import LogIn from '../LogIn/LogIn'
+import SignUp from '../SignUp/SignUp'
 import logo from './logo.svg';
 import './App.css';
 
@@ -18,6 +19,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Home}/>
           <Route exact path="/login" component={LogIn}/>
+          <Route exact path="/signup" component={SignUp}/>
 
 
         </Switch>

@@ -12,8 +12,6 @@ export const getUser = () => {
     axios.get('/auth/user')
       .then( (response) => {
         const user = response.data;
-        const notLoggedIn = {}
-          user.isFetching = false
           console.log('user exists', user.isFetching)
           dispatch(updateUser(user));
       })

@@ -69,9 +69,9 @@ class LogIn extends React.Component {
       return (
         <div className="container">
           <div className="col-md-4 col-md-offset-4">
-            <div className="panel panel-primary" id="loginlContainer">
+            <div className="panel panel-primary" id="loginContainer">
               <div className="panel-heading" id="formHeader">LOGIN</div>
-              <form id="form" role="form">
+              <form id="loginForm" role="form">
                 <div className="error">{this.state.error}</div>
                 <label htmlFor="email">Email address</label>
                 <input type="email" className="form-control" id="email" placeholder="Please enter email" value={this.state.email} onChange={this.onChange}/>
