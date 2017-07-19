@@ -7,6 +7,7 @@ import {
 import {connect} from 'react-redux'
 
 import Home from '../Home/Home'
+import LogIn from '../LogIn/LogIn'
 import logo from './logo.svg';
 import './App.css';
 
@@ -16,7 +17,9 @@ class App extends Component {
       <Router>
         <Switch>
           <Route exact path="/" component={Home}/>
-          
+          <Route exact path="/login" component={LogIn}/>
+
+
         </Switch>
       </Router>
     );
