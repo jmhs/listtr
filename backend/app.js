@@ -9,18 +9,24 @@ import path from 'path';
 import lessMiddleware from 'less-middleware';
 import index from './routes/index';
 import auth from './routes/auth';
+import event from './routes/event';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import session from 'express-session';
+/**
+ * Load environment variables from .env file, where API keys and passwords are configured.
+ */
+dotenv.load({ path: '.env' });
 
-const MongoStore = require('connect-mongo')(session);
+import session from 'express-session';
+import multer from 'multer';
+import cloudinary from 'cloudinary';
+//const MongoStore = require('connect-mongo')(session);
 
 /**
 * Setup Mongoose connection to MongoDB
 */
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/listtrdb', {
-                 useMongoClient: true,});
+mongoose.connect('mongodb://admin:admin@ds115752.mlab.com:15752/listtr');
 mongoose.connection.on('error', (err) => {
   console.error(err);
   console.log('%s MongoDB connection error. Please make sure MongoDB is running.', chalk.red('✗'));
@@ -30,10 +36,11 @@ mongoose.connection.on('error', (err) => {
 const app = express();
 const debug = Debug('backend:app');
 
-/**
- * Load environment variables from .env file, where API keys and passwords are configured.
- */
-dotenv.load({ path: '.env' });
+cloudinary.config({
+  cloud_name: "ddby9i01q",
+  api_key: '296937751355523',
+  api_secret: 'LUyUMR8HpIgjHwcgaCh68BblaZ0'
+})
 
 /**
  * API keys and Passport configuration.
@@ -56,7 +63,7 @@ app.use(cookieParser());
 app.use(lessMiddleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
+
 
 /**
  * use EXPRESS-SESSION.
@@ -64,14 +71,14 @@ app.use('/', index);
 app.use(session({
   resave: false,
   saveUninitialized: true,
-  secret: 'hello',
-  store: new MongoStore({
-    url: 'mongodb://localhost/listtrdb',
-    // url: process.env.MONGODB_URI || process.env.MONGODLAB_URI,
-    autoReconnect: true,
-    clear_interval: 3600
-  })
-  //cookie: {maxAge: 3600000}
+  secret: 'hello'
+  // store: new MongoStore({
+  //   url: 'mongodb://localhost/listtrdb',
+  //   // url: process.env.MONGODB_URI || process.env.MONGODLAB_URI,
+  //   autoReconnect: true,
+  //   clear_interval: 3600
+  // })
+  // cookie: {maxAge: 3600000}
 }));
 
 /**
@@ -88,8 +95,9 @@ app.use(function(req, res, next){
 /**
  * Use AUTH routes.
  */
+app.use('/', index);
 app.use('/auth', auth);
-
+app.use('/event',event);
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   const err = new Error('Not Found');
