@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react';
 
 import { connect } from 'react-redux';
 
-import { getUser, updateUser } from '../Actions/User';
+import { getUser, updateUser } from '../../Actions/User';
 
 import axios from 'axios';
 
@@ -38,7 +38,6 @@ class LogIn extends React.Component {
       let data = response.data;
       if (data.error) {
         console.log(data.message)
-        this.setState({error: data.message, isLoggedIn: false});
       } else {
         console.error("AJAX: Logged in @ '/auth/user'");
         this.props.updateUser(data)
