@@ -1,9 +1,13 @@
 import { createStore, compose, combineReducers, applyMiddleware } from 'redux'; // compose is used
 
 import thunk from 'redux-thunk';
+
+import UserReducer from '../Reducers/User'
+
 export let initStore = () => {
 
   const reducer = combineReducers({
+    user: UserReducer
 
   });
 
