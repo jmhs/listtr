@@ -11,8 +11,14 @@ import index from './routes/index';
 import auth from './routes/auth';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import session from 'express-session';
+/**
+ * Load environment variables from .env file, where API keys and passwords are configured.
+ */
+dotenv.load({ path: '.env' });
 
+import session from 'express-session';
+import multer from 'multer';
+import cloudinary from 'cloudinary';
 const MongoStore = require('connect-mongo')(session);
 
 /**
@@ -28,22 +34,19 @@ mongoose.connection.on('error', (err) => {
 });
 
 const app = express();
-const debug = Debug('backend:app');
+//const debug = Debug('backend:app');
 
-/**
- * Load environment variables from .env file, where API keys and passwords are configured.
- */
-dotenv.load({ path: '.env' });
+
 
 /**
  * API keys and Passport configuration.
  */
 const passportConfig = require('./config/passport');
 
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
-
 // uncomment after placing your favicon in /public
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -56,7 +59,7 @@ app.use(cookieParser());
 app.use(lessMiddleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
+
 
 /**
  * use EXPRESS-SESSION.
@@ -79,7 +82,11 @@ app.use(session({
  */
 app.use(passport.initialize());
 app.use(passport.session());
-
+cloudinary.config({
+  cloud_name: "ddby9i01q",
+  api_key: '296937751355523',
+  api_secret: 'LUyUMR8HpIgjHwcgaCh68BblaZ0'
+})
 app.use(function(req, res, next){
   console.log( "Method: " + req.method +" Path: " + req.url)
   next();
@@ -89,7 +96,7 @@ app.use(function(req, res, next){
  * Use AUTH routes.
  */
 app.use('/auth', auth);
-
+app.use('/', index);
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   const err = new Error('Not Found');
