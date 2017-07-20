@@ -1,0 +1,55 @@
+.container {
+  margin-top: 5%;
+  height: 100vh;
+  width: 100vw;
+  padding: 10px 0 0 0;
+  margin: 0;
+  border-color: #0FB28A;
+}
+
+#loginForm {
+  margin: 0 10px 10px 10px;
+}
+
+#or {
+  text-align: center;
+  font-style: italic;
+}
+
+#formHeader {
+  background: #0FB28A;
+  border-color: #0FB28A;
+}
+
+#loginBtnl {
+  margin-top: 10px;
+  background: #0FB28A;
+  border-color: #0FB28A;
+  color: white;
+}
+
+#signupBtnl {
+  background: white;
+  border-color: #0FB28A;
+  color: black;
+  margin-top: 10px;
+}
+
+#homeBtnl {
+  background: white;
+  border-color: #0FB28A;
+  color: black;
+  margin-top: 10px;
+}
+
+#loginContainer {
+  border-color: #0FB28A;
+  box-shadow: 2px 2px 2px lightgray;
+}
+
+button:focus {
+  outline:0;
+}
+input:focus {
+  outline:0;
+}
