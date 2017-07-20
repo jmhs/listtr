@@ -16,8 +16,8 @@ exports.getSpecificEvent = (req, res) => {
 
 exports.postEvent = (req, res) => {
   const newEvent = new Event({
-    eventImage: result.secure_url || "",
-    eventName: req.body.name || "",
+    eventImage:  "",
+    eventName: req.body.eventName || "",
     type: req.body.type || "" ,
     description: req.body.description || "",
     dressCode: req.body.dressCode || "",
@@ -29,9 +29,9 @@ exports.postEvent = (req, res) => {
     timeEnd: req.body.timeEnd || ""
   });
 
-  newEvent.save((err) => {
+  newEvent.save((err, events) => {
     if(err){console.log(err); return;}
-    res.json(newEvent);
+    res.json(events);
   });
 
 
