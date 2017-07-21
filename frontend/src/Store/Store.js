@@ -3,12 +3,16 @@ import { createStore, compose, combineReducers, applyMiddleware } from 'redux'; 
 import thunk from 'redux-thunk';
 
 import UserReducer from '../Reducers/User'
+
 import EventReducer from '../Reducers/Event'
+
 export let initStore = () => {
 
   const reducer = combineReducers({
     user: UserReducer,
+
     events: EventReducer,
+
 
   });
 
