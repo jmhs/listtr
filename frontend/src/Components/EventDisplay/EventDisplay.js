@@ -15,11 +15,13 @@ class EventDisplay extends React.Component {
     })
   }
   render() {
+
     const renderlist = this.renderEventDisplayItem();
     return (
       <div className="container">
         <div className="row">
           {renderlist}
+
         </div>
       </div>
     );
@@ -36,3 +38,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(EventDisplay);
+
