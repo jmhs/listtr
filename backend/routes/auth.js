@@ -1,6 +1,7 @@
 import express from 'express';
 import passport from 'passport';
 import User from '../models/User';
+import userController from '../controllers/userController';
 const router = express.Router();
 
 /* GET index page. */
@@ -61,6 +62,8 @@ router.post('/signup', function(req, res, next) {
       });
     });
 });
+
+router.put ('/user/:id', userController.editProfile)
 // LOGOUT
 router.get('/logout',(req, res, next) => {
   req.logout();

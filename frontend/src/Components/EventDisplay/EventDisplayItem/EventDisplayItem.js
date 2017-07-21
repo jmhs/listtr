@@ -10,6 +10,12 @@ class EventDisplayItem extends React.Component {
           <div className="image">
             <img src={image}/>
           </div>
+
+
+          <h4 className="eventName">{this.props.eventName}</h4>
+          <p>{this.props.description}</p>
+
+
         </div>
       </div>
     );
