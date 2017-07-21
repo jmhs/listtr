@@ -8,7 +8,9 @@
 }
 .event-item:hover{
   background-color: rgba(221, 221, 221, .3);
+
   border: 5px solid rgb(221, 221, 221);
+
 }
 .image img{
   height: 200px;
@@ -17,6 +19,7 @@
   height: 200px;
   overflow: hidden;
 }
+
 
 .eventName{
   font-weight: bold;
