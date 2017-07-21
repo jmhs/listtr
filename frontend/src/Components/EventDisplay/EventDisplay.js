@@ -6,7 +6,6 @@ class EventDisplay extends React.Component {
   constructor(props) {
     super(props);
 
-
   }
   renderEventDisplayItem = () => {
     let events = this.props.events;
