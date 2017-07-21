@@ -10,7 +10,8 @@ class EventDisplay extends React.Component {
   renderEventDisplayItem = () => {
     let events = this.props.events;
     return events.map( (event) => {
-      return <EventDisplayItem eventName={event.eventName}/>
+      return <EventDisplayItem eventName={event.eventName}
+                               description={event.description}/>
     })
   }
   render() {
