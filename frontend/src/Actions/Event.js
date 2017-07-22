@@ -1,11 +1,20 @@
 import axios from 'axios'
-const storeEvents = (events) => {
+
+//in-charge of sending events to store
+export const storeEvents = (events) => {
   return{
     type: "STORE_EVENTS",
     events
   }
 }
+export const PopulateGuests = (guests) => {
+  return {
+    type: 'POPULATE_GUESTS',
+    guests 
+  }
+}
 
+//in-charge of defining the action to store the event into the store
 export const getEvents = () => {
   return (dispatch) => {
     axios.get('/event')

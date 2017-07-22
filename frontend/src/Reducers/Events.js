@@ -7,8 +7,6 @@ const EventReducer = (state = [], action) =>{
      ...state,
      {
        events : action.events,
-
-
      }
    ]
    break;

@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import { connect } from 'react-redux';
-import {CreateEvents} from '../../Actions/CreateEvent'
+import {storeEvents} from '../../Actions/Event'
 
 class CreateEvent extends React.Component {
   constructor(props) {
@@ -15,7 +15,7 @@ class CreateEvent extends React.Component {
 };
   }
 
-//saves admin's input into local state before sending to actons together
+//saves user's input into local state before sending to "actons" together
   onChange = (e) => {
     let state = this.state;
 
@@ -35,12 +35,12 @@ class CreateEvent extends React.Component {
     }
 
     this.setState(state);
+    console.log(state)
   }
 
   onClick = (e) => {
-    const consolidatedevents = [this.state]
-    console.log(consolidatedevents)
-    this.props.CreateEvents(consolidatedevents);
+
+    this.props.storeEvents(this.state);
 
   }
   render() {
@@ -97,7 +97,6 @@ CreateEvent.propTypes = {
 
 //export default CreateEvent;
 const mapStateToProps = (state) => {
-  console.log(state)
   return {
     events: state.events,
   }
@@ -106,7 +105,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   console.log(dispatch)
   return {
-    CreateEvents: () => {dispatch(CreateEvents())}
+    storeEvents: (events) => {dispatch(storeEvents(events))}
   }
 }
 
