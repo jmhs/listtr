@@ -1,14 +1,13 @@
 import axios from 'axios'
 
-//send events to store
+//in-charge of sending events to store
 export const storeEvents = (events) => {
   return{
     type: "STORE_EVENTS",
     events
   }
 }
-
-//send events to store
+//sends guests to store
 export const storeGuests = (guests) => {
   return {
     type: 'STORE_GUESTS',
@@ -30,15 +29,57 @@ export const getEvents = () => {
   };
 }
 
-export const postEvents = () => {
+
+//Splits Actions for with and without Image
+export const postEvents = (events) => {
   return (dispatch) => {
-    axios.post('/event')
+
+   if (events.eventImage === null) {
+    console.log('No Image Bro')
+    axios.post('/event', events)
       .then( (response) => {
         console.log(response.data);
         dispatch(storeEvents(response.data))
       })
       .catch((error)=> {
-        console.error("AJAX: Could not get user @ '/auth/user'")
+        console.error("event not posted to server'")
       });
-  };
+  }
+  else {
+    console.log('Theres an Image!')
+    console.log(events)
+    let EventDataWithImage = new FormData();
+    EventDataWithImage.append('eventImage', events.eventImage);
+    EventDataWithImage.append('location', events.location);
+    console.log(EventDataWithImage)
+
+    return (dispatch) => {
+
+      axios.post('/event', EventDataWithImage)
+        .then( (response) => {
+          console.log(response.data);
+          dispatch(storeEvents(response.data))
+        })
+        .catch((error)=> {
+          console.error("event not posted to server'")
+        });
+      };
+    }
+  
 }
+}
+
+
+// export function uploadSuccess({ data }) {
+//   return {
+//     type: 'UPLOAD_DOCUMENT_SUCCESS',
+//     data,
+//   };
+// }
+//
+// export function uploadFail(error) {
+//   return {
+//     type: 'UPLOAD_DOCUMENT_FAIL',
+//     error,
+//   };
+// }
