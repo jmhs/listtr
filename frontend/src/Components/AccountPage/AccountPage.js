@@ -74,6 +74,8 @@ class AccountPage extends React.Component {
                        placeholder="Password"
                        name="password"/>
               </div>
+              <button className="uk-button uk-button-primary">Update Account</button>
+              <button className="uk-button uk-button-danger">Delete Account</button>
             </div>
           </div>
         </div>
