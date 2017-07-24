@@ -8,10 +8,7 @@ class CreateEvent extends React.Component {
     super(props);
 
     this.state = {
-    title: "",
-    date: "",
-    description:"",
-    location:"",
+      events:{},
     eventImage: null
   };
 
@@ -20,24 +17,27 @@ class CreateEvent extends React.Component {
 //saves user's input into local state before sending to "actons" together
   onChange = (e) => {
     let state = this.state;
+    let object = {}
+    // if(e.target.name == "title") {
+    //   state.title = e.target.value;
+    // }
+    //
+    // if(e.target.name == "date") {
+    //   state.date = e.target.value;
+    // }
+    //
+    // if(e.target.name == "description") {
+    //   state.description = e.target.value;
+    // }
+    //
+    // if(e.target.name == "location") {
+    //   state.location = e.target.value;
+    // }
+    object[e.target.name] = e.target.value
 
-    if(e.target.name == "title") {
-      state.title = e.target.value;
-    }
-
-    if(e.target.name == "date") {
-      state.date = e.target.value;
-    }
-
-    if(e.target.name == "description") {
-      state.description = e.target.value;
-    }
-
-    if(e.target.name == "location") {
-      state.location = e.target.value;
-    }
-
-    this.setState(state);
+    this.setState({
+      events:object
+    });
     console.log(state)
   }
 
@@ -45,16 +45,16 @@ class CreateEvent extends React.Component {
 
 //Accesses uploded files via files[0] and appends to state
   imageUpload = (e) => {
+    let eventImage = e.target.files[0]
+  this.setState({
+    eventImage: eventImage
+  })
 
-  let state = this.state
-  state.eventImage = e.target.files[0]
-  this.setState(state)
-  console.log(state)
 }
 
 // if loop for when create button pressed with & without image(different actions)
   onClick = (e) => {
-    this.props.postEvents(this.state)
+    this.props.postEvents(this.state.eventImage,this.state.events)
   }
 
 
@@ -105,7 +105,7 @@ class CreateEvent extends React.Component {
                   onClick={this.onClick}>Create</button>
         </div>
 
-        <input type="file" onChange={this.imageUpload}/>
+        <input name="file" type="file" onChange={this.imageUpload}/>
 
       </section>
     );
@@ -125,7 +125,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   console.log(dispatch)
   return {
-    postEvents: (events) => {dispatch(postEvents(events))}
+    postEvents: (pic,events) => {dispatch(postEvents(pic,events))}
   }
 }
 
