@@ -8,9 +8,13 @@ class AccountPage extends React.Component {
   constructor(props) {
     super(props);
 
-    // this.state = {
-    //   user: this.props.user
-    // }
+    this.state = {
+      username: "",
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: ""
+    }
   }
 
   isLoggedIn = () => {
@@ -27,19 +31,48 @@ class AccountPage extends React.Component {
             <div className="col-sm-6 col-sm-offset-3">
             <div className="form-group">
               <label htmlFor="exampleInputPassword1">Username</label>
-              <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Username" value={this.props.username}/>
+              <input type="text"
+                     className="form-control"
+                     id="exampleInputPassword1"
+                     placeholder="Username"
+                     defaultValue={this.props.username}
+                     onChange={this.onChange}
+                     name="username"/>
+            </div>
+            <div className="form-group">
+              <label htmlFor="exampleInputPassword1">First Name</label>
+              <input type="text"
+                     className="form-control"
+                     id="exampleInputPassword1"
+                     placeholder="First Name"
+                     defaultValue={this.props.firstName}
+                     name="firstName"/>
+            </div>
+            <div className="form-group">
+              <label htmlFor="exampleInputPassword1">Last Name</label>
+              <input type="text"
+                     className="form-control"
+                     id="exampleInputPassword1"
+                     placeholder="Last Name"
+                     defaultValue={this.props.lastName}
+                     name="lastName"/>
             </div>
               <div className="form-group">
                 <label htmlFor="exampleInputEmail1">Email address</label>
-                <input type="email" className="form-control" id="exampleInputEmail1" placeholder="Email" value={this.props.user.email}/>
+                <input type="email"
+                       className="form-control"
+                       id="exampleInputEmail1"
+                       placeholder="Email"
+                       defaultValue={this.props.user.email}
+                       name="email"/>
               </div>
               <div className="form-group">
                 <label htmlFor="exampleInputPassword1">Password</label>
-                <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="exampleInputPassword1">Password</label>
-                <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
+                <input type="password"
+                       className="form-control"
+                       id="exampleInputPassword1"
+                       placeholder="Password"
+                       name="password"/>
               </div>
             </div>
           </div>
@@ -48,6 +81,41 @@ class AccountPage extends React.Component {
     } else {
       return(<div>please login</div>)
     }
+  }
+
+  onChange = (e) => {
+    console.log(e.target.value)
+    switch (e.target.name) {
+      case 'username':
+        this.setState({
+          username: e.target.value
+        })
+        break;
+      case 'firstName':
+        this.setState({
+          firstName: e.target.value
+        })
+        break;
+      case 'lastName':
+        this.setState({
+          lastName: e.target.value
+        })
+        break;
+      case 'email':
+        this.setState({
+          email: e.target.value
+        })
+        break;
+      case 'password':
+        this.setState({
+          password: e.target.value
+        })
+        break;
+
+      default:
+
+    }
+
   }
 
   render() {
