@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react';
 
 import { connect } from 'react-redux';
 
-import { getUser, updateUser } from '../../Actions/User';
+import { getUser} from '../../Actions/User';
 
 import axios from 'axios';
 
@@ -25,7 +25,7 @@ class LogIn extends React.Component {
 
     state[key] = value;
     console.log(state);
-    console.log(typeof(this.state.latitude));
+    //console.log(typeof(this.state.latitude));
     this.setState(state);
   }
 
@@ -39,9 +39,10 @@ class LogIn extends React.Component {
       if (data.error) {
         console.log(data.message)
       } else {
-        console.error("AJAX: Logged in @ '/auth/user'");
-        this.props.updateUser(data)
-       this.props.getUser()
+        console.log("AJAX: Logged in @ '/auth/user'");
+        // this.props.updateUser(data)
+        this.props.getUser()
+        window.location.href = '/account'
       }
     }).catch((error) => {
       console.error("AJAX: Could not login @ '/auth/login'")
@@ -97,7 +98,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getUser: () => {dispatch(getUser())},
-    updateUser: (user) => {dispatch(updateUser(user))},
+    //updateUser: (user) => {dispatch(updateUser(user))},
   }
 }
 
