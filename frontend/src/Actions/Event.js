@@ -7,10 +7,10 @@ export const storeEvents = (events) => {
     events
   }
 }
-export const PopulateGuests = (guests) => {
+export const storeGuests = (guests) => {
   return {
-    type: 'POPULATE_GUESTS',
-    guests 
+    type: 'STORE_GUESTS',
+    guests
   }
 }
 

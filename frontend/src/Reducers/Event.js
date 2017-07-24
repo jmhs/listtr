@@ -8,11 +8,12 @@ const Events = (state = [], action) => {
 
       }
     ];
-    case "POPULATE_GUESTS":
+    case "STORE_GUESTS":
     return [
-      ...state,console.log(action),
+      ...state,
       {
-        events : action.events,
+        events: action.events,
+        guests : action.guests,
 
       }
     ]

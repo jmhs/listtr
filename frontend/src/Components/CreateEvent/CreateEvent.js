@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react';
 import { connect } from 'react-redux';
 import {storeEvents} from '../../Actions/Event'
+import PopulateGuests from '../PopulateGuests/PopulateGuests'
 
 class CreateEvent extends React.Component {
   constructor(props) {
@@ -88,6 +89,8 @@ class CreateEvent extends React.Component {
                   className="btn btn-success"
                   onClick={this.onClick}>Create</button>
         </div>
+
+        
       </section>);
   }
 }
