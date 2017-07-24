@@ -27,3 +27,16 @@ export const getEvents = () => {
       });
   };
 }
+
+export const postEvents = () => {
+  return (dispatch) => {
+    axios.post('/event')
+      .then( (response) => {
+        console.log(response.data);
+        dispatch(storeEvents(response.data))
+      })
+      .catch((error)=> {
+        console.error("AJAX: Could not get user @ '/auth/user'")
+      });
+  };
+}

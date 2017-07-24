@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import { connect } from 'react-redux';
-import {storeEvents} from '../../Actions/Event'
+import {postEvents} from '../../Actions/Event'
 import PopulateGuests from '../PopulateGuests/PopulateGuests'
 
 class CreateEvent extends React.Component {
@@ -41,9 +41,20 @@ class CreateEvent extends React.Component {
 
   onClick = (e) => {
 
-    this.props.storeEvents(this.state);
+    this.props.postEvents(this.state);
 
   }
+
+  // Component method
+// handleFileUpload({ file }) {
+//   const file = files[0];
+//   this.props.actions.uploadRequest({
+//      file,
+//      name: 'Awesome Cat Pic'
+//   })
+// }
+
+
   render() {
     return (
       <section className="row create">
@@ -90,7 +101,7 @@ class CreateEvent extends React.Component {
                   onClick={this.onClick}>Create</button>
         </div>
 
-        
+        <input type="file" onChange={this.handleFileUpload} />
       </section>);
   }
 }
@@ -108,7 +119,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   console.log(dispatch)
   return {
-    storeEvents: (events) => {dispatch(storeEvents(events))}
+    postEvents: (events) => {dispatch(postEvents(events))}
   }
 }
 

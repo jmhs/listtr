@@ -12,7 +12,7 @@ const Events = (state = [], action) => {
     return [
       ...state,
       {
-        events: action.events,
+        events: state.events,
         guests : action.guests,
 
       }
