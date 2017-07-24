@@ -11,10 +11,11 @@ class CreateEvent extends React.Component {
     title: "",
     date: "",
     description:"",
-    location:""
+    location:"",
+    eventImage: null
+  };
 
-};
-  }
+}
 
 //saves user's input into local state before sending to "actons" together
   onChange = (e) => {
@@ -31,6 +32,7 @@ class CreateEvent extends React.Component {
     if(e.target.name == "description") {
       state.description = e.target.value;
     }
+
     if(e.target.name == "location") {
       state.location = e.target.value;
     }
@@ -39,20 +41,21 @@ class CreateEvent extends React.Component {
     console.log(state)
   }
 
+
+
+//Accesses uploded files via files[0] and appends to state
+  imageUpload = (e) => {
+
+  let state = this.state
+  state.eventImage = e.target.files[0]
+  this.setState(state)
+  console.log(state)
+}
+
+// if loop for when create button pressed with & without image(different actions)
   onClick = (e) => {
-
-    this.props.postEvents(this.state);
-
+    this.props.postEvents(this.state)
   }
-
-  // Component method
-// handleFileUpload({ file }) {
-//   const file = files[0];
-//   this.props.actions.uploadRequest({
-//      file,
-//      name: 'Awesome Cat Pic'
-//   })
-// }
 
 
   render() {
@@ -86,6 +89,7 @@ class CreateEvent extends React.Component {
                    value={this.state.description}/>
           </div>
         </div>
+
         <div className="col-md-2 title">
           <div className="form-group">
             <input name="location"
@@ -101,15 +105,17 @@ class CreateEvent extends React.Component {
                   onClick={this.onClick}>Create</button>
         </div>
 
-        <input type="file" onChange={this.handleFileUpload} />
-      </section>);
+        <input type="file" onChange={this.imageUpload}/>
+
+      </section>
+    );
   }
 }
 
 CreateEvent.propTypes = {
 };
 
-//export default CreateEvent;
+
 const mapStateToProps = (state) => {
   return {
     events: state.events,
