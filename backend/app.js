@@ -10,6 +10,7 @@ import lessMiddleware from 'less-middleware';
 import index from './routes/index';
 import auth from './routes/auth';
 import event from './routes/event';
+import email from './routes/email';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 /**
@@ -98,6 +99,7 @@ app.use(function(req, res, next){
 app.use('/', index);
 app.use('/auth', auth);
 app.use('/event',event);
+app.use('/email',email);
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   const err = new Error('Not Found');
