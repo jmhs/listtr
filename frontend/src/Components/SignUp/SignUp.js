@@ -61,6 +61,8 @@ export default class SignUp extends React.Component {
             <div className="panel-heading" id="formHeader">SIGNUP</div>
             <form id="signupForm" role="form">
               <div className="error">{this.state.error}</div>
+              <label htmlFor="username">Username</label>
+              <input type="email" className="form-control" id="username" placeholder="Please enter username" value={this.state.username} onChange={this.onChange}/>
               <label htmlFor="email">Email address</label>
               <input type="email" className="form-control" id="email" placeholder="Please enter email" value={this.state.email} onChange={this.onChange}/>
               <label htmlFor="password">Password</label>
