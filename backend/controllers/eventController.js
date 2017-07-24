@@ -13,7 +13,7 @@ exports.getSpecificEvent = (req, res) => {
     res.json(event);
   })
 }
-
+//logic for incoming data for events 
 exports.postEvent = (req, res) => {
   const newEvent = new Event({
     eventImage:  "",
