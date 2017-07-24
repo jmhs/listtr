@@ -1,5 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
 body, html {
   height:100%;
+  overflow: auto;
 }
 
 /*body {
@@ -19,9 +23,11 @@ body.modal-open {
   width: 100vw;
 }
 
-/*.navbar {
-  width: 100vw;
-}*/
+#dashboardHeaderTitle {
+  font-family: 'Lobster', cursive;
+  text-transform: none;
+  font-size: 25px;
+}
 
 /*
  * Off Canvas at medium breakpoint

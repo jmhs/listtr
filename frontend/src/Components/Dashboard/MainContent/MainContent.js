@@ -11,75 +11,49 @@ class MainContent extends React.Component {
     this.state = {
       currentNav: this.props.navigation
     }
-    console.log(this.state.currentNav[0]);
+    // console.log(this.state.currentNav[0]);
   }
 
+// function to sort conditionally render components based on currentNav state.
   conditionalRender = () => {
     console.log("this.props.nav ", this.props.navigation)
     console.log(this.state.currentNav[0]);
-    // switch(this.props.navigation) {
-    //   case "HostingNav":
-    //   return <EventDisplay />
-    //     break;
-    //
-    //   case "AttendingNav":
-    //   return <EventDisplay />
-    //     break;
-    //
-    //   case "AccountNav":
-    //   return <AccountPage />
-    //     break;
-    //
-    //   case "Billing":
-    //    return <Billing />
-    //     break;
-    //
-    //   case "Logout":
-    //     return window.location.href = "/"
-    //     break;
-    //
-    //   default:
-    //     <div> MAIN CONTENT AREA </div>
-    // }
+    switch(this.props.navigation) {
+      case "HostingNav":
+      return (<EventDisplay />)
+        break;
 
+      case "AttendingNav":
+      return (<EventDisplay />)
+        break;
+
+      case "AccountNav":
+      return (<AccountPage />)
+        break;
+
+      case "Billing":
+       return (<Billing />)
+        break;
+
+      case "Logout":
+        return window.location.href = "/"
+        break;
+
+      default:
+        <div> <EventDisplay /> </div>
+    }
   }
 
 
   render() {
-    const grids = this.conditionalRender();
-    console.log("grids: ", grids);
+    const componentToRender = this.conditionalRender();
+    // console.log("grids: ", grids);
 
     return (
     <div>
-
+      {componentToRender}
     </div>
     )
-
-    // switch(this.props.navigation.toString()) {
-    //   case "HostingNav":
-    //   return (<EventDisplay />)
-    //     break;
-    //
-    //   case "AttendingNav":
-    //   return (<EventDisplay />)
-    //     break;
-    //
-    //   case "AccountNav":
-    //   return (<AccountPage />)
-    //     break;
-    //
-    //   case "Billing":
-    //    return (<Billing />)
-    //     break;
-    //
-    //   case "Logout":
-    //     return window.location.href = "/"
-    //     break;
-    //
-    //   default:
-    //     <div> MAIN CONTENT AREA </div>
-    //     console.log(this.state)
-    // }
   }
 }
 

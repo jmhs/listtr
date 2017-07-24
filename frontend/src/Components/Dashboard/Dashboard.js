@@ -18,11 +18,7 @@ class Dashboard extends React.Component {
     }
   }
 
-  // Get logged in User data to render relevant events as host or guest
-  // componentWillMount() {
-  //   this.props.updateUser(data)
-  //   console.log(updateUser)
-  // } onClick, updateNavPath is fired in the actions to send to reducer, to be exported as props for conditional rendering
+  // onClick, updateNavPath is fired in the actions to send to reducer, to be exported as props for conditional rendering
   onClick = (e) => {
     const state = this.state;
     console.log('clicked on: ', state)
@@ -32,6 +28,7 @@ class Dashboard extends React.Component {
     console.log('curretNav state: ', this.state.currentNav)
   }
 
+// on clicking logout, user is redirected to "/"
   logout = () => {
     axios.get('/auth/logout').then((response) => {
       console.log("AJAX: Logged out @ '/auth/logout'");
@@ -44,19 +41,20 @@ class Dashboard extends React.Component {
   render() {
 
     const isLoggedIn = this.props.user._id;
+    console.log("current user id: ", isLoggedIn);
 
     return (
       <div className="container-fluid">
         <div className="row">
-          {isLoggedIn
-            ? (
+
+
               <div>
                 <nav className="navbar fixed-top navbar-toggleable-sm navbar-inverse bg-primary mb-3">
                   <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
                     <span className="navbar-toggler-icon"/>
                   </button>
                   <div className="flex-row d-flex">
-                    <a className="navbar-brand mb-1" href="#" title="LISTT">LISTT</a>
+                    <a className="navbar-brand mb-1" href="/dashboard" title="LISTT" id="dashboardHeaderTitle">Listtr</a>
                     <button type="button" className="hidden-md-up navbar-toggler" data-toggle="offcanvas" title="Toggle responsive left sidebar">
                       <span className="navbar-toggler-icon"/>
                     </button>
@@ -110,17 +108,16 @@ class Dashboard extends React.Component {
                     {/*/col*/}
                     <div className="col-md-9 col-lg-10 main">
                       {/*toggle sidebar button
-          <p class="hidden-md-up">
-              <button type="button" class="btn btn-primary-outline btn-sm" data-toggle="offcanvas"><i class="fa fa-chevron-left"></i> Menu</button>
-          </p>*/}
+                          <p class="hidden-md-up">
+                              <button type="button" class="btn btn-primary-outline btn-sm" data-toggle="offcanvas"><i class="fa fa-chevron-left"></i> Menu</button>
+                          </p>*/}
                       <MainContent/>
                     </div>
                   </div>
                 </div>
                 {/*scripts loaded here*/}
               </div>
-            )
-            : (<LogIn/>)}
+
         </div>
       </div>
     );
@@ -130,15 +127,19 @@ class Dashboard extends React.Component {
 Dashboard.propTypes = {};
 
 const mapStateToProps = (state) => {
-  return {user: state.user}
+  return {
+    user: state.user
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateNavPath: (currentNav) => {
-      dispatch(updateNavPath(currentNav))
-    }
+    updateNavPath: (currentNav) => {dispatch(updateNavPath(currentNav))}
   }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+
+// {isLoggedIn
+//   ? ()
+//   : (<LogIn/>)}
