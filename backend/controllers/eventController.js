@@ -1,8 +1,8 @@
 import Event from '../models/Event';
 import cloudinary from 'cloudinary';
-import fs from 'fs';
-import multer from 'multer';
-const upload = multer({ dest: './uploads/events' });
+// import fs from 'fs';
+// import multer from 'multer';
+// const upload = multer({ dest: './uploads/events' });
 
 
 exports.getEvents = (req, res) => {

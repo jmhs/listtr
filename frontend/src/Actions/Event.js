@@ -24,7 +24,7 @@ export const getEvents = () => {
         dispatch(storeEvents(response.data))
       })
       .catch((error)=> {
-        console.error("AJAX: Could not get user @ '/auth/user'")
+        console.error("AJAX: Could not get events'")
       });
   };
 }
@@ -64,6 +64,8 @@ export const postEvents = (pic,events) => {
         });
       };
     }
+
+
 }
 
 
