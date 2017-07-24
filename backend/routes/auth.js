@@ -46,12 +46,12 @@ router.post('/signup', function(req, res, next) {
       let user = new User();
       user.email = req.body.email;
       user.password = req.body.password;
-      user.username="";
-      user.userImage="";
-      user.firstName="";
-      user.lastName="";
-      user.gender="";
-      
+      user.username=req.body.username;
+      user.userImage=req.body.userImage;
+      user.firstName=req.body.firstName;
+      user.lastName=req.body.lastName;
+      user.gender=req.body.gender;
+
       user.save((err) => {
         if (err) {
           console.log("User save error");
