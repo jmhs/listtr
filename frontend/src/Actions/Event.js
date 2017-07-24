@@ -32,10 +32,10 @@ export const getEvents = () => {
 
 //Splits Actions for with and without Image
 export const postEvents = (events) => {
-
   return (dispatch) => {
+
    if (events.eventImage === null) {
-    console.log('No Image!')
+    console.log('No Image Bro')
     axios.post('/event', events)
       .then( (response) => {
         console.log(response.data);
@@ -46,13 +46,15 @@ export const postEvents = (events) => {
       });
   }
   else {
-     console.log('Theres an Image!')
+    console.log('Theres an Image!')
+    console.log(events)
     let EventDataWithImage = new FormData();
-    EventDataWithImage.append('eventImage', events.eventImage)
-    EventDataWithImage.append('location', events.location)
-    console.log(EventDataWithImage, "YOsupp")
+    EventDataWithImage.append('eventImage', events.eventImage);
+    EventDataWithImage.append('location', events.location);
+    console.log(EventDataWithImage)
+
     return (dispatch) => {
-      console.log('Yosupp')
+
       axios.post('/event', EventDataWithImage)
         .then( (response) => {
           console.log(response.data);
@@ -61,8 +63,9 @@ export const postEvents = (events) => {
         .catch((error)=> {
           console.error("event not posted to server'")
         });
-    };
-  }
+      };
+    }
+  
 }
 }
 
