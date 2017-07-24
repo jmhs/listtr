@@ -18,10 +18,17 @@ class Dashboard extends React.Component {
     }
   }
 
+// Get logged in User data to render relevant events as host or guest
+// componentWillMount() {
+//   this.props.updateUser(data)
+//   console.log(updateUser)
+// }
+
+
 // onClick, updateNavPath is fired in the actions to send to reducer, to be exported as props for conditional rendering
 onClick = (e) => {
   const state = this.state;
-  console.log('clicked: ', state)
+  console.log('clicked on: ', state)
 
   this.setState(
     {currentNav: e.target.id}
@@ -29,6 +36,17 @@ onClick = (e) => {
   this.props.updateNavPath(this.state.currentNav);
   console.log('curretNav state: ', this.state.currentNav)
 }
+
+logout = () =>{
+  axios.get('/auth/logout')
+    .then( (response) => {
+      console.log("AJAX: Logged out @ '/auth/logout'");
+      window.location.href = "/";
+    })
+    .catch((error)=> {
+      console.log(error);
+    });
+  }
 
   render() {
     return (
@@ -75,7 +93,7 @@ onClick = (e) => {
               </a>
               <li className="nav-item" ><a href="#" className="list-group-item" id="AccountNav" onClick={this.onClick}>Account</a></li>
               <li className="nav-item" ><a href="#" className="list-group-item" id="Billing" onClick={this.onClick}>Billing</a></li>
-              <li className="nav-item" ><a href="#" className="list-group-item" id="Logout" onClick={this.onClick}>Logout</a></li>
+              <li className="nav-item" ><a href="#" className="list-group-item" id="Logout" onClick={this.logout}>Logout</a></li>
             </ul>
           </div>
           </div>
@@ -102,6 +120,7 @@ Dashboard.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
+    user: state.user
   }
 }
 

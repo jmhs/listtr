@@ -50,7 +50,9 @@ class MainContent extends React.Component {
     console.log("grids: ", grids);
 
     return (
-    <div></div>
+    <div>
+
+    </div>
     )
 
     // switch(this.props.navigation.toString()) {
