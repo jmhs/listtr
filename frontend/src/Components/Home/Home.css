@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+#landing-page{
+  background-image: url("getting-started.jpg");
+  background-size: cover;
+  height:500px;
+  background-position: center;
+  overflow: hidden;
+}
+
+#home-title{
+  color: black;
+  font-family: 'Lobster', cursive;
+  font-size: 100px;
+  position: absolute;
+  top:50%;
+  left:50%;
+  margin-top: -50px;
+  margin-left: -100px;
+}
+#navbar-title{
+  font-family: 'Lobster', cursive;
+  text-transform: none;
+  font-size: 25px;
+}
+
+.home-nav{
+  font-size: 15px;
+  font-family: 'Montserrat', sans-serif;
+}

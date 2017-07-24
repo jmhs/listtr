@@ -10,7 +10,6 @@
     "masonry-layout": "^4.2.0",
     "react": "^15.6.1",
     "react-bootstrap": "^0.31.1",
-    "react-burger-menu": "^2.1.4",
     "react-dom": "^15.6.1",
     "react-icons": "^2.2.5",
     "react-redux": "^5.0.5",
@@ -18,12 +17,16 @@
     "react-router-dom": "^4.1.2",
     "react-scrollbar": "^0.5.1",
     "react-transition-group": "^2.2.0",
+
+    "react-uikit-base": "^2.0.2",
+    "react-uikit-comment": "^2.0.2",
     "reactstrap": "^4.8.0",
     "recharts": "^1.0.0-alpha.2",
+
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
-    "screenfull": "^3.3.1",
     "socket.io": "^2.0.3",
+    "uikit": "^3.0.0-beta.27",
     "uuid": "^3.1.0"
   },
   "devDependencies": {

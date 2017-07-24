@@ -40,6 +40,7 @@ exports.postEvent = (req, res) => {
     if(err){console.log(err); return;}
     res.json(events);
   });
+
 }
  else {
   console.log(req.body.eventImage)
@@ -74,4 +75,5 @@ exports.postEvent = (req, res) => {
     })
   );
  }
+
 }
