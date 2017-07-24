@@ -33,6 +33,4 @@ exports.postEvent = (req, res) => {
     if(err){console.log(err); return;}
     res.json(events);
   });
-
-
 }

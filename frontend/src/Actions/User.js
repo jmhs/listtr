@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const updateUser = (user) => {
+const updateUser = (user) => {
   return {
     type: "USER_UPDATE",
     user
@@ -12,12 +12,12 @@ export const getUser = () => {
     axios.get('/auth/user')
       .then( (response) => {
         const user = response.data;
-          console.log('user exists', user.isFetching)
-          dispatch(updateUser(user));
+        // console.log(response.data);
+        dispatch(updateUser(user));
       })
       .catch((error)=> {
         console.error("AJAX: Could not get user @ '/auth/user'")
-        dispatch(updateUser({isFetching: true}));
+
       });
   };
 }

@@ -13,6 +13,7 @@ import EventDisplay from '../EventDisplay/EventDisplay'
 import CreateEvent from '../CreateEvent/CreateEvent'
 import PopulateGuests from '../PopulateGuests/PopulateGuests'
 import Dashboard from '../Dashboard/Dashboard'
+import AccountPage from '../AccountPage/AccountPage'
 import logo from './logo.svg';
 import './App.css';
 
@@ -28,6 +29,7 @@ class App extends Component {
           <Route exact path="/CreateEvent" component={CreateEvent}/>
           <Route exact path="/Guests" component={PopulateGuests}/>
           <Route exact path="/dashboard" component={Dashboard}/>
+          <Route exact path="/account" component={AccountPage}/>
 
 
         </Switch>
