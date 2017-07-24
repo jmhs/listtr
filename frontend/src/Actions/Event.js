@@ -1,12 +1,14 @@
 import axios from 'axios'
 
-//in-charge of sending events to store
+//send events to store
 export const storeEvents = (events) => {
   return{
     type: "STORE_EVENTS",
     events
   }
 }
+
+//send events to store
 export const storeGuests = (guests) => {
   return {
     type: 'STORE_GUESTS',
