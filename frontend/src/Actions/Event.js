@@ -24,17 +24,17 @@ export const getEvents = () => {
         dispatch(storeEvents(response.data))
       })
       .catch((error)=> {
-        console.error("AJAX: Could not get user @ '/auth/user'")
+        console.error("AJAX: Could not get events'")
       });
   };
 }
 
 
 //Splits Actions for with and without Image
-export const postEvents = (events) => {
+export const postEvents = (pic,events) => {
   return (dispatch) => {
 
-   if (events.eventImage === null) {
+   if (pic === null) {
     console.log('No Image Bro')
     axios.post('/event', events)
       .then( (response) => {
@@ -49,11 +49,10 @@ export const postEvents = (events) => {
     console.log('Theres an Image!')
     console.log(events)
     let EventDataWithImage = new FormData();
-    EventDataWithImage.append('eventImage', events.eventImage);
+    EventDataWithImage.append('eventImage', pic);
     EventDataWithImage.append('location', events.location);
-    console.log(EventDataWithImage)
+    console.log(EventDataWithImage.get('eventImage'))
 
-    return (dispatch) => {
 
       axios.post('/event', EventDataWithImage)
         .then( (response) => {
@@ -65,8 +64,8 @@ export const postEvents = (events) => {
         });
       };
     }
-  
-}
+
+
 }
 
 
