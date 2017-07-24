@@ -1,7 +1,22 @@
 const Events = (state = [], action) => {
   switch (action.type) {
-    case 'STORE_EVENTS':
-      return action.events
+    case "STORE_EVENTS":
+    return [
+      ...state,console.log(action),
+      {
+        events : action.events,
+
+      }
+    ];
+    case "STORE_GUESTS":
+    return [
+      ...state,
+      {
+        events: state.events,
+        guests : action.guests,
+
+      }
+    ]
 
       break;
     default:

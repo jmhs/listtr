@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react';
 import { connect } from 'react-redux';
-import {CreateEvents} from '../../Actions/CreateEvent'
+import {postEvents} from '../../Actions/Event'
+import PopulateGuests from '../PopulateGuests/PopulateGuests'
 
 class CreateEvent extends React.Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class CreateEvent extends React.Component {
 };
   }
 
-//saves admin's input into local state before sending to actons together
+//saves user's input into local state before sending to "actons" together
   onChange = (e) => {
     let state = this.state;
 
@@ -35,14 +36,25 @@ class CreateEvent extends React.Component {
     }
 
     this.setState(state);
+    console.log(state)
   }
 
   onClick = (e) => {
-    const consolidatedevents = [this.state]
-    console.log(consolidatedevents)
-    this.props.CreateEvents(consolidatedevents);
+
+    this.props.postEvents(this.state);
 
   }
+
+  // Component method
+// handleFileUpload({ file }) {
+//   const file = files[0];
+//   this.props.actions.uploadRequest({
+//      file,
+//      name: 'Awesome Cat Pic'
+//   })
+// }
+
+
   render() {
     return (
       <section className="row create">
@@ -88,6 +100,8 @@ class CreateEvent extends React.Component {
                   className="btn btn-success"
                   onClick={this.onClick}>Create</button>
         </div>
+
+        <input type="file" onChange={this.handleFileUpload} />
       </section>);
   }
 }
@@ -97,7 +111,6 @@ CreateEvent.propTypes = {
 
 //export default CreateEvent;
 const mapStateToProps = (state) => {
-  console.log(state)
   return {
     events: state.events,
   }
@@ -106,7 +119,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   console.log(dispatch)
   return {
-    CreateEvents: () => {dispatch(CreateEvents())}
+    postEvents: (events) => {dispatch(postEvents(events))}
   }
 }
 
