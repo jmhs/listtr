@@ -1,33 +1,29 @@
-import nodemailer from 'nodemailer'
+
+import dotenv from 'dotenv';
+dotenv.load({ path: 'sendgrid.env' });
 
 exports.handleSayHello = (req, res) => {
-    // Not the movie transporter!
-  let transporter = nodemailer.createTransport({
-      service: 'Gmail',
-      auth: {
-          user: 'listtryourlist@gmail.com', // Your email id
-          pass: 'passwordforlisttr' // Your password
-      }
+  var helper = require('sendgrid').mail;
+  var fromEmail = new helper.Email('listtryourlist@gmail.com');
+  var toEmail = new helper.Email('listtryourlist@gmail.com');
+  var subject = 'Sending with SendGrid is Fun';
+  var content = new helper.Content('text/html', '<p><b>Hello world</b></p>');
+  var mail = new helper.Mail(fromEmail, subject, toEmail, content);
+
+  var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
+  var request = sg.emptyRequest({
+    method: 'POST',
+    path: '/v3/mail/send',
+    body: mail.toJSON()
   });
 
-  let text = 'Hello world from \n\n' + req.body.name;
-  let mailOptions = {
-    from: 'listtryourlist@gmail.com>', // sender address
-    to: 'i150004@e.ntu.edu.sg', // list of receivers
-    subject: 'Email Example', // Subject line
-    text: '<b>Hello world</b>' //, // plaintext body
-  // html: '<b>Hello world ✔</b>' // You can choose to send an HTML body instead
-  };
-
-  transporter.sendMail(mailOptions, (error, info) => {
-    if(error){
-        console.log(error);
-        res.json({yo: 'error'});
-    }else{
-        console.log('Message sent: ' + info.response);
-        res.json({yo: info.response});
-    };
-    transporter.close();
+  sg.API(request, function (error, response) {
+    if (error) {
+      console.log('Error response received');
+    }
+    console.log(response.statusCode);
+    console.log(response.body);
+    console.log(response.headers);
+    res.json(response)
   });
-
 }
