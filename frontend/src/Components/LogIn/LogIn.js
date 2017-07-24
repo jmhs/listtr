@@ -42,7 +42,7 @@ class LogIn extends React.Component {
         console.log("AJAX: Logged in @ '/auth/user'");
         // this.props.updateUser(data)
         this.props.getUser()
-        window.location.href = '/account'
+        window.location.href = '/dashboard'
       }
     }).catch((error) => {
       console.error("AJAX: Could not login @ '/auth/login'")
