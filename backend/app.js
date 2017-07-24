@@ -37,9 +37,9 @@ const app = express();
 const debug = Debug('backend:app');
 
 cloudinary.config({
-  cloud_name: "ddby9i01q",
-  api_key: '296937751355523',
-  api_secret: 'LUyUMR8HpIgjHwcgaCh68BblaZ0'
+  cloud_name: "listtr ",
+  api_key: '476127874373497',
+  api_secret: 'PnpFrwxSG0oiDrSC0E00nXkj-wQ'
 })
 
 /**
