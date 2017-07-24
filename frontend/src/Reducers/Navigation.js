@@ -1,12 +1,10 @@
-const Navigation = (state = [], action) => {
+const Navigation = (state = ["HostingNav"], action) => {
   switch (action.type) {
 
     case "UPDATE_NAVPATH":
     return [
-      ...state,console.log(action),
       {
         currentNav : action.state,
-
       }
     ];
       break;

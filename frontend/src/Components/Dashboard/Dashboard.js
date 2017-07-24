@@ -14,7 +14,7 @@ class Dashboard extends React.Component {
     super(props);
 
     this.state = {
-      currentNav: "Hosting"
+      currentNav: "HostingNav"
     }
   }
 
@@ -26,7 +26,7 @@ onClick = (e) => {
   this.setState(
     {currentNav: e.target.id}
   );
-  this.props.updateNavPath(this.state);
+  this.props.updateNavPath(this.state.currentNav);
   console.log('curretNav state: ', this.state.currentNav)
 }
 
@@ -63,13 +63,21 @@ onClick = (e) => {
       <div className="container-fluid" id="main">
         <div className="row row-offcanvas row-offcanvas-left">
           <div className="col-md-3 col-lg-2 sidebar-offcanvas" id="sidebar" role="navigation">
+          <div className="list-group">
             <ul className="nav flex-column pl-1">
-              <li className="nav-item" id="HostingNav" onClick={this.onClick}>Hosting</li>
-              <li className="nav-item" id="AttendingNav" onClick={this.onClick}>Attending</li>
-              <li className="nav-item" id="AccountNav" onClick={this.onClick}>Account</li>
-              <li className="nav-item" id="Billing" onClick={this.onClick}>Billing</li>
-              <li className="nav-item" id="Logout" onClick={this.onClick}>Logout</li>
+            <a href="#" className="list-group-item disabled">
+            Events
+            </a>
+              <li className="nav-item" ><a href="#" className="list-group-item" id="HostingNav" onClick={this.onClick}>Hosting</a></li>
+              <li className="nav-item" ><a href="#" className="list-group-item" id="AttendingNav" onClick={this.onClick}>Attending</a></li>
+              <a href="#" className="list-group-item disabled">
+              Settings
+              </a>
+              <li className="nav-item" ><a href="#" className="list-group-item" id="AccountNav" onClick={this.onClick}>Account</a></li>
+              <li className="nav-item" ><a href="#" className="list-group-item" id="Billing" onClick={this.onClick}>Billing</a></li>
+              <li className="nav-item" ><a href="#" className="list-group-item" id="Logout" onClick={this.onClick}>Logout</a></li>
             </ul>
+          </div>
           </div>
           {/*/col*/}
           <div className="col-md-9 col-lg-10 main">
