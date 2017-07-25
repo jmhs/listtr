@@ -23,10 +23,16 @@ class AccountPage extends React.Component {
   updateProfile = (e) => {
     e.preventDefault();
     console.log("updateAccountDetails clicked!");
-    let data = this.state.email;
-    console.log(data);
+    let usernameUpdate = this.state.username;
+    let firstNameUpdate = this.state.firstName;
+    let lastNameUpdate = this.state.lastName;
+    let emailUpdate = this.state.email;
+    // console.log(data);
     axios.post('/auth/account/profile', {
-      data: data
+      username: usernameUpdate,
+      firstName: firstNameUpdate,
+      lastName: lastNameUpdate,
+      emailUpdate: emailUpdate
     })
     .then( (response) => {
       console.log(response);
