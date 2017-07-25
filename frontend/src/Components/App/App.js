@@ -15,6 +15,7 @@ import PopulateGuests from '../PopulateGuests/PopulateGuests'
 import Dashboard from '../Dashboard/Dashboard'
 import AccountPage from '../AccountPage/AccountPage'
 import MainContent from '../Dashboard/MainContent/MainContent'
+import Form from '../Form/Form'
 import logo from './logo.svg';
 import './App.css';
 
@@ -24,6 +25,7 @@ class App extends Component {
       <Router>
         <Switch>
           <Route exact path="/" component={Home}/>
+          <Route exact path="/form" component={Form}/>
           <Route exact path="/login" component={LogIn}/>
           <Route exact path="/signup" component={SignUp}/>
           <Route exact path="/eventdisplay" component={EventDisplay}/>

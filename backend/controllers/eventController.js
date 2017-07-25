@@ -13,7 +13,7 @@ exports.getEvents = (req, res) => {
 }
 
 exports.getSpecificEvent = (req, res) => {
-  Event.findOne({'_id':req.params.id},(err,event) => {
+  Event.findOne({'_id':req.params.event_id},(err,event) => {
     if(err){console.log(err); return;}
     res.json(event);
   })
@@ -31,7 +31,7 @@ exports.postEvent = (req, res) => {
     description: req.body.description || "",
     dressCode: req.body.dressCode || "",
     location: req.body.location || "",
-    googleMapLink: req.body.googleMapLink || "",
+
     startDate: req.body.startDate || "",
     endDate: req.body.endDate || "",
     timeStart: req.body.timeStart || "",
@@ -48,13 +48,13 @@ exports.postEventsWithImage = (req, res) => {
     console.log(result)
     const newEvent = new Event({
       eventImage : result.secure_url||"",
-      picHomePublicId: result.public_id||"",
+      eventImagePublicId: result.public_id||"",
       eventName: req.body.eventName || "",
       type: req.body.type || "" ,
       description: req.body.description || "",
       dressCode: req.body.dressCode || "",
       location: req.body.location || "",
-      googleMapLink: req.body.googleMapLink || "",
+
       startDate: req.body.startDate || "",
       endDate: req.body.endDate || "",
       timeStart: req.body.timeStart || "",
@@ -74,4 +74,79 @@ exports.postEventsWithImage = (req, res) => {
             console.log('successfully deleted local image');}
     })
   );
+}
+
+exports.updateEvents = (req,res) => {
+
+  Event.findOne({'_id':req.params.event_id}, (err,event) => {
+    event.eventImage = req.body.secure_url||event.eventImage,
+    event.eventImagePublicId= req.body.public_id||event.eventImagePublicId,
+    event.eventName= req.body.eventName || event.eventName,
+    event.type= req.body.type || event.type ,
+    event.description= req.body.description || event.description,
+    event.dressCode= req.body.dressCode || event.dressCode,
+    event.location= req.body.location || event.location,
+
+    event.startDate= req.body.startDate || event.startDate,
+    event.endDate= req.body.endDate || event.endDate,
+    event.timeStart= req.body.timeStart || event.timeStart,
+    event.timeEnd= req.body.timeEnd || event.timeEnd
+
+    event.save((err)=>{
+      if(err){console.log(err); return;}
+      res.json(event)
+    });
+  });
+}
+
+exports.updateEventsWithImage = (req,res) => {
+  Event.findOne({'_id':req.params.event_id}, (err,event) => {
+    event.eventName= req.body.eventName || event.eventName,
+    event.type= req.body.type || event.type ,
+    event.description= req.body.description || event.description,
+    event.dressCode= req.body.dressCode || event.dressCode,
+    event.location= req.body.location || event.location,
+
+    event.startDate= req.body.startDate || event.startDate,
+    event.endDate= req.body.endDate || event.endDate,
+    event.timeStart= req.body.timeStart || event.timeStart,
+    event.timeEnd= req.body.timeEnd || event.timeEnd
+
+    cloudinary.uploader.upload(req.file.path,(result) => {
+      event.eventImage = result.secure_url|| event.eventImage,
+      event.save((err)=>{
+      if(err){console.log(err); return;}
+      res.json(event)
+      });
+    }, {public_id: req.body.eventImagePublicId}) //updates the prev image on cloudinary
+    .then(
+      fs.unlink(req.file.path, (err) => {
+        if (err) {
+              console.log("failed to delete local image:"+err);
+          } else {
+              console.log('successfully deleted local image');
+          }
+      })
+    );
+  });
+}
+
+exports.deleteEvent = (req,res) => {
+  Event.findOneAndRemove({'_id':req.params.event_id}, (err,event) => {
+    // other updates this event is linked to
+    // Restaurant.findOneAndUpdate({'_id':event.restaurant}, {
+    //   '$pull':{'events': req.params.id}
+    // },(err, restraurant) => {
+    //   if(err){console.log(err); return;}
+    // })
+    //
+    // User.findOneAndUpdate({'_id':event.user},{
+    //   '$pull':{'events': req.params.id}
+    // },(err, user) => {
+    //   if(err){console.log(err); return;}
+    // })
+    if(err){console.log(err); return;}
+    res.json(event);
+  })
+
 }

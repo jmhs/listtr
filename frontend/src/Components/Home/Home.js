@@ -27,6 +27,9 @@ class Home extends React.Component {
           <div id="landing-page">
             <h1 id="home-title">Listtr</h1>
           </div>
+          <div id="linear">
+          //typed js here
+          </div>
         </section>
       </div>
     );

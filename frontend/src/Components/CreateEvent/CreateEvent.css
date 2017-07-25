@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+.picture-row-create-event{
+  background-image: url("../Home/getting-started.jpg");
+  background-size: cover;
+  height:500px;
+  background-position: center;
+  overflow: hidden;
+  position: relative;
+}
+
+#create-event-brand{
+  color: white;
+  font-size: 40px;
+  font-family: 'Lobster', cursive;
+  position: absolute;
+  top: 10px;
+  left: 25px;
+}
+#create-event{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 40px;
+  color:white;
+  text-transform: uppercase;
+  position: absolute;
+  bottom: 10px;
+  left: 25px;
+}
+
+.create-row{
+  margin-top: 15px;
+  width:40%;
+  font-size:15px;
+  font-family: 'Montserrat', sans-serif;
+}
