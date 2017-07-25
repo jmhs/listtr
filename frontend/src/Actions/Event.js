@@ -36,7 +36,7 @@ export const postEvents = (pic,events) => {
 
    if (pic === null) {
     console.log('No Image Bro')
-    axios.post('/event', events)
+    axios.post('/event/postEvents', events)
       .then( (response) => {
         console.log(response.data);
         dispatch(storeEvents(response.data))
@@ -51,10 +51,9 @@ export const postEvents = (pic,events) => {
     let EventDataWithImage = new FormData();
     EventDataWithImage.append('eventImage', pic);
     EventDataWithImage.append('location', events.location);
-    console.log(EventDataWithImage.get('eventImage'))
 
 
-      axios.post('/event', EventDataWithImage)
+      axios.post('/event/postEventsWithImage', EventDataWithImage)
         .then( (response) => {
           console.log(response.data);
           dispatch(storeEvents(response.data))
