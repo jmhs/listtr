@@ -1,7 +1,10 @@
 import React, {PropTypes} from 'react';
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
+import axios from 'axios';
 
 import { getUser} from '../../Actions/User';
+
+import LogIn from '../LogIn/LogIn';
 
 
 class AccountPage extends React.Component {
@@ -17,13 +20,62 @@ class AccountPage extends React.Component {
     }
   }
 
+  updateProfile = (e) => {
+    e.preventDefault();
+    console.log("updateAccountDetails clicked!");
+    let data = this.state.email;
+    console.log(data);
+    axios.post('/auth/account/profile', {
+      data: data
+    })
+    .then( (response) => {
+      console.log(response);
+      console.log("AJAX: Updated @ '/auth/account/profile'");
+      window.location.href = "/account";
+    })
+    .catch((error)=> {
+      console.log(error);
+    });
+  }
+
+  updatePassword = (e) => {
+    e.preventDefault();
+    console.log("updatePassword clicked!");
+    let data = this.state.password;
+    console.log(data);
+    axios.post('/auth/account/password', {
+      data: data
+    })
+    .then( (response) => {
+      console.log(response);
+      console.log("AJAX: Updated @ '/auth/account/password'");
+      window.location.href = "/account";
+    })
+    .catch((error)=> {
+      console.log(error);
+    });
+  }
+
+  deleteAccount = (e) =>  {
+    e.preventDefault();
+    console.log("deleteAccount clicked!");
+    axios.post('/auth/account/delete')
+    .then( (response) => {
+      console.log("AJAX: Deleted @ '/auth/account/delete'");
+      window.location.href = "/";
+    })
+    .catch((error)=> {
+      console.log(error);
+    });
+  }
+
   isLoggedIn = () => {
     if(this.props.user.hasOwnProperty('_id')){
       return (
         <div className="container">
           <div className="row">
             <div className="col-sm-6 col-sm-offset-3">
-              <h1>Account Page</h1>
+              <h1>Account</h1>
               <hr/>
             </div>
           </div>
@@ -66,6 +118,8 @@ class AccountPage extends React.Component {
                        defaultValue={this.props.user.email}
                        name="email"/>
               </div>
+              <button className="uk-button uk-button-primary" id="updateAccountDetailsBtn" onClick={this.updateProfile}>Update Account Details</button>
+              <hr />
               <div className="form-group">
                 <label htmlFor="exampleInputPassword1">Password</label>
                 <input type="password"
@@ -74,14 +128,18 @@ class AccountPage extends React.Component {
                        placeholder="Password"
                        name="password"/>
               </div>
-              <button className="uk-button uk-button-primary">Update Account</button>
-              <button className="uk-button uk-button-danger">Delete Account</button>
+              <button className="uk-button uk-button-primary" id="updatePasswordBtn" onClick={this.updatePassword}>Update Password</button>
+              <button className="uk-button uk-button-danger" id="deleteAccountBtn" onClick={this.deleteAccount}>Delete Account</button>
             </div>
           </div>
         </div>
       )
     } else {
-      return(<div>please login</div>)
+      return(
+        <div>
+        <LogIn />
+        </div>
+      )
     }
   }
 
@@ -115,10 +173,10 @@ class AccountPage extends React.Component {
         break;
 
       default:
-
     }
-
   }
+
+
 
   render() {
     return(
