@@ -8,7 +8,7 @@ class CreateEvent extends React.Component {
     super(props);
 
     this.state = {
-      events:{},
+    events:{},
     eventImage: null
   };
 
@@ -49,7 +49,6 @@ class CreateEvent extends React.Component {
   this.setState({
     eventImage: eventImage
   })
-
 }
 
 // if loop for when create button pressed with & without image(different actions)
