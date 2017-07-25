@@ -11,7 +11,7 @@ import LogIn from '../LogIn/LogIn'
 import SignUp from '../SignUp/SignUp'
 import EventDisplay from '../EventDisplay/EventDisplay'
 import CreateEvent from '../CreateEvent/CreateEvent'
-import PopulateGuests from '../PopulateGuests/PopulateGuests'
+import AddGuest from '../PopulateGuests/AddGuest'
 import Dashboard from '../Dashboard/Dashboard'
 import AccountPage from '../AccountPage/AccountPage'
 import MainContent from '../Dashboard/MainContent/MainContent'
@@ -30,7 +30,7 @@ class App extends Component {
           <Route exact path="/signup" component={SignUp}/>
           <Route exact path="/eventdisplay" component={EventDisplay}/>
           <Route exact path="/CreateEvent" component={CreateEvent}/>
-          <Route exact path="/Guests" component={PopulateGuests}/>
+          <Route exact path="/guest" component={AddGuest}/>
           <Route exact path="/dashboard" component={Dashboard}/>
           <Route exact path="/account" component={AccountPage}/>
           <Route exact path="/maincontent" component={MainContent}/>

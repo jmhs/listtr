@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import {postEvents} from '../../Actions/Event'
 import 'react-date-picker/index.css'
 import { DateField, Calendar } from 'react-date-picker'
-import PopulateGuests from '../PopulateGuests/PopulateGuests'
+// import PopulateGuests from '../PopulateGuests/PopulateGuests'
 import './CreateEvent.css'
 class CreateEvent extends React.Component {
   constructor(props) {
