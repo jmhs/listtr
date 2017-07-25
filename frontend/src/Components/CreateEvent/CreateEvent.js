@@ -12,7 +12,7 @@ class CreateEvent extends React.Component {
     this.state = {
     eventImage: null,
     date: null,
-    title: "",
+    eventName: "",
     description: "",
     location: ""
   };
@@ -26,7 +26,7 @@ class CreateEvent extends React.Component {
     switch (e.target.name) {
       case 'title':
         this.setState({
-          title: e.target.value
+          eventName: e.target.value
         })
         break;
       case 'description':
@@ -130,7 +130,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   console.log(dispatch)
   return {
-    postEvents: (pic,events) => {dispatch(postEvents(pic,events))}
+    postEvents: (events) => {dispatch(postEvents(events))}
   }
 }
 
