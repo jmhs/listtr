@@ -51,6 +51,8 @@ export const postEvents = (events) => {
     let EventDataWithImage = new FormData();
     EventDataWithImage.append('eventImage', events.eventImage);
     EventDataWithImage.append('location', events.location);
+    EventDataWithImage.append('eventName', events.eventName);
+    EventDataWithImage.append('description', events.description);
 
 
       axios.post('/event/postEventsWithImage', EventDataWithImage)

@@ -46,6 +46,7 @@ exports.postEvent = (req, res) => {
 exports.postEventsWithImage = (req, res) => {
     cloudinary.uploader.upload(req.file.path,(result) => {
     console.log(result)
+    console.log(req.body)
     const newEvent = new Event({
       eventImage : result.secure_url||"",
       eventImagePublicId: result.public_id||"",
