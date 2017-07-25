@@ -14,61 +14,23 @@ class EventDisplay extends React.Component {
     console.log(events.length)
 
     return events.map( (event) => {
-      return <div><EventDisplayItem key={event._id}
+      return <EventDisplayItem key={event._id}
                                id={event._id}
                                eventName={event.eventName}
-                               description={event.description}/></div>
+                               description={event.description}
+                               eventImage ={event.eventImage}/>
     })
   }
+
   render() {
 
     const renderlist = this.renderEventDisplayItem();
     return (
-      <div className="container">
-        <div className="uk-child-width-1-2@s uk-child-width-1-3@m uk-child-width-1-4@l uk-text-center" uk-grid-parallax="translate:200">
+      // <div className="container">
+        <div className="masonry">
           {renderlist}
-
         </div>
-        <div className="uk-child-width-1-2@s uk-child-width-1-3@m uk-child-width-1-4@l uk-text-center" uk-grid-parallax="translate:200">
-        <div>
-          <div className="uk-card uk-card-default uk-card-body">Item</div>
-        </div>
-        <div>
-          <div className="uk-card uk-card-default uk-card-body">Item</div>
-        </div>
-        <div>
-          <div className="uk-card uk-card-default uk-card-body">Item</div>
-        </div>
-        <div>
-          <div className="uk-card uk-card-default uk-card-body">Item</div>
-        </div>
-        <div>
-          <div className="uk-card uk-card-default uk-card-body">Item</div>
-        </div>
-        <div>
-          <div className="uk-card uk-card-default uk-card-body">Item</div>
-        </div>
-        <div>
-          <div className="uk-card uk-card-default uk-card-body">Item</div>
-        </div>
-        <div>
-          <div className="uk-card uk-card-default uk-card-body">Item</div>
-        </div>
-        <div>
-          <div className="uk-card uk-card-default uk-card-body">Item</div>
-        </div>
-        <div>
-          <div className="uk-card uk-card-default uk-card-body">Item</div>
-        </div>
-        <div>
-          <div className="uk-card uk-card-default uk-card-body">Item</div>
-        </div>
-        <div>
-          <div className="uk-card uk-card-default uk-card-body">Item</div>
-        </div>
-      </div>
-
-      </div>
+      // </div>
     );
   }
 }
