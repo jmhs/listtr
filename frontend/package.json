@@ -17,15 +17,14 @@
     "react-router-dom": "^4.1.2",
     "react-scrollbar": "^0.5.1",
     "react-transition-group": "^2.2.0",
-
     "react-uikit-base": "^2.0.2",
     "react-uikit-comment": "^2.0.2",
     "reactstrap": "^4.8.0",
     "recharts": "^1.0.0-alpha.2",
-
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "socket.io": "^2.0.3",
+    "typed.js": "^2.0.5",
     "uikit": "^3.0.0-beta.27",
     "uuid": "^3.1.0"
   },
