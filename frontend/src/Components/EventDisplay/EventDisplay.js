@@ -26,11 +26,11 @@ class EventDisplay extends React.Component {
 
     const renderlist = this.renderEventDisplayItem();
     return (
-      <div className="container">
-        <div className="grid">
+      // <div className="container">
+        <div className="masonry">
           {renderlist}
         </div>
-      </div>
+      // </div>
     );
   }
 }

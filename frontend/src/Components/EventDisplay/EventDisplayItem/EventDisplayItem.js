@@ -3,15 +3,15 @@ import './EventDisplayItem.css'
 import image from './event.jpg';
 class EventDisplayItem extends React.Component {
   componentDidMount(){
-    let grid = document.getElementsByClassName('grid')[0];
-    grid.masonry({
-      itemSelector: '.grid-item',
-      columnWidth:200
-    })
+    // let grid = document.getElementsByClassName('grid')[0];
+    // grid.masonry({
+    //   itemSelector: '.grid-item',
+    //   columnWidth:200
+    // })
   }
   render() {
     return (
-      <div className="event-item grid-item" >
+      <div className="grid-item" >
 
           <div className="image">
             <img src={this.props.eventImage === "" ? image : this.props.eventImage}/>
