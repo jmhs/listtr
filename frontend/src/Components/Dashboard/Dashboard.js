@@ -51,7 +51,7 @@ class Dashboard extends React.Component {
         {isLoggedIn
           ? (
               <div>
-                <nav className="navbar fixed-top navbar-toggleable-sm navbar-inverse bg-primary mb-3">
+                <nav className="navbar fixed-top navbar-toggleable-sm navbar-inverse bg-primary mb-3" id="navbar-dashboard">
                   <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
                     <span className="navbar-toggler-icon"/>
                   </button>
