@@ -1,11 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Lobster');
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
-body, html {
+/*body, html {
   height:100%;
   overflow: auto;
+}*/
+.main-container{
+  height:100%;
+  overflow: hidden;
+  width: 100%;
 }
-
 /*body {
     padding-top: 70px;
 }*/
