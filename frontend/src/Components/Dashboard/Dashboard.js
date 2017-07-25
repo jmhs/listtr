@@ -42,7 +42,7 @@ class Dashboard extends React.Component {
   render() {
 
     const isLoggedIn = this.props.user._id;
-    console.log("current user id: ", isLoggedIn);
+    // console.log("current user id: ", isLoggedIn);
 
     return (
       <div className="main-container">

@@ -31,10 +31,10 @@ export const getEvents = () => {
 
 
 //Splits Actions for with and without Image
-export const postEvents = (pic,events) => {
+export const postEvents = (events) => {
   return (dispatch) => {
 
-   if (pic === null) {
+   if (events.eventImage === null) {
     console.log('No Image Bro')
     axios.post('/event/postEvents', events)
       .then( (response) => {
