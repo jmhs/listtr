@@ -83,7 +83,7 @@ exports.updateEvents = (req,res) => {
     event.eventImage = req.body.secure_url||event.eventImage,
     event.eventImagePublicId= req.body.public_id||event.eventImagePublicId,
     event.eventName= req.body.eventName || event.eventName,
-    event.type= req.body.type || event.type ,
+    event.type = req.body.type || event.type ,
     event.description= req.body.description || event.description,
     event.dressCode= req.body.dressCode || event.dressCode,
     event.location= req.body.location || event.location,
@@ -94,6 +94,7 @@ exports.updateEvents = (req,res) => {
     event.timeEnd= req.body.timeEnd || event.timeEnd
 
     event.save((err)=>{
+      console.log(req)
       if(err){console.log(err); return;}
       res.json(event)
     });
