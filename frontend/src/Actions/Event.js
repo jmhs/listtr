@@ -53,6 +53,10 @@ export const postEvents = (events) => {
     EventDataWithImage.append('location', events.location);
     EventDataWithImage.append('eventName', events.eventName);
     EventDataWithImage.append('description', events.description);
+    EventDataWithImage.append('type', events.type);
+    EventDataWithImage.append('dressCode', events.dressCode);
+    EventDataWithImage.append('startDate', events.startDate);
+    EventDataWithImage.append('endDate', events.endDate);
 
 
       axios.post('/event/postEventsWithImage', EventDataWithImage)
