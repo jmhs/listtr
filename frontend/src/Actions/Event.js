@@ -49,7 +49,7 @@ export const postEvents = (events) => {
     console.log('Theres an Image!')
     console.log(events)
     let EventDataWithImage = new FormData();
-    EventDataWithImage.append('eventImage', pic);
+    EventDataWithImage.append('eventImage', events.eventImage);
     EventDataWithImage.append('location', events.location);
 
 
