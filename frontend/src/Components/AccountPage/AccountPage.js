@@ -20,13 +20,52 @@ class AccountPage extends React.Component {
     }
   }
 
+  onChange = (e) => {
+    console.log(e.target.value)
+    switch (e.target.name) {
+      case 'username':
+        this.setState({
+          username: e.target.value
+        })
+        break;
+      case 'firstName':
+        this.setState({
+          firstName: e.target.value
+        })
+        break;
+      case 'lastName':
+        this.setState({
+          lastName: e.target.value
+        })
+        break;
+      case 'email':
+        this.setState({
+          email: e.target.value
+        })
+        break;
+      case 'password':
+        this.setState({
+          password: e.target.value
+        })
+        break;
+
+      default:
+    }
+  }
+
   updateProfile = (e) => {
     e.preventDefault();
     console.log("updateAccountDetails clicked!");
-    let data = this.state.email;
-    console.log(data);
+    let usernameUpdate = this.state.username;
+    let firstNameUpdate = this.state.firstName;
+    let lastNameUpdate = this.state.lastName;
+    let emailUpdate = this.state.email;
+    // console.log(data);
     axios.post('/auth/account/profile', {
-      data: data
+      username: usernameUpdate,
+      firstName: firstNameUpdate,
+      lastName: lastNameUpdate,
+      emailUpdate: emailUpdate
     })
     .then( (response) => {
       console.log(response);
@@ -142,41 +181,6 @@ class AccountPage extends React.Component {
       )
     }
   }
-
-  onChange = (e) => {
-    console.log(e.target.value)
-    switch (e.target.name) {
-      case 'username':
-        this.setState({
-          username: e.target.value
-        })
-        break;
-      case 'firstName':
-        this.setState({
-          firstName: e.target.value
-        })
-        break;
-      case 'lastName':
-        this.setState({
-          lastName: e.target.value
-        })
-        break;
-      case 'email':
-        this.setState({
-          email: e.target.value
-        })
-        break;
-      case 'password':
-        this.setState({
-          password: e.target.value
-        })
-        break;
-
-      default:
-    }
-  }
-
-
 
   render() {
     return(
