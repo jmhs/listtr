@@ -20,6 +20,39 @@ class AccountPage extends React.Component {
     }
   }
 
+  onChange = (e) => {
+    console.log(e.target.value)
+    switch (e.target.name) {
+      case 'username':
+        this.setState({
+          username: e.target.value
+        })
+        break;
+      case 'firstName':
+        this.setState({
+          firstName: e.target.value
+        })
+        break;
+      case 'lastName':
+        this.setState({
+          lastName: e.target.value
+        })
+        break;
+      case 'email':
+        this.setState({
+          email: e.target.value
+        })
+        break;
+      case 'password':
+        this.setState({
+          password: e.target.value
+        })
+        break;
+
+      default:
+    }
+  }
+
   updateProfile = (e) => {
     e.preventDefault();
     console.log("updateAccountDetails clicked!");
@@ -148,41 +181,6 @@ class AccountPage extends React.Component {
       )
     }
   }
-
-  onChange = (e) => {
-    console.log(e.target.value)
-    switch (e.target.name) {
-      case 'username':
-        this.setState({
-          username: e.target.value
-        })
-        break;
-      case 'firstName':
-        this.setState({
-          firstName: e.target.value
-        })
-        break;
-      case 'lastName':
-        this.setState({
-          lastName: e.target.value
-        })
-        break;
-      case 'email':
-        this.setState({
-          email: e.target.value
-        })
-        break;
-      case 'password':
-        this.setState({
-          password: e.target.value
-        })
-        break;
-
-      default:
-    }
-  }
-
-
 
   render() {
     return(
