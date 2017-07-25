@@ -6,6 +6,7 @@
   "dependencies": {
     "axios": "^0.16.2",
     "bootstrap": "^3.3.7",
+    "cloudinary": "^1.9.0",
     "font-awesome": "^4.7.0",
     "masonry-layout": "^4.2.0",
     "react": "^15.6.1",
