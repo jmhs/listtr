@@ -78,19 +78,19 @@ exports.postEventsWithImage = (req, res) => {
 
 exports.updateEvents = (req,res) => {
 
-  Event.findOne({'_id':req.params.id}, (err,event) => {
-    event.eventImage : req.body.secure_url||event.eventImage,
-    event.eventImagePublicId: req.body.public_id||event.eventImagePublicId,
-    event.eventName: req.body.eventName || event.eventName,
-    event.type: req.body.type || event.type ,
-    event.description: req.body.description || event.description,
-    event.dressCode: req.body.dressCode || event.dressCode,
-    event.location: req.body.location || event.location,
+  Event.findOne({'_id':req.params.event_id}, (err,event) => {
+    event.eventImage = req.body.secure_url||event.eventImage,
+    event.eventImagePublicId= req.body.public_id||event.eventImagePublicId,
+    event.eventName= req.body.eventName || event.eventName,
+    event.type= req.body.type || event.type ,
+    event.description= req.body.description || event.description,
+    event.dressCode= req.body.dressCode || event.dressCode,
+    event.location= req.body.location || event.location,
 
-    event.startDate: req.body.startDate || event.startDate,
-    event.endDate: req.body.endDate || event.endDate,
-    event.timeStart: req.body.timeStart || event.timeStart,
-    event.timeEnd: req.body.timeEnd || event.timeEnd
+    event.startDate= req.body.startDate || event.startDate,
+    event.endDate= req.body.endDate || event.endDate,
+    event.timeStart= req.body.timeStart || event.timeStart,
+    event.timeEnd= req.body.timeEnd || event.timeEnd
 
     event.save((err)=>{
       if(err){console.log(err); return;}
@@ -100,25 +100,25 @@ exports.updateEvents = (req,res) => {
 }
 
 exports.updateEventsWithImage = (req,res) => {
-  Event.findOne({'_id':req.params.id}, (err,event) => {
-    event.eventName: req.body.eventName || event.eventName,
-    event.type: req.body.type || event.type ,
-    event.description: req.body.description || event.description,
-    event.dressCode: req.body.dressCode || event.dressCode,
-    event.location: req.body.location || event.location,
+  Event.findOne({'_id':req.params.event_id}, (err,event) => {
+    event.eventName= req.body.eventName || event.eventName,
+    event.type= req.body.type || event.type ,
+    event.description= req.body.description || event.description,
+    event.dressCode= req.body.dressCode || event.dressCode,
+    event.location= req.body.location || event.location,
 
-    event.startDate: req.body.startDate || event.startDate,
-    event.endDate: req.body.endDate || event.endDate,
-    event.timeStart: req.body.timeStart || event.timeStart,
-    event.timeEnd: req.body.timeEnd || event.timeEnd
+    event.startDate= req.body.startDate || event.startDate,
+    event.endDate= req.body.endDate || event.endDate,
+    event.timeStart= req.body.timeStart || event.timeStart,
+    event.timeEnd= req.body.timeEnd || event.timeEnd
 
     cloudinary.uploader.upload(req.file.path,(result) => {
-      event.eventImage : result.secure_url|| event.eventImage,
+      event.eventImage = result.secure_url|| event.eventImage,
       event.save((err)=>{
       if(err){console.log(err); return;}
       res.json(event)
       });
-    }, {public_id: req.body.picReviewPublicId}) //updates the prev image on cloudinary
+    }, {public_id: req.body.eventImagePublicId}) //updates the prev image on cloudinary
     .then(
       fs.unlink(req.file.path, (err) => {
         if (err) {
