@@ -13,12 +13,10 @@ class MainContent extends React.Component {
     }
     // console.log(this.state.currentNav[0]);
   }
-
 // function to sort conditionally render components based on currentNav state.
   conditionalRender = () => {
     console.log("this.props.nav ", this.props.navigation)
-    console.log(this.state.currentNav[0]);
-    switch(this.props.navigation) {
+    switch(this.props.navigation.nav) {
       case "HostingNav":
       return (<EventDisplay />)
         break;

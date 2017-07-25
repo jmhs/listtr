@@ -21,11 +21,12 @@ class Dashboard extends React.Component {
   // onClick, updateNavPath is fired in the actions to send to reducer, to be exported as props for conditional rendering
   onClick = (e) => {
     const state = this.state;
-    console.log('clicked on: ', state)
+    console.log('clicked on: ', e.target.id)
 
     this.setState({currentNav: e.target.id});
-    this.props.updateNavPath(this.state.currentNav);
-    console.log('curretNav state: ', this.state.currentNav)
+    //console.log('new component state', this.state)
+    this.props.updateNavPath(e.target.id);
+    //console.log('curretNav state: ', this.state.currentNav)
   }
 
 // on clicking logout, user is redirected to "/"
@@ -47,7 +48,8 @@ class Dashboard extends React.Component {
       <div className="container-fluid">
         <div className="row">
 
-
+        {isLoggedIn
+          ? (
               <div>
                 <nav className="navbar fixed-top navbar-toggleable-sm navbar-inverse bg-primary mb-3">
                   <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
@@ -117,7 +119,8 @@ class Dashboard extends React.Component {
                 </div>
                 {/*scripts loaded here*/}
               </div>
-
+            )
+              : (<LogIn/>)}
         </div>
       </div>
     );
@@ -139,7 +142,3 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
-
-// {isLoggedIn
-//   ? ()
-//   : (<LogIn/>)}
