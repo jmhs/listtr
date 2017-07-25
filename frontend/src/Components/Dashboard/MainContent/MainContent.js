@@ -1,49 +1,57 @@
 import React, {PropTypes} from 'react';
 import { connect } from 'react-redux';
 import EventDisplay from '../../EventDisplay/EventDisplay'
-// import Account from '../../Account/Account'
-// import Billing from '../../Billing/Billing'
+import AccountPage from '../../AccountPage/AccountPage'
+import Billing from '../../Billing/Billing'
 
 class MainContent extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      currentNav: this.props.state
+      currentNav: this.props.navigation
     }
-    console.log(this.state.currentNav)
+    // console.log(this.state.currentNav[0]);
+  }
+// function to sort conditionally render components based on currentNav state.
+  conditionalRender = () => {
+    console.log("this.props.nav ", this.props.navigation)
+    switch(this.props.navigation.nav) {
+      case "HostingNav":
+      return (<EventDisplay />)
+        break;
+
+      case "AttendingNav":
+      return (<EventDisplay />)
+        break;
+
+      case "AccountNav":
+      return (<AccountPage />)
+        break;
+
+      case "Billing":
+       return (<Billing />)
+        break;
+
+      case "Logout":
+        return window.location.href = "/"
+        break;
+
+      default:
+        <div> <EventDisplay /> </div>
+    }
   }
 
+
   render() {
-    const toRenderComponent = this.props.currentNav;
-
-    if (toRenderComponent === "HostingNav") {
-      return (
-        <EventDisplay />
-      )
-    } else if (toRenderComponent === "AttendingNav") {
-      return (
-      <EventDisplay />
-      )
-    }  else if (toRenderComponent === "Logout"){
-      return (
-        window.location.href = "/"
-      )
-    }
-
-    // else if (toRenderComponent === "AccountNav") {
-    //   return (
-    //   <Account />
-    //   )
-    // } else if (toRenderComponent === "Billing") {
-    //   return (
-    //   <Billing />
-    //   )
-    // }
+    const componentToRender = this.conditionalRender();
+    // console.log("grids: ", grids);
 
     return (
-      <div>MAIN CONTENT AREA</div>
-    );
+    <div>
+      {componentToRender}
+    </div>
+    )
   }
 }
 
@@ -52,7 +60,7 @@ MainContent.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    navigation: state.NavigationReducer
+    navigation: state.navigation,
   }
 }
 

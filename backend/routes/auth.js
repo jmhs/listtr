@@ -1,5 +1,6 @@
 import express from 'express';
 import passport from 'passport';
+// import passportConfig from '../config/passport';
 import User from '../models/User';
 import userController from '../controllers/userController';
 const router = express.Router();
@@ -35,6 +36,7 @@ router.post('/login', function(req, res, next) {
         });
     })(req, res, next);
 });
+
 // SIGNUP
 router.post('/signup', function(req, res, next) {
     User.findOne({ email: req.body.email }, (err, existingUser) => {
@@ -70,10 +72,16 @@ router.post('/signup', function(req, res, next) {
 });
 
 router.put ('/user/:id', userController.editProfile)
+
 // LOGOUT
 router.get('/logout',(req, res, next) => {
   req.logout();
   res.redirect('/');
   console.log('logged out successfully!');
 });
+
+// router.post('/account/delete', passportConfig.isAuthenticated, userController.postDeleteAccount);
+// router.post('/account/profile', passportConfig.isAuthenticated, userController.postUpdateProfile);
+// router.post('/account/password', passportConfig.isAuthenticated, userController.postUpdatePassword);
+
 export default router;
