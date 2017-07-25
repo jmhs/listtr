@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react';
+// import TimePicker from 'react-bootstrap-time-picker';
 import { connect } from 'react-redux';
 import {postEvents} from '../../Actions/Event'
 import 'react-date-picker/index.css'
@@ -17,7 +18,8 @@ class CreateEvent extends React.Component {
     description: "",
     location: "",
     type: "",
-    dressCode: ""
+    dressCode: "",
+    time: 0
   };
 
 }
@@ -71,12 +73,14 @@ class CreateEvent extends React.Component {
   onClick = (e) => {
     this.props.postEvents(this.state)
   }
+
   startdateChange = (dateString, { dateMoment, timestamp }) => {
     console.log(dateString)
     this.setState({
       startDate: dateString
     })
   }
+
   enddateChange = (dateString, { dateMoment, timestamp }) => {
     console.log(dateString)
     this.setState({
@@ -84,6 +88,20 @@ class CreateEvent extends React.Component {
     })
   }
 
+  handleTimeChange = (time)=> {
+         // <- prints "3600" if "01:00" is picked
+    this.setState({ time });
+    let hour = time/3600;
+    console.log(hour);
+    time = time - hour*3600;
+    let minute = time/60
+    console.log(minute)
+  }
+  handleChange = (date) => {
+    this.setState({
+      startDate: date
+    });
+  }
   render() {
 
     let date = new Date()
@@ -125,12 +143,12 @@ class CreateEvent extends React.Component {
         <div className="create-row calendar-form">
           <legend className="uk-legend">Start Date</legend>
           <div className="uk-margin">
-          <Calendar
-              dateFormat="YYYY-MM-DD"
-              date={date}
-              onChange={this.startdateChange}
-              name="startDate"
-              />
+            <Calendar
+                dateFormat="YYYY-MM-DD"
+                date={date}
+                onChange={this.startdateChange}
+                name="startDate"
+                />
           </div>
         </div>
         <div className="create-row calendar-form">
@@ -162,6 +180,10 @@ class CreateEvent extends React.Component {
                    onChange={this.onChange}
                    />
           </div>
+        </div>
+        <div className="create-row">
+          <legend className="uk-legend">Start Time</legend>
+          <input type="text" data-uk-timepicker/>
         </div>
         <div className="create-row">
 

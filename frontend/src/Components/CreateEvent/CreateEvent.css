@@ -39,3 +39,8 @@
   margin-right: 30px;
   width: 30%;
 }
+
+select{
+  line-height: 100px;
+  height: 100px;
+}
