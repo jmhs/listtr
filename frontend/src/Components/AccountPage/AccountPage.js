@@ -56,16 +56,18 @@ class AccountPage extends React.Component {
   updateProfile = (e) => {
     e.preventDefault();
     console.log("updateAccountDetails clicked!");
-    let usernameUpdate = this.state.username;
-    let firstNameUpdate = this.state.firstName;
-    let lastNameUpdate = this.state.lastName;
-    let emailUpdate = this.state.email;
-    // console.log(data);
+    let data = this.state.email;
+    // let usernameUpdate = this.state.username;
+    // let firstNameUpdate = this.state.firstName;
+    // let lastNameUpdate = this.state.lastName;
+    // let emailUpdate = this.state.email;
+    console.log(data);
     axios.post('/auth/account/profile', {
-      username: usernameUpdate,
-      firstName: firstNameUpdate,
-      lastName: lastNameUpdate,
-      emailUpdate: emailUpdate
+      data: data
+      // username: usernameUpdate,
+      // firstName: firstNameUpdate,
+      // lastName: lastNameUpdate,
+      // emailUpdate: emailUpdate
     })
     .then( (response) => {
       console.log(response);
@@ -126,7 +128,7 @@ class AccountPage extends React.Component {
                      className="form-control"
                      id="exampleInputPassword1"
                      placeholder="Username"
-                     defaultValue={this.props.username}
+                     defaultValue={this.props.user.username}
                      onChange={this.onChange}
                      name="username"/>
             </div>
@@ -136,7 +138,8 @@ class AccountPage extends React.Component {
                      className="form-control"
                      id="exampleInputPassword1"
                      placeholder="First Name"
-                     defaultValue={this.props.firstName}
+                     defaultValue={this.props.user.firstName}
+                     onChange={this.onChange}
                      name="firstName"/>
             </div>
             <div className="form-group">
@@ -145,7 +148,8 @@ class AccountPage extends React.Component {
                      className="form-control"
                      id="exampleInputPassword1"
                      placeholder="Last Name"
-                     defaultValue={this.props.lastName}
+                     defaultValue={this.props.user.lastName}
+                     onChange={this.onChange}
                      name="lastName"/>
             </div>
               <div className="form-group">
@@ -155,6 +159,7 @@ class AccountPage extends React.Component {
                        id="exampleInputEmail1"
                        placeholder="Email"
                        defaultValue={this.props.user.email}
+                       onChange={this.onChange}
                        name="email"/>
               </div>
               <button className="uk-button uk-button-primary" id="updateAccountDetailsBtn" onClick={this.updateProfile}>Update Account Details</button>
