@@ -6,6 +6,7 @@
   "dependencies": {
     "axios": "^0.16.2",
     "bootstrap": "^3.3.7",
+    "cloudinary": "^1.9.0",
     "font-awesome": "^4.7.0",
     "masonry-layout": "^4.2.0",
     "react": "^15.6.1",
@@ -17,15 +18,14 @@
     "react-router-dom": "^4.1.2",
     "react-scrollbar": "^0.5.1",
     "react-transition-group": "^2.2.0",
-
     "react-uikit-base": "^2.0.2",
     "react-uikit-comment": "^2.0.2",
     "reactstrap": "^4.8.0",
     "recharts": "^1.0.0-alpha.2",
-
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "socket.io": "^2.0.3",
+    "typed.js": "^2.0.5",
     "uikit": "^3.0.0-beta.27",
     "uuid": "^3.1.0"
   },
