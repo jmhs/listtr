@@ -5,8 +5,8 @@ class EventDisplayItem extends React.Component {
 
   render() {
     return (
-      <div className="event-item">
-        <div className="col-sm-12">
+      <div className="event-item uk-card uk-card-default uk-card-body" >
+
           <div className="image">
             <img src={image}/>
           </div>
@@ -16,7 +16,7 @@ class EventDisplayItem extends React.Component {
           <p>{this.props.description}</p>
 
 
-        </div>
+        
       </div>
     );
   }
