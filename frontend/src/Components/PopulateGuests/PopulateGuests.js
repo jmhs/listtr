@@ -7,6 +7,7 @@ class PopulateGuests extends React.Component {
   constructor(props) {
     super(props);
 
+    this.guestslist = [];
     this.state = {
     name: "",
     email: "",
@@ -36,8 +37,9 @@ class PopulateGuests extends React.Component {
   }
 
   onClick = (e) => {
-
-    this.props.storeGuests(this.state);
+    this.guestslist.push(this.state)
+    console.log(this.guestslist)
+    console.log(this.props.events)
 
   }
   render() {
@@ -89,6 +91,7 @@ PopulateGuests.propTypes = {
 const mapStateToProps = (state) => {
   return {
     guests: state.guests,
+    events: state.events
   }
 }
 
