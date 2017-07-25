@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import EventDisplay from '../../EventDisplay/EventDisplay'
 import AccountPage from '../../AccountPage/AccountPage'
 import Billing from '../../Billing/Billing'
-
+import './MainContent.css'
 class MainContent extends React.Component {
   constructor(props) {
     super(props);
@@ -48,7 +48,9 @@ class MainContent extends React.Component {
     // console.log("grids: ", grids);
 
     return (
-    <div>
+
+    <div className="main-content">
+
       {componentToRender}
     </div>
     )

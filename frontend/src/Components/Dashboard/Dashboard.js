@@ -42,11 +42,11 @@ class Dashboard extends React.Component {
   render() {
 
     const isLoggedIn = this.props.user._id;
-    console.log("current user id: ", isLoggedIn);
+    // console.log("current user id: ", isLoggedIn);
 
     return (
-      <div className="container-fluid">
-        <div className="row">
+      <div className="main-container">
+        <div>
 
         {isLoggedIn
           ? (
@@ -78,8 +78,8 @@ class Dashboard extends React.Component {
                   </div>
 
                 </nav>
-                <div className="container-fluid" id="main">
-                  <div className="row row-offcanvas row-offcanvas-left">
+                <div id="main">
+                  <div className="row-offcanvas row-offcanvas-left">
                     <div className="col-md-3 col-lg-2 sidebar-offcanvas" id="sidebar" role="navigation">
                       <div className="list-group">
                         <ul className="nav flex-column pl-1">
