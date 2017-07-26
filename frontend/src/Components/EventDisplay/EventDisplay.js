@@ -14,7 +14,7 @@ class EventDisplay extends React.Component {
 
 
   renderEventDisplayItem = () => {
-    let events = this.props.user.hostFor;
+    let events = this.props.events;
     console.log(events)
     console.log(events.length)
 
@@ -23,7 +23,8 @@ class EventDisplay extends React.Component {
                                id={event._id}
                                eventName={event.eventName}
                                description={event.description}
-                               eventImage ={event.eventImage}/>
+                               eventImage ={event.eventImage}
+                               everything = {event}/>
     })
   }
 
@@ -32,8 +33,7 @@ class EventDisplay extends React.Component {
     const renderlist = this.renderEventDisplayItem();
     return (
       // <div className="container">
-        <div className="masonry">
-
+        <div className="masonry"> 
           {renderlist}
         </div>
       // </div>
