@@ -1,9 +1,10 @@
 import React, {PropTypes} from 'react';
+// import TimePicker from 'react-bootstrap-time-picker';
 import { connect } from 'react-redux';
 import {postEvents} from '../../Actions/Event'
 import 'react-date-picker/index.css'
 import { DateField, Calendar } from 'react-date-picker'
-import PopulateGuests from '../PopulateGuests/PopulateGuests'
+// import PopulateGuests from '../PopulateGuests/PopulateGuests'
 import './CreateEvent.css'
 class CreateEvent extends React.Component {
   constructor(props) {
@@ -11,10 +12,14 @@ class CreateEvent extends React.Component {
 
     this.state = {
     eventImage: null,
-    date: null,
+    startDate: null,
+    endDate: null,
     eventName: "",
     description: "",
-    location: ""
+    location: "",
+    type: "",
+    dressCode: "",
+    time: 0
   };
 
 }
@@ -27,6 +32,16 @@ class CreateEvent extends React.Component {
       case 'title':
         this.setState({
           eventName: e.target.value
+        })
+        break;
+      case 'type':
+        this.setState({
+          type: e.target.value
+        })
+        break;
+      case 'dresscode':
+        this.setState({
+          dressCode: e.target.value
         })
         break;
       case 'description':
@@ -58,13 +73,35 @@ class CreateEvent extends React.Component {
   onClick = (e) => {
     this.props.postEvents(this.state)
   }
-  dateChange = (dateString, { dateMoment, timestamp }) => {
+
+  startdateChange = (dateString, { dateMoment, timestamp }) => {
     console.log(dateString)
     this.setState({
-      date: dateString
+      startDate: dateString
     })
   }
 
+  enddateChange = (dateString, { dateMoment, timestamp }) => {
+    console.log(dateString)
+    this.setState({
+      endDate: dateString
+    })
+  }
+
+  handleTimeChange = (time)=> {
+         // <- prints "3600" if "01:00" is picked
+    this.setState({ time });
+    let hour = time/3600;
+    console.log(hour);
+    time = time - hour*3600;
+    let minute = time/60
+    console.log(minute)
+  }
+  handleChange = (date) => {
+    this.setState({
+      startDate: date
+    });
+  }
   render() {
 
     let date = new Date()
@@ -76,6 +113,7 @@ class CreateEvent extends React.Component {
         </div>
 
         <div className="create-row">
+
           <legend className="uk-legend">Title</legend>
           <div className="uk-margin">
             <input className="uk-input" type="text"
@@ -83,15 +121,48 @@ class CreateEvent extends React.Component {
                    placeholder="Title"
                    onChange={this.onChange}/>
           </div>
-          <legend className="uk-legend">Date</legend>
+        </div>
+        <div className="create-row">
+          <legend className="uk-legend">Type</legend>
+          <div className="uk-margin">
+            <input className="uk-input" type="text"
+                   name="type"
+                   placeholder="Type"
+                   onChange={this.onChange}/>
+          </div>
+        </div>
+        <div className="create-row">
+          <legend className="uk-legend">Dresscode</legend>
+          <div className="uk-margin">
+            <input className="uk-input" type="text"
+                   name="dresscode"
+                   placeholder="Dresscode"
+                   onChange={this.onChange}/>
+          </div>
+        </div>
+        <div className="create-row calendar-form">
+          <legend className="uk-legend">Start Date</legend>
+          <div className="uk-margin">
+            <Calendar
+                dateFormat="YYYY-MM-DD"
+                date={date}
+                onChange={this.startdateChange}
+                name="startDate"
+                />
+          </div>
+        </div>
+        <div className="create-row calendar-form">
+          <legend className="uk-legend">End Date</legend>
           <div className="uk-margin">
           <Calendar
               dateFormat="YYYY-MM-DD"
               date={date}
-              onChange={this.dateChange}
-              name="date"
+              onChange={this.enddateChange}
+              name="startDate"
               />
           </div>
+        </div>
+        <div className="create-row">
           <legend className="uk-legend">Description</legend>
           <div className="uk-margin">
             <textarea className="uk-textarea" rows={5} name="description"
@@ -99,6 +170,9 @@ class CreateEvent extends React.Component {
                    onChange={this.onChange}
                    />
           </div>
+        </div>
+        <div className="create-row">
+
           <legend className="uk-legend">Location</legend>
           <div className="uk-margin">
             <input className="uk-input" name="location"
@@ -106,6 +180,13 @@ class CreateEvent extends React.Component {
                    onChange={this.onChange}
                    />
           </div>
+        </div>
+        <div className="create-row">
+          <legend className="uk-legend">Start Time</legend>
+          <input type="text" data-uk-timepicker/>
+        </div>
+        <div className="create-row">
+
           <input name="file" type="file" onChange={this.imageUpload}/>
           <button type="button"
                   className="btn btn-success"
