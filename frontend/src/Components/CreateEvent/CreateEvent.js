@@ -22,7 +22,8 @@ class CreateEvent extends React.Component {
     type: "",
     dressCode: "",
     startTime: "",
-    endTime: ""
+    endTime: "",
+    user_id: this.props.user._id
   };
 
 }
@@ -34,7 +35,7 @@ class CreateEvent extends React.Component {
     switch (e.target.name) {
       case 'title':
         this.setState({
-          eventName: e.target.value
+          eventName: e.target.value,
         })
         break;
       case 'type':
@@ -85,6 +86,8 @@ class CreateEvent extends React.Component {
     this.props.postEvents(this.state)
     this.props.getActiveEventToPreview(this.state)
   }
+
+
 
   startdateChange = (dateString, { dateMoment, timestamp }) => {
     console.log(dateString)
@@ -224,6 +227,7 @@ CreateEvent.propTypes = {
 const mapStateToProps = (state) => {
   return {
     events: state.events,
+    user: state.user
   }
 }
 
