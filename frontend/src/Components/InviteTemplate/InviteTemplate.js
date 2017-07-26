@@ -187,14 +187,14 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(mapStateToProps, mapDispatchToProps)(InviteTemplate);
 
 
-<Modal
-  isOpen={this.state.preiewIsOpen}
-  aria={{
-    labelledby: "heading",
-    describedby: "full_description"
-  }}>
-  <h1 id="heading">Invite Preview</h1>
-  <div id="full_description">
-    <p>Description goes here.</p>
-  </div>
-</Modal>
+// <Modal
+//   isOpen={this.state.preiewIsOpen}
+//   aria={{
+//     labelledby: "heading",
+//     describedby: "full_description"
+//   }}>
+//   <h1 id="heading">Invite Preview</h1>
+//   <div id="full_description">
+//     <p>Description goes here.</p>
+//   </div>
+// </Modal>
