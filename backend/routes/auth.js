@@ -8,8 +8,11 @@ const router = express.Router();
 
 /* GET index page. */
 router.get('/user', (req, res, next) => {
-  console.log(req.user)
-  res.json(req.user);
+  User.findOne({'_id': req.user._id}).populate('hostFor').exec((err,user) => {
+    if(err){console.log(err); return;}
+    res.json(user);
+    console.log(user)
+  })
 });
 
 /* LINKEDIN LOGIN AUTH. */
