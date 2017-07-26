@@ -20,7 +20,45 @@ exports.getSpecificEvent = (req, res) => {
   })
 }
 
+exports.postGuest = (req, res) => {
+   console.log(req.body);
+   console.log('Inside if')
 
+  //  const newEvent = new Event({
+  //   eventImage:  "",
+  //   eventName: req.body.eventName || "",
+  //   type: req.body.type || "" ,
+  //   description: req.body.description || "",
+  //   dressCode: req.body.dressCode || "",
+  //   location: req.body.location || "",
+  //
+  //   startDate: req.body.startDate || "",
+  //   endDate: req.body.endDate || "",
+  //   timeStart: req.body.timeStart || "",
+  //   timeEnd: req.body.timeEnd || "",
+  // });
+  Event.findById(req.body.event_id, (err, event) => {
+
+  })
+  // newEvent.hosts.push(req.body.user_id);
+  // newEvent.save((err, events) => {
+  //   if(err){console.log(err); return;}
+  //   res.json(events);
+  //
+  //   User.findById(req.body.user_id, (err, user) => {
+  //     if (err) { return err; }
+  //     user.hostFor.push(events._id)
+  //     user.save((err) => {
+  //       if (err) { return (err); }
+  //       console.log('updated user');
+  //       res.send('updated user');
+  //     });
+  //   });
+  //
+  // });
+
+
+}
 //logic for incoming data for events
 exports.postEvent = (req, res) => {
    console.log(req.body);
