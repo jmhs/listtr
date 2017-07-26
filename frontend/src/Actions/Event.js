@@ -10,16 +10,26 @@ export const activeEvent = (event) => {
 
 //in-charge of sending events to store
 export const storeEvents = (events) => {
-  return{
+  return {
     type: "STORE_EVENTS",
     events
   }
 }
+
+const storeGuests = (data) => {
+
+}
 //sends guests to store
-export const storeGuests = (guests) => {
-  return {
-    type: 'STORE_GUESTS',
-    guests
+export const postGuests = (guest) => {
+  return (dispatch) => {
+    axios.post('/event/guest', guest)
+      .then( (response) => {
+        console.log(response.data);
+        dispatch(storeGuests(response.data))
+      })
+      .catch((error)=> {
+        console.error("guest not posted to server'")
+      });
   }
 }
 
