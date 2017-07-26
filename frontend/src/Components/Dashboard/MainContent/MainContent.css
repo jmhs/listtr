@@ -1,3 +1,7 @@
 .main-content{
-  overflow:scroll;
+  /*overflow:scroll;*/
+}
+.create-event-button{
+  position: fixed;
+  top: 100px;
 }

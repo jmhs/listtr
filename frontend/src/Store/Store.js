@@ -5,7 +5,7 @@ import thunk from 'redux-thunk';
 import UserReducer from '../Reducers/User'
 
 import Events from '../Reducers/Event'
-
+import ActiveEvent from '../Reducers/ActiveEventReducer'
 import NavigationReducer from '../Reducers/Navigation'
 
 import Active from '../Reducers/Active'
@@ -16,7 +16,9 @@ export let initStore = () => {
     user: UserReducer,
     events: Events,
     navigation: NavigationReducer,
+    activeEvent: ActiveEvent,
     active: Active
+
 
 
   });

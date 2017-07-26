@@ -44,3 +44,8 @@ select{
   line-height: 100px;
   height: 100px;
 }
+
+#preview-button{
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
