@@ -1,5 +1,7 @@
 import React, {PropTypes} from 'react';
+
 import {Link} from 'react-router-dom'
+import {activeHome} from  '../../Actions/Event';
 import { connect } from 'react-redux'
 import EventDisplayItem from './EventDisplayItem/EventDisplayItem'
 
@@ -8,6 +10,9 @@ class EventDisplay extends React.Component {
     super(props);
 
   }
+
+
+
   renderEventDisplayItem = () => {
     let events = this.props.events;
     console.log(events)
@@ -37,12 +42,13 @@ class EventDisplay extends React.Component {
 }
 const mapStateToProps = (state) => {
   return {
-    events: state.events
+    events: state.events,
+    active: state.active
   }
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-
+    activeHome: (active) => {dispatch(activeHome(active));},
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(EventDisplay);

@@ -1,4 +1,3 @@
-
 .grid-item {
   width: 250px;
   border: 2px solid hsla(0, 0%, 0%, 0.5);
@@ -9,8 +8,12 @@
   float: left;
 }
 
+
 .grid-item:hover{
   background-color: #d5dae2;
+
+.grid-item img{
+
 }
 .image img{
   height: 200px;

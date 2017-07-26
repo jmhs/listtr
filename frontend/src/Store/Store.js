@@ -8,13 +8,17 @@ import Events from '../Reducers/Event'
 import ActiveEvent from '../Reducers/ActiveEventReducer'
 import NavigationReducer from '../Reducers/Navigation'
 
+import Active from '../Reducers/Active'
+
 export let initStore = () => {
 
   const reducer = combineReducers({
     user: UserReducer,
     events: Events,
     navigation: NavigationReducer,
-    activeEvent: ActiveEvent
+    activeEvent: ActiveEvent,
+    active: Active
+
 
 
   });

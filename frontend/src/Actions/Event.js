@@ -1,5 +1,13 @@
 import axios from 'axios'
 
+export const activeHome = (restaurant) => {
+  return {
+    type: 'ACTIVE_HOME',
+    restaurant
+  }
+}
+
+
 //in-charge of sending events to store
 export const storeEvents = (events) => {
   return{
