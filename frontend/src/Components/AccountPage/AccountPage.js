@@ -12,21 +12,22 @@ class AccountPage extends React.Component {
     super(props);
 
     this.state = {
-      username: "",
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: ""
+      username: this.props.user.username,
+      firstName: this.props.user.firstName,
+      lastName:  this.props.user.lastName,
+      email:  this.props.user.email,
+      password: this.props.user.password
     }
   }
 
   onChange = (e) => {
-    console.log(e.target.value)
+    // console.log(e.target.value)
     switch (e.target.name) {
       case 'username':
         this.setState({
           username: e.target.value
         })
+        console.log(e.target.value)
         break;
       case 'firstName':
         this.setState({
@@ -53,26 +54,40 @@ class AccountPage extends React.Component {
     }
   }
 
+  // onChange = (e) => {
+  //   var state = this.state;
+  //   var key = e.target.id;
+  //   var value = e.target.value;
+  //
+  //   state[key] = value;
+  //   //console.log(state);
+  //   this.setState(state);
+  //   console.log(state);
+  // }
+
   updateProfile = (e) => {
     e.preventDefault();
     console.log("updateAccountDetails clicked!");
-    let data = this.state.email;
-    // let usernameUpdate = this.state.username;
-    // let firstNameUpdate = this.state.firstName;
-    // let lastNameUpdate = this.state.lastName;
-    // let emailUpdate = this.state.email;
-    console.log(data);
-    axios.post('/auth/account/profile', {
-      data: data
-      // username: usernameUpdate,
-      // firstName: firstNameUpdate,
-      // lastName: lastNameUpdate,
-      // emailUpdate: emailUpdate
+    // const data = this.state.email;
+    const usernameUpdate = this.state.username;
+    const firstNameUpdate = this.state.firstName;
+    const lastNameUpdate = this.state.lastName;
+    const emailUpdate = this.state.email;
+    console.log("username update: ", usernameUpdate);
+    console.log("firstName update: ", firstNameUpdate);
+    console.log("lastName update: ", lastNameUpdate);
+    console.log("email update: ", emailUpdate);
+    axios.put('/auth/account/profile', {
+      // data: data
+      username: usernameUpdate,
+      firstName: firstNameUpdate,
+      lastName: lastNameUpdate,
+      email: emailUpdate
     })
     .then( (response) => {
       console.log(response);
       console.log("AJAX: Updated @ '/auth/account/profile'");
-      window.location.href = "/account";
+      window.location.href = "/dashboard";
     })
     .catch((error)=> {
       console.log(error);
@@ -82,10 +97,10 @@ class AccountPage extends React.Component {
   updatePassword = (e) => {
     e.preventDefault();
     console.log("updatePassword clicked!");
-    let data = this.state.password;
-    console.log(data);
-    axios.post('/auth/account/password', {
-      data: data
+    const data = this.state.password;
+    console.log("password update: ", data);
+    axios.put('/auth/account/password', {
+      password: data
     })
     .then( (response) => {
       console.log(response);
@@ -100,7 +115,7 @@ class AccountPage extends React.Component {
   deleteAccount = (e) =>  {
     e.preventDefault();
     console.log("deleteAccount clicked!");
-    axios.post('/auth/account/delete')
+    axios.delete('/auth/account/delete')
     .then( (response) => {
       console.log("AJAX: Deleted @ '/auth/account/delete'");
       window.location.href = "/";
@@ -110,7 +125,7 @@ class AccountPage extends React.Component {
     });
   }
 
-  isLoggedIn = () => {
+  isLoggedInAccount = () => {
     if(this.props.user.hasOwnProperty('_id')){
       return (
         <div className="container">
@@ -162,7 +177,8 @@ class AccountPage extends React.Component {
                        onChange={this.onChange}
                        name="email"/>
               </div>
-              <button className="uk-button uk-button-primary" id="updateAccountDetailsBtn" onClick={this.updateProfile}>Update Account Details</button>
+              <button className="uk-button uk-button-primary"
+                      id="updateAccountDetailsBtn" onClick={this.updateProfile}>Update Account Details</button>
               <hr />
               <div className="form-group">
                 <label htmlFor="exampleInputPassword1">Password</label>
@@ -170,10 +186,13 @@ class AccountPage extends React.Component {
                        className="form-control"
                        id="exampleInputPassword1"
                        placeholder="Password"
+                       onChange={this.onChange}
                        name="password"/>
               </div>
-              <button className="uk-button uk-button-primary" id="updatePasswordBtn" onClick={this.updatePassword}>Update Password</button>
-              <button className="uk-button uk-button-danger" id="deleteAccountBtn" onClick={this.deleteAccount}>Delete Account</button>
+              <button className="uk-button uk-button-primary"
+                       id="updatePasswordBtn" onClick={this.updatePassword}>Update Password</button>
+              <button className="uk-button uk-button-danger"
+                       id="deleteAccountBtn" onClick={this.deleteAccount}>Delete Account</button>
             </div>
           </div>
         </div>
@@ -190,7 +209,7 @@ class AccountPage extends React.Component {
   render() {
     return(
       <div>
-        {this.isLoggedIn()}
+        {this.isLoggedInAccount()}
       </div>
     );
   }

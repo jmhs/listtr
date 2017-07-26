@@ -13,6 +13,7 @@ class LogIn extends React.Component {
     super(props);
 
     this.state = {
+      username: "",
       email: "",
       password: ""
     };
@@ -42,9 +43,10 @@ class LogIn extends React.Component {
         console.log("AJAX: Logged in @ '/auth/user'");
         // this.props.updateUser(data)
         this.props.getUser()
-        window.location.href = '/dashboard'
       }
-    }).catch((error) => {
+    })
+    .then(()=> {window.location.href = '/dashboard'})
+    .catch((error) => {
       console.error("AJAX: Could not login @ '/auth/login'")
       this.setState({error: "Login error, notify the dev team!"});
     });
@@ -52,12 +54,12 @@ class LogIn extends React.Component {
 
   signUp = (e) => {
     e.preventDefault();
-    this.props.history.push("/signup");
+    window.location.href = "/signup";
   }
 
   backToHome = (e) => {
     e.preventDefault();
-    this.props.history.push('/')
+    window.location.href = "/";
   }
 
   // linkedinLogin = (e) => {
@@ -78,9 +80,9 @@ class LogIn extends React.Component {
                 <label htmlFor="password">Password</label>
                 <input type="password" className="form-control" id="password" placeholder="Please enter password" value={this.state.password} onChange={this.onChange}/>
                 <br />
-                <button type="submit" className="btn btn-primary submit" id="loginBtnl" onClick={this.localLogin}>Login</button>
-                <button type="submit" className="btn btn-default submit" id="signupBtnl" onClick={this.signUp}>Don't have an account yet? Sign up here!</button>
-                <button type="submit" className="btn btn-default submit" id="homeBtnl" onClick={this.backToHome}>Back to home</button>
+                <button type="submit" className="btn btn-primary submit" id="loginBtnl" onClick={this.localLogin}>{'Login'}</button>
+                <button type="submit" className="btn btn-default submit" id="signupBtnl" onClick={this.signUp}>{"Don't have an account yet? Sign up here!"}</button>
+                <button type="submit" className="btn btn-default submit" id="homeBtnl" onClick={this.backToHome}>{'Back to home'}</button>
               </form>
             </div>
           </div>
