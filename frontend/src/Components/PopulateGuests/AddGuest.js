@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
-import {postGuests} from '../../Actions/Event'
+import {storeGuests} from '../../Actions/Event'
 import RenderGuests from './RenderGuests'
 import './AddGuest.css'
 import CreateGuestRow from './CreateGuestRow'
@@ -24,7 +24,7 @@ class AddGuest extends React.Component {
   updateGuests = (guest) => {
     let guests = this.state.guests;
     guests.push(guest)
-    this.props.postGuests(guest)
+    this.props.storeGuests(this.props.active, guest)
     this.setState({
       guests
     })
@@ -57,14 +57,14 @@ class AddGuest extends React.Component {
 //export default PopulateGuests;
 const mapStateToProps = (state) => {
   return {
-    events: state.events
+    active: state.active
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   console.log(dispatch)
   return {
-    postGuests: (guests) => {dispatch(postGuests(guests))}
+    storeGuests: (active, guests) => {dispatch(storeGuests(active, guests))}
   }
 }
 

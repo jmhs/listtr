@@ -37,9 +37,9 @@ exports.postGuest = (req, res) => {
   //   timeStart: req.body.timeStart || "",
   //   timeEnd: req.body.timeEnd || "",
   // });
-  Event.findById(req.body.event_id, (err, event) => {
-
-  })
+  // Event.findById(req.body.event_id, (err, event) => {
+  //
+  // })
   // newEvent.hosts.push(req.body.user_id);
   // newEvent.save((err, events) => {
   //   if(err){console.log(err); return;}

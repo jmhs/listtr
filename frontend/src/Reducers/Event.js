@@ -4,18 +4,18 @@ const Events = (state = [], action) => {
     return action.events;
     break;
 
-    case "STORE_GUESTS":
+    case "STORE_GUEST":
     return [
       ...state,
       {
-        events: state.events,
-        guests : action.guests,
+        active: action.active,
+        active.guests: action.guest
 
       }
     ]
 
       break;
-    
+
 
     default:
       return state;
