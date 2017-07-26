@@ -49,7 +49,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    activeHome: (active) => {dispatch(activeHome(active));},
+
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(EventDisplay);
