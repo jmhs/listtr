@@ -7,7 +7,7 @@ exports.handleEmail = (req, res) => {
   var fromEmail = new helper.Email('listtryourlist@gmail.com');
   var toEmail = new helper.Email('listtryourlist@gmail.com');
   var subject = 'Sending with SendGrid is Fun';
-  var content = new helper.Content('text/html', '<p><b><a href="www.google.com">Response here</a></b></p>');
+  var content = new helper.Content('text/html', '<p><b><a href="www.google.com">Response here'+req.body.name+'/a></b></p>');
   var mail = new helper.Mail(fromEmail, subject, toEmail, content);
 
   var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);

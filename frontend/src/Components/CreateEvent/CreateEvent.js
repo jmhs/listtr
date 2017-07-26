@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react';
 // import TimePicker from 'react-bootstrap-time-picker';
 import { connect } from 'react-redux';
 import {postEvents} from '../../Actions/Event'
-import { getActiveEventToPreview} from '../../Actions/ActiveEventToPreview'
+import { activeEvent} from '../../Actions/Event'
 import 'react-date-picker/index.css'
 import {Link} from 'react-router-dom'
 import { DateField, Calendar } from 'react-date-picker'
@@ -84,7 +84,7 @@ class CreateEvent extends React.Component {
 // if loop for when create button pressed with & without image(different actions)
   onClick = (e) => {
     this.props.postEvents(this.state)
-    this.props.getActiveEventToPreview(this.state)
+    this.props.activeEvent(this.state)
   }
 
 
@@ -235,8 +235,8 @@ const mapDispatchToProps = (dispatch) => {
   console.log(dispatch)
   return {
     postEvents: (events) => {dispatch(postEvents(events))},
-    getActiveEventToPreview: (event) => {
-      dispatch(getActiveEventToPreview(event))
+    activeEvent: (event) => {
+      dispatch(activeEvent(event))
     },
 
   }

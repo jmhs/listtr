@@ -33,7 +33,7 @@ class EventDisplay extends React.Component {
     return (
       // <div className="container">
         <div className="masonry">
-            
+
           {renderlist}
         </div>
       // </div>
@@ -48,7 +48,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    activeHome: (active) => {dispatch(activeHome(active));},
+
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(EventDisplay);

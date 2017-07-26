@@ -1,9 +1,9 @@
 import axios from 'axios'
 
-export const activeHome = (restaurant) => {
+export const activeEvent = (event) => {
   return {
-    type: 'ACTIVE_HOME',
-    restaurant
+    type: 'ACTIVE_EVENT',
+    event
   }
 }
 
