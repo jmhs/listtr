@@ -2,7 +2,9 @@ import React, {PropTypes} from 'react';
 // import TimePicker from 'react-bootstrap-time-picker';
 import { connect } from 'react-redux';
 import {postEvents} from '../../Actions/Event'
+import { getActiveEventToPreview} from '../../Actions/ActiveEventToPreview'
 import 'react-date-picker/index.css'
+import {Link} from 'react-router-dom'
 import { DateField, Calendar } from 'react-date-picker'
 // import PopulateGuests from '../PopulateGuests/PopulateGuests'
 import './CreateEvent.css'
@@ -96,7 +98,9 @@ class CreateEvent extends React.Component {
       endDate: dateString
     })
   }
-
+  storeActiveEventToPreview = () => {
+    this.props.getActiveEventToPreview(this.state)
+  }
   handleTimeChange = (time)=> {
          // <- prints "3600" if "01:00" is picked
     this.setState({ time });
@@ -217,6 +221,9 @@ class CreateEvent extends React.Component {
                   className="btn btn-success"
                   id="preview-button"
                   onClick={this.onClick}>Preview</button>
+          <Link to="/guest"><button type="button"
+                  className="btn btn-default"
+                  onClick={this.storeActiveEventToPreview}>AddGuest</button></Link>
 
         </div>
       </div>
@@ -237,7 +244,11 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   console.log(dispatch)
   return {
-    postEvents: (events) => {dispatch(postEvents(events))}
+    postEvents: (events) => {dispatch(postEvents(events))},
+    getActiveEventToPreview: (event) => {
+      dispatch(getActiveEventToPreview(event))
+    },
+
   }
 }
 

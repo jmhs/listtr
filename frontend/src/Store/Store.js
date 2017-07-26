@@ -5,7 +5,7 @@ import thunk from 'redux-thunk';
 import UserReducer from '../Reducers/User'
 
 import Events from '../Reducers/Event'
-
+import ActiveEvent from '../Reducers/ActiveEventReducer'
 import NavigationReducer from '../Reducers/Navigation'
 
 export let initStore = () => {
@@ -13,7 +13,8 @@ export let initStore = () => {
   const reducer = combineReducers({
     user: UserReducer,
     events: Events,
-    navigation: NavigationReducer
+    navigation: NavigationReducer,
+    activeEvent: ActiveEvent
 
 
   });

@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react';
 import { connect } from 'react-redux';
 import {storeGuests} from '../../Actions/Event'
 import RenderGuests from './RenderGuests'
-
+import './AddGuest.css'
 class AddGuest extends React.Component {
   constructor(props) {
     super(props);
@@ -44,43 +44,50 @@ class AddGuest extends React.Component {
   }
   render() {
     return (
-      <section className="row create">
-        <div className="col-md-2 title">
-          <div className="form-group">
-            <input type="text"
-                   name="name"
-                   placeholder="title"
-                   className="form-control"
-                   onChange={this.onChange}
-                   value={this.state.name}/>
-          </div>
+      <div className="container">
+        <div className="add-guest-header">
+        <h1>Add Guest</h1>
+        <hr/>
         </div>
-        <div className="col-md-2 price">
-          <div className="form-group">
-            <input name="email"
-                   placeholder="email"
-                   className="form-control"
-                   onChange={this.onChange}
-                   value={this.state.email}/>
+        <section className="row create">
+          <div className="col-md-2 title">
+            <div className="form-group">
+              <input type="text"
+                     name="name"
+                     placeholder="Name"
+                     className="form-control"
+                     onChange={this.onChange}
+                     value={this.state.name}/>
+            </div>
           </div>
-        </div>
-        <div className="col-md-2 title">
-          <div className="form-group">
-            <input name="contact"
-                   placeholder="contact"
-                   className="form-control"
-                   onChange={this.onChange}
-                   value={this.state.contact}/>
+          <div className="col-md-2 price">
+            <div className="form-group">
+              <input name="email"
+                     placeholder="Email"
+                     className="form-control"
+                     onChange={this.onChange}
+                     value={this.state.email}/>
+            </div>
           </div>
-        </div>
+          <div className="col-md-2 title">
+            <div className="form-group">
+              <input name="contact"
+                     placeholder="Contact"
+                     className="form-control"
+                     onChange={this.onChange}
+                     value={this.state.contact}/>
+            </div>
+          </div>
 
-        <div className="col-md-2 PopulateGuests">
-          <button type="button"
-                  className="btn btn-success"
-                  onClick={this.onClick}>Add Guest</button>
-        </div>
-        <RenderGuests/>
-      </section>);
+          <div className="col-md-2 PopulateGuests">
+            <button type="button"
+                    className="btn btn-success"
+                    onClick={this.onClick}>Add Guest</button>
+          </div>
+
+        </section>
+      </div>
+    );
   }
 }
 
