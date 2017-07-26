@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import {Link} from 'react-router-dom'
 import { activeEvent} from '../../Actions/Event';
 import './Preview.css';
-import uikit from './react-uikit-base'
+
 class Preview extends React.Component {
   constructor(props) {
     super(props);
@@ -12,13 +12,15 @@ class Preview extends React.Component {
 
   }
 
+  onDelete=() => {
+
+  }
 
 
   render() {
     let events = this.props.events
     return (
       <div className ='card'>
-
       <div className ='cardimage'>
       <img src={events.eventImage}/>
       </div>
@@ -46,24 +48,6 @@ class Preview extends React.Component {
 
 
 
-              <Modal
-              show={this.state.show}
-              type='alert'
-              ok={{context: 'primary'}}
-              trigger={{
-                body: 'Open',
-                animate: {
-                  'in': (modal, dialog) => this.animateIn(modal, dialog),
-                  out : (modal, dialog) => this.animateOut(modal, dialog)
-                }
-              }}
-            >
-              <p>
-                This is an alert modal.
-              </p>
-            </Modal>
-
-
           <a className="uk-link-reset" href> Headin </a>
 
           <div>
@@ -88,9 +72,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   console.log(dispatch)
   return {
-    activeEvent: (event) => {
-      dispatch(activeEvent(event))
-    },
+    activeEvent: (event) => {dispatch(activeEvent(event))},
 
   }
 }
