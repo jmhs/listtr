@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react';
-
+import {activeHome} from  '../../Actions/Event';
 import { connect } from 'react-redux'
 import EventDisplayItem from './EventDisplayItem/EventDisplayItem'
 
@@ -9,9 +9,7 @@ class EventDisplay extends React.Component {
 
   }
 
-  onClick = (id, active) => {
-  this.props.activeHome(active)
-  }
+
 
   renderEventDisplayItem = () => {
     let events = this.props.events;
@@ -23,11 +21,7 @@ class EventDisplay extends React.Component {
                                id={event._id}
                                eventName={event.eventName}
                                description={event.description}
-
-                               onClick={this.onClick}/></div>
-
                                eventImage ={event.eventImage}/>
-
     })
   }
 
@@ -45,8 +39,8 @@ class EventDisplay extends React.Component {
 }
 const mapStateToProps = (state) => {
   return {
-    events: state.events
-    activeHome: state.activeHome
+    events: state.events,
+    active: state.active
   }
 }
 const mapDispatchToProps = (dispatch) => {
