@@ -4,46 +4,33 @@ import { Link } from 'react-router-dom'
 import {storeGuests} from '../../Actions/Event'
 import RenderGuests from './RenderGuests'
 import './AddGuest.css'
+import CreateGuestRow from './CreateGuestRow'
 class AddGuest extends React.Component {
   constructor(props) {
     super(props);
 
-    this.guestslist = [];
     this.state = {
-    name: "",
-    email: "",
-    contact:"",
-
-};
+      guests: []
+    }
   }
 
-//saves user's input into local state before sending to "actons" together
-  onChange = (e) => {
-    let state = this.state;
-
-    if(e.target.name == "name") {
-      state.name = e.target.value;
-    }
-
-    if(e.target.name == "email") {
-      state.email = e.target.value;
-    }
-
-    if(e.target.name == "contact") {
-      state.contact = e.target.value;
-    }
-
-    this.setState(state);
-    console.log(state)
+  renderGuests = () => {
+    let guests = this.state.guests;
+    return guests.map( (guest) => {
+      return <RenderGuests/>
+    })
   }
 
-  onClick = (e) => {
-    this.guestslist.push(this.state)
-    console.log(this.guestslist)
-    console.log(this.props.events)
-
+  updateGuests = (guest) => {
+    let guests = this.state.guests;
+    guests.push(guest)
+    this.setState({
+      guests
+    })
   }
+
   render() {
+    const renderGuestsRows = this.renderGuests()
     return (
       <div className="container">
       <Link to="/createevent">
@@ -54,43 +41,10 @@ class AddGuest extends React.Component {
         <h1>Add Guest</h1>
         <hr/>
         </div>
-        <section className="row create">
-          <div className="col-md-2 title">
-            <div className="form-group">
-              <input type="text"
-                     name="name"
-                     placeholder="Name"
-                     className="form-control"
-                     onChange={this.onChange}
-                     value={this.state.name}/>
-            </div>
-          </div>
-          <div className="col-md-2 price">
-            <div className="form-group">
-              <input name="email"
-                     placeholder="Email"
-                     className="form-control"
-                     onChange={this.onChange}
-                     value={this.state.email}/>
-            </div>
-          </div>
-          <div className="col-md-2 title">
-            <div className="form-group">
-              <input name="contact"
-                     placeholder="Contact"
-                     className="form-control"
-                     onChange={this.onChange}
-                     value={this.state.contact}/>
-            </div>
-          </div>
-
-          <div className="col-md-2 PopulateGuests">
-            <button type="button"
-                    className="btn btn-success"
-                    onClick={this.onClick}>Add Guest</button>
-          </div>
-
-        </section>
+        <div className="row">
+          {renderGuestsRows}
+        </div>
+        <CreateGuestRow updateGuests={this.updateGuests}/>
       </div>
     );
   }
