@@ -4,6 +4,7 @@
   "private": true,
   "proxy": "http://localhost:3001",
   "dependencies": {
+    "antd": "^2.12.2",
     "axios": "^0.16.2",
     "bootstrap": "^3.3.7",
     "cloudinary": "^1.9.0",
@@ -30,6 +31,7 @@
     "recharts": "^1.0.0-alpha.2",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
+    "semantic-ui-react": "^0.71.2",
     "socket.io": "^2.0.3",
     "typed.js": "^2.0.5",
     "uikit": "^3.0.0-beta.27",
