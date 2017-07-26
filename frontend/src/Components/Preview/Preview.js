@@ -3,11 +3,17 @@ import { connect } from 'react-redux';
 import {Link} from 'react-router-dom'
 import { activeEvent} from '../../Actions/Event';
 import './Preview.css';
+import { Button, Modal } from 'semantic-ui-react'
+
 
 class Preview extends React.Component {
   constructor(props) {
     super(props);
   }
+  state = { open: false }
+  show = (size) => () => this.setState({ size, open: true })
+  close = () => this.setState({ open: false })
+
   componentDidMount(){
 
   }
@@ -18,6 +24,7 @@ class Preview extends React.Component {
 
 
   render() {
+    const { open, size } = this.state
     let events = this.props.events
     return (
       <div className ='card'>
@@ -39,6 +46,39 @@ class Preview extends React.Component {
               className="btn btn-default"
               onClick={this.onClick}>AddGuest</button>
       </Link>
+
+
+
+
+         return (
+           <div>
+
+             <Button onClick={this.show('small')}>Small</Button>
+
+             <Modal size={size} open={open} onClose={this.close}>
+               <Modal.Header>
+                 Delete Your Event
+               </Modal.Header>
+               <Modal.Content>
+                 <p>Are you sure you want to delete your account</p>
+               </Modal.Content>
+               <Modal.Actions>
+                 <Button negative>
+                   No
+                 </Button>
+                 <Button positive icon='checkmark' labelPosition='right' content='Yes' />
+               </Modal.Actions>
+             </Modal>
+           </div>
+         )
+       }
+
+
+
+
+
+
+
 
 
       <button type="button"
