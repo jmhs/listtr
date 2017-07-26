@@ -1,16 +1,16 @@
 
 .grid-item {
-  width: 100%;
+  width: 250px;
   border: 2px solid hsla(0, 0%, 0%, 0.5);
   display: inline-block;
   padding: 10px;
   border-radius: 10px;
-  margin: 0 0 1em;
-
+  margin: 10px;
+  float: left;
 }
 
-.grid-item img{
-  
+.grid-item:hover{
+  background-color: #d5dae2;
 }
 .image img{
   height: 200px;

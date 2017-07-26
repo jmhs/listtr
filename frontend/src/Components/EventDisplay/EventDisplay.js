@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react';
-
+import {Link} from 'react-router-dom'
 import { connect } from 'react-redux'
 import EventDisplayItem from './EventDisplayItem/EventDisplayItem'
 
@@ -28,6 +28,7 @@ class EventDisplay extends React.Component {
     return (
       // <div className="container">
         <div className="masonry">
+            
           {renderlist}
         </div>
       // </div>

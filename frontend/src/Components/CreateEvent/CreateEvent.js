@@ -19,7 +19,8 @@ class CreateEvent extends React.Component {
     location: "",
     type: "",
     dressCode: "",
-    time: 0
+    startTime: "",
+    endTime: ""
   };
 
 }
@@ -47,6 +48,14 @@ class CreateEvent extends React.Component {
       case 'description':
         this.setState({
           description: e.target.value
+        })
+      case 'startTime':
+        this.setState({
+          startTime: e.target.value
+        })
+      case 'endTime':
+        this.setState({
+          endTime: e.target.value
         })
       case 'location':
         this.setState({
@@ -163,6 +172,24 @@ class CreateEvent extends React.Component {
           </div>
         </div>
         <div className="create-row">
+          <legend className="uk-legend">Start Time</legend>
+          <div className="uk-margin">
+            <input className="uk-input" type="text"
+                   name="startTime"
+                   placeholder="Start Time"
+                   onChange={this.onChange}/>
+          </div>
+        </div>
+        <div className="create-row">
+          <legend className="uk-legend">End Time</legend>
+          <div className="uk-margin">
+            <input className="uk-input" type="text"
+                   name="endTime"
+                   placeholder="End Time"
+                   onChange={this.onChange}/>
+          </div>
+        </div>
+        <div className="create-row">
           <legend className="uk-legend">Description</legend>
           <div className="uk-margin">
             <textarea className="uk-textarea" rows={5} name="description"
@@ -181,16 +208,15 @@ class CreateEvent extends React.Component {
                    />
           </div>
         </div>
+
         <div className="create-row">
-          <legend className="uk-legend">Start Time</legend>
-          <input type="text" data-uk-timepicker/>
-        </div>
-        <div className="create-row">
+        <legend className="uk-legend">Event Image</legend>
 
           <input name="file" type="file" onChange={this.imageUpload}/>
           <button type="button"
                   className="btn btn-success"
-                  onClick={this.onClick}>Create</button>
+                  id="preview-button"
+                  onClick={this.onClick}>Preview</button>
 
         </div>
       </div>

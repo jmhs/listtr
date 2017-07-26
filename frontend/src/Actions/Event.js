@@ -57,6 +57,8 @@ export const postEvents = (events) => {
     EventDataWithImage.append('dressCode', events.dressCode);
     EventDataWithImage.append('startDate', events.startDate);
     EventDataWithImage.append('endDate', events.endDate);
+    EventDataWithImage.append('startTime', events.startTime);
+    EventDataWithImage.append('endTime', events.endTime);
 
 
       axios.post('/event/postEventsWithImage', EventDataWithImage)
