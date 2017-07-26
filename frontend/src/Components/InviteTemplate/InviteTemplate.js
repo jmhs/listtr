@@ -2,7 +2,6 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import { Link } from 'react-router-dom'
 import axios from 'axios';
-import Modal from 'react-modal';
 
 import LogIn from '../LogIn/LogIn';
 
@@ -16,7 +15,7 @@ class InviteTemplate extends React.Component {
       inviteSubject: '', // 'You are invited to ' + this.props.events.eventName
       inviteName: '', //this.props.events.eventName
       inviteDescription: '', //this.props.events.description
-      previewIsOpen: false
+      isOpen: false
     }
   }
 
@@ -54,12 +53,12 @@ class InviteTemplate extends React.Component {
 
 
 // On click of preview button, state of previewIsOpen is changed to true. This will trigger the opening of the Preview Modal
-invitePreview = (e) => {
+toggleModal = (e) => {
+  console.log('clicked on preview!')
   this.setState({
-    previewIsOpen: true
-  })
+    isOpen: !this.state.isOpen
+  });
 }
-
 
   saveAndSendInvite = (e) => {
     e.preventDefault();
@@ -84,9 +83,15 @@ invitePreview = (e) => {
     // });
   }
 
+
+
+
 // function to check if user is loggedin before accessing inviteTemplate page. if user not loggedin, redirect to '/login'
 // function also renders different invite template depending on whether its a new or existing invitation
   isLoggedInInviteTemplate = () => {
+
+
+
     if(this.props.user.hasOwnProperty('_id')){
         return (
           <div className="container">
@@ -139,7 +144,7 @@ invitePreview = (e) => {
                          name="inviteDescription"/>
                 </div>
                 <button className="uk-button uk-button-default"
-                        id="inviteTemplatePreviewBtn" onClick={this.invitePreview}>Preview</button>
+                        id="inviteTemplatePreviewBtn" onClick={this.toggleModal}>Preview</button>
                 <button className="uk-button uk-button-default"
                         id="inviteTemplateBackToEventBtn" onClick=''>Back to Event</button>
                 <hr/>
@@ -150,7 +155,7 @@ invitePreview = (e) => {
                 <hr />
               </div>
             </div>
-          </div>
+        </div>
         )
     } else {
       return(
@@ -185,16 +190,3 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(InviteTemplate);
-
-
-// <Modal
-//   isOpen={this.state.preiewIsOpen}
-//   aria={{
-//     labelledby: "heading",
-//     describedby: "full_description"
-//   }}>
-//   <h1 id="heading">Invite Preview</h1>
-//   <div id="full_description">
-//     <p>Description goes here.</p>
-//   </div>
-// </Modal>
