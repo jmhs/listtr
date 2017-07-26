@@ -96,6 +96,22 @@ export const postEvents = (events) => {
 
 }
 
+export const deleteEvent = (event) => {
+    return (dispatch) => {
+      console.log(event)
+      axios.delete('/event/'+ event._id )
+      .then((response)=>{
+
+      })
+      .catch((error)=>{
+
+      })
+
+    }
+}
+
+
+
 
 // export function uploadSuccess({ data }) {
 //   return {

@@ -14,7 +14,7 @@ class EventDisplay extends React.Component {
 
 
   renderEventDisplayItem = () => {
-    let events = this.props.user.hostFor;
+    let events = this.props.events;//user.hostFor;
     console.log(events)
     console.log(events.length)
 

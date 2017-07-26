@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom'
-import { activeEvent} from '../../Actions/Event';
+import { activeEvent, deleteEvent} from '../../Actions/Event';
 import './Preview.css';
 import { Button, Modal } from 'semantic-ui-react'
 
@@ -9,16 +9,17 @@ import { Button, Modal } from 'semantic-ui-react'
 class Preview extends React.Component {
   constructor(props) {
     super(props);
+    this.state = { open: false }
   }
-  state = { open: false }
+
   show = (size) => () => this.setState({ size, open: true })
   close = () => this.setState({ open: false })
 
-  componentDidMount(){
 
-  }
 
-  onDelete=() => {
+  onDelete= () => {
+    console.log('delete pressed')
+    this.props.deleteEvent(this.props.events)
 
   }
 
@@ -46,15 +47,17 @@ class Preview extends React.Component {
               className="btn btn-default"
               onClick={this.onClick}>AddGuest</button>
       </Link>
+      <button type="button"
+              className="btn btn-default"
+              onClick={this.onDelete}>Delete</button>
 
 
 
 
-         return (
+
            <div>
 
              <Button onClick={this.show('small')}>Small</Button>
-
              <Modal size={size} open={open} onClose={this.close}>
                <Modal.Header>
                  Delete Your Event
@@ -69,8 +72,8 @@ class Preview extends React.Component {
                  <Button positive icon='checkmark' labelPosition='right' content='Yes' />
                </Modal.Actions>
              </Modal>
-           </div>
-         )
+         </div>
+
        }
 
 
@@ -81,9 +84,7 @@ class Preview extends React.Component {
 
 
 
-      <button type="button"
-              className="btn btn-default"
-              onClick={this.onDelete}>Delete</button>
+
 
 
 
@@ -113,6 +114,7 @@ const mapDispatchToProps = (dispatch) => {
   console.log(dispatch)
   return {
     activeEvent: (event) => {dispatch(activeEvent(event))},
+    deleteEvent: (event) => {dispatch(deleteEvent(event))},
 
   }
 }
