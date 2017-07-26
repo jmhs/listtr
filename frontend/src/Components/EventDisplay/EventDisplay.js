@@ -1,5 +1,7 @@
 import React, {PropTypes} from 'react';
 
+import {Link} from 'react-router-dom'
+import {activeHome} from  '../../Actions/Event';
 import { connect } from 'react-redux'
 import EventDisplayItem from './EventDisplayItem/EventDisplayItem'
 
@@ -8,8 +10,11 @@ class EventDisplay extends React.Component {
     super(props);
 
   }
+
+
+
   renderEventDisplayItem = () => {
-    let events = this.props.events;
+    let events = this.props.user.hostFor;
     console.log(events)
     console.log(events.length)
 
@@ -28,6 +33,7 @@ class EventDisplay extends React.Component {
     return (
       // <div className="container">
         <div className="masonry">
+
           {renderlist}
         </div>
       // </div>
@@ -36,7 +42,9 @@ class EventDisplay extends React.Component {
 }
 const mapStateToProps = (state) => {
   return {
-    events: state.events
+    events: state.events,
+    active: state.active,
+    user: state.user
   }
 }
 const mapDispatchToProps = (dispatch) => {

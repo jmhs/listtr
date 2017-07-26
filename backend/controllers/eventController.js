@@ -1,4 +1,5 @@
 import Event from '../models/Event';
+import User from '../models/User'
 import cloudinary from 'cloudinary';
 import fs from 'fs';
 import multer from 'multer';
@@ -35,12 +36,27 @@ exports.postEvent = (req, res) => {
     startDate: req.body.startDate || "",
     endDate: req.body.endDate || "",
     timeStart: req.body.timeStart || "",
-    timeEnd: req.body.timeEnd || ""
+    timeEnd: req.body.timeEnd || "",
   });
+
+  newEvent.hosts.push(req.body.user_id);
   newEvent.save((err, events) => {
     if(err){console.log(err); return;}
     res.json(events);
+
+    User.findById(req.body.user_id, (err, user) => {
+      if (err) { return err; }
+      user.hostFor.push(events._id)
+      user.save((err) => {
+        if (err) { return (err); }
+        console.log('updated user');
+        res.send('updated user');
+      });
+    });
+
   });
+
+
 }
 
 exports.postEventsWithImage = (req, res) => {
@@ -61,7 +77,7 @@ exports.postEventsWithImage = (req, res) => {
       timeStart: req.body.timeStart || "",
       timeEnd: req.body.timeEnd || ""
     });
-
+    newEvent.hosts.push(req.body.user_id);
     newEvent.save((err) => {
       if(err){console.log(err); return;}
       res.json(newEvent);

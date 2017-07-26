@@ -2,7 +2,9 @@ import React, {PropTypes} from 'react';
 // import TimePicker from 'react-bootstrap-time-picker';
 import { connect } from 'react-redux';
 import {postEvents} from '../../Actions/Event'
+import { activeEvent} from '../../Actions/Event'
 import 'react-date-picker/index.css'
+import {Link} from 'react-router-dom'
 import { DateField, Calendar } from 'react-date-picker'
 // import PopulateGuests from '../PopulateGuests/PopulateGuests'
 import './CreateEvent.css'
@@ -19,7 +21,9 @@ class CreateEvent extends React.Component {
     location: "",
     type: "",
     dressCode: "",
-    time: 0
+    startTime: "",
+    endTime: "",
+    user_id: this.props.user._id
   };
 
 }
@@ -31,7 +35,7 @@ class CreateEvent extends React.Component {
     switch (e.target.name) {
       case 'title':
         this.setState({
-          eventName: e.target.value
+          eventName: e.target.value,
         })
         break;
       case 'type':
@@ -47,6 +51,14 @@ class CreateEvent extends React.Component {
       case 'description':
         this.setState({
           description: e.target.value
+        })
+      case 'startTime':
+        this.setState({
+          startTime: e.target.value
+        })
+      case 'endTime':
+        this.setState({
+          endTime: e.target.value
         })
       case 'location':
         this.setState({
@@ -72,7 +84,10 @@ class CreateEvent extends React.Component {
 // if loop for when create button pressed with & without image(different actions)
   onClick = (e) => {
     this.props.postEvents(this.state)
+    this.props.activeEvent(this.state)
   }
+
+
 
   startdateChange = (dateString, { dateMoment, timestamp }) => {
     console.log(dateString)
@@ -88,20 +103,8 @@ class CreateEvent extends React.Component {
     })
   }
 
-  handleTimeChange = (time)=> {
-         // <- prints "3600" if "01:00" is picked
-    this.setState({ time });
-    let hour = time/3600;
-    console.log(hour);
-    time = time - hour*3600;
-    let minute = time/60
-    console.log(minute)
-  }
-  handleChange = (date) => {
-    this.setState({
-      startDate: date
-    });
-  }
+
+
   render() {
 
     let date = new Date()
@@ -163,6 +166,24 @@ class CreateEvent extends React.Component {
           </div>
         </div>
         <div className="create-row">
+          <legend className="uk-legend">Start Time</legend>
+          <div className="uk-margin">
+            <input className="uk-input" type="text"
+                   name="startTime"
+                   placeholder="Start Time"
+                   onChange={this.onChange}/>
+          </div>
+        </div>
+        <div className="create-row">
+          <legend className="uk-legend">End Time</legend>
+          <div className="uk-margin">
+            <input className="uk-input" type="text"
+                   name="endTime"
+                   placeholder="End Time"
+                   onChange={this.onChange}/>
+          </div>
+        </div>
+        <div className="create-row">
           <legend className="uk-legend">Description</legend>
           <div className="uk-margin">
             <textarea className="uk-textarea" rows={5} name="description"
@@ -181,16 +202,17 @@ class CreateEvent extends React.Component {
                    />
           </div>
         </div>
+
         <div className="create-row">
-          <legend className="uk-legend">Start Time</legend>
-          <input type="text" data-uk-timepicker/>
-        </div>
-        <div className="create-row">
+        <legend className="uk-legend">Event Image</legend>
 
           <input name="file" type="file" onChange={this.imageUpload}/>
+          <Link to='/preview'>
           <button type="button"
                   className="btn btn-success"
-                  onClick={this.onClick}>Create</button>
+                  id="preview-button"
+                  onClick={this.onClick}>Preview</button></Link>
+
 
         </div>
       </div>
@@ -205,13 +227,18 @@ CreateEvent.propTypes = {
 const mapStateToProps = (state) => {
   return {
     events: state.events,
+    user: state.user
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   console.log(dispatch)
   return {
-    postEvents: (events) => {dispatch(postEvents(events))}
+    postEvents: (events) => {dispatch(postEvents(events))},
+    activeEvent: (event) => {
+      dispatch(activeEvent(event))
+    },
+
   }
 }
 

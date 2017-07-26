@@ -16,8 +16,9 @@ import AddGuest from '../PopulateGuests/AddGuest'
 import Dashboard from '../Dashboard/Dashboard'
 import AccountPage from '../AccountPage/AccountPage'
 import MainContent from '../Dashboard/MainContent/MainContent'
+
 import InviteTemplate from '../InviteTemplate/InviteTemplate'
-import Form from '../Form/Form'
+import EmailTemplate from '../EmailTemplate/EmailTemplate'
 import logo from './logo.svg';
 import './App.css';
 
@@ -36,7 +37,7 @@ class App extends Component {
             >
             <Switch key={location.key} location={location}>
               <Route exact path="/" component={Home}/>
-              <Route exact path="/form" component={Form}/>
+
               <Route exact path="/login" component={LogIn}/>
               <Route exact path="/signup" component={SignUp}/>
               <Route exact path="/eventdisplay" component={EventDisplay}/>
@@ -45,7 +46,11 @@ class App extends Component {
               <Route exact path="/dashboard" component={Dashboard}/>
               <Route exact path="/account" component={AccountPage}/>
               <Route exact path="/maincontent" component={MainContent}/>
+
               <Route exact path="/invitetemplate" component={InviteTemplate}/>
+
+              <Route exact path="/emailtemplate" component={EmailTemplate}/>
+              <Route exact path="/preview" component={Preview}/>
 
             </Switch>
             </RouteTransition>

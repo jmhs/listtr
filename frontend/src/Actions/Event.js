@@ -1,5 +1,13 @@
 import axios from 'axios'
 
+export const activeEvent = (event) => {
+  return {
+    type: 'ACTIVE_EVENT',
+    event
+  }
+}
+
+
 //in-charge of sending events to store
 export const storeEvents = (events) => {
   return{
@@ -36,6 +44,7 @@ export const postEvents = (events) => {
 
    if (events.eventImage === null) {
     console.log('No Image Bro')
+    console.log('events', events)
     axios.post('/event/postEvents', events)
       .then( (response) => {
         console.log(response.data);
@@ -47,7 +56,7 @@ export const postEvents = (events) => {
   }
   else {
     console.log('Theres an Image!')
-    console.log(events)
+    console.log( 'events action', events)
     let EventDataWithImage = new FormData();
     EventDataWithImage.append('eventImage', events.eventImage);
     EventDataWithImage.append('location', events.location);
@@ -57,11 +66,15 @@ export const postEvents = (events) => {
     EventDataWithImage.append('dressCode', events.dressCode);
     EventDataWithImage.append('startDate', events.startDate);
     EventDataWithImage.append('endDate', events.endDate);
+    EventDataWithImage.append('timeStart', events.startTime);
+    EventDataWithImage.append('timeEnd', events.endTime);
+    EventDataWithImage.append('user_id', events.user_id);
 
 
       axios.post('/event/postEventsWithImage', EventDataWithImage)
         .then( (response) => {
           console.log(response.data);
+
           dispatch(storeEvents(response.data))
         })
         .catch((error)=> {
