@@ -14,7 +14,8 @@ const Events = (state = [], action) => {
       }
     ]
 
-      break;
+
+        break;
     default:
       return state;
 
