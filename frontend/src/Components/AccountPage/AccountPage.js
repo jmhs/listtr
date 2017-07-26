@@ -11,6 +11,7 @@ class AccountPage extends React.Component {
   constructor(props) {
     super(props);
 
+// initial state is based on initial user details
     this.state = {
       username: this.props.user.username,
       firstName: this.props.user.firstName,
@@ -20,8 +21,8 @@ class AccountPage extends React.Component {
     }
   }
 
+// setting new state as user types in new information in form fields
   onChange = (e) => {
-    // console.log(e.target.value)
     switch (e.target.name) {
       case 'username':
         this.setState({
@@ -54,21 +55,10 @@ class AccountPage extends React.Component {
     }
   }
 
-  // onChange = (e) => {
-  //   var state = this.state;
-  //   var key = e.target.id;
-  //   var value = e.target.value;
-  //
-  //   state[key] = value;
-  //   //console.log(state);
-  //   this.setState(state);
-  //   console.log(state);
-  // }
-
+// update profile based on new state of username, firstname, lastname and email
   updateProfile = (e) => {
     e.preventDefault();
     console.log("updateAccountDetails clicked!");
-    // const data = this.state.email;
     const usernameUpdate = this.state.username;
     const firstNameUpdate = this.state.firstName;
     const lastNameUpdate = this.state.lastName;
@@ -78,7 +68,6 @@ class AccountPage extends React.Component {
     console.log("lastName update: ", lastNameUpdate);
     console.log("email update: ", emailUpdate);
     axios.put('/auth/account/profile', {
-      // data: data
       username: usernameUpdate,
       firstName: firstNameUpdate,
       lastName: lastNameUpdate,
@@ -94,6 +83,7 @@ class AccountPage extends React.Component {
     });
   }
 
+// update profile based on new state of password
   updatePassword = (e) => {
     e.preventDefault();
     console.log("updatePassword clicked!");
@@ -112,6 +102,7 @@ class AccountPage extends React.Component {
     });
   }
 
+// deleting account, after deleting, redirects to homepage '/'
   deleteAccount = (e) =>  {
     e.preventDefault();
     console.log("deleteAccount clicked!");
@@ -125,6 +116,7 @@ class AccountPage extends React.Component {
     });
   }
 
+// function to check if user is loggedin before accessing account page. if user not loggedin, redirect to '/login'
   isLoggedInAccount = () => {
     if(this.props.user.hasOwnProperty('_id')){
       return (
@@ -206,6 +198,7 @@ class AccountPage extends React.Component {
     }
   }
 
+// render component depending if user is loggedin. refer to above function.
   render() {
     return(
       <div>
@@ -223,7 +216,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    // getUser: () => {dispatch(getUser())},
+
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(AccountPage);
