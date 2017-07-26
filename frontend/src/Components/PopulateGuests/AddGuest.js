@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom'
 import {storeGuests} from '../../Actions/Event'
 import RenderGuests from './RenderGuests'
 import './AddGuest.css'
@@ -45,6 +46,10 @@ class AddGuest extends React.Component {
   render() {
     return (
       <div className="container">
+      <Link to="/createevent">
+        <div className="back-button">
+          <button className="btn btn-default" >Back</button>
+        </div></Link>
         <div className="add-guest-header">
         <h1>Add Guest</h1>
         <hr/>

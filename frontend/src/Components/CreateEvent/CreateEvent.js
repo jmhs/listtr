@@ -83,6 +83,7 @@ class CreateEvent extends React.Component {
 // if loop for when create button pressed with & without image(different actions)
   onClick = (e) => {
     this.props.postEvents(this.state)
+    this.props.getActiveEventToPreview(this.state)
   }
 
   startdateChange = (dateString, { dateMoment, timestamp }) => {
@@ -98,23 +99,9 @@ class CreateEvent extends React.Component {
       endDate: dateString
     })
   }
-  storeActiveEventToPreview = () => {
-    this.props.getActiveEventToPreview(this.state)
-  }
-  handleTimeChange = (time)=> {
-         // <- prints "3600" if "01:00" is picked
-    this.setState({ time });
-    let hour = time/3600;
-    console.log(hour);
-    time = time - hour*3600;
-    let minute = time/60
-    console.log(minute)
-  }
-  handleChange = (date) => {
-    this.setState({
-      startDate: date
-    });
-  }
+
+
+
   render() {
 
     let date = new Date()
@@ -217,13 +204,12 @@ class CreateEvent extends React.Component {
         <legend className="uk-legend">Event Image</legend>
 
           <input name="file" type="file" onChange={this.imageUpload}/>
+          <Link to='/preview'>
           <button type="button"
                   className="btn btn-success"
                   id="preview-button"
-                  onClick={this.onClick}>Preview</button>
-          <Link to="/guest"><button type="button"
-                  className="btn btn-default"
-                  onClick={this.storeActiveEventToPreview}>AddGuest</button></Link>
+                  onClick={this.onClick}>Preview</button></Link>
+
 
         </div>
       </div>
