@@ -1,16 +1,17 @@
 import React, {PropTypes} from 'react';
-
+import uuid from 'uuid'
 export default class CreateGuestRow extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: uuid.v4(),
       name: "",
       email: "",
       contact:"",
     };
   }
   onChange = (e) => {
-    let state = this.state;
+
 
     switch (e.target.name) {
       case 'name':
@@ -28,17 +29,16 @@ export default class CreateGuestRow extends React.Component {
           contact: e.target.value
         })
         break;
-      default: state
+      default:
 
     }
 
-    this.setState(state);
-    console.log(state)
   }
 
   onClick = (e) => {
     this.props.updateGuests(this.state)
     this.setState({
+      id: uuid.v4(),
       name: "",
       email: "",
       contact:""
@@ -55,7 +55,8 @@ export default class CreateGuestRow extends React.Component {
                    placeholder="Name"
                    className="form-control"
                    onChange={this.onChange}
-                   defaultValue={this.state.name}/>
+                   defaultValue={this.state.name}
+                   value={this.state.name}/>
           </div>
         </div>
         <div className="col-md-2 price">
@@ -64,7 +65,8 @@ export default class CreateGuestRow extends React.Component {
                    placeholder="Email"
                    className="form-control"
                    onChange={this.onChange}
-                   defaultValue={this.state.email}/>
+                   defaultValue={this.state.email}
+                   value={this.state.email}/>
           </div>
         </div>
         <div className="col-md-2 title">
@@ -73,7 +75,8 @@ export default class CreateGuestRow extends React.Component {
                    placeholder="Contact"
                    className="form-control"
                    onChange={this.onChange}
-                   defaultValue={this.state.contact}/>
+                   defaultValue={this.state.contact}
+                   value={this.state.contact}/>
           </div>
         </div>
 
