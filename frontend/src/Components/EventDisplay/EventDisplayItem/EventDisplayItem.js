@@ -3,6 +3,7 @@ import './EventDisplayItem.css';
 import image from './event.jpg';
 import {activeEvent} from  '../../../Actions/Event';
 import { connect } from 'react-redux';
+import {Link} from "react-router-dom";
 
 
 
@@ -17,6 +18,7 @@ class EventDisplayItem extends React.Component {
   }
   onClick = (e) => {
   this.props.activeEvent(this.props)
+
 }
   render() {
     return (

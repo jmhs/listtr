@@ -7,25 +7,26 @@ class Preview extends React.Component {
   constructor(props) {
     super(props);
   }
-  // storeActiveEventToPreview = () => {
-  //   this.props.activeEvent(this.props.)
-  // }
+
   render() {
+    let events = this.props.events
     return (
       <div className = "Firreee">
       <div className ='card'>
 
       <div className ='cardimage'>
-      <div className ="data-uk-parallax={bg: '-200'}">
-      <img src="https://res.cloudinary.com/listtr/image/upload/v1501038786/j6fbqeezvic6ej9isdj1.png" >
+      <img src={events.eventImage}>
       </img>
-      </div>
-      <div className="uk-height-large uk-background-cover uk-light uk-flex" uk-parallax="bgy: -200" style={{backgroundImage: 'url("images/dark.jpg")'}}>
-              <h1 className="uk-width-1-2@m uk-text-center uk-margin-auto uk-margin-auto-vertical">Headline</h1>
-            </div>
 
       </div>
-      <h2>HIHIHI</h2>
+      <h2>{events.eventName}</h2>
+      <h3>{events.location}</h3>
+      <h4>{events.description}</h4>
+      <h4>{events.startDate}</h4>
+      <h4>{events.endDate}</h4>
+      <h4>{events.timeStart}</h4>
+      <h4>{events.timeEnd}</h4>
+
       <Link to="/guest">
       <button type="button"
               className="btn btn-default"
