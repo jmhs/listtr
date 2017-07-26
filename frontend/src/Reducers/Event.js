@@ -14,8 +14,12 @@ const Events = (state = [], action) => {
       }
     ]
 
+      break;
+    case 'ACTIVE_EVENT_TO_PREVIEW':
+      return action.event;
 
         break;
+
     default:
       return state;
 
