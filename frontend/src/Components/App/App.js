@@ -15,6 +15,7 @@ import PopulateGuests from '../PopulateGuests/PopulateGuests'
 import Dashboard from '../Dashboard/Dashboard'
 import AccountPage from '../AccountPage/AccountPage'
 import MainContent from '../Dashboard/MainContent/MainContent'
+import EmailTemplate from '../EmailTemplate/EmailTemplate'
 import Form from '../Form/Form'
 import logo from './logo.svg';
 import './App.css';
@@ -34,6 +35,7 @@ class App extends Component {
           <Route exact path="/dashboard" component={Dashboard}/>
           <Route exact path="/account" component={AccountPage}/>
           <Route exact path="/maincontent" component={MainContent}/>
+          <Route exact path="/emailtemplate" component={EmailTemplate}/>
 
 
         </Switch>
