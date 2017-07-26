@@ -37,13 +37,21 @@ const userSchema = new mongoose.Schema({
 
     console.log('pre save hook');
     const user = this;
-    if (!user.isModified('password')) { return next(); } //ismodified is a flag to see if something has changed
+    console.log('user', user)
+    if (!user.isModified('password')) {
+      console.log('password not modified')
+      return next();
+    } //ismodified is a flag to see if something has changed
     console.log('password is modified');
     bcrypt.genSalt(10, (err, salt) => {
-      if (err) { return next(err); }
+      if (err) { console.log(err)
+        return next(err); }
       console.log('salt generated');
       bcrypt.hash(user.password, salt, (err, hash) => {
-        if (err) { return next(err); }
+        console.log('data', user.password)
+        console.log('salt', salt)
+        if (err) { console.log(err)
+          return next(err); }
         console.log('saving hash');
         user.password = hash;
         next();
