@@ -18,6 +18,7 @@ import AccountPage from '../AccountPage/AccountPage'
 import MainContent from '../Dashboard/MainContent/MainContent'
 import Preview from '../Preview/Preview'
 import InviteTemplate from '../InviteTemplate/InviteTemplate'
+import InvitePreview from '../InviteTemplate/InvitePreview/InvitePreview'
 
 import logo from './logo.svg';
 import './App.css';
@@ -48,6 +49,7 @@ class App extends Component {
               <Route exact path="/maincontent" component={MainContent}/>
 
               <Route exact path="/invitetemplate" component={InviteTemplate}/>
+              <Route exact path="/invitepreview" component={InvitePreview}/>
 
               <Route exact path="/preview" component={Preview}/>
 

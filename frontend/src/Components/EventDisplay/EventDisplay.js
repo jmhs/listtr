@@ -23,7 +23,8 @@ class EventDisplay extends React.Component {
                                id={event._id}
                                eventName={event.eventName}
                                description={event.description}
-                               eventImage ={event.eventImage}/>
+                               eventImage ={event.eventImage}
+                               everything = {event}/>
     })
   }
 
@@ -33,7 +34,6 @@ class EventDisplay extends React.Component {
     return (
       // <div className="container">
         <div className="masonry">
-
           {renderlist}
         </div>
       // </div>
