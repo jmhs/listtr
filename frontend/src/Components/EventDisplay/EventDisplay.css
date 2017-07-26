@@ -1,1 +1,7 @@
 
+.masonry{
+  column-count: 3;
+  column-gap:1em;
+
+  float: none;
+}

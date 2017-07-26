@@ -33,3 +33,14 @@
   font-size:15px;
   font-family: 'Montserrat', sans-serif;
 }
+
+.calendar-form{
+  display: inline-block;
+  margin-right: 30px;
+  width: 30%;
+}
+
+select{
+  line-height: 100px;
+  height: 100px;
+}

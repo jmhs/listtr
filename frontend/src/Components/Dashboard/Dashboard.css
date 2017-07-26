@@ -18,15 +18,28 @@
 body.modal-open {
     padding-right:0 !important;
 }
+#navbar-dashboard{
+  position: fixed;
 
+}
 #sidebar {
    padding-left:0;
+   position: fixed;
+   top: 80px;
+
 }
 
 #main {
   width: 100vw;
+  position:relative;
 }
-
+.main{
+  position: absolute;
+  left: 200px;
+  top: 80px;
+  bottom: 100px;
+  margin-bottom: 100px;
+}
 #dashboardHeaderTitle {
   font-family: 'Lobster', cursive;
   text-transform: none;
