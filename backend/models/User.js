@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
   firstName: String,
   lastName: String,
   gender: String,
-  hostFor: [],
+  hostFor: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Event'}],
   guestFor: [],
 
   linkedin: String,
