@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import {storeGuests} from '../../Actions/Event'
 import RenderGuests from './RenderGuests'
 
-class PopulateGuests extends React.Component {
+class AddGuest extends React.Component {
   constructor(props) {
     super(props);
 
@@ -84,8 +84,7 @@ class PopulateGuests extends React.Component {
   }
 }
 
-PopulateGuests.propTypes = {
-};
+
 
 //export default PopulateGuests;
 const mapStateToProps = (state) => {
@@ -102,4 +101,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PopulateGuests);//to include guest population
+export default connect(mapStateToProps, mapDispatchToProps)(AddGuest);//to include guest population
