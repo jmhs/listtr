@@ -80,8 +80,6 @@ class InviteTemplate extends React.Component {
 // function also renders different invite template depending on whether its a new or existing invitation
   isLoggedInInviteTemplate = () => {
 
-
-
     if(this.props.user.hasOwnProperty('_id')){
         return (
           <div className="container">
