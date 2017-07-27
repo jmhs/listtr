@@ -40,7 +40,7 @@ class AddGuest extends React.Component {
     return (
       <div className="container">
 
-        <Link to="/dashboard">
+
         <Link to="/preview">
 
           <div className="back-button">
