@@ -173,6 +173,7 @@ class UpdateEvent extends React.Component {
                    placeholder="Start Time"
                    onChange={this.onChange}/>
           </div>
+
         </div>
         <div className="create-row">
           <legend className="uk-legend">End Time</legend>
