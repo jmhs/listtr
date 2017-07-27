@@ -6,7 +6,7 @@ const ActiveHome = (state = {}, action) => {
 
 
       break;
-    case "STORE_GUEST":
+    case "STORE_GUEST_TO_ACTIVE":
       action.active.guests.push(action.guest)
     return action.active
 
