@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react';
 import bg from './loading-page-background.jpg'
 import './LoadingPage.css'
+import {Link} from react-router-dom
 import Typed from 'typed.js';
 export default class LoadingPage extends React.Component {
   constructor(props) {
@@ -35,7 +36,9 @@ export default class LoadingPage extends React.Component {
           </div>
           <div className="loader">
           </div>
-          
+          <Link to="/login">
+          {this.state.loginAgain ? 'Login' :  ""}
+          </Link>
         </div>
       </div>
     );
