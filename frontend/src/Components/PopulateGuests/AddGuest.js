@@ -13,7 +13,11 @@ class AddGuest extends React.Component {
       guests: this.props.active.guests
     }
   }
-
+  componentWillMount(){
+    if(this.state.guests === undefined ){
+      window.location.href = "/dashboard"
+    }
+  }
   renderGuests = () => {
     let guests = this.state.guests;
     return guests.map( (guest) => {

@@ -17,7 +17,11 @@ class Dashboard extends React.Component {
       currentNav: "HostingNav"
     }
   }
-
+  // componentWillMount(){
+  //   if (this.props.user._id === null){
+  //     window.location.href = "/login"
+  //   }
+  // }
   // onClick, updateNavPath is fired in the actions to send to reducer, to be exported as props for conditional rendering
   onClick = (e) => {
     const state = this.state;
