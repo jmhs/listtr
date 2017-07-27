@@ -211,7 +211,7 @@ class CreateEvent extends React.Component {
           <button type="button"
                   className="btn btn-success"
                   id="preview-button"
-                  onClick={this.onClick}>Preview</button></Link>
+                  onClick={this.onClick}>Create Event</button></Link>
 
 
         </div>
