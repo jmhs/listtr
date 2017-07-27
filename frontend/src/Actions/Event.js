@@ -24,19 +24,19 @@ export const storeGuests = (active, guest) => {
   }
 
 }
-//sends guests to store
-// export const postGuests = (guest) => {
-//   return (dispatch) => {
-//     axios.post('/event/guest', guest)
-//       .then( (response) => {
-//         console.log(response.data);
-//         dispatch(storeGuests(response.data))
-//       })
-//       .catch((error)=> {
-//         console.error("guest not posted to server'")
-//       });
-//   }
-// }
+// sends guests to store
+export const postGuests = (guest) => {
+  return (dispatch) => {
+    axios.post('/event/guest', guest)
+      .then( (response) => {
+        console.log(response.data);
+        dispatch(storeGuests(response.data))
+      })
+      .catch((error)=> {
+        console.error("guest not posted to server'")
+      });
+  }
+}
 
 //in-charge of defining the action to store the event into the store
 export const getEvents = () => {
