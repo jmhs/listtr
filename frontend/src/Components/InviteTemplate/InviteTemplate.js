@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import { Link } from 'react-router-dom'
+import { activeEvent } from '../../Actions/Event';
 import axios from 'axios';
 
 import LogIn from '../LogIn/LogIn';
@@ -17,6 +18,7 @@ class InviteTemplate extends React.Component {
       inviteDescription: '', //this.props.events.description
       isOpen: false
     }
+    console.log(this.props.events)
   }
 
   onChange = (e) => {
@@ -51,15 +53,6 @@ class InviteTemplate extends React.Component {
     }
   }
 
-
-// On click of preview button, state of previewIsOpen is changed to true. This will trigger the opening of the Preview Modal
-toggleModal = (e) => {
-  console.log('clicked on preview!')
-  this.setState({
-    isOpen: !this.state.isOpen
-  });
-}
-
   saveAndSendInvite = (e) => {
     e.preventDefault();
     console.log("saveAndUpdateInvite clicked!");
@@ -82,9 +75,6 @@ toggleModal = (e) => {
     //   console.log(error);
     // });
   }
-
-
-
 
 // function to check if user is loggedin before accessing inviteTemplate page. if user not loggedin, redirect to '/login'
 // function also renders different invite template depending on whether its a new or existing invitation
@@ -109,7 +99,7 @@ toggleModal = (e) => {
                        className="form-control"
                        id="inviteFromInviteTemplate"
                        placeholder="Please input email you would like guests to receive from"
-                       defaultValue={this.state.from}
+                       defaultValue=""
                        onChange={this.onChange}
                        name="inviteFrom"/>
               </div>
@@ -119,7 +109,7 @@ toggleModal = (e) => {
                        className="form-control"
                        id="inviteSubjectInviteTemplate"
                        placeholder="Please input email subject you would like guests to see"
-                       defaultValue={this.state.subject}
+                       defaultValue={this.props.events.eventName}
                        onChange={this.onChange}
                        name="inviteSubject"/>
               </div>
@@ -129,7 +119,7 @@ toggleModal = (e) => {
                        className="form-control"
                        id="eventNameInviteTemplate"
                        placeholder=""
-                       defaultValue={this.state.inviteName}
+                       defaultValue={this.props.events.eventName}
                        onChange={this.onChange}
                        name="inviteName"/>
               </div>
@@ -139,12 +129,12 @@ toggleModal = (e) => {
                          className="form-control"
                          id="inviteDescriptionInviteTemplate"
                          placeholder=""
-                         defaultValue={this.state.inviteDescription}
+                         defaultValue={this.props.events.description}
                          onChange={this.onChange}
                          name="inviteDescription"/>
                 </div>
                 <button className="uk-button uk-button-default"
-                        id="inviteTemplatePreviewBtn" onClick={this.toggleModal}>Preview</button>
+                        id="inviteTemplatePreviewBtn" onClick=''>Preview</button>
                 <button className="uk-button uk-button-default"
                         id="inviteTemplateBackToEventBtn" onClick=''>Back to Event</button>
                 <hr/>
@@ -181,6 +171,7 @@ InviteTemplate.propTypes = {
 const mapStateToProps = (state) => {
   return {
     events: state.events,
+    events: state.active,
     user: state.user,
   }
 }

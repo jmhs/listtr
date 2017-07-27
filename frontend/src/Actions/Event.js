@@ -30,7 +30,7 @@ export const postGuest = (guest) => {
     axios.post('/event/guest', guest)
       .then( (response) => {
         console.log(response.data);
-        dispatch(storeGuests(response.data))
+        // dispatch(storeGuests(response.data))
       })
       .catch((error)=> {
         console.error("guest not posted to server'")
