@@ -65,7 +65,7 @@ exports.postEvent = (req, res) => {
       user.save((err) => {
         if (err) { return (err); }
         console.log('updated user');
-        res.send('updated user');
+        res.json('updated user');
       });
     });
 
@@ -93,16 +93,20 @@ exports.postEventsWithImage = (req, res) => {
       timeEnd: req.body.timeEnd || ""
     });
     newEvent.hosts.push(req.body.user_id);
-    newEvent.save((err) => {
+    newEvent.save((err, events) => {
       if(err){console.log(err); return;}
-      res.json(newEvent);
+      res.json(events);
+
       User.findById(req.body.user_id, (err, user) => {
-        if (err) { return err; }
+        if (err) {
+          console.log(err)
+          return err;
+        }
         user.hostFor.push(events._id)
         user.save((err) => {
           if (err) { return (err); }
           console.log('updated user');
-          res.send('updated user');
+          res.json('updated user');
         });
       });
     });
