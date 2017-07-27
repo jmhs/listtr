@@ -101,6 +101,52 @@ export const postEvents = (events) => {
 
 }
 
+export const deleteEvent = (event) => {
+    return (dispatch) => {
+      console.log(event)
+      //t inlcue mechanism to updae store
+      axios.delete('/event/'+ event._id )
+      .then((response)=>{
+
+      })
+      .catch((error)=>{
+
+      })
+
+    }
+}
+
+// export const updateReviewWithPic = (picReview, review) => {
+//   return (dispatch) => {
+//     // here picReview is a file
+//     let picReviewToBackEnd = new FormData();
+//     picReviewToBackEnd.append('picReview', picReview);
+//     picReviewToBackEnd.append('title', review.title);
+//     picReviewToBackEnd.append('star', review.star);
+//     picReviewToBackEnd.append('description', review.description);
+//     picReviewToBackEnd.append('picReviewPublicId', review.picReviewPublicId)
+//
+//     // axios function to send info to backend database
+//     axios.put('/review/updateReviewWithPic/'+review._id,picReviewToBackEnd)
+//     .then( (response)=>{
+//       // here picReview is a new url
+//       dispatch(updateUserReviewInStore(response.data))
+//     }).catch( (error) =>{
+//       dispatch(loadingReviewError(error));
+//     })
+//   }
+// }
+// export const updateReviewWithoutPic = (review) => {
+//   return (dispatch) => {
+//     // axios function to send info to backend database
+//     axios.put('/review/updateReviewWithoutPic/'+review._id,review)
+//     .then( (response)=>{
+//       dispatch(updateUserReviewInStore(response.data))
+//     }).catch( (error) =>{
+//       dispatch(loadingReviewError(error));
+//     })
+//   }
+// }
 
 // export function uploadSuccess({ data }) {
 //   return {
