@@ -96,6 +96,15 @@ exports.postEventsWithImage = (req, res) => {
     newEvent.save((err) => {
       if(err){console.log(err); return;}
       res.json(newEvent);
+      User.findById(req.body.user_id, (err, user) => {
+        if (err) { return err; }
+        user.hostFor.push(events._id)
+        user.save((err) => {
+          if (err) { return (err); }
+          console.log('updated user');
+          res.send('updated user');
+        });
+      });
     });
   })
   .then(
