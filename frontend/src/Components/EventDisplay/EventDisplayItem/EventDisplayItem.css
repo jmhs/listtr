@@ -2,7 +2,7 @@
   width: 250px;
   border: 2px solid hsla(0, 0%, 0%, 0.5);
   display: inline-block;
-  padding: 10px;
+  /*padding: 10px;*/
   border-radius: 10px;
   margin: 10px;
   float: left;
@@ -13,14 +13,12 @@
 .grid-item:hover{
   background-color: #d5dae2;
 }
-.grid-item img{
 
-}
-.image img{
+.event-display-item-image img{
   height: 200px;
 
 }
-.image{
+.event-display-item-image{
   height: 200px;
   overflow: hidden;
 }
@@ -28,4 +26,8 @@
 
 .eventName{
   font-weight: bold;
+  margin: 10px;
+}
+.event-display-item-description{
+  margin: 10px;
 }
