@@ -9,13 +9,7 @@ import {Link} from "react-router-dom";
 
 
 class EventDisplayItem extends React.Component {
-  componentDidMount(){
-    // let grid = document.getElementsByClassName('grid')[0];
-    // grid.masonry({
-    //   itemSelector: '.grid-item',
-    //   columnWidth:200
-    // })
-  }
+
   onClick = (e) => {
   this.props.activeEvent(this.props.everything)
   console.log(this.props.everything)
