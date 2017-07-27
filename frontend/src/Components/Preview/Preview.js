@@ -51,6 +51,10 @@ class Preview extends React.Component {
               className="btn btn-default"
               onClick={this.onDelete}>Delete</button>
 
+      <button type="button"
+              className="btn btn-default"
+              onClick={this.onDelete}>Edit</button>
+
 
 
 
@@ -74,34 +78,21 @@ class Preview extends React.Component {
              </Modal>
          </div>
 
-       }
+
+
+         <a className="uk-link-reset" href> Headin </a>
+
+         <div>
+           <a className="uk-button uk-button-text" href="#">Read more</a>
+         </div>
+         <div>
+           <a className="uk-button uk-button-text" href="#">5 Comments</a>
+         </div>
+       </div>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-          <a className="uk-link-reset" href> Headin </a>
-
-          <div>
-            <a className="uk-button uk-button-text" href="#">Read more</a>
-          </div>
-          <div>
-            <a className="uk-button uk-button-text" href="#">5 Comments</a>
-          </div>
-        </div>
-
-
-
-  );
+     );
   }
 }
 const mapStateToProps = (state) => {

@@ -9,13 +9,13 @@ const Events = (state = [], action) => {
       ...state,
       {
         events: state.events,
-        guests : action.guests,
+
 
       }
     ]
 
       break;
-    
+
 
     default:
       return state;

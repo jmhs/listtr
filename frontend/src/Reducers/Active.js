@@ -1,10 +1,11 @@
 const ActiveHome = (state = {}, action) => {
   switch (action.type) {
     case 'ACTIVE_EVENT':
-      return action.event  
+      return action.event
       break;
     default:
       return state
+
   }
 }
 
