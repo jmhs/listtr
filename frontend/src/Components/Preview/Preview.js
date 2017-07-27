@@ -23,12 +23,6 @@ class Preview extends React.Component {
 
   }
 
-  onEdit= () => {
-    console.log('update pressed')
-
-    this.props.updateEvent(this.props.events)
-
-  }
 
 
   render() {
@@ -36,6 +30,11 @@ class Preview extends React.Component {
     let events = this.props.events
     return (
       <div className ='card'>
+      <Link to="/dashboard">
+        <div className="back-button">
+          <button className="btn btn-default">Back</button>
+        </div>
+      </Link>
         <div className ='cardimage'>
           <img src={events.eventImage}/>
         </div>
@@ -63,10 +62,11 @@ class Preview extends React.Component {
             <button type="button"
                     className="btn-custom"
                     onClick={this.onDelete}>Delete</button>
-
+          <Link to="/updateEvent">
             <button type="button"
                     className="btn-custom"
                     onClick={this.onEdit}>Edit</button>
+            </Link>
         </div>
        </div>
      );
