@@ -39,7 +39,7 @@ class AddGuest extends React.Component {
     const renderGuestsRows = this.renderGuests()
     return (
       <div className="container">
-        <Link to="/createevent">
+        <Link to="/preview">
           <div className="back-button">
             <button className="btn btn-default" >Back</button>
           </div>
