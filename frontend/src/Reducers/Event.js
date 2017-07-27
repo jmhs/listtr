@@ -4,7 +4,7 @@ const Events = (state = [], action) => {
     return action.events;
     break;
 
-    
+
 
 
     default:
