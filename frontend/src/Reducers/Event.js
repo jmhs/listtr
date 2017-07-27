@@ -4,17 +4,7 @@ const Events = (state = [], action) => {
     return action.events;
     break;
 
-    case "STORE_GUESTS":
-    return [
-      ...state,
-      {
-        events: state.events,
 
-
-      }
-    ]
-
-      break;
 
 
     default:
