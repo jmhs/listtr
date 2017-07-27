@@ -6,7 +6,7 @@ import {updateNavPath} from '../../Actions/Navigation'
 import axios from 'axios';
 import MainContent from './MainContent/MainContent';
 import LogIn from '../LogIn/LogIn'
-
+import Loading from '../LoadingPage/LoadingPage'
 import './Dashboard.css';
 
 class Dashboard extends React.Component {
@@ -14,7 +14,8 @@ class Dashboard extends React.Component {
     super(props);
 
     this.state = {
-      currentNav: "HostingNav"
+      currentNav: "HostingNav",
+
     }
   }
 
@@ -120,7 +121,7 @@ class Dashboard extends React.Component {
                 {/*scripts loaded here*/}
               </div>
             )
-              : (<LogIn/>)}
+              : (<Loading/>)}
         </div>
       </div>
     );
