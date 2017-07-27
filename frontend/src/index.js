@@ -11,6 +11,7 @@ import { getEvents} from './Actions/Event';
 import { Provider } from 'react-redux';   // yarn add react-redux
 import { initStore } from './Store/Store';
 
+
 const store = initStore();
 store.dispatch(getUser());
 store.dispatch(getEvents());
