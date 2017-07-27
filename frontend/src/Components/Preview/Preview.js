@@ -41,12 +41,13 @@ class Preview extends React.Component {
         </div>
         <div id="event-preview-info">
           <h2 id="event-preview-title">{events.eventName}</h2>
-          <h3>{events.location}</h3>
+          <h3 className="event-preview-location">{events.location}</h3>
+
+          <h4>Start: {events.startDate}</h4>
+          <h4>End: {events.endDate}</h4>
+          <h4>Time Start: {events.timeStart}</h4>
+          <h4>Time End: {events.timeEnd}</h4>
           <h4>{events.description}</h4>
-          <h4>{events.startDate}</h4>
-          <h4>{events.endDate}</h4>
-          <h4>{events.timeStart}</h4>
-          <h4>{events.timeEnd}</h4>
         </div>
         <div className="event-preview-button">
           <Link to="/guest">
