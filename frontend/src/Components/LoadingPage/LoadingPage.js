@@ -25,7 +25,7 @@ export default class LoadingPage extends React.Component {
         loginAgain: true
       })
       console.log('please login again')
-    }, 10000)
+    }, 4000)
   }
   componentWillUnmount(){
     this.setState({
@@ -41,7 +41,8 @@ export default class LoadingPage extends React.Component {
           <div className="loader">
           </div>
           <Link to="/login">
-          {this.state.loginAgain ? 'Login' :  ""}
+          {this.state.loginAgain ? <button className="please-login">Please login!</button> :  ""}
+
           </Link>
         </div>
       </div>
