@@ -2,29 +2,37 @@
   width: 250px;
   border: 2px solid hsla(0, 0%, 0%, 0.5);
   display: inline-block;
-  padding: 10px;
+  /*padding: 10px;*/
   border-radius: 10px;
   margin: 10px;
   float: left;
+  word-wrap: break-word;
 }
 
 
 .grid-item:hover{
   background-color: #d5dae2;
 }
-.grid-item img{
 
+.event-display-item-image img{
+  /*height: 200px;*/
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
-.image img{
-  height: 200px;
-
-}
-.image{
-  height: 200px;
+.event-display-item-image{
+  min-height: 100px;
   overflow: hidden;
 }
 
 
 .eventName{
   font-weight: bold;
+  margin: 10px;
+}
+.event-display-item-description{
+  margin: 10px;
+  /*line-height: 50px;*/
+  height: 100px;
+  overflow: hidden;
 }

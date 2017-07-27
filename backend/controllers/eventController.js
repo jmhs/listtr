@@ -53,30 +53,29 @@ exports.postEvent = (req, res) => {
     timeStart: req.body.timeStart || "",
     timeEnd: req.body.timeEnd || "",
   });
-
   newEvent.hosts.push(req.body.user_id);
-  newEvent.save((err, events) => {
+  newEvent.save((err) => {
     if(err){console.log(err); return;}
-    res.json(events);
 
-    User.findById(req.body.user_id, (err, user) => {
-      if (err) { return err; }
-      user.hostFor.push(events._id)
-      user.save((err) => {
-        if (err) { return (err); }
-        console.log('updated user');
-        res.send('updated user');
-      });
-    });
-
+    res.json(newEvent);
+    console.log("problem")
   });
+  User.findOne({'_id':req.body.user_id}, (err, user) => {
+    if (err){console.log('error!', err); return;}
+    console.log("newEvent", newEvent)
+    console.log('user', user)
+    user.hostFor.push(newEvent._id)
+    user.save((err) => {
+      if (err) { console.log('error!', err); return; }
+      console.log('updated user');
 
-
+    });
+  });
 }
 
 exports.postEventsWithImage = (req, res) => {
     cloudinary.uploader.upload(req.file.path,(result) => {
-    console.log(result)
+    console.log('with image')
     console.log(req.body)
     const newEvent = new Event({
       eventImage : result.secure_url||"",
@@ -93,17 +92,21 @@ exports.postEventsWithImage = (req, res) => {
       timeEnd: req.body.timeEnd || ""
     });
     newEvent.hosts.push(req.body.user_id);
-    newEvent.save((err) => {
+    newEvent.save((err, events) => {
       if(err){console.log(err); return;}
+
       res.json(newEvent);
-      User.findById(req.body.user_id, (err, user) => {
-        if (err) { return err; }
-        user.hostFor.push(events._id)
-        user.save((err) => {
-          if (err) { return (err); }
-          console.log('updated user');
-          res.send('updated user');
-        });
+      console.log("problem")
+    });
+    User.findOne({'_id':req.body.user_id}, (err, user) => {
+      if (err){console.log('error!', err); return;}
+      console.log("newEvent", newEvent)
+      console.log('user', user)
+      user.hostFor.push(newEvent._id)
+      user.save((err) => {
+        if (err) { console.log('error!', err); return; }
+        console.log('updated user');
+
       });
     });
   })
