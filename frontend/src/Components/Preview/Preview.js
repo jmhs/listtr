@@ -36,74 +36,39 @@ class Preview extends React.Component {
     let events = this.props.events
     return (
       <div className ='card'>
-      <div className ='cardimage'>
-      <img src={events.eventImage}/>
-      </div>
-      <div>
-      <h2>{events.eventName}</h2>
-      <h3>{events.location}</h3>
-      <h4>{events.description}</h4>
-      <h4>{events.startDate}</h4>
-      <h4>{events.endDate}</h4>
-      <h4>{events.timeStart}</h4>
-      <h4>{events.timeEnd}</h4>
-      </div>
+        <div className ='cardimage'>
+          <img src={events.eventImage}/>
+        </div>
+        <div id="event-preview-info">
+          <h2 id="event-preview-title">{events.eventName}</h2>
+          <h3 className="event-preview-location">{events.location}</h3>
 
-      <Link to="/guest">
-      <button type="button"
-              className="btn btn-default"
-              onClick={this.onClick}>AddGuest</button>
-      </Link>
-      <Link to="/invitetemplate">
-      <button type="button"
-              className="btn btn-default"
-              onClick={this.onClick}>Manage Invites</button>
-      </Link>
-      <button type="button"
-              className="btn btn-default"
-              onClick={this.onDelete}>Delete</button>
+          <h4>Start: {events.startDate}</h4>
+          <h4>End: {events.endDate}</h4>
+          <h4>Time Start: {events.timeStart}</h4>
+          <h4>Time End: {events.timeEnd}</h4>
+          <h4>{events.description}</h4>
+        </div>
+        <div className="event-preview-button">
+          <Link to="/guest">
+            <button type="button"
+                    className="btn-custom"
+                    onClick={this.onClick}>Add Guest</button>
+          </Link>
+          <Link to="/invitetemplate">
+            <button type="button"
+                    className="btn-custom"
+                    onClick={this.onClick}>Manage Invites</button>
+          </Link>
+            <button type="button"
+                    className="btn-custom"
+                    onClick={this.onDelete}>Delete</button>
 
-      <button type="button"
-              className="btn btn-default"
-              onClick={this.onEdit}>Edit</button>
-
-
-
-
-
-           <div>
-
-             <Button onClick={this.show('small')}>Small</Button>
-             <Modal size={size} open={open} onClose={this.close}>
-               <Modal.Header>
-                 Delete Your Event
-               </Modal.Header>
-               <Modal.Content>
-                 <p>Are you sure you want to delete your account</p>
-               </Modal.Content>
-               <Modal.Actions>
-                 <Button negative>
-                   No
-                 </Button>
-                 <Button positive icon='checkmark' labelPosition='right' content='Yes' />
-               </Modal.Actions>
-             </Modal>
-         </div>
-
-
-
-         <a className="uk-link-reset" href> Headin </a>
-
-         <div>
-           <a className="uk-button uk-button-text" href="#">Read more</a>
-         </div>
-         <div>
-           <a className="uk-button uk-button-text" href="#">5 Comments</a>
-         </div>
+            <button type="button"
+                    className="btn-custom"
+                    onClick={this.onEdit}>Edit</button>
+        </div>
        </div>
-
-
-
      );
   }
 }

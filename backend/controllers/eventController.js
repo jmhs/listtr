@@ -56,6 +56,7 @@ exports.postEvent = (req, res) => {
   newEvent.hosts.push(req.body.user_id);
   newEvent.save((err) => {
     if(err){console.log(err); return;}
+
     res.json(newEvent);
     console.log("problem")
   });
@@ -67,6 +68,7 @@ exports.postEvent = (req, res) => {
     user.save((err) => {
       if (err) { console.log('error!', err); return; }
       console.log('updated user');
+
     });
   });
 }
@@ -90,8 +92,9 @@ exports.postEventsWithImage = (req, res) => {
       timeEnd: req.body.timeEnd || ""
     });
     newEvent.hosts.push(req.body.user_id);
-    newEvent.save((err) => {
+    newEvent.save((err, events) => {
       if(err){console.log(err); return;}
+
       res.json(newEvent);
       console.log("problem")
     });
@@ -103,6 +106,7 @@ exports.postEventsWithImage = (req, res) => {
       user.save((err) => {
         if (err) { console.log('error!', err); return; }
         console.log('updated user');
+
       });
     });
   })

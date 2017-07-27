@@ -36,3 +36,22 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+.please-login {
+  -webkit-border-radius: 29;
+  -moz-border-radius: 29;
+  border-radius: 29px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 26px;
+  background: #003f69;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  border: 0px;
+  margin-top: 20px;
+  margin-left: 5px;
+}
+
+.please-login:hover {
+  background: #126aa1;
+  text-decoration: none;
+}
