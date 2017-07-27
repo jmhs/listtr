@@ -6,7 +6,7 @@ import {updateNavPath} from '../../Actions/Navigation'
 import axios from 'axios';
 import MainContent from './MainContent/MainContent';
 import LogIn from '../LogIn/LogIn'
-
+import Loading from '../LoadingPage/LoadingPage'
 import './Dashboard.css';
 
 class Dashboard extends React.Component {
@@ -14,14 +14,11 @@ class Dashboard extends React.Component {
     super(props);
 
     this.state = {
-      currentNav: "HostingNav"
+      currentNav: "HostingNav",
+
     }
   }
-  // componentWillMount(){
-  //   if (this.props.user._id === null){
-  //     window.location.href = "/login"
-  //   }
-  // }
+
   // onClick, updateNavPath is fired in the actions to send to reducer, to be exported as props for conditional rendering
   onClick = (e) => {
     const state = this.state;
@@ -124,7 +121,7 @@ class Dashboard extends React.Component {
                 {/*scripts loaded here*/}
               </div>
             )
-              : (<LogIn/>)}
+              : (<Loading/>)}
         </div>
       </div>
     );
