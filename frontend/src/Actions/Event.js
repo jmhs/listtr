@@ -30,7 +30,7 @@ export const postGuest = (guest) => {
     axios.post('/event/guest', guest)
       .then( (response) => {
         console.log(response.data);
-        dispatch(storeGuests(response.data))
+        //dispatch(storeGuests(response.data))
       })
       .catch((error)=> {
         console.error("guest not posted to server'")
@@ -98,7 +98,6 @@ export const postEvents = (events) => {
       };
     }
 
-
 }
 
 export const deleteEvent = (event) => {
@@ -115,6 +114,61 @@ export const deleteEvent = (event) => {
 
     }
 }
+
+
+//Splits Actions for with and without Image
+export const updateEvent = (events) => {
+  return (dispatch) => {
+
+   if (typeof events.eventImage == "string") {
+    console.log('Image not changed Bro')
+      axios.put('/event/updateEvents/'+ events._id, events)
+      .then( (response) => {
+        console.log(response.data);
+        // dispatch(storeEvents(response.data))
+      })
+      .catch((error)=> {
+        console.error("event not posted to server'")
+      });
+  }
+  else {
+    console.log('Theres an Image!')
+    console.log( 'events action', events)
+    let EventDataWithImage = new FormData();
+    EventDataWithImage.append('eventImage', events.eventImage);
+    EventDataWithImage.append('location', events.location);
+    EventDataWithImage.append('eventName', events.eventName);
+    EventDataWithImage.append('description', events.description);
+    EventDataWithImage.append('type', events.type);
+    EventDataWithImage.append('dressCode', events.dressCode);
+    EventDataWithImage.append('startDate', events.startDate);
+    EventDataWithImage.append('endDate', events.endDate);
+    EventDataWithImage.append('timeStart', events.startTime);
+    EventDataWithImage.append('timeEnd', events.endTime);
+    EventDataWithImage.append('user_id', events.user_id);
+
+
+      axios.put('/event/updateEventsWithImage/'+ events._id, EventDataWithImage)
+        .then( (response) => {
+          console.log(response.data);
+
+          // dispatch(storeEvents(response.data))
+        })
+        .catch((error)=> {
+          console.error("event not posted to server'")
+        });
+      };
+    }
+
+
+}
+
+
+
+
+
+
+
 
 // export const updateReviewWithPic = (picReview, review) => {
 //   return (dispatch) => {
