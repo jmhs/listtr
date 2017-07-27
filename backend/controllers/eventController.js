@@ -24,19 +24,6 @@ exports.postGuest = (req, res) => {
    console.log(req.body);
    console.log('Inside if')
 
-  //  const newEvent = new Event({
-  //   eventImage:  "",
-  //   eventName: req.body.eventName || "",
-  //   type: req.body.type || "" ,
-  //   description: req.body.description || "",
-  //   dressCode: req.body.dressCode || "",
-  //   location: req.body.location || "",
-  //
-  //   startDate: req.body.startDate || "",
-  //   endDate: req.body.endDate || "",
-  //   timeStart: req.body.timeStart || "",
-  //   timeEnd: req.body.timeEnd || "",
-  // });
   Event.findById(req.body.event_id, (err, event) => {
 
   })
