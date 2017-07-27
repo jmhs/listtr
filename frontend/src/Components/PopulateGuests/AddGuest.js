@@ -10,10 +10,14 @@ class AddGuest extends React.Component {
     super(props);
 
     this.state = {
-      guests: []
+      guests: this.props.active.guests
     }
   }
-
+  componentWillMount(){
+    if(this.state.guests === undefined ){
+      window.location.href = "/dashboard"
+    }
+  }
   renderGuests = () => {
     let guests = this.state.guests;
     return guests.map( (guest) => {
@@ -25,6 +29,7 @@ class AddGuest extends React.Component {
     let guests = this.state.guests;
     guests.push(guest)
     this.props.storeGuestsToActive(this.props.active, guest)
+    this.props.postGuest(this.props.active._id, guest)
     this.setState({
       guests
     })

@@ -23,29 +23,19 @@ exports.getSpecificEvent = (req, res) => {
 exports.postGuest = (req, res) => {
    console.log(req.body);
    console.log('Inside if')
+  Event.findById(req.params.event_id, (err, event) => {
+    if (err) { return err; }
+    console.log('event', event)
+    event.guests.push(req.body)
+    event.save((err) => {
+      if (err) { return (err); }
+      console.log(event);
 
-  Event.findById(req.body.event_id, (err, event) => {
-
+    });
+    res.json(event);
   })
-  // newEvent.hosts.push(req.body.user_id);
-  // newEvent.save((err, events) => {
-  //   if(err){console.log(err); return;}
-  //   res.json(events);
-  //
-  //   User.findById(req.body.user_id, (err, user) => {
-  //     if (err) { return err; }
-  //     user.hostFor.push(events._id)
-  //     user.save((err) => {
-  //       if (err) { return (err); }
-  //       console.log('updated user');
-  //       res.send('updated user');
-  //     });
-  //   });
-  //
-  // });
-
-
 }
+
 //logic for incoming data for events
 exports.postEvent = (req, res) => {
    console.log(req.body);
