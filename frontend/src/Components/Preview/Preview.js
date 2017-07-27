@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom'
-import { activeEvent, deleteEvent} from '../../Actions/Event';
+import { activeEvent, deleteEvent, updateEvent} from '../../Actions/Event';
 import './Preview.css';
 import { Button, Modal } from 'semantic-ui-react'
 
@@ -20,6 +20,13 @@ class Preview extends React.Component {
   onDelete= () => {
     console.log('delete pressed')
     this.props.deleteEvent(this.props.events)
+
+  }
+
+  onEdit= () => {
+    console.log('update pressed')
+
+    this.props.updateEvent(this.props.events)
 
   }
 
@@ -47,13 +54,18 @@ class Preview extends React.Component {
               className="btn btn-default"
               onClick={this.onClick}>AddGuest</button>
       </Link>
+      <Link to="/invitetemplate">
+      <button type="button"
+              className="btn btn-default"
+              onClick={this.onClick}>Manage Invites</button>
+      </Link>
       <button type="button"
               className="btn btn-default"
               onClick={this.onDelete}>Delete</button>
 
       <button type="button"
               className="btn btn-default"
-              onClick={this.onDelete}>Edit</button>
+              onClick={this.onEdit}>Edit</button>
 
 
 
@@ -106,6 +118,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     activeEvent: (event) => {dispatch(activeEvent(event))},
     deleteEvent: (event) => {dispatch(deleteEvent(event))},
+    updateEvent: (event) => {dispatch(updateEvent(event))}
 
   }
 }
