@@ -3,11 +3,15 @@
   width: 100vw;
   height: 100vh;
 }
-
+#event-preview-title{
+  word-wrap: break-word;
+  margin-left: 5px;
+  margin-right: 5px;
+}
 .card {
   background: #FFFFFF;
-  max-width: 400px;
-  margin: 100px auto;
+  max-width: 500px;
+  margin: 50px auto;
   border-radius: 10px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   box-sizing: border-box;
@@ -19,4 +23,25 @@
     height: 303px;
     vertical-align: top;
     text-align: -webkit-center;
+}
+.event-preview-button{
+  margin-bottom: 20px;
+}
+.btn-custom {
+  -webkit-border-radius: 10;
+  -moz-border-radius: 10;
+  border-radius: 10px;
+  font-family: Arial;
+  color: #000000;
+  font-size: 12px;
+  background: #ffffff;
+  padding: 10px 20px 10px 20px;
+  border: solid #adadad 1px;
+  text-decoration: none;
+  margin-left: 20px;
+}
+
+.btn-custom:hover {
+  background: #f0f0f0;
+  text-decoration: none;
 }
