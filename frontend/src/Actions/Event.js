@@ -16,16 +16,16 @@ export const storeEvents = (events) => {
   }
 }
 
-export const storeGuests = (active, guest) => {
+export const storeGuestsToActive = (active, guest) => {
   return{
-    type: 'STORE_GUEST',
+    type: 'STORE_GUEST_TO_ACTIVE',
     active,
     guest
   }
 
 }
 // sends guests to store
-export const postGuests = (guest) => {
+export const postGuest = (guest) => {
   return (dispatch) => {
     axios.post('/event/guest', guest)
       .then( (response) => {
