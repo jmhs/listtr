@@ -27,7 +27,11 @@ export default class LoadingPage extends React.Component {
       console.log('please login again')
     }, 10000)
   }
-
+  componentWillUnmount(){
+    this.setState({
+      loginAgain: false
+    })
+  }
   render() {
     return (
       <div id="loading-page-background">
