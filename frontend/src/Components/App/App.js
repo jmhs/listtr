@@ -19,6 +19,7 @@ import MainContent from '../Dashboard/MainContent/MainContent'
 import Preview from '../Preview/Preview'
 import InviteTemplate from '../InviteTemplate/InviteTemplate'
 import InvitePreview from '../InviteTemplate/InvitePreview/InvitePreview'
+import UpdateEvent from '../UpdateEvent/UpdateEvent'
 
 import logo from './logo.svg';
 import './App.css';

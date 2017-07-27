@@ -4,7 +4,9 @@ export default class RenderGuests extends React.Component {
   constructor(props) {
     super(props);
   }
-
+  toDelete = () => {
+    console.log(this.props.id)
+  }
   render() {
     return (
       <div className="col-sm-12 render-guests-row">
@@ -18,7 +20,7 @@ export default class RenderGuests extends React.Component {
           {this.props.contact}
         </div>
         <div className="col-sm-2">
-          <button type="button" className="btn btn-danger">Delete</button>
+          <button type="button" className="btn btn-danger" onClick={this.toDelete}>Delete</button>
         </div>
       </div>
     );

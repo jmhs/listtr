@@ -23,29 +23,19 @@ exports.getSpecificEvent = (req, res) => {
 exports.postGuest = (req, res) => {
    console.log(req.body);
    console.log('Inside if')
+  Event.findById(req.params.event_id, (err, event) => {
+    if (err) { return err; }
+    console.log('event', event)
+    event.guests.push(req.body)
+    event.save((err) => {
+      if (err) { return (err); }
+      console.log(event);
 
-  Event.findById(req.body.event_id, (err, event) => {
-
+    });
+    res.json(event);
   })
-  // newEvent.hosts.push(req.body.user_id);
-  // newEvent.save((err, events) => {
-  //   if(err){console.log(err); return;}
-  //   res.json(events);
-  //
-  //   User.findById(req.body.user_id, (err, user) => {
-  //     if (err) { return err; }
-  //     user.hostFor.push(events._id)
-  //     user.save((err) => {
-  //       if (err) { return (err); }
-  //       console.log('updated user');
-  //       res.send('updated user');
-  //     });
-  //   });
-  //
-  // });
-
-
 }
+
 //logic for incoming data for events
 exports.postEvent = (req, res) => {
    console.log(req.body);
@@ -119,8 +109,8 @@ exports.postEventsWithImage = (req, res) => {
 }
 
 exports.updateEvents = (req,res) => {
-
   Event.findOne({'_id':req.params.event_id}, (err,event) => {
+    console.log(event ,req.body, "update events incoming"),
     event.eventImage = req.body.secure_url||event.eventImage,
     event.eventImagePublicId= req.body.public_id||event.eventImagePublicId,
     event.eventName= req.body.eventName || event.eventName,
@@ -135,7 +125,7 @@ exports.updateEvents = (req,res) => {
     event.timeEnd= req.body.timeEnd || event.timeEnd
 
     event.save((err)=>{
-      console.log(req)
+      console.log(event)
       if(err){console.log(err); return;}
       res.json(event)
     });
@@ -165,7 +155,7 @@ exports.updateEventsWithImage = (req,res) => {
     .then(
       fs.unlink(req.file.path, (err) => {
         if (err) {
-              console.log("failed to delete local image:"+err);
+              console.log("failed to delete local image:"+ err);
           } else {
               console.log('successfully deleted local image');
           }
