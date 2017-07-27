@@ -47,6 +47,11 @@ class Preview extends React.Component {
               className="btn btn-default"
               onClick={this.onClick}>AddGuest</button>
       </Link>
+      <Link to="/invitetemplate">
+      <button type="button"
+              className="btn btn-default"
+              onClick={this.onClick}>Manage Invites</button>
+      </Link>
       <button type="button"
               className="btn btn-default"
               onClick={this.onDelete}>Delete</button>
