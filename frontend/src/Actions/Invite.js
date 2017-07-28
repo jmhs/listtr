@@ -1,13 +1,6 @@
 import axios from 'axios'
 
-export const activeInvite = (invite) => {
-  return {
-    type: 'ACTIVE_INVITE',
-    invite
-  }
-}
-
-//in-charge of sending invites to store
+//in-charge of sending invite to store
 export const storeInvites = (invites) => {
   return {
     type: "STORE_INVITES",
@@ -15,15 +8,17 @@ export const storeInvites = (invites) => {
   }
 }
 
-//update Invite
-export const updateInvite = (invites) => {
+// Sending in invite
+export const postInvite = (event_id, invite) => {
   return (dispatch) => {
-      axios.put('/invite/updateInvites/'+ invites._id, invites)
-      .then( (response) => {
-        console.log(response.data);
-      })
-      .catch((error)=> {
-        console.error("invite not posted to server'")
-      });
+    axios.put('/event/postInvite/' + event_id, invite)
+    .then((response) => {
+      console.log(response);
+      console.log("AJAX: Created New Invite @ '/invite/postInvite'");
+      window.location.href = "/dashboard";
+    })
+    .catch((error)=> {
+      console.log(error);
+    });
   }
 }

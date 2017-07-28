@@ -195,3 +195,29 @@ exports.deleteEvent = (req,res) => {
   })
 
 }
+
+//logic for incoming data for events
+exports.postInvite = (req, res) => {
+   console.log(req.body);
+   console.log('Inside if')
+   Event.findById(req.params.event_id, (err, event) => {
+     if (err) { return err; }
+     console.log('event', event)
+     if (event.invites.length > 0) {
+       event.invites.pop(req.body)
+       event.invites.push(req.body)
+     } else {
+       event.invites.push(req.body)
+     }
+     event.save((err) => {
+       if (err) { return (err); }
+       console.log(event);
+
+     });
+     res.json(event);
+   })
+
+
+
+}
+//  if there is invite, then pop, if not push
