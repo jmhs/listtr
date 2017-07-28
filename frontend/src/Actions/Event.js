@@ -104,8 +104,8 @@ export const postEvents = (events) => {
     EventDataWithImage.append('dressCode', events.dressCode);
     EventDataWithImage.append('startDate', events.startDate);
     EventDataWithImage.append('endDate', events.endDate);
-    EventDataWithImage.append('timeStart', events.startTime);
-    EventDataWithImage.append('timeEnd', events.endTime);
+    EventDataWithImage.append('timeStart', events.timeStart);
+    EventDataWithImage.append('timeEnd', events.timeEnd);
     EventDataWithImage.append('user_id', events.user_id);
 
 
@@ -166,8 +166,8 @@ export const updateEvent = (events) => {
     EventDataWithImage.append('dressCode', events.dressCode);
     EventDataWithImage.append('startDate', events.startDate);
     EventDataWithImage.append('endDate', events.endDate);
-    EventDataWithImage.append('timeStart', events.startTime);
-    EventDataWithImage.append('timeEnd', events.endTime);
+    EventDataWithImage.append('timeStart', events.timeStart);
+    EventDataWithImage.append('timeEnd', events.timeEnd);
     EventDataWithImage.append('user_id', events.user_id);
 
 
