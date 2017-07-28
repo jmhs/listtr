@@ -11,7 +11,6 @@ import index from './routes/index';
 import auth from './routes/auth';
 import event from './routes/event';
 import email from './routes/email';
-import invite from './routes/invite';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 /**
@@ -101,7 +100,6 @@ app.use('/', index);
 app.use('/auth', auth);
 app.use('/event',event);
 app.use('/email',email);
-app.use('/invite',invite);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

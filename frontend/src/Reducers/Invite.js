@@ -4,9 +4,6 @@ const Invites = (state = [], action) => {
     return action.invites;
     break;
 
-
-
-
     default:
       return state;
 
