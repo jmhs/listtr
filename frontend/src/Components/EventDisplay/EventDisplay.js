@@ -15,8 +15,8 @@ class EventDisplay extends React.Component {
 
   renderEventDisplayItem = () => {
     let events = this.props.user.hostFor;
-    console.log(events)
-    console.log(events.length)
+    // console.log(events)
+    // console.log(events.length)
 
     return events.map( (event) => {
       return <EventDisplayItem key={event._id}

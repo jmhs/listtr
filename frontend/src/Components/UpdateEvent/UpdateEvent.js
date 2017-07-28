@@ -13,16 +13,17 @@ class UpdateEvent extends React.Component {
     super(props);
 
     this.state = {
-    eventImage: null ,
-    startDate: null,
-    endDate: null,
-    eventName: "",
-    description: "",
-    location: "",
-    type: "",
-    dressCode: "",
-    startTime: "",
-    endTime: "",
+    _id: this.props.active._id,
+    eventImage: this.props.active.eventImage ,
+    startDate: this.props.active.startDate,
+    endDate: this.props.active.endDate,
+    eventName: this.props.active.eventName,
+    description: this.props.active.description,
+    location: this.props.active.location,
+    type: this.props.active.type,
+    dressCode: this.props.active.dressCode,
+    startTime: this.props.active.startTime,
+    endTime: this.props.active.endTime,
     user_id: this.props.user._id
   };
 
@@ -106,7 +107,7 @@ class UpdateEvent extends React.Component {
 
 
   render() {
-
+    let active = this.props.active
     let date = new Date()
     return (
       <div className="container">
@@ -121,7 +122,7 @@ class UpdateEvent extends React.Component {
           <div className="uk-margin">
             <input className="uk-input" type="text"
                    name="title"
-                   placeholder={this.props.active.events}
+                   placeholder={active.eventName}
                    onChange={this.onChange}/>
           </div>
         </div>
@@ -130,7 +131,7 @@ class UpdateEvent extends React.Component {
           <div className="uk-margin">
             <input className="uk-input" type="text"
                    name="type"
-                   placeholder="Type"
+                   placeholder={active.type}
                    onChange={this.onChange}/>
           </div>
         </div>
@@ -139,7 +140,7 @@ class UpdateEvent extends React.Component {
           <div className="uk-margin">
             <input className="uk-input" type="text"
                    name="dresscode"
-                   placeholder="Dresscode"
+                   placeholder={active.dressCode}
                    onChange={this.onChange}/>
           </div>
         </div>
@@ -170,7 +171,7 @@ class UpdateEvent extends React.Component {
           <div className="uk-margin">
             <input className="uk-input" type="text"
                    name="startTime"
-                   placeholder="Start Time"
+                   placeholder={active.startTime}
                    onChange={this.onChange}/>
           </div>
 
@@ -180,7 +181,7 @@ class UpdateEvent extends React.Component {
           <div className="uk-margin">
             <input className="uk-input" type="text"
                    name="endTime"
-                   placeholder="End Time"
+                   placeholder={active.endTime}
                    onChange={this.onChange}/>
           </div>
         </div>
@@ -188,7 +189,7 @@ class UpdateEvent extends React.Component {
           <legend className="uk-legend">Description</legend>
           <div className="uk-margin">
             <textarea className="uk-textarea" rows={5} name="description"
-                   placeholder="Description"
+                   placeholder={active.description}
                    onChange={this.onChange}
                    />
           </div>
@@ -198,7 +199,7 @@ class UpdateEvent extends React.Component {
           <legend className="uk-legend">Location</legend>
           <div className="uk-margin">
             <input className="uk-input" name="location"
-                   placeholder="Location"
+                   placeholder={active.location}
                    onChange={this.onChange}
                    />
           </div>
@@ -208,11 +209,12 @@ class UpdateEvent extends React.Component {
         <legend className="uk-legend">Event Image</legend>
 
           <input name="file" type="file" onChange={this.imageUpload}/>
-          <Link to='/preview'>
+
+          <Link to='/dashboard'>
           <button type="button"
                   className="btn btn-success"
                   id="preview-button"
-                  onClick={this.onClick}>Preview</button></Link>
+                  onClick={this.onClick}>Update Event!</button></Link>
 
 
         </div>
@@ -227,9 +229,8 @@ UpdateEvent.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    events: state.events,
-    user: state.user,
-    active: state.active
+    active: state.active,
+    user: state.user
   }
 }
 
