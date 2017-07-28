@@ -15,19 +15,28 @@ export const storeEvents = (events) => {
     events
   }
 }
+const deleteGuestFromEvent = (event_id, guest) => {
+  return {
+    type: "DELETE_GUEST_FROM_EVENT_IN_STORE",
+    event_id,
+    guest
+  }
+}
 
 export const deleteGuest = (event_id, guest) => {
-  // return (dispatch) => {
-  //   axios.get('/event')
-  //     .then( (response) => {
-  //       console.log(response.data);
-  //       dispatch(storeEvents(response.data))
-  //     })
-  //     .catch((error)=> {
-  //       console.error("AJAX: Could not get events'")
-  //     });
-  // };
+  return (dispatch) => {
+    // dispatch(deleteGuestInStore(guest.id));
+    dispatch(deleteGuestFromEvent(event_id, guest));
+
+    axios.put('/event/guest/deleteGuest/'+event_id, guest)
+    .then( (response)=>{
+      console.log(response.data)
+    }).catch( (error) =>{
+      // dispatch(loadingReviewError(error));
+    })
+  };
 }
+
 export const storeGuestsToActive = (active, guest) => {
   return{
     type: 'STORE_GUEST_TO_ACTIVE',

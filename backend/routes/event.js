@@ -10,6 +10,7 @@ router.get('/:event_id', eventController.getSpecificEvent);
 router.post('/postEvents', eventController.postEvent);
 router.post('/postEventsWithImage',upload.single('eventImage'), eventController.postEventsWithImage);
 router.put('/guest/:event_id', eventController.postGuest)
+router.put('/guest/deleteGuest/:event_id', eventController.deleteGuest)
 router.put('/updateEvents/:event_id', eventController.updateEvents)
 router.put('/updateEventsWithImage/:event_id',upload.single('eventImage'), eventController.updateEventsWithImage)
 
