@@ -95,7 +95,7 @@ class InviteTemplate extends React.Component {
     }
   }
 
-
+// To save and update invitation in the backend
   saveInvite = (e) => {
     e.preventDefault();
     console.log("Save Invite Clicked!");
