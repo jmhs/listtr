@@ -12,7 +12,9 @@ class EventDisplay extends React.Component {
   }
 
 
+  componentDidMount(){
 
+  }
   renderEventDisplayItem = () => {
     let events = this.props.user.hostFor;
     // console.log(events)
@@ -33,7 +35,7 @@ class EventDisplay extends React.Component {
     const renderlist = this.renderEventDisplayItem();
     return (
       // <div className="container">
-        <div className="masonry">
+        <div className="masonry" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 160 }'>
           {renderlist}
         </div>
       // </div>

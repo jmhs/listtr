@@ -1,7 +1,9 @@
 
 .masonry{
-  column-count: 3;
-  column-gap:1em;
-
+  /*column-count: 3;*/
+  /*column-gap:1em;*/
+  content: '';
+  display: block;
+  clear: both;
   float: none;
 }
