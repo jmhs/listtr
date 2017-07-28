@@ -5,7 +5,10 @@ export default class RenderGuests extends React.Component {
     super(props);
   }
   toDelete = () => {
-    console.log(this.props.id)
+    console.log('delete clicked')
+    let id = this.props.id;
+    this.props.removeGuestRow(id);
+
   }
   render() {
     return (
