@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react';
 
 import { connect } from 'react-redux';
 
-import { getUser, updateUser } from '../../Actions/User';
+import { getUser} from '../../Actions/User';
 
 import axios from 'axios';
 
@@ -13,6 +13,7 @@ class LogIn extends React.Component {
     super(props);
 
     this.state = {
+      username: "",
       email: "",
       password: ""
     };
@@ -25,7 +26,7 @@ class LogIn extends React.Component {
 
     state[key] = value;
     console.log(state);
-    console.log(typeof(this.state.latitude));
+    //console.log(typeof(this.state.latitude));
     this.setState(state);
   }
 
@@ -39,11 +40,13 @@ class LogIn extends React.Component {
       if (data.error) {
         console.log(data.message)
       } else {
-        console.error("AJAX: Logged in @ '/auth/user'");
-        this.props.updateUser(data)
-       this.props.getUser()
+        console.log("AJAX: Logged in @ '/auth/user'");
+        // this.props.updateUser(data)
+        this.props.getUser()
       }
-    }).catch((error) => {
+    })
+    .then(()=> {window.location.href = '/dashboard'})
+    .catch((error) => {
       console.error("AJAX: Could not login @ '/auth/login'")
       this.setState({error: "Login error, notify the dev team!"});
     });
@@ -51,12 +54,12 @@ class LogIn extends React.Component {
 
   signUp = (e) => {
     e.preventDefault();
-    this.props.history.push("/signup");
+    window.location.href = "/signup";
   }
 
   backToHome = (e) => {
     e.preventDefault();
-    this.props.history.push('/')
+    window.location.href = "/";
   }
 
   // linkedinLogin = (e) => {
@@ -77,9 +80,9 @@ class LogIn extends React.Component {
                 <label htmlFor="password">Password</label>
                 <input type="password" className="form-control" id="password" placeholder="Please enter password" value={this.state.password} onChange={this.onChange}/>
                 <br />
-                <button type="submit" className="btn btn-primary submit" id="loginBtnl" onClick={this.localLogin}>Login</button>
-                <button type="submit" className="btn btn-default submit" id="signupBtnl" onClick={this.signUp}>Don't have an account yet? Sign up here!</button>
-                <button type="submit" className="btn btn-default submit" id="homeBtnl" onClick={this.backToHome}>Back to home</button>
+                <button type="submit" className="btn btn-primary submit" id="loginBtnl" onClick={this.localLogin}>{'Login'}</button>
+                <button type="submit" className="btn btn-default submit" id="signupBtnl" onClick={this.signUp}>{"Don't have an account yet? Sign up here!"}</button>
+                <button type="submit" className="btn btn-default submit" id="homeBtnl" onClick={this.backToHome}>{'Back to home'}</button>
               </form>
             </div>
           </div>
@@ -97,7 +100,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getUser: () => {dispatch(getUser())},
-    updateUser: (user) => {dispatch(updateUser(user))},
+    //updateUser: (user) => {dispatch(updateUser(user))},
   }
 }
 

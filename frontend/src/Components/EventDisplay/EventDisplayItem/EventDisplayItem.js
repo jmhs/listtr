@@ -1,25 +1,44 @@
 import React, {PropTypes} from 'react';
-import './EventDisplayItem.css'
-import image from './event.jpg';
+import './EventDisplayItem.css';
+import {activeEvent} from  '../../../Actions/Event';
+import { connect } from 'react-redux';
+import {Link} from "react-router-dom";
+
+
+
+
 class EventDisplayItem extends React.Component {
+
+  onClick = (e) => {
+  this.props.activeEvent(this.props.everything)
+  console.log(this.props.everything)
+  //everything refers to everything inherited from clicked event
+}
 
   render() {
     return (
-      <div className="event-item">
-        <div className="col-sm-12">
-          <div className="image">
-            <img src={image}/>
-          </div>
-
-
-          <h4 className="eventName">{this.props.eventName}</h4>
-          <p>{this.props.description}</p>
-
-
+      <div className="grid-item-item" onClick={this.onClick} >
+      <Link to="/preview">
+        <div className="event-display-item-image">
+          <img src={this.props.eventImage === "" ? "https://d13yacurqjgara.cloudfront.net/users/12668/screenshots/615481/thinkwallpaperpreview.jpg" : this.props.eventImage}/>
         </div>
+      </Link>
+      <h4 className="eventName">{this.props.eventName}</h4>
+      <p className="event-display-item-description">{this.props.description === "" ? "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." : this.props.description}</p>
+
       </div>
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    active: state.active
+  }
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    activeEvent: (event) => {dispatch(activeEvent(event));},
+  }
+};
 
-export default EventDisplayItem;
+export default connect(mapStateToProps, mapDispatchToProps)(EventDisplayItem);

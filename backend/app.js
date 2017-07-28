@@ -10,6 +10,8 @@ import lessMiddleware from 'less-middleware';
 import index from './routes/index';
 import auth from './routes/auth';
 import event from './routes/event';
+import email from './routes/email';
+import invite from './routes/invite';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 /**
@@ -37,9 +39,9 @@ const app = express();
 const debug = Debug('backend:app');
 
 cloudinary.config({
-  cloud_name: "ddby9i01q",
-  api_key: '296937751355523',
-  api_secret: 'LUyUMR8HpIgjHwcgaCh68BblaZ0'
+  cloud_name: "listtr",
+  api_key: '476127874373497',
+  api_secret: 'PnpFrwxSG0oiDrSC0E00nXkj-wQ'
 })
 
 /**
@@ -69,7 +71,7 @@ app.use(express.static(path.join(__dirname, 'public')));
  * use EXPRESS-SESSION.
  */
 app.use(session({
-  resave: false,
+  resave: true,
   saveUninitialized: true,
   secret: 'hello'
   // store: new MongoStore({
@@ -98,6 +100,9 @@ app.use(function(req, res, next){
 app.use('/', index);
 app.use('/auth', auth);
 app.use('/event',event);
+app.use('/email',email);
+app.use('/invite',invite);
+
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   const err = new Error('Not Found');

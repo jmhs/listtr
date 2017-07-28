@@ -4,15 +4,22 @@ import thunk from 'redux-thunk';
 
 import UserReducer from '../Reducers/User'
 
-import EventReducer from '../Reducers/Event'
+import Events from '../Reducers/Event'
+
+import NavigationReducer from '../Reducers/Navigation'
+
+import Active from '../Reducers/Active'
+
+import Invites from '../Reducers/Invite'
 
 export let initStore = () => {
 
   const reducer = combineReducers({
     user: UserReducer,
-
-    events: EventReducer,
-
+    events: Events,
+    navigation: NavigationReducer,
+    active: Active,
+    invites: Invites,
 
   });
 

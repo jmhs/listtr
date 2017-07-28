@@ -1,13 +1,18 @@
 import express from 'express';
 import passport from 'passport';
+import passportConfig from '../config/passport';
 import User from '../models/User';
 import userController from '../controllers/userController';
+
 const router = express.Router();
 
 /* GET index page. */
 router.get('/user', (req, res, next) => {
-  console.log(req.user)
-  res.json(req.user);
+  User.findOne({'_id': req.user._id}).populate('hostFor').exec((err,user) => {
+    if(err){console.log(err); return;}
+    res.json(user);
+    console.log(user)
+  })
 });
 
 /* LINKEDIN LOGIN AUTH. */
@@ -35,6 +40,7 @@ router.post('/login', function(req, res, next) {
         });
     })(req, res, next);
 });
+
 // SIGNUP
 router.post('/signup', function(req, res, next) {
     User.findOne({ email: req.body.email }, (err, existingUser) => {
@@ -46,6 +52,12 @@ router.post('/signup', function(req, res, next) {
       let user = new User();
       user.email = req.body.email;
       user.password = req.body.password;
+      user.username=req.body.username;
+      user.userImage=req.body.userImage;
+      user.firstName=req.body.firstName;
+      user.lastName=req.body.lastName;
+      user.gender=req.body.gender;
+
       user.save((err) => {
         if (err) {
           console.log("User save error");
@@ -63,11 +75,17 @@ router.post('/signup', function(req, res, next) {
     });
 });
 
-router.put ('/user/:id', userController.editProfile)
+// router.put ('/user/:id', userController.editProfile)
+
 // LOGOUT
 router.get('/logout',(req, res, next) => {
   req.logout();
   res.redirect('/');
   console.log('logged out successfully!');
 });
+
+router.delete('/account/delete', passportConfig.isAuthenticated, userController.postDeleteAccount);
+router.put('/account/profile', passportConfig.isAuthenticated, userController.postUpdateProfile);
+router.put('/account/password', passportConfig.isAuthenticated, userController.postUpdatePassword);
+
 export default router;
