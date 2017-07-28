@@ -21,20 +21,35 @@ class AddGuest extends React.Component {
   renderGuests = () => {
     let guests = this.state.guests;
     return guests.map( (guest) => {
-      return <RenderGuests name={guest.name} email={guest.email} contact={guest.contact} id={guest.id} key={guest.id}/>
+      return <RenderGuests name={guest.name} email={guest.email} contact={guest.contact} id={guest.id} key={guest.id} removeGuestRow={this.removeGuestRow}/>
     })
   }
 
   updateGuests = (guest) => {
     let guests = this.state.guests;
     guests.push(guest)
-    this.props.storeGuestsToActive(this.props.active, guest)
+    // this.props.storeGuestsToActive(this.props.active, guest)
     this.props.postGuest(this.props.active._id, guest)
     this.setState({
       guests
     })
   }
 
+  removeGuestRow = (id) => {
+    let guests = this.state.guests;
+    guests.forEach((guest, index) => {
+      if (guest.id === id){
+        guests.splice(index, 1);
+      }
+    })
+    //console.log(products);
+    // this.createProductRows();
+    // this.updateGrandTotal(id);
+
+    this.setState({
+      guests: guests
+    })
+  }
   render() {
     const renderGuestsRows = this.renderGuests()
     return (

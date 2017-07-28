@@ -10,6 +10,8 @@ import NavigationReducer from '../Reducers/Navigation'
 
 import Active from '../Reducers/Active'
 
+import Invites from '../Reducers/Invite'
+
 export let initStore = () => {
 
   const reducer = combineReducers({
@@ -17,8 +19,7 @@ export let initStore = () => {
     events: Events,
     navigation: NavigationReducer,
     active: Active,
-
-
+    invites: Invites,
 
   });
 

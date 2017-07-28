@@ -5,24 +5,37 @@ import { activeEvent } from '../../Actions/Event';
 import axios from 'axios';
 
 import LogIn from '../LogIn/LogIn';
+import InvitePreview from './InvitePreview/InvitePreview';
 
 /**
 * Import CSS styles for the Invite template
 */
 import './InviteTemplate.css'
 
-
 class InviteTemplate extends React.Component {
   constructor(props) {
     super(props);
 
-    // UPDATE THESE STATES WITH CURRENT EVENTID KEYS
+    // INITIAL state is props of event clicked
     this.state = {
-      inviteSubject: this.props.events.eventName,
+      inviteEventImage: this.props.events.eventImage,
       inviteName: this.props.events.eventName,
-      inviteDescription: this.props.events.description
+
+      inviteStartDate: this.props.events.startDate,
+      inviteEndDate: this.props.events.endDate,
+
+      inviteTimeStart: this.props.events.timeStart,
+      inviteTimeEnd: this.props.events.timeEnd,
+
+      // inviteDressCode: this.props.events,dressCode,
+      inviteLocation: this.props.events.location,
+
+      inviteSubject: this.props.events.eventName,
+
+      inviteDescription: this.props.events.description,
+
+      // invitePreviewIsOpen: false
     }
-    console.log(this.props.events)
   }
 
   onChange = (e) => {
@@ -51,97 +64,188 @@ class InviteTemplate extends React.Component {
     }
   }
 
-  invitePreview = (e) => {
+  // invitePreview = (e) => {
+  //   e.preventDefault();
+  //   console.log("Preview clicked!");
+  //   const inviteEventImage = this.state.inviteEventImage;
+  //   const inviteStartDate = this.state.inviteStartDate;
+  //   const inviteEndDate = this.state.inviteEndDate;
+  //   const inviteLocation = this.state.inviteLocation;
+  //   // const inviteDressCode= this.state.inviteDressCode;
+  //
+  //   const inviteSubject = this.state.inviteSubject;
+  //   const inviteName = this.state.inviteName;
+  //   const inviteDescription = this.state.inviteDescription;
+  //
+  //   const invitePreviewIsOpen = !this.state.invitePreviewIsOpen;
+  //
+  //   // this.setState ({
+  //   //   invitePreviewIsOpen: !this.state.invitePreviewIsOpen
+  //   // })
+  //
+  //   // console.log("inviteSubject update: ", inviteSubjectPreview);
+  //   // console.log("inviteName update: ", inviteNamePreview);
+  //   // console.log("inviteDescription update: ", inviteDescriptionPreview);
+  //   console.log("boolean value of preview: ", invitePreviewIsOpen);
+  // }
+
+  saveInvite = (e) => {
     e.preventDefault();
-    console.log("Preview clicked!");
-    const inviteSubjectPreview = this.state.inviteSubject;
-    const inviteNamePreview = this.state.inviteName;
-    const inviteDescriptionPreview = this.state.inviteDescription;
+    console.log("Save Invite Clicked!");
+    const inviteEventImage = this.state.inviteEventImage;
+    const inviteName = this.state.inviteName;
 
-    console.log("inviteSubject update: ", inviteSubjectPreview);
-    console.log("inviteName update: ", inviteNamePreview);
-    console.log("inviteDescription update: ", inviteDescriptionPreview);
+    const inviteStartDate = this.state.inviteStartDate;
+    const inviteEndDate = this.state.inviteEndDate;
 
+    const inviteTimeStart = this.state.inviteTimeStart;
+    const inviteTimeEnd = this.state.inviteTimeEnd;
+
+    // const inviteDressCode= this.state.inviteDressCode;
+    const inviteLocation = this.state.inviteLocation;
+
+    const inviteSubject = this.state.inviteSubject;
+
+    const inviteDescription = this.state.inviteDescription;
+
+    axios.post('/invite/postInvites', {
+      inviteEventImage: inviteEventImage,
+      inviteName: inviteName,
+
+      inviteStartDate: inviteStartDate,
+      inviteEndDate: inviteEndDate,
+
+      inviteTimeStart: inviteTimeStart,
+      inviteTimeEnd: inviteTimeEnd,
+
+      // inviteDressCode: inviteDressCode,
+      inviteLocation: inviteLocation,
+
+      inviteSubject: inviteSubject,
+
+      inviteDescription: inviteDescription,
+    })
+    .then((response) => {
+      console.log(response);
+      console.log("AJAX: Created New Invite @ '/auth/invite/postInvites'");
+      window.location.href = "/dashboard";
+    })
+    .catch((error)=> {
+      console.log(error);
+    });
   }
 
-  saveAndSendInvite = (e) => {
-    e.preventDefault();
-    console.log("saveAndUpdateInvite clicked!");
-    const inviteSubjectUpdate = this.state.inviteSubject;
-    const inviteNameUpdate = this.state.inviteName;
-    const inviteDescriptionUpdate = this.state.inviteDescription;
-
-    // console.log("inviteSubject update: ", inviteSubjectUpdate);
-    // console.log("inviteName update: ", inviteNameUpdate);
-    // console.log("inviteDescription update: ", inviteDescriptionUpdate);
-
-    // axios.put('/auth/account/profile', {
-    //   inviteFrom: inviteFromUpdate,
-    //   inviteSubject: inviteSubjectUpdate,
-    //   inviteName: inviteNameUpdate,
-    //   inviteDescription: inviteDescriptionUpdate
-    // })
-    // .then( (response) => {
-    //   console.log(response);
-    //   console.log("AJAX: Updated @ '/auth/account/profile'");
-    //   window.location.href = "/dashboard";
-    // })
-    // .catch((error)=> {
-    //   console.log(error);
-    // });
-  }
 
 // function to check if user is loggedin before accessing inviteTemplate page. if user not loggedin, redirect to '/login'
 // function also renders different invite template depending on whether its a new or existing invitation
   isLoggedInInviteTemplate = () => {
 
     if(this.props.user.hasOwnProperty('_id')){
+
         return (
           <div className="container">
             <div className="row">
               <div className="col-sm-6 col-sm-offset-3">
-                <h1>Update Invite</h1>
+                <h1>Manage Invitations</h1>
                 <hr/>
               </div>
             </div>
             <div className="row">
               <div className="col-sm-6 col-sm-offset-3">
-
-
-
-              <div className="form-group">
-                <label htmlFor="exampleInputPassword1">Invitation Subject</label>
+              <div className="eventImage">
+                <label htmlFor="exampleInputPassword1">Event Cover</label>
+                <img src={this.state.inviteEventImage}/>
                 <input type="text"
                        className="form-control"
-                       id="inviteSubjectInviteTemplate"
-                       placeholder="Input invitation subject"
-                       defaultValue={this.state.inviteSubject}
-                       onChange={this.onChange}
-                       name="inviteSubject"/>
+                       id="inviteEventImage"
+                       placeholder="Input Invitation subject"
+                       defaultValue={this.state.inviteEventImage}
+                       name="inviteImage"/>
               </div>
               <div className="form-group">
                 <label htmlFor="exampleInputPassword1">Event Name</label>
                 <input type="text"
                        className="form-control"
                        id="eventNameInviteTemplate"
-                       placeholder=""
+                       placeholder="Input Event Name"
                        defaultValue={this.state.inviteName}
                        onChange={this.onChange}
                        name="inviteName"/>
+              </div>
+              <div className="form-group">
+                <label htmlFor="exampleInputPassword1">Event Start Date</label>
+                <input type="text"
+                       className="form-control"
+                       id="inviteStartDate"
+                       placeholder="Input Event Start Date"
+                       defaultValue={this.state.inviteStartDate}
+                       onChange={this.onChange}
+                       name="inviteStart"/>
+              </div>
+              <div className="form-group">
+                <label htmlFor="exampleInputPassword1">Event End Date</label>
+                <input type="text"
+                       className="form-control"
+                       id="inviteEndDate"
+                       placeholder="Input Event End Date"
+                       defaultValue={this.state.inviteEndDate}
+                       onChange={this.onChange}
+                       name="inviteEnd"/>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="exampleInputPassword1">Event Start Time</label>
+                <input type="text"
+                       className="form-control"
+                       id="inviteStartTime"
+                       placeholder="Input Event Start Time"
+                       defaultValue={this.state.inviteTimeStart}
+                       onChange={this.onChange}
+                       name="inviteStartTime"/>
+              </div>
+              <div className="form-group">
+                <label htmlFor="exampleInputPassword1">Event End Time</label>
+                <input type="text"
+                       className="form-control"
+                       id="inviteEndTime"
+                       placeholder="Input Event End Time"
+                       defaultValue={this.state.inviteTimeEnd}
+                       onChange={this.onChange}
+                       name="inviteEndTime"/>
+              </div>
+              <div className="form-group">
+                <label htmlFor="exampleInputPassword1">Location</label>
+                <input type="text"
+                       className="form-control"
+                       id="inviteLocation"
+                       placeholder="Input Event Location"
+                       defaultValue={this.state.inviteLocation}
+                       onChange={this.onChange}
+                       name="inviteLocation"/>
+              </div>
+              <div className="form-group">
+                <label htmlFor="exampleInputPassword1">Invitation Subject</label>
+                <input type="text"
+                       className="form-control"
+                       id="inviteSubjectInviteTemplate"
+                       placeholder="Input Email Invitation Subject "
+                       defaultValue={this.state.inviteSubject}
+                       onChange={this.onChange}
+                       name="inviteSubject"/>
               </div>
                 <div className="form-group">
                   <label htmlFor="exampleInputEmail1">Invite Description</label>
                   <input type="email"
                          className="form-control"
                          id="inviteDescriptionInviteTemplate"
-                         placeholder=""
+                         placeholder="Input Event Description"
                          defaultValue={this.state.inviteDescription}
                          onChange={this.onChange}
                          name="inviteDescription"/>
                 </div>
                 <Link to="/invitepreview">
                 <button className="uk-button uk-button-default"
-                        id="inviteTemplatePreviewBtn" onClick={this.onClick}>Preview Invitation</button>
+                        id="invitePreviewBtn" onClick={this.invitePreview}>Update and Preview Invitation</button>
                         </Link>
                     <Link to="/preview">
                 <button className="uk-button uk-button-default"
@@ -149,10 +253,9 @@ class InviteTemplate extends React.Component {
                         </Link>
                 <hr/>
                 <button className="uk-button uk-button-primary"
-                        id="updateAccountDetailsBtn" onClick={this.saveAndSendInvite}>Save and Send Invitation</button>
+                        id="updateAccountDetailsBtn" onClick={this.saveInvite}>Save</button>
                 <button className="uk-button uk-button-danger"
                         id="updateAccountDetailsBtn" onClick=''>Delete Invite</button>
-                <hr />
               </div>
             </div>
           </div>
@@ -180,7 +283,6 @@ InviteTemplate.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    events: state.events,
     events: state.active,
     user: state.user,
   }
@@ -191,6 +293,16 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(InviteTemplate);
+
+
+
+// if (this.state.invitePreviewIsOpen) {
+//   return (
+//   <InvitePreview />
+// )
+// } else {
+
+
 
 // {/*[if (gte mso 9)|(IE)]>
 //   <style type="text/css">

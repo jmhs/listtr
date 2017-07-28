@@ -45,7 +45,7 @@ export const getEvents = () => {
   return (dispatch) => {
     axios.get('/event')
       .then( (response) => {
-        console.log(response.data);
+        // console.log(response.data);
         dispatch(storeEvents(response.data))
       })
       .catch((error)=> {
