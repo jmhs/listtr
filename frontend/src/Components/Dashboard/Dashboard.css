@@ -1,23 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Lobster');
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
-/*body, html {
-  height:100%;
-  overflow: auto;
-}*/
+
 .main-container{
   height:100%;
   overflow: hidden;
   width: 100%;
 }
-/*body {
-    padding-top: 70px;
-}*/
 
-/* workaround modal-open padding issue */
-body.modal-open {
-    padding-right:0 !important;
-}
+
 #navbar-dashboard{
   position: fixed;
 
@@ -46,6 +37,12 @@ body.modal-open {
   font-size: 25px;
 }
 
+@media only screen and (max-width: 400px){
+  .main{
+    position: inherit;
+    left: 0px;
+  }
+}
 /*
  * Off Canvas at medium breakpoint
  * --------------------------------------------------
