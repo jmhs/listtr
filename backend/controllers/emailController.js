@@ -5,7 +5,7 @@ dotenv.load({ path: '.env' });
 exports.handleEmail = (req, res) => {
   const helper = require('sendgrid').mail;
   const fromEmail = new helper.Email('listtryourlist@gmail.com');
-  const toEmail = new helper.Email('jczjdeveloper@gmail.com');
+  const toEmail = new helper.Email('dhea23mar@gmail.com');
   const subject = 'Sending with SendGrid is Fun';
   const content = new helper.Content('text/html',
 

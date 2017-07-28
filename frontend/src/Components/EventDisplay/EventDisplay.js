@@ -4,17 +4,13 @@ import {Link} from 'react-router-dom'
 import {activeHome} from  '../../Actions/Event';
 import { connect } from 'react-redux'
 import EventDisplayItem from './EventDisplayItem/EventDisplayItem'
-
+import './EventDisplay.css'
 class EventDisplay extends React.Component {
   constructor(props) {
     super(props);
 
   }
 
-
-  componentDidMount(){
-
-  }
   renderEventDisplayItem = () => {
     let events = this.props.user.hostFor;
     // console.log(events)
@@ -34,11 +30,9 @@ class EventDisplay extends React.Component {
 
     const renderlist = this.renderEventDisplayItem();
     return (
-      // <div className="container">
-        <div className="masonry" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 160 }'>
+        <div className="masonry">
           {renderlist}
         </div>
-      // </div>
     );
   }
 }
