@@ -15,19 +15,28 @@ export const storeEvents = (events) => {
     events
   }
 }
+const deleteGuestFromEvent = (event_id, guest) => {
+  return {
+    type: "DELETE_GUEST_FROM_EVENT_IN_STORE",
+    event_id,
+    guest
+  }
+}
 
 export const deleteGuest = (event_id, guest) => {
-  // return (dispatch) => {
-  //   axios.get('/event')
-  //     .then( (response) => {
-  //       console.log(response.data);
-  //       dispatch(storeEvents(response.data))
-  //     })
-  //     .catch((error)=> {
-  //       console.error("AJAX: Could not get events'")
-  //     });
-  // };
+  return (dispatch) => {
+    // dispatch(deleteGuestInStore(guest.id));
+    dispatch(deleteGuestFromEvent(event_id, guest));
+
+    axios.put('/event/guest/deleteGuest/'+event_id, guest)
+    .then( (response)=>{
+      console.log(response.data)
+    }).catch( (error) =>{
+      // dispatch(loadingReviewError(error));
+    })
+  };
 }
+
 export const storeGuestsToActive = (active, guest) => {
   return{
     type: 'STORE_GUEST_TO_ACTIVE',
@@ -95,8 +104,8 @@ export const postEvents = (events) => {
     EventDataWithImage.append('dressCode', events.dressCode);
     EventDataWithImage.append('startDate', events.startDate);
     EventDataWithImage.append('endDate', events.endDate);
-    EventDataWithImage.append('timeStart', events.startTime);
-    EventDataWithImage.append('timeEnd', events.endTime);
+    EventDataWithImage.append('timeStart', events.timeStart);
+    EventDataWithImage.append('timeEnd', events.timeEnd);
     EventDataWithImage.append('user_id', events.user_id);
 
 
@@ -157,8 +166,8 @@ export const updateEvent = (events) => {
     EventDataWithImage.append('dressCode', events.dressCode);
     EventDataWithImage.append('startDate', events.startDate);
     EventDataWithImage.append('endDate', events.endDate);
-    EventDataWithImage.append('timeStart', events.startTime);
-    EventDataWithImage.append('timeEnd', events.endTime);
+    EventDataWithImage.append('timeStart', events.timeStart);
+    EventDataWithImage.append('timeEnd', events.timeEnd);
     EventDataWithImage.append('user_id', events.user_id);
 
 

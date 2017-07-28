@@ -21,8 +21,8 @@ class CreateEvent extends React.Component {
     location: "",
     type: "",
     dressCode: "",
-    startTime: "",
-    endTime: "",
+    timeStart: "",
+    timeEnd: "",
     user_id: this.props.user._id
   };
 
@@ -52,18 +52,22 @@ class CreateEvent extends React.Component {
         this.setState({
           description: e.target.value
         })
-      case 'startTime':
+        break;
+      case 'timeStart':
         this.setState({
-          startTime: e.target.value
+          timeStart: e.target.value
         })
-      case 'endTime':
+        break;
+      case 'timeEnd':
         this.setState({
-          endTime: e.target.value
+          timeEnd: e.target.value
         })
+        break;
       case 'location':
         this.setState({
           location: e.target.value
         })
+        break;
       default:
         object
 
@@ -169,7 +173,7 @@ class CreateEvent extends React.Component {
           <legend className="uk-legend">Start Time</legend>
           <div className="uk-margin">
             <input className="uk-input" type="text"
-                   name="startTime"
+                   name="timeStart"
                    placeholder="Start Time"
                    onChange={this.onChange}/>
           </div>
@@ -178,7 +182,7 @@ class CreateEvent extends React.Component {
           <legend className="uk-legend">End Time</legend>
           <div className="uk-margin">
             <input className="uk-input" type="text"
-                   name="endTime"
+                   name="timeEnd"
                    placeholder="End Time"
                    onChange={this.onChange}/>
           </div>
