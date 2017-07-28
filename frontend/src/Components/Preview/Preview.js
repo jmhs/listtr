@@ -58,7 +58,7 @@ class Preview extends React.Component {
           <Link to="/invitetemplate">
             <button type="button"
                     className="btn-custom"
-                    onClick={this.onClick}>Manage Invites</button>
+                    onClick={this.onClick}>Create Invite</button>
           </Link>
             <button type="button"
                     className="btn-custom"
@@ -79,7 +79,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  console.log(dispatch)
+  // console.log(dispatch)
   return {
     activeEvent: (event) => {dispatch(activeEvent(event))},
     deleteEvent: (event) => {dispatch(deleteEvent(event))},
