@@ -36,6 +36,29 @@ exports.postGuest = (req, res) => {
   })
 }
 
+// {
+//   '$pull':{'guests': { $elemMatch : {'id': req.body.id}}}
+// }
+exports.deleteGuest =(req, res) => {
+  Event.findOne({'_id':req.params.event_id},(err, event) => {
+
+    if(err){console.log(err); return;}
+
+
+    // let newArray = event.guests;
+    let newArray = event.guests.filter( (guest,index) => {
+      return guest.id !== req.body.id;
+    })
+
+    event.guests = newArray;
+    event.save((err) => {
+      if (err) { return (err); }
+      console.log(event);
+
+    });
+  })
+
+}
 //logic for incoming data for events
 exports.postEvent = (req, res) => {
    console.log(req.body);
@@ -195,3 +218,29 @@ exports.deleteEvent = (req,res) => {
   })
 
 }
+
+//logic for incoming data for events
+exports.postInvite = (req, res) => {
+   console.log(req.body);
+   console.log('Inside if')
+   Event.findById(req.params.event_id, (err, event) => {
+     if (err) { return err; }
+     console.log('event', event)
+     if (event.invites.length > 0) {
+       event.invites.pop(req.body)
+       event.invites.push(req.body)
+     } else {
+       event.invites.push(req.body)
+     }
+     event.save((err) => {
+       if (err) { return (err); }
+       console.log(event);
+
+     });
+     res.json(event);
+   })
+
+
+
+}
+//  if there is invite, then pop, if not push

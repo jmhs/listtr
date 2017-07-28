@@ -2,6 +2,7 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import { Link } from 'react-router-dom'
 import { activeEvent } from '../../Actions/Event';
+import { postInvite } from '../../Actions/Invite';
 import axios from 'axios';
 
 import LogIn from '../LogIn/LogIn';
@@ -20,18 +21,13 @@ class InviteTemplate extends React.Component {
     this.state = {
       inviteEventImage: this.props.events.eventImage,
       inviteName: this.props.events.eventName,
-
       inviteStartDate: this.props.events.startDate,
       inviteEndDate: this.props.events.endDate,
-
       inviteTimeStart: this.props.events.timeStart,
       inviteTimeEnd: this.props.events.timeEnd,
-
-      // inviteDressCode: this.props.events,dressCode,
+      // inviteDressCode: this.props.events.dressCode,
       inviteLocation: this.props.events.location,
-
       inviteSubject: this.props.events.eventName,
-
       inviteDescription: this.props.events.description,
 
       // invitePreviewIsOpen: false
@@ -39,19 +35,54 @@ class InviteTemplate extends React.Component {
   }
 
   onChange = (e) => {
-    // console.log(e.target.value)
     switch (e.target.name) {
+      case 'inviteName':
+        this.setState({
+          inviteName: e.target.value
+        })
+        // console.log('updating inviteName: ', e.target.value)
+        break;
+      case 'inviteStartDate':
+        this.setState({
+          inviteStartDate: e.target.value
+        })
+        // console.log('updating inviteStartDate: ', e.target.value)
+        break;
+      case 'inviteEndDate':
+        this.setState({
+          inviteEndDate: e.target.value
+        })
+        // console.log('updating inviteEndDate: ', e.target.value)
+        break;
+      case 'inviteTimeStart':
+        this.setState({
+          inviteTimeStart: e.target.value
+        })
+        // console.log('updating inviteTimeStart: ', e.target.value)
+        break;
+      case 'inviteTimeEnd':
+        this.setState({
+          inviteTimeEnd: e.target.value
+        })
+        // console.log('updating inviteTimeEnd: ', e.target.value)
+        break;
+      // case 'inviteDressCode':
+      //   this.setState({
+      //     inviteDressCode: e.target.value
+      //   })
+      //   // console.log('updating eventDressCode: ', e.target.value)
+      //   break;
+      case 'inviteLocation':
+        this.setState({
+          inviteLocation: e.target.value
+        })
+        // console.log('updating eventLocation: ', e.target.value)
+        break;
       case 'inviteSubject':
         this.setState({
           inviteSubject: e.target.value
         })
         // console.log('updating inviteSubject: ', e.target.value)
-        break;
-      case 'inviteName':
-        this.setState({
-          inviteName: e.target.value
-        })
-        // console.log('updating eventName: ', e.target.value)
         break;
       case 'inviteDescription':
         this.setState({
@@ -64,77 +95,13 @@ class InviteTemplate extends React.Component {
     }
   }
 
-  // invitePreview = (e) => {
-  //   e.preventDefault();
-  //   console.log("Preview clicked!");
-  //   const inviteEventImage = this.state.inviteEventImage;
-  //   const inviteStartDate = this.state.inviteStartDate;
-  //   const inviteEndDate = this.state.inviteEndDate;
-  //   const inviteLocation = this.state.inviteLocation;
-  //   // const inviteDressCode= this.state.inviteDressCode;
-  //
-  //   const inviteSubject = this.state.inviteSubject;
-  //   const inviteName = this.state.inviteName;
-  //   const inviteDescription = this.state.inviteDescription;
-  //
-  //   const invitePreviewIsOpen = !this.state.invitePreviewIsOpen;
-  //
-  //   // this.setState ({
-  //   //   invitePreviewIsOpen: !this.state.invitePreviewIsOpen
-  //   // })
-  //
-  //   // console.log("inviteSubject update: ", inviteSubjectPreview);
-  //   // console.log("inviteName update: ", inviteNamePreview);
-  //   // console.log("inviteDescription update: ", inviteDescriptionPreview);
-  //   console.log("boolean value of preview: ", invitePreviewIsOpen);
-  // }
-
+// To save and update invitation in the backend
   saveInvite = (e) => {
     e.preventDefault();
     console.log("Save Invite Clicked!");
-    const inviteEventImage = this.state.inviteEventImage;
-    const inviteName = this.state.inviteName;
-
-    const inviteStartDate = this.state.inviteStartDate;
-    const inviteEndDate = this.state.inviteEndDate;
-
-    const inviteTimeStart = this.state.inviteTimeStart;
-    const inviteTimeEnd = this.state.inviteTimeEnd;
-
-    // const inviteDressCode= this.state.inviteDressCode;
-    const inviteLocation = this.state.inviteLocation;
-
-    const inviteSubject = this.state.inviteSubject;
-
-    const inviteDescription = this.state.inviteDescription;
-
-    axios.post('/invite/postInvites', {
-      inviteEventImage: inviteEventImage,
-      inviteName: inviteName,
-
-      inviteStartDate: inviteStartDate,
-      inviteEndDate: inviteEndDate,
-
-      inviteTimeStart: inviteTimeStart,
-      inviteTimeEnd: inviteTimeEnd,
-
-      // inviteDressCode: inviteDressCode,
-      inviteLocation: inviteLocation,
-
-      inviteSubject: inviteSubject,
-
-      inviteDescription: inviteDescription,
-    })
-    .then((response) => {
-      console.log(response);
-      console.log("AJAX: Created New Invite @ '/auth/invite/postInvites'");
-      window.location.href = "/dashboard";
-    })
-    .catch((error)=> {
-      console.log(error);
-    });
+    this.props.postInvite(this.props.events._id, this.state)
+    console.log(this.state)
   }
-
 
 // function to check if user is loggedin before accessing inviteTemplate page. if user not loggedin, redirect to '/login'
 // function also renders different invite template depending on whether its a new or existing invitation
@@ -146,7 +113,7 @@ class InviteTemplate extends React.Component {
           <div className="container">
             <div className="row">
               <div className="col-sm-6 col-sm-offset-3">
-                <h1>Manage Invitations</h1>
+                <h1>Manage Invitation</h1>
                 <hr/>
               </div>
             </div>
@@ -253,7 +220,7 @@ class InviteTemplate extends React.Component {
                         </Link>
                 <hr/>
                 <button className="uk-button uk-button-primary"
-                        id="updateAccountDetailsBtn" onClick={this.saveInvite}>Save</button>
+                        id="saveInviteBtn" onClick={this.saveInvite}>Save and Update</button>
                 <button className="uk-button uk-button-danger"
                         id="updateAccountDetailsBtn" onClick=''>Delete Invite</button>
               </div>
@@ -289,19 +256,10 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-
+    postInvite: (active_id, invite) => {dispatch(postInvite(active_id, invite))},
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(InviteTemplate);
-
-
-
-// if (this.state.invitePreviewIsOpen) {
-//   return (
-//   <InvitePreview />
-// )
-// } else {
-
 
 
 // {/*[if (gte mso 9)|(IE)]>

@@ -22,10 +22,17 @@
   font-family: 'Montserrat', sans-serif;
 }
 .cardimage {
-    width: 100%;
-    height: 303px;
-    vertical-align: top;
-    text-align: -webkit-center;
+    /*width: 100%;*/
+    min-height: 200px;
+    /*vertical-align: top;*/
+    /*text-align: -webkit-center;*/
+    overflow: hidden;
+
+}
+.cardimage img{
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
 .event-preview-button{
   margin-bottom: 20px;

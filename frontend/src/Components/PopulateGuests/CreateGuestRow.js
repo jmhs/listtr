@@ -8,6 +8,8 @@ export default class CreateGuestRow extends React.Component {
       name: "",
       email: "",
       contact:"",
+      response: "pending",
+      checkedIn: false
     };
   }
   onChange = (e) => {

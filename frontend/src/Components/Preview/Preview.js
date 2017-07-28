@@ -57,7 +57,7 @@ class Preview extends React.Component {
           <Link to="/invitetemplate">
             <button type="button"
                     className="btn-custom"
-                    onClick={this.onClick}>Create Invite</button>
+                    onClick={this.onClick}>Manage Invite</button>
           </Link>
             <button type="button"
                     className="btn-custom"
