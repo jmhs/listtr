@@ -43,7 +43,7 @@ class AddGuest extends React.Component {
       }
     })
     //console.log(products);
-    // this.createProductRows();
+    this.renderGuests();
     // this.updateGrandTotal(id);
 
     this.setState({
