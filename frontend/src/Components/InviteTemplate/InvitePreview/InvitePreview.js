@@ -17,7 +17,9 @@ class InvitePreview extends React.Component {
       endDate: '',
       timeStart: '',
       timeEnd: '',
-      description: ''
+      description: '',
+
+      invitePreviewIsOpen: this.props.invites.invitePreviewIsOpen
     }
   }
 
@@ -196,9 +198,9 @@ InvitePreview.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    events: state.events,
     events: state.active,
     user: state.user,
+    invites: state.invites,
   }
 }
 const mapDispatchToProps = (dispatch) => {
