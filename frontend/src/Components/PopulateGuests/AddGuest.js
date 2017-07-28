@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
-import {storeGuestsToActive, postGuest} from '../../Actions/Event'
+import {storeGuestsToActive, postGuest, deleteGuest} from '../../Actions/Event'
 import RenderGuests from './RenderGuests'
 import './AddGuest.css'
 import CreateGuestRow from './CreateGuestRow'
@@ -39,11 +39,14 @@ class AddGuest extends React.Component {
     let guests = this.state.guests;
     guests.forEach((guest, index) => {
       if (guest.id === id){
+        this.props.deleteGuest(this.props.active._id, guest)
         guests.splice(index, 1);
+
       }
     })
     //console.log(products);
     this.renderGuests();
+
     // this.updateGrandTotal(id);
 
     this.setState({
@@ -88,7 +91,8 @@ const mapDispatchToProps = (dispatch) => {
   console.log(dispatch)
   return {
     storeGuestsToActive: (active, guests) => {dispatch(storeGuestsToActive(active, guests))},
-    postGuest: (active_id, guest) => {dispatch(postGuest(active_id, guest))}
+    postGuest: (active_id, guest) => {dispatch(postGuest(active_id, guest))},
+    deleteGuest: (active_id, guest) => {dispatch(deleteGuest(active_id, guest))}
   }
 }
 
