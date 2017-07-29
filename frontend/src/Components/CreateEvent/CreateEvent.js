@@ -6,6 +6,7 @@ import { activeEvent} from '../../Actions/Event'
 import 'react-date-picker/index.css'
 import {Link} from 'react-router-dom'
 import { DateField, Calendar } from 'react-date-picker'
+import TimeInput from 'react-time-input';
 // import PopulateGuests from '../PopulateGuests/PopulateGuests'
 import './CreateEvent.css'
 class CreateEvent extends React.Component {
@@ -114,7 +115,11 @@ class CreateEvent extends React.Component {
     })
   }
 
+  onTimeChangeHandler = (e) => {
+    console.log(e.target.value)
+   	// do something with this value
 
+   }
 
   render() {
 
@@ -127,7 +132,6 @@ class CreateEvent extends React.Component {
         </div>
 
         <div className="create-row">
-
           <legend className="uk-legend">Title</legend>
           <div className="uk-margin">
             <input className="uk-input" type="text"
@@ -184,6 +188,15 @@ class CreateEvent extends React.Component {
                    placeholder="Start Time"
                    onChange={this.onChange}/>
           </div>
+        </div>
+        <div className="create-row">
+          <TimeInput
+       			initTime='11:12'
+       			ref="TimeInputWrapper"
+       			className="time-input"
+       			onTimeChange={this.onTimeChangeHandler}
+       		/>
+          <input type="datetime-local" name="bdaytime" id="date-and-time" onChange={this.onTimeChangeHandler}/>
         </div>
         <div className="create-row">
           <legend className="uk-legend">End Time</legend>
