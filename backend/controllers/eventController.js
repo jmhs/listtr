@@ -208,11 +208,11 @@ exports.deleteEvent = (req,res) => {
     //   if(err){console.log(err); return;}
     // })
     //
-    // User.findOneAndUpdate({'_id':event.user},{
-    //   '$pull':{'events': req.params.id}
-    // },(err, user) => {
-    //   if(err){console.log(err); return;}
-    // })
+    User.findOneAndUpdate({'_id':event.hosts},{
+      '$pull':{'hostFor': req.params.event_id}
+    },(err, user) => {
+      if(err){console.log(err); return;}
+    })
     if(err){console.log(err); return;}
     res.json(event);
   })
