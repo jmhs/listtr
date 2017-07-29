@@ -119,6 +119,10 @@ app.use((err, req, res, next) => {
   res.render('error');
 });
 
+
+//initialise socketIO
+const socketIO = require('./routes/websocket')(io);
+
 // Handle uncaughtException
 process.on('uncaughtException', (err) => {
   debug('Caught exception: %j', err);

@@ -1,6 +1,11 @@
 import React, {PropTypes} from 'react';
 import './LiveRegistration.css';
 import Table from 'react-uikit-table'
+
+
+
+
+
 export default class LiveRegistration extends React.Component {
   constructor(props) {
     super(props);
@@ -41,6 +46,7 @@ export default class LiveRegistration extends React.Component {
                     </td>
                     <td className="uk-text-truncate">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</td>
                     <td className="uk-text-nowrap">Lorem ipsum dolor</td>
+                    <td><button class="uk-button uk-button-default" type="button">Button</button></td>
                   </tr>
 
 
