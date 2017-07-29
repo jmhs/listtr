@@ -27,30 +27,36 @@ class CreateEvent extends React.Component {
   };
 
 }
-
+  toCapitalize = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
 //saves user's input into local state before sending to "actons" together
   onChange = (e) => {
     // let state = this.state.events;
     let object = {};
     switch (e.target.name) {
       case 'title':
+        let title = this.toCapitalize(e.target.value)
         this.setState({
-          eventName: e.target.value,
+          eventName: title,
         })
         break;
       case 'type':
+        let type = this.toCapitalize(e.target.value)
         this.setState({
-          type: e.target.value
+          type: type
         })
         break;
       case 'dresscode':
+        let dressCode = this.toCapitalize(e.target.value)
         this.setState({
-          dressCode: e.target.value
+          dressCode
         })
         break;
       case 'description':
+        let description = this.toCapitalize(e.target.value)
         this.setState({
-          description: e.target.value
+          description
         })
         break;
       case 'timeStart':
@@ -64,8 +70,9 @@ class CreateEvent extends React.Component {
         })
         break;
       case 'location':
+        let location = this.toCapitalize(e.target.value)
         this.setState({
-          location: e.target.value
+          location
         })
         break;
       default:
