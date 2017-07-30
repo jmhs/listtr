@@ -23,22 +23,7 @@ export const postInvite = (event_id, invite) => {
   }
 }
 
-// retrieving guest emails
-export const getEventGuestEmails = (event_id, event) => {
-  return (dispatch) => {
-    axios.get('/event/getEventGuestEmails/' + event_id, event)
-    .then((response) => {
-      console.log(response);
-      console.log("AJAX: Getting guest emails @ '/:event_id/guests/email'");
-      window.location.href = "/dashboard";
-    })
-    .catch((error)=> {
-      console.log(error);
-    });
-  }
-}
-
-// POSTING guest email invite
+// POSTING guest email invite request to server. Server will send out email invite.
 export const handleEmail = (event_id, event) => {
   return (dispatch) => {
     axios.post('/email/' + event_id, event)
@@ -53,6 +38,23 @@ export const handleEmail = (event_id, event) => {
     });
   }
 }
+
+// retrieving guest emails
+// export const getEventGuestEmails = (event_id, event) => {
+//   return (dispatch) => {
+//     axios.get('/event/getEventGuestEmails/' + event_id, event)
+//     .then((response) => {
+//       console.log(response);
+//       console.log("AJAX: Getting guest emails @ '/:event_id/guests/email'");
+//       window.location.href = "/dashboard";
+//     })
+//     .catch((error)=> {
+//       console.log(error);
+//     });
+//   }
+// }
+
+
 
 // // Sending in invite
 // export const postEmail = (event_id, invite) => {

@@ -21,6 +21,7 @@ import InviteTemplate from '../InviteTemplate/InviteTemplate'
 import InvitePreview from '../InviteTemplate/InvitePreview/InvitePreview'
 import updateEvent from '../UpdateEvent/UpdateEvent'
 import LiveRegistration from '../LiveRegistration/LiveRegistration'
+import Response from '../Response/Response'
 
 import logo from './logo.svg';
 import './App.css';
@@ -55,6 +56,7 @@ class App extends Component {
               <Route exact path="/updateEvent" component={updateEvent}/>
               <Route exact path="/preview" component={Preview}/>
               <Route exact path="/liveregistration" component={LiveRegistration}/>
+              <Route exact path="/response" component={Response}/>
 
 
             </Switch>

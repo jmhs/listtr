@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.get('/',eventController.getEvents);
 router.get('/:event_id', eventController.getSpecificEvent);
+router.get('/guest/:guest_id', eventController.getEventFromGuestId);
 
 router.post('/postEvents', eventController.postEvent);
 router.post('/postEventsWithImage',upload.single('eventImage'), eventController.postEventsWithImage);

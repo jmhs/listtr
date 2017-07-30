@@ -180,7 +180,7 @@ class InviteTemplate extends React.Component {
                        placeholder="Input Event End Date"
                        defaultValue={this.state.inviteEndDate}
                        onChange={this.onChange}
-                       name="inviteEnd"/>
+                       name="inviteEndDate"/>
               </div>
 
               <div className="form-group">
