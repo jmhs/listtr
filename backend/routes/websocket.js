@@ -4,11 +4,14 @@ import eventController from '../controllers/eventController';
 //io refers to the channel that established the main connection
 //sockets are the sockets to listen to specific events wihtin io stream
 module.exports = (io) =>{
-
   io.on('connection', function (socket) {
-    socket.emit('news', { hello: 'world' });
-    socket.on('my other event', function (data) {
-      console.log(data);
+    socket.on('getAllGuests', (eventId) => {
+      console.log('Id number:', eventId )
+      eventController.getGuestlist(eventId, (guestlist) => {
+        io.emit('guest list', guestlist);
+      }
+    );
     });
   });
+
 };

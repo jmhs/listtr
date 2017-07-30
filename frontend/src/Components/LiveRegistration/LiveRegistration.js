@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react';
+import { connect } from 'react-redux';
 import './LiveRegistration.css';
 import Table from 'react-uikit-table'
 
@@ -14,13 +15,11 @@ export default class LiveRegistration extends React.Component {
   componentDidMount(){
     const io = require('socket.io-client/dist/socket.io.js');
     const socket = io.connect('http://localhost:3001');
-    socket.on('news', function (data) {
+    socket.on('guestlist', function (data) {
     console.log(data);
-    socket.emit('my other event', { my: 'data' });
-  });
-
-
-
+//    socket.emit('getAllGuests', "597dc2135f7bb128e8a42c79");
+      });
+      socket.emit('getAllGuests', "597dc2135f7bb128e8a42c79");
   }
 
   render() {
