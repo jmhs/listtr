@@ -239,8 +239,13 @@ exports.postInvite = (req, res) => {
      });
      res.json(event);
    })
-
-
-
 }
-//  if there is invite, then pop, if not push
+
+
+// TO DELETE for email testing
+exports.getEventGuestEmails = (req, res) => {
+  Event.findOne({}, (err, event) => {
+    if(err){console.log(err); return;}
+    res.json(event)
+  })
+}
