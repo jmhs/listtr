@@ -1,15 +1,14 @@
 import eventController from '../controllers/eventController';
 
-
+//export to start script
 //io refers to the channel that established the main connection
 //sockets are the sockets to listen to specific events wihtin io stream
 module.exports = (io) =>{
-io.on("connection",(socket)=>{
-  console.log("connection established"
-  )
-  // socket.on('fromFront', () => {
-  //   // to get gueslist based on event and emit out
-  //     io.emit('fromServer', "Hi");
-  //   })
-  })
-}
+
+  io.on('connection', function (socket) {
+    socket.emit('news', { hello: 'world' });
+    socket.on('my other event', function (data) {
+      console.log(data);
+    });
+  });
+};

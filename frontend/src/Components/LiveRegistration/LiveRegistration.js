@@ -14,7 +14,10 @@ export default class LiveRegistration extends React.Component {
   componentDidMount(){
     const io = require('socket.io-client/dist/socket.io.js');
     const socket = io.connect('http://localhost:3001');
-
+    socket.on('news', function (data) {
+    console.log(data);
+    socket.emit('my other event', { my: 'data' });
+  });
 
 
 
