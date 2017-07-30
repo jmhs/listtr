@@ -11,6 +11,15 @@ export default class LiveRegistration extends React.Component {
     super(props);
   }
 
+  componentDidMount(){
+    const io = require('socket.io-client/dist/socket.io.js');
+    const socket = io.connect('http://localhost:3001');
+
+
+
+
+  }
+
   render() {
     return (
     <div className="uk-container uk-container-small uk-position-relative">
