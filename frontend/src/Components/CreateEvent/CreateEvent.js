@@ -6,7 +6,7 @@ import { activeEvent} from '../../Actions/Event'
 import 'react-date-picker/index.css'
 import {Link} from 'react-router-dom'
 import { DateField, Calendar } from 'react-date-picker'
-import TimeInput from 'react-time-input';
+// import TimeInput from 'react-time-input';
 // import PopulateGuests from '../PopulateGuests/PopulateGuests'
 import './CreateEvent.css'
 class CreateEvent extends React.Component {
@@ -60,16 +60,16 @@ class CreateEvent extends React.Component {
           description
         })
         break;
-      case 'timeStart':
-        this.setState({
-          timeStart: e.target.value
-        })
-        break;
-      case 'timeEnd':
-        this.setState({
-          timeEnd: e.target.value
-        })
-        break;
+      // case 'timeStart':
+      //   this.setState({
+      //     timeStart: e.target.value
+      //   })
+      //   break;
+      // case 'timeEnd':
+      //   this.setState({
+      //     timeEnd: e.target.value
+      //   })
+      //   break;
       case 'location':
         let location = this.toCapitalize(e.target.value)
         this.setState({
@@ -101,26 +101,86 @@ class CreateEvent extends React.Component {
 
 
 
-  startdateChange = (dateString, { dateMoment, timestamp }) => {
-    console.log(dateString)
-    this.setState({
-      startDate: dateString
-    })
-  }
-
-  enddateChange = (dateString, { dateMoment, timestamp }) => {
-    console.log(dateString)
-    this.setState({
-      endDate: dateString
-    })
-  }
+  // startdateChange = (dateString, { dateMoment, timestamp }) => {
+  //   console.log(dateString)
+  //   this.setState({
+  //     startDate: dateString
+  //   })
+  // }
+  //
+  // enddateChange = (dateString, { dateMoment, timestamp }) => {
+  //   console.log(dateString)
+  //   this.setState({
+  //     endDate: dateString
+  //   })
+  // }
 
   onTimeChangeHandler = (e) => {
     console.log(e.target.value)
+    let string = e.target.value;
+    let dateAndTime = string.split("T");
+    dateAndTime[0] = dateAndTime[0].split("-")
+
+    //put year at the back
+    dateAndTime[0].push(dateAndTime[0].shift())
+
+    //swap month and date
+    let month = dateAndTime[0][0]
+    dateAndTime[0][0] = dateAndTime[0][1];
+    dateAndTime[0][1] = month;
+
+    let date = dateAndTime[0].join('-');
+
+    console.log(dateAndTime[0].join('-'))
+    if(e.target.name === "startDateAndTime"){
+      this.setState({
+        startDate: date,
+        timeStart: dateAndTime[1]
+      })
+      // console.log(dateAndTime[0])
+    } else {
+      this.setState({
+        endDate: date,
+        timeEnd: dateAndTime[1]
+      })
+    }
+
+
    	// do something with this value
 
    }
-
+/*
+<div className="create-row calendar-form">
+  <legend className="uk-legend">Start Date</legend>
+  <div className="uk-margin">
+    <Calendar
+        dateFormat="YYYY-MM-DD"
+        date={date}
+        onChange={this.startdateChange}
+        name="startDate"
+        />
+  </div>
+</div>
+<div className="create-row calendar-form">
+  <legend className="uk-legend">End Date</legend>
+  <div className="uk-margin">
+  <Calendar
+      dateFormat="YYYY-MM-DD"
+      date={date}
+      onChange={this.enddateChange}
+      name="startDate"
+      />
+  </div>
+</div>
+<input className="uk-input" type="text"
+       name="timeStart"
+       placeholder="Start Time"
+       onChange={this.onChange}/>
+       <input className="uk-input" type="text"
+              name="timeEnd"
+              placeholder="End Time"
+              onChange={this.onChange}/>
+*/
   render() {
 
     let date = new Date()
@@ -158,53 +218,20 @@ class CreateEvent extends React.Component {
                    onChange={this.onChange}/>
           </div>
         </div>
-        <div className="create-row calendar-form">
-          <legend className="uk-legend">Start Date</legend>
+
+        <div className="create-row">
+          <legend className="uk-legend">Start Date And Time</legend>
           <div className="uk-margin">
-            <Calendar
-                dateFormat="YYYY-MM-DD"
-                date={date}
-                onChange={this.startdateChange}
-                name="startDate"
-                />
+
+            <input type="datetime-local" name="startDateAndTime" id="date-and-time" onChange={this.onTimeChangeHandler}/>
           </div>
         </div>
-        <div className="create-row calendar-form">
-          <legend className="uk-legend">End Date</legend>
-          <div className="uk-margin">
-          <Calendar
-              dateFormat="YYYY-MM-DD"
-              date={date}
-              onChange={this.enddateChange}
-              name="startDate"
-              />
-          </div>
-        </div>
+
         <div className="create-row">
-          <legend className="uk-legend">Start Time</legend>
+          <legend className="uk-legend">End Date and Time</legend>
           <div className="uk-margin">
-            <input className="uk-input" type="text"
-                   name="timeStart"
-                   placeholder="Start Time"
-                   onChange={this.onChange}/>
-          </div>
-        </div>
-        <div className="create-row">
-          <TimeInput
-       			initTime='11:12'
-       			ref="TimeInputWrapper"
-       			className="time-input"
-       			onTimeChange={this.onTimeChangeHandler}
-       		/>
-          <input type="datetime-local" name="bdaytime" id="date-and-time" onChange={this.onTimeChangeHandler}/>
-        </div>
-        <div className="create-row">
-          <legend className="uk-legend">End Time</legend>
-          <div className="uk-margin">
-            <input className="uk-input" type="text"
-                   name="timeEnd"
-                   placeholder="End Time"
-                   onChange={this.onChange}/>
+
+            <input type="datetime-local" name="endDateAndTime" id="date-and-time" onChange={this.onTimeChangeHandler}/>
           </div>
         </div>
         <div className="create-row">
