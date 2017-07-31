@@ -52,7 +52,7 @@ class Preview extends React.Component {
           <Link to="/guest">
             <button type="button"
                     className="btn-custom"
-                    onClick={this.onClick}>Add Guest</button>
+                    onClick={this.onClick}>Manage Guest</button>
           </Link>
           <Link to="/invitetemplate">
             <button type="button"

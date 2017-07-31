@@ -1,5 +1,9 @@
 import axios from 'axios'
-
+const successResponse = () => {
+  return {
+    type: 'SUCCESS_RESPONSE'
+  }
+}
 export const activeEvent = (event) => {
   return {
     type: 'ACTIVE_EVENT',

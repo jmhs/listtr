@@ -1,5 +1,5 @@
- import dotenv from 'dotenv';
-dotenv.load({ path: '.env' });
+//  import dotenv from 'dotenv';
+// dotenv.load({ path: '.env' });
 
 exports.handleEmail = (req, res) => {
   const helper = require('sendgrid').mail;

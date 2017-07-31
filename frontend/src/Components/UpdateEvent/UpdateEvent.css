@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Lobster');
+/*@import url('https://fonts.googleapis.com/css?family=Lobster');
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 .picture-row-create-event{
   background-image: url("../Home/getting-started.jpg");
@@ -49,3 +49,29 @@ select{
   margin-top: 10px;
   margin-bottom: 20px;
 }
+@media only screen and (max-width: 400px){
+
+  .create-row{
+    margin-top: 15px;
+    width:100%;
+    font-size:15px;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .picture-row-create-event{
+    background-image: url("../Home/getting-started.jpg");
+    background-size: cover;
+    height:100px;
+    background-position: center;
+    overflow: hidden;
+    position: relative;
+  }
+  #create-event{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    color:white;
+    text-transform: uppercase;
+    position: absolute;
+    bottom: 10px;
+    left: 25px;
+  }
+}*/
