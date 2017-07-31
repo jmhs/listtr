@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
 .Firreee{
   background-color: #F2F2F2;
   width: 100vw;
@@ -12,9 +13,14 @@
   word-wrap: break-word;
 }
 #progress-bar{
-  margin: 20px;
-  width: 200px;
-  height: 100px;
+  margin: auto auto;
+  margin-top: 10px;
+width: 200px;
+height: 100px;
+}
+..progressbar{
+  background-color: red;
+
 }
 .success-alert{
   border-radius: 0;
