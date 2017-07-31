@@ -12,6 +12,8 @@ import Active from '../Reducers/Active'
 
 import Invites from '../Reducers/Invite'
 
+import ResponseActive from '../Reducers/Response'
+
 export let initStore = () => {
 
   const reducer = combineReducers({
@@ -20,6 +22,7 @@ export let initStore = () => {
     navigation: NavigationReducer,
     active: Active,
     invites: Invites,
+    response: ResponseActive
 
   });
 

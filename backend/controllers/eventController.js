@@ -20,6 +20,13 @@ exports.getSpecificEvent = (req, res) => {
   })
 }
 
+// exports.getSpecificGuest = (req, res) => {
+//     Guest.findOne({'_id':req.params.guest_id},(err,guest) => {
+//       if(err){console.log(err); return;}
+//       res.json(guest);
+//     })
+// }
+
 exports.postGuest = (req, res) => {
    console.log(req.body);
    console.log('Inside if')
@@ -239,24 +246,4 @@ exports.postInvite = (req, res) => {
      });
      res.json(event);
    })
-}
-
-
-// To get event based on Guest ID to record Guest response (WIP)
-exports.getEventFromGuestId = (req, res) => {
-  console.log('managed to find guest by id')
-  Event.find({
-    guests: /guests/,
-    _id: req.params.guest_id,
-  }).
-  exec(callback);
-
-
-
-
-  // Event.guests.findById(req.params.guest_id, (err, event) => {
-  //   if(err){console.log(err); return;}
-
-    res.json(event)
-  // })
 }

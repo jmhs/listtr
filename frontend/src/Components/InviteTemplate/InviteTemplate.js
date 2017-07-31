@@ -25,7 +25,7 @@ class InviteTemplate extends React.Component {
       inviteEndDate: this.props.events.endDate,
       inviteTimeStart: this.props.events.timeStart,
       inviteTimeEnd: this.props.events.timeEnd,
-      // inviteDressCode: this.props.events.dressCode,
+      inviteDressCode: this.props.events.dressCode,
       inviteLocation: this.props.events.location,
       inviteSubject: this.props.events.eventName,
       inviteDescription: this.props.events.description,

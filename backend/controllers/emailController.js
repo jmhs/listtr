@@ -16,6 +16,7 @@ exports.handleEmail = (req, res) => {
         let guestEmail = event.guests[i].email;
         let guestVerificationKey = event.guests[i].id;
         let eventResponseId = event._id;
+        let guestResponseId = event.guests[i].id;
         let inviteEventImage = event.invites[0].inviteEventImage;
         // console.log('inviteEventImage is: ', inviteEventImage)
         let inviteName = event.invites[0].inviteName;
@@ -34,7 +35,7 @@ exports.handleEmail = (req, res) => {
         // console.log('inviteSubject is: ', inviteSubject);
         let inviteDescription = event.invites[0].inviteDescription;
         // console.log('inviteDescription is: ', inviteDescription);
-        let eventResponseLink = 'http://localhost:3000/response/' + eventResponseId;
+        let eventResponseLink = 'http://localhost:3000/responseverification/' + eventResponseId + '/' + guestResponseId;
         // console.log('eventResponseLink is: ', eventResponseLink);
         // console.log('guestEmail is: ', guestEmail);
         let helper = require('sendgrid').mail;
@@ -95,7 +96,7 @@ exports.handleEmail = (req, res) => {
           // console.log(response.statusCode);
           // console.log(response.body);
           // console.log(response.headers);
-          console.log('response', response)
+          // console.log('response', response)
           // res.json <--- cannot have res.json() here
         });
       }

@@ -1,14 +1,23 @@
-import axios from 'axios'
+import axios from 'axios';
+import {activeEvent} from './Event.js'
 
-export const getEventFromGuestId = (guest_id, event) => {
-  return (dispatch) => {
-    axios.get('/event/guest/:guest_id', event)
-    .then((response) => {
-      console.log(response);
-      console.log("AJAX: Getting event guest_id belongs to@ '/event/guest/:guest_id'");
-    })
-    .catch((error)=> {
-      console.log(error);
-    });
+export const activeGuest = (guest) => {
+  return {
+    type: 'RESPONSE_ACTIVE_GUEST',
+    guest
   }
+}
+
+//Getting event based on eventid to pass into the store. This is so that we can use it to populate the fields in ResponseDisplay
+export const getSpecificEvent = (event_id) => {
+  return (dispatch) => {
+    axios.get('/event/' + event_id)
+      .then( (response) => {
+        console.log(response.data);
+        dispatch(activeEvent(response.data))
+      })
+      .catch((error)=> {
+        console.error("AJAX: Could not get event'")
+      });
+  };
 }
