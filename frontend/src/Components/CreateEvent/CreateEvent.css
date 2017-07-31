@@ -46,9 +46,13 @@
   margin-right: 30px;
   width: 30%;
 }
+/*input:required{
+  border: solid red;
+}*/
 
-
-
+.input-required{
+  border: solid red;
+}
 #preview-button{
   margin-top: 10px;
   margin-bottom: 20px;

@@ -5,7 +5,7 @@ import thunk from 'redux-thunk';
 import UserReducer from '../Reducers/User'
 
 import Events from '../Reducers/Event'
-
+import ResponseAJAX from '../Reducers/ResponseAJAX'
 import NavigationReducer from '../Reducers/Navigation'
 
 import Active from '../Reducers/Active'
@@ -22,7 +22,9 @@ export let initStore = () => {
     navigation: NavigationReducer,
     active: Active,
     invites: Invites,
-    LiveRegistration: LiveRegistration
+    LiveRegistration: LiveRegistration,
+    responseAJAX: ResponseAJAX
+
 
   });
 
