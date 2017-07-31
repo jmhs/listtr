@@ -18,10 +18,7 @@
 width: 200px;
 height: 100px;
 }
-..progressbar{
-  background-color: red;
 
-}
 .success-alert{
   border-radius: 0;
   background-color: rgba(152, 255, 150, .3);
