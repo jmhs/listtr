@@ -6103,6 +6103,10 @@ react-style-normalizer@1.2.8:
   version "1.2.8"
   resolved "https://registry.yarnpkg.com/react-style-normalizer/-/react-style-normalizer-1.2.8.tgz#7e84b3d25cea6225545c5af68963b225885344a2"
 
+react-time-input@^0.0.16:
+  version "0.0.16"
+  resolved "https://registry.yarnpkg.com/react-time-input/-/react-time-input-0.0.16.tgz#b255560e0ae3b40249145c67a428cbe98f094434"
+
 react-transition-group@^1.1.1:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-1.2.0.tgz#b51fc921b0c3835a7ef7c571c79fc82c73e9204f"

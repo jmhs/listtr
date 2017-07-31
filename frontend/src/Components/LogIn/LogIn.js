@@ -69,7 +69,7 @@ class LogIn extends React.Component {
 
   render() {
       return (
-        <div className="container">
+        <div className="container-login">
           <div className="col-md-4 col-md-offset-4">
             <div className="panel panel-primary" id="loginContainer">
               <div className="panel-heading" id="formHeader">LOGIN</div>

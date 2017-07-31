@@ -56,7 +56,7 @@ class AddGuest extends React.Component {
   render() {
     const renderGuestsRows = this.renderGuests()
     return (
-      <div className="container">
+      <div className="container add-guest-container">
 
 
         <Link to="/preview">
@@ -66,7 +66,7 @@ class AddGuest extends React.Component {
           </div>
         </Link>
         <div className="add-guest-header">
-          <h1>Add Guest</h1>
+          <h1>Manage Guest</h1>
           <hr/>
         </div>
         <div className="row">
