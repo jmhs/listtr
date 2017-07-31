@@ -56,6 +56,13 @@ exports.getSpecificEvent = (req, res) => {
   })
 }
 
+// exports.getSpecificGuest = (req, res) => {
+//     Guest.findOne({'_id':req.params.guest_id},(err,guest) => {
+//       if(err){console.log(err); return;}
+//       res.json(guest);
+//     })
+// }
+
 exports.postGuest = (req, res) => {
    console.log(req.body);
    console.log('Inside if')
@@ -275,8 +282,4 @@ exports.postInvite = (req, res) => {
      });
      res.json(event);
    })
-
-
-
 }
-//  if there is invite, then pop, if not push
