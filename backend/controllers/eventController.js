@@ -13,6 +13,42 @@ exports.getEvents = (req, res) => {
   })
 }
 
+// Controller accepts callback 'cb' as an argument
+// Cb will only exceute on completion of async database operation 'Queue.find()'
+exports.getGuestlist = (eventId,  cb) => {
+  Event.findById(eventId, (err, guestlist) => {
+      cb(guestlist);
+  })
+};
+
+exports.updateGuestlist = (eventId,  cb) => {
+  Event.findById(eventId, (err, guestlist) => {
+      cb(guestlist);
+  })
+};
+
+
+// Event.findOne({'_id':req.params.event_id},(err, event) => {
+//
+//   if(err){console.log(err); return;}
+//
+//
+//   // let newArray = event.guests;
+//   let newArray = event.guests.filter( (guest,index) => {
+//     return guest.id === req.body.id;
+//   })
+//
+//   event.guests = newArray;
+//   event.save((err) => {
+//     if (err) { return (err); }
+//     console.log(event);
+//
+//   });
+// })
+
+
+
+
 exports.getSpecificEvent = (req, res) => {
   Event.findOne({'_id':req.params.event_id},(err,event) => {
     if(err){console.log(err); return;}
@@ -215,11 +251,11 @@ exports.deleteEvent = (req,res) => {
     //   if(err){console.log(err); return;}
     // })
     //
-    // User.findOneAndUpdate({'_id':event.user},{
-    //   '$pull':{'events': req.params.id}
-    // },(err, user) => {
-    //   if(err){console.log(err); return;}
-    // })
+    User.findOneAndUpdate({'_id':event.hosts},{
+      '$pull':{'hostFor': req.params.event_id}
+    },(err, user) => {
+      if(err){console.log(err); return;}
+    })
     if(err){console.log(err); return;}
     res.json(event);
   })

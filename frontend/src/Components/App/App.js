@@ -51,11 +51,10 @@ class App extends Component {
               <Route exact path="/dashboard" component={Dashboard}/>
               <Route exact path="/account" component={AccountPage}/>
               <Route exact path="/maincontent" component={MainContent}/>
-
               <Route exact path="/invitetemplate" component={InviteTemplate}/>
               <Route exact path="/invitepreview" component={InvitePreview}/>
               <Route exact path="/updateEvent" component={updateEvent}/>
-              <Route exact path="/preview" component={Preview}/>
+              <Route path="/preview" component={Preview}/>
               <Route exact path="/liveregistration" component={LiveRegistration}/>
               <Route path="/responseverification/:event_id/:guest_id" component={ResponseVerification}/>
               <Route exact path="/responsedisplay" component={ResponseDisplay}/>

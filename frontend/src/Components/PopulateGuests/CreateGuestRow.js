@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
 import uuid from 'uuid'
+import './CreateGuestRow.css'
 export default class CreateGuestRow extends React.Component {
   constructor(props) {
     super(props);

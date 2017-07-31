@@ -8,3 +8,8 @@
       font-size: .85em;
       column-count: 3;
 }
+@media only screen and (max-width: 400px){
+  .masonry{
+    column-count: 2;
+  }
+}

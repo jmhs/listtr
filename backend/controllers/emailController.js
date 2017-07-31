@@ -1,7 +1,11 @@
+
 import Event from '../models/Event';
 import dotenv from 'dotenv';
 
 dotenv.load({ path: '.env' });
+//  import dotenv from 'dotenv';
+// dotenv.load({ path: '.env' });
+
 
 // Upon POST request from client side (route: /event/), handleEmail gets called as defined in emailController.
 // need to run a forEach loop on handleEmail such that it sends to each guest. Use mongoose populate() method to extract guest emails.
