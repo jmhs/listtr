@@ -133,6 +133,8 @@ export const deleteEvent = (event) => {
       axios.delete('/event/'+ event._id )
       .then((response)=>{
         dispatch(successDeleteEvent())
+        setTimeout(window.location.href="/dashboard", 2000);
+
       })
       .catch((error)=>{
 
