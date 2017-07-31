@@ -12,6 +12,8 @@ import Active from '../Reducers/Active'
 
 import Invites from '../Reducers/Invite'
 
+import ResponseActive from '../Reducers/Response
+
 import LiveRegistration from '../Reducers/LiveRegistration'
 
 export let initStore = () => {
@@ -22,6 +24,8 @@ export let initStore = () => {
     navigation: NavigationReducer,
     active: Active,
     invites: Invites,
+
+    response: ResponseActive,
     LiveRegistration: LiveRegistration,
     responseAJAX: ResponseAJAX
 
