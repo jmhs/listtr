@@ -21,6 +21,33 @@ exports.getGuestlist = (eventId,  cb) => {
   })
 };
 
+exports.updateGuestlist = (eventId,  cb) => {
+  Event.findById(eventId, (err, guestlist) => {
+      cb(guestlist);
+  })
+};
+
+
+// Event.findOne({'_id':req.params.event_id},(err, event) => {
+//
+//   if(err){console.log(err); return;}
+//
+//
+//   // let newArray = event.guests;
+//   let newArray = event.guests.filter( (guest,index) => {
+//     return guest.id === req.body.id;
+//   })
+//
+//   event.guests = newArray;
+//   event.save((err) => {
+//     if (err) { return (err); }
+//     console.log(event);
+//
+//   });
+// })
+
+
+
 
 exports.getSpecificEvent = (req, res) => {
   Event.findOne({'_id':req.params.event_id},(err,event) => {
@@ -28,6 +55,13 @@ exports.getSpecificEvent = (req, res) => {
     res.json(event);
   })
 }
+
+// exports.getSpecificGuest = (req, res) => {
+//     Guest.findOne({'_id':req.params.guest_id},(err,guest) => {
+//       if(err){console.log(err); return;}
+//       res.json(guest);
+//     })
+// }
 
 exports.postGuest = (req, res) => {
    console.log(req.body);
@@ -248,8 +282,4 @@ exports.postInvite = (req, res) => {
      });
      res.json(event);
    })
-
-
-
 }
-//  if there is invite, then pop, if not push
