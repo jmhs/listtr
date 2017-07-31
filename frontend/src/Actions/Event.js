@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {successResponse, successDeleteEvent} from './Response.js'
+import {successResponse, successDeleteEvent} from './ResponseAJAX.js'
 export const activeEvent = (event) => {
   return {
     type: 'ACTIVE_EVENT',

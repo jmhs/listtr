@@ -2,7 +2,7 @@ const initState = {
   createEvent: "",
   deleteEvent: ""
 }
-const Response = (state = initState, action) => {
+const ResponseAJAX = (state = initState, action) => {
   switch (action.type) {
     case "SUCCESS_RESPONSE":
     return {
@@ -26,4 +26,4 @@ const Response = (state = initState, action) => {
   }
 }
 
-export default Response;
+export default ResponseAJAX;
