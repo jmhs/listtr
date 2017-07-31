@@ -11,12 +11,12 @@ class LiveRegistration extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      
+
     }
   }
 
   componentDidMount(){
-    this.props.active.
+    // this.props.active.
     const io = require('socket.io-client/dist/socket.io.js');
     const socket = io.connect('http://localhost:3001');
     socket.emit('getAllGuests', "597dc2135f7bb128e8a42c79");

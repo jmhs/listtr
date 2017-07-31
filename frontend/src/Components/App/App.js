@@ -52,7 +52,7 @@ class App extends Component {
               <Route exact path="/invitetemplate" component={InviteTemplate}/>
               <Route exact path="/invitepreview" component={InvitePreview}/>
               <Route exact path="/updateEvent" component={updateEvent}/>
-              <Route exact path="/preview" component={Preview}/>
+              <Route path="/preview" component={Preview}/>
               <Route exact path="/liveregistration" component={LiveRegistration}/>
 
 

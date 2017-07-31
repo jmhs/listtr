@@ -1,9 +1,5 @@
 import axios from 'axios'
-const successResponse = () => {
-  return {
-    type: 'SUCCESS_RESPONSE'
-  }
-}
+import {successResponse} from './Response.js'
 export const activeEvent = (event) => {
   return {
     type: 'ACTIVE_EVENT',
@@ -91,6 +87,8 @@ export const postEvents = (events) => {
       .then( (response) => {
         console.log(response.data);
         dispatch(storeEvents(response.data))
+        dispatch(activeEvent(response.data))
+        dispatch(successResponse())
       })
       .catch((error)=> {
         console.error("event not posted to server'")
@@ -116,8 +114,9 @@ export const postEvents = (events) => {
       axios.post('/event/postEventsWithImage', EventDataWithImage)
         .then( (response) => {
           console.log(response.data);
-
+          dispatch(activeEvent(response.data))
           dispatch(storeEvents(response.data))
+          dispatch(successResponse())
         })
         .catch((error)=> {
           console.error("event not posted to server'")

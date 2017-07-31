@@ -3,13 +3,18 @@ import { connect } from 'react-redux';
 import {Link} from 'react-router-dom'
 import { activeEvent, deleteEvent, updateEvent} from '../../Actions/Event';
 import './Preview.css';
-import { Button, Modal } from 'semantic-ui-react'
+// import { Button, Modal } from 'semantic-ui-react'
+import Button from 'react-uikit-notify';
+
 
 
 class Preview extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { open: false }
+    this.state = {
+      open: false,
+
+    }
   }
 
   show = (size) => () => this.setState({ size, open: true })
@@ -24,12 +29,23 @@ class Preview extends React.Component {
   }
 
 
-
+/*{this.props.response === "success" ? rendernotify : (<div>Not success</div>)}
+*/
   render() {
     const { open, size } = this.state
     let events = this.props.events
+    const rendernotify = () => {
+      return (<div className="col-sm-12">
+        <div className="alert alert-success">
+          <strong>Success!</strong> Event Created
+        </div>
+      </div>)
+    }
+
     return (
+
       <div className ='card'>
+        {this.props.response === "success" ? rendernotify() : (<div></div>)}
       <Link to="/dashboard">
         <div className="back-button">
           <button className="btn btn-default">Back</button>
@@ -75,6 +91,7 @@ class Preview extends React.Component {
 const mapStateToProps = (state) => {
   return {
     events: state.active,
+    response: state.response
   }
 }
 
