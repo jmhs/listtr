@@ -11,6 +11,7 @@
     "font-awesome": "^4.7.0",
     "masonry-layout": "^4.2.0",
     "moment": "^2.18.1",
+    "progressbar.js": "^1.0.1",
     "react": "^15.6.1",
     "react-bootstrap": "^0.31.1",
     "react-bootstrap-time-picker": "^1.0.3",

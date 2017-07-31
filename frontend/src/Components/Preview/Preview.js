@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
 import { connect } from 'react-redux';
+import ProgressBar from 'progressbar.js'
 import {Link} from 'react-router-dom'
 import { activeEvent, deleteEvent, updateEvent} from '../../Actions/Event';
 import './Preview.css';
@@ -48,7 +49,22 @@ class Preview extends React.Component {
         </div>
       </div>)
     }
+    const renderProgressBar = () => {
+      let container = document.getElementById('progress-bar')
+      let bar = new ProgressBar.SemiCircle(container, {
+        strokeWidth: 6,
+        easing: 'easeInOut',
+        duration: 1400,
+        color: '#FFEA82',
+        trailColor: '#eee',
+        trailWidth: 1,
+        svgStyle: null
+      });
 
+      bar.animate(1.0);  // Number from 0.0 to 1.0
+      var line = new ProgressBar.Line('#progress-bar');
+      return bar;
+    }
     return (
 
       <div className ='card'>
@@ -60,6 +76,9 @@ class Preview extends React.Component {
       </a>
         <div className ='cardimage'>
           <img src={events.eventImage}/>
+        </div>
+        <div id="progress-bar">
+
         </div>
         <div id="event-preview-info">
           <h2 id="event-preview-title">{events.eventName}</h2>

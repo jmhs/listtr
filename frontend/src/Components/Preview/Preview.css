@@ -11,6 +11,11 @@
 .event-preview-location{
   word-wrap: break-word;
 }
+#progress-bar{
+  margin: 20px;
+  width: 200px;
+  height: 100px;
+}
 .success-alert{
   border-radius: 0;
   background-color: rgba(152, 255, 150, .3);
