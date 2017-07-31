@@ -34,15 +34,16 @@ class LiveRegistration extends React.Component {
     return guests.map((guest) => {
       return (
  //{guest.id} {guest.name} {guest.email}{guest.contact}{guest.response}{guest.checkIn}
-                       <tbody>
+                       <tbody key={guest.id}>
                          <tr>
-                           <td><input className="uk-checkbox" type="checkbox" onChange={this.Checkbox} value={guest}/></td>
+                           <td><input className="uk-checkbox" type="checkbox" onChange={this.Checkbox} name={guest.id}/>{}</td>
                            <td><img className="uk-preserve-width uk-border-circle" src="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840/17015b52218827.5909281cb99f2.jpg" width={40} alt /></td>
                            <td className="uk-table-link">
                              <a className="uk-link-reset" href>{guest.email}</a>
                            </td>
                            <td className="uk-text-truncate">{guest.name}</td>
                            <td className="uk-text-nowrap">{guest.response}</td>
+                           <div className="everything"></div>
                          </tr>
                        </tbody>
                      )
@@ -59,7 +60,12 @@ class LiveRegistration extends React.Component {
 
 Checkbox = (e) => {
   console.log(e.target.checked)
-  console.log(e.target.value)
+  console.log(e.target.name)
+  let guests = this.props.liveEvent.guests
+  let guest = guests.filter( (guest,index) => {
+      return guest.id === e.target.name;
+    })
+  console.log(guest)
 
 }
 
@@ -132,6 +138,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     storeLiveEventDetails: (data) => { dispatch(storeLiveEventDetails(data))}
+
 }}
 
 export default connect(mapStateToProps, mapDispatchToProps)(LiveRegistration);
