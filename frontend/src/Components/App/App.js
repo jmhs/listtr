@@ -56,7 +56,7 @@ class App extends Component {
               <Route exact path="/updateEvent" component={updateEvent}/>
               <Route exact path="/preview" component={Preview}/>
               <Route exact path="/liveregistration" component={LiveRegistration}/>
-              <Route exact path="/response" component={Response}/>
+              <Route path="/response" component={Response}/>
 
 
             </Switch>

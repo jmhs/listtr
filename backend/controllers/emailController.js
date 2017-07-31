@@ -15,6 +15,7 @@ exports.handleEmail = (req, res) => {
       for (var i=0; i < event.guests.length; i++) {
         let guestEmail = event.guests[i].email;
         let guestVerificationKey = event.guests[i].id;
+        let eventResponseId = event._id;
         let inviteEventImage = event.invites[0].inviteEventImage;
         // console.log('inviteEventImage is: ', inviteEventImage)
         let inviteName = event.invites[0].inviteName;
@@ -33,7 +34,7 @@ exports.handleEmail = (req, res) => {
         // console.log('inviteSubject is: ', inviteSubject);
         let inviteDescription = event.invites[0].inviteDescription;
         // console.log('inviteDescription is: ', inviteDescription);
-        let eventResponseLink = 'http://localhost:3000/response';
+        let eventResponseLink = 'http://localhost:3000/response/' + eventResponseId;
         // console.log('eventResponseLink is: ', eventResponseLink);
         // console.log('guestEmail is: ', guestEmail);
         let helper = require('sendgrid').mail;
@@ -77,21 +78,30 @@ exports.handleEmail = (req, res) => {
         let request = sg.emptyRequest({
           method: 'POST',
           path: '/v3/mail/send',
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
+            'Access-Control-Request-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+          },
           body: mail.toJSON()
         });
 
         sg.API(request, function (error, response) {
+          console.log('request', request)
           if (error) {
             console.log('Error response received');
+            console.log(error)
           }
-          console.log(response.statusCode);
-          console.log(response.body);
-          console.log(response.headers);
-          res.json(response)
+          // console.log(response.statusCode);
+          // console.log(response.body);
+          // console.log(response.headers);
+          console.log('response', response)
+          // res.json <--- cannot have res.json() here
         });
       }
+      res.json({message: 'email successfully sent!'})
   })
-  res.json(event);
+  //res.json(event);
 }
 
 
