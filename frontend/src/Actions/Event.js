@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {successResponse} from './Response.js'
+import {successResponse, successDeleteEvent} from './Response.js'
 export const activeEvent = (event) => {
   return {
     type: 'ACTIVE_EVENT',
@@ -132,7 +132,7 @@ export const deleteEvent = (event) => {
       //t inlcue mechanism to updae store
       axios.delete('/event/'+ event._id )
       .then((response)=>{
-
+        dispatch(successDeleteEvent())
       })
       .catch((error)=>{
 

@@ -1,7 +1,20 @@
-const Response = (state = [], action) => {
+const initState = {
+  createEvent: "",
+  deleteEvent: ""
+}
+const Response = (state = initState, action) => {
   switch (action.type) {
     case "SUCCESS_RESPONSE":
-    return action.response;
+    return {
+      createEvent: action.response,
+      deleteEvent: state.deleteEvent
+    }
+    break;
+    case "SUCCESS_DELETE_EVENT":
+    return {
+      createEvent: state.createEvent,
+      deleteEvent: action.response
+    }
     break;
 
 

@@ -29,15 +29,22 @@ class Preview extends React.Component {
   }
 
 
-/*{this.props.response === "success" ? rendernotify : (<div>Not success</div>)}
+/*{this.props.response === "success" ? renderNotifyCreateSuccess : (<div>Not success</div>)}
 */
   render() {
     const { open, size } = this.state
     let events = this.props.events
-    const rendernotify = () => {
+    const renderNotifyCreateSuccess = () => {
       return (<div className="col-sm-12">
-        <div className="alert alert-success">
+        <div className="success-alert">
           <strong>Success!</strong> Event Created
+        </div>
+      </div>)
+    }
+    const renderNotifyDeleteSuccess = () => {
+      return (<div className="col-sm-12">
+        <div className="success-alert">
+          <strong>Success!</strong> Event Deleted
         </div>
       </div>)
     }
@@ -45,12 +52,12 @@ class Preview extends React.Component {
     return (
 
       <div className ='card'>
-        {this.props.response === "success" ? rendernotify() : (<div></div>)}
-      <Link to="/dashboard">
+        {this.props.response.createEvent === "success" ? renderNotifyCreateSuccess() : (<div></div>)}
+      <a href="/dashboard">
         <div className="back-button">
-          <button className="btn btn-default">Back</button>
+          <button className="btn-custom">Back to dashboard</button>
         </div>
-      </Link>
+      </a>
         <div className ='cardimage'>
           <img src={events.eventImage}/>
         </div>
@@ -64,6 +71,7 @@ class Preview extends React.Component {
           <h4>Time End: {events.timeEnd}</h4>
           <h4>{events.description}</h4>
         </div>
+        {this.props.response.deleteEvent === "success" ? renderNotifyDeleteSuccess() : (<div></div>)}
         <div className="event-preview-button">
           <Link to="/guest">
             <button type="button"
