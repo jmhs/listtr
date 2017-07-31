@@ -12,7 +12,7 @@ class LiveRegistration extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      addGuests : false
+
     }
   }
 
@@ -24,33 +24,38 @@ class LiveRegistration extends React.Component {
     socket.on('guest list', (data) => {
     console.log(data);
     this.props.storeLiveEventDetails(data)
+
     })
   }
 
   renderGuests = () => {
     let guests = this.props.liveEvent.guests
     console.log(guests)
-    if (guests) {
+    if (guests!=undefined) {
     return guests.map((guest) => {
       return (
- //{guest.id} {guest.name} {guest.email}{guest.contact}{guest.response}{guest.checkIn}
-                       <tbody key={guest.id}>
-                         <tr>
-                           <td><input className="uk-checkbox" type="checkbox" onChange={this.Checkbox} name={guest.id}/>{}</td>
-                           <td><img className="uk-preserve-width uk-border-circle" src="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840/17015b52218827.5909281cb99f2.jpg" width={40} alt /></td>
-                           <td className="uk-table-link">
-                             <a className="uk-link-reset" href>{guest.email}</a>
-                           </td>
-                           <td className="uk-text-truncate">{guest.name}</td>
-                           <td className="uk-text-nowrap">{guest.response}</td>
-                           <div className="everything"></div>
-                         </tr>
-                       </tbody>
-                     )
-    })
-  }}
+              <tbody key={guest.id}>
+                 <tr>
+                   <td><input className="uk-checkbox" type="checkbox" onChange={this.Checkbox} name={guest.id}/></td>
+                   <td><img className="uk-preserve-width uk-border-circle" src="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840/17015b52218827.5909281cb99f2.jpg" width={40} alt /></td>
+                   <td className="uk-table-link">
+                     <a className="uk-link-reset" href>{guest.email}</a>
+                   </td>
+                   <td className="uk-text-truncate">{guest.name}</td>
+                   <td className="uk-text-nowrap">{guest.response}</td>
+                 </tr>
+               </tbody>
+            )
+          })
+        }}
 
-
+  renderChecked = (guest) =>{
+    if (guest.checkedIn === false){
+      return false
+    }else if(guest.checkedIn===true){
+      return true
+    }
+  }
   addGuests = (e) => {
     this.setState({
       addGuests: true
@@ -60,34 +65,25 @@ class LiveRegistration extends React.Component {
 
 Checkbox = (e) => {
   console.log(e.target.checked)
-  console.log(e.target.name)
   let guests = this.props.liveEvent.guests
   let guest = guests.filter( (guest,index) => {
       return guest.id === e.target.name;
     })
-  console.log(guest)
+
+  if(e.target.checked == true){
+    guest[0].checkedIn = true
+    this.props.storeLiveEventDetails(this.props.liveEvent)
+  }else if (e.target.checked == false) {
+    guest[0].checkedIn = false
+    this.props.storeLiveEventDetails(this.props.liveEvent)
+  }
 
 }
 
-  renderAddGuests = () => {
-    if (this.state.addGuests = true){return (
-      <tbody>
-        <tr>
-          <td><input className="uk-checkbox" type="checkbox" onChange={this.checkbox} /></td>
-          <td><img className="uk-preserve-width uk-border-circle" src="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840/17015b52218827.5909281cb99f2.jpg" width={40} alt /></td>
-          <td className="uk-table-link">
-            <a className="uk-link-reset" href></a>
-          </td>
-          <td className="uk-text-truncate"></td>
-          <td className="uk-text-nowrap"></td>
-        </tr>
-      </tbody>
-    )
-  }}
 
   render() {
     const renderGuests = this.renderGuests();
-    const renderAddGuests = this.renderAddGuests();
+
     return (
     <div className="uk-container uk-container-small uk-position-relative">
     <div>
@@ -118,7 +114,7 @@ Checkbox = (e) => {
                 {this.renderGuests()}
               </table>
               <button onClick={this.addGuests}>Add Guests</button>
-              {this.renderAddGuests()}
+
             </div>
       </div>
     );
