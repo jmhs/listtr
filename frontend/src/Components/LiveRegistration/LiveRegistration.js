@@ -11,6 +11,7 @@ import {storeLiveEventDetails} from '../../Actions/LiveRegistration'
 class LiveRegistration extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
 
     }
@@ -31,7 +32,7 @@ class LiveRegistration extends React.Component {
   renderGuests = () => {
     let guests = this.props.liveEvent.guests
     console.log(guests)
-    if (guests!=undefined) {
+    if (guests) {
     return guests.map((guest) => {
       return (
               <tbody key={guest.id}>
@@ -64,6 +65,8 @@ class LiveRegistration extends React.Component {
   }
 
 Checkbox = (e) => {
+  const io = require('socket.io-client/dist/socket.io.js');
+  const socket = io.connect('http://localhost:3001');
   console.log(e.target.checked)
   let guests = this.props.liveEvent.guests
   let guest = guests.filter( (guest,index) => {
@@ -72,10 +75,12 @@ Checkbox = (e) => {
 
   if(e.target.checked == true){
     guest[0].checkedIn = true
-    this.props.storeLiveEventDetails(this.props.liveEvent)
+    this.props.storeLiveEventDetails(this.props.liveEvent);
+    socket.emit('updateGuestlist', this.props.liveEvent);
   }else if (e.target.checked == false) {
     guest[0].checkedIn = false
-    this.props.storeLiveEventDetails(this.props.liveEvent)
+    this.props.storeLiveEventDetails(this.props.liveEvent);
+    socket.emit('updateGuestlist', this.props.liveEvent);
   }
 
 }

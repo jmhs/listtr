@@ -21,10 +21,14 @@ exports.getGuestlist = (eventId,  cb) => {
   })
 };
 
-exports.updateGuestlist = (eventId,  cb) => {
-  Event.findById(eventId, (err, guestlist) => {
-      cb(guestlist);
-  })
+exports.updateGuestlist = (event,  cb) => {
+  Event.findById(event._id, (err, receivedEvent) => {
+    receivedEvent.guests = event.guests;
+    receivedEvent.save((err) => {
+      if (err) { return (err); }
+    });
+    cb(receivedEvent);
+  });
 };
 
 
