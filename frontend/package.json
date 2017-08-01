@@ -31,6 +31,7 @@
     "react-transition-group": "^2.2.0",
     "react-uikit": "^0.1.1",
     "react-uikit-base": "^2.0.2",
+    "react-uikit-button": "^2.0.2",
     "react-uikit-comment": "^2.0.2",
     "react-uikit-notify": "^2.0.0",
     "react-uikit-table": "^2.0.1",

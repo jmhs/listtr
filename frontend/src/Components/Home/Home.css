@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Lobster');
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
+body{
+  font-family: 'Arial', sans-serif;
+}
 #landing-page{
   background-image: url("getting-started.jpg");
   background-size: cover;
@@ -7,9 +10,87 @@
   background-position: center;
   overflow: hidden;
 }
-#linear{
+.typed-cursor{
+  opacity: 1;
+  animation: typedjsBlink 0.7s infinite;
+  -webkit-animation: typedjsBlink 0.7s infinite;
+  animation: typedjsBlink 0.7s infinite;
+}
+.uk-navbar-nav, .uk-navbar-right{
+  color: white;
+  background-color: #425A64;
+}
+#manage-guest-list-home{
+  font-size: 50px;
+  color: white;
+  margin-top: 0px;
+  position: relative;
+  top: 100px;
+  margin: auto auto;
+  /*left: 25%;*/
+  /*margin-left: -400px;*/
+  width: 800px;
+}
+.type-wrap{
+  font-size: 30px;
+  background-color: white;
+  width: 600px;
+  padding: 20px;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  margin-left: -300px;
+  margin-top: -100px;
+}
+.dark-home-background{
+  height: 500px;
+  background-color: #425A64;
+}
+.fa-pencil{
+  color: white;
+}
+.fa{
+  color: white;
+}
+.fa-home-icon{
+  position: relative;
+  left: 50%;
+  margin-left: -20px;
+}
+
+#how-it-works{
+  color: white;
+  font-size: 50px;
+  margin: auto auto;
+  padding-top: 50px;
+  /*margin-left: -150px;*/
+  width: 300px;
+}
+.how-it-works-icon{
+  height: 200px;
+  margin-top: 50px;
+}
+.how-it-works-desc{
+  color: white;
+  margin-top: 30px;
+  text-align: justify;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.home-footer{
+  background-color: #0FB28A;
+  height: 400px;
+  color: white;
+}
+.home-footer.container-home-page{
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+#typedjs{
   height:500px;
-  background: linear-gradient(-30deg, #1d5900, #adf78a); /* Standard syntax */
+  background-color: #0FB28A;
 }
 #home-title{
   color: black;
@@ -17,17 +98,25 @@
   font-size: 100px;
   position: relative;
   top:50%;
-  left:50%;
+  margin: auto auto;
   margin-top: -50px;
-  margin-left: -100px;
+  /*margin-left: -100px;*/
+  width: 250px;
 }
 #navbar-title{
   font-family: 'Lobster', cursive;
   text-transform: none;
   font-size: 25px;
+  color: white;
 }
-
+#navbar-title:hover{
+  background-color: #0FB28A;
+}
+.home-nav:hover{
+  color: black;
+}
 .home-nav{
   font-size: 15px;
   font-family: 'Montserrat', sans-serif;
+  color: white;
 }

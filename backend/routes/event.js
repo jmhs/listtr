@@ -17,6 +17,8 @@ router.put('/guest/deleteGuest/:event_id', eventController.deleteGuest);
 router.put('/updateEvents/:event_id', eventController.updateEvents);
 router.put('/updateEventsWithImage/:event_id',upload.single('eventImage'), eventController.updateEventsWithImage);
 
+router.put('/:event_id', eventController.updateGuestResponse)
+
 router.delete('/:event_id', eventController.deleteEvent);
 
 

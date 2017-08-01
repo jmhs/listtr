@@ -5,14 +5,23 @@
   padding-right: 15px;
   height: 100vh;
   width: 100vw;
-  padding: 10px 0 0 0;
-  /*margin: 0;*/
-  margin-top: 5%;
-  border-color: #0FB28A;
-}
+  padding: 100px 0 0 0;
 
+  border-color: #0FB28A;
+  background-color: #425A64;
+}
+.login-button-default{
+  margin: 5px;
+  font-size: 14px;
+}
+.login-button-green{
+  background-color:  #0FB28A;
+}
 #loginForm {
-  margin: 0 10px 10px 10px;
+  margin: 20px 10px 20px 10px;
+  background-color: #425A64;
+  padding: 5px;
+
 }
 
 #or {
@@ -47,8 +56,11 @@
 }
 
 #loginContainer {
-  border-color: #0FB28A;
-  box-shadow: 2px 2px 2px lightgray;
+  /*border-color: #0FB28A;*/
+  border: 2px solid #0FB28A;
+  background-color: #425A64;
+  color: white;
+  /*box-shadow: 2px 2px 2px lightgray;*/
 }
 
 button:focus {
