@@ -74,15 +74,21 @@ class LogIn extends React.Component {
             <div className="panel panel-primary" id="loginContainer">
               <div className="panel-heading" id="formHeader">LOGIN</div>
               <form id="loginForm" role="form">
+
                 <div className="error">{this.state.error}</div>
+
                 <label htmlFor="email">Email address</label>
-                <input type="email" className="form-control" id="email" placeholder="Please enter email" value={this.state.email} onChange={this.onChange}/>
+                <input type="email" className="uk-input" id="email" placeholder="Please enter email" value={this.state.email} onChange={this.onChange}/>
+
                 <label htmlFor="password">Password</label>
-                <input type="password" className="form-control" id="password" placeholder="Please enter password" value={this.state.password} onChange={this.onChange}/>
+                <input type="password" className="uk-input" id="password" placeholder="Please enter password" value={this.state.password} onChange={this.onChange}/>
+
                 <br />
-                <button type="submit" className="btn btn-primary submit" id="loginBtnl" onClick={this.localLogin}>{'Login'}</button>
-                <button type="submit" className="btn btn-default submit" id="signupBtnl" onClick={this.signUp}>{"Don't have an account yet? Sign up here!"}</button>
-                <button type="submit" className="btn btn-default submit" id="homeBtnl" onClick={this.backToHome}>{'Back to home'}</button>
+                <button type="submit" className="uk-button uk-button-default login-button-green login-button-default" id="loginBtnl" onClick={this.localLogin}>{'Login'}</button>
+
+                <button type="submit" className="uk-button uk-button-default login-button-default" id="signupBtnl" onClick={this.signUp}>{"Don't have an account yet? Sign up here!"}</button>
+
+                <button type="submit" className="uk-button uk-button-default login-button-default" id="homeBtnl" onClick={this.backToHome}>{'Back to home'}</button>
               </form>
             </div>
           </div>

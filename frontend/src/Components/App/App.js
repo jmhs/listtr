@@ -18,6 +18,7 @@ import AccountPage from '../AccountPage/AccountPage'
 import MainContent from '../Dashboard/MainContent/MainContent'
 import Preview from '../Preview/Preview'
 import InviteTemplate from '../InviteTemplate/InviteTemplate'
+import NotFound from '../NotFound/NotFound'
 import InvitePreview from '../InviteTemplate/InvitePreview/InvitePreview'
 import updateEvent from '../UpdateEvent/UpdateEvent'
 import LiveRegistration from '../LiveRegistration/LiveRegistration'
@@ -58,7 +59,7 @@ class App extends Component {
               <Route exact path="/liveregistration" component={LiveRegistration}/>
               <Route path="/responseverification/:event_id/:guest_id" component={ResponseVerification}/>
               <Route exact path="/responsedisplay" component={ResponseDisplay}/>
-
+              <Route component={NotFound}/>
 
             </Switch>
             </RouteTransition>
