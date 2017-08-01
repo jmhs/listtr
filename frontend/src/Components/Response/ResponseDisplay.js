@@ -216,8 +216,7 @@ class ResponseDisplay extends React.Component {
                                         <h4>Name: {this.props.events.guests[0].name}</h4>
                                         <h4>Email: {this.props.events.guests[0].email}</h4>
                                         <h4>Contact: {this.props.events.guests[0].contact}</h4>
-                                        <h1>Current RSVP:</h1>
-                                        <h4>{this.props.events.guests[0].response}</h4>
+
                                         <h1>Click below to change it:</h1>
                                         <Button context='success' body='Yes' margin='bottom right' id="rsvpYesBtn" onClick={this.updateGuestResponse}/>
                                         <Button context='danger' body='No' margin='bottom right' id="rsvpNoBtn" onClick={this.updateGuestResponse}/>
@@ -337,3 +336,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(ResponseDisplay);
 //       </tr>
 //     </tbody></table>
 // </center>
+
+// <h1>Current RSVP:</h1>
+// <h4>{this.props.events.guests[0].response}</h4>
