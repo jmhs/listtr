@@ -57,8 +57,36 @@ class Home extends React.Component {
 
         <section className="dark-home-background">
           <h1 id="how-it-works">How it works</h1>
-          <span className="fa fa-pencil" aria-hidden="true"></span>
+          <div className="container">
+            <div className="row">
+
+              <div className="col-sm-3 how-it-works-icon">
+                <span className="fa fa-user-o fa-4x fa-home-icon" aria-hidden="true"></span>
+                <p className="how-it-works-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+              </div>
+              <div className="col-sm-3 how-it-works-icon">
+                <span className="fa fa-pencil fa-4x fa-home-icon" aria-hidden="true"></span>
+                <p className="how-it-works-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+              </div>
+              <div className="col-sm-3 how-it-works-icon">
+                <span className="fa fa-users fa-4x fa-home-icon" aria-hidden="true"></span>
+                <p className="how-it-works-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+              </div>
+              <div className="col-sm-3 how-it-works-icon">
+                <span className="fa fa-paper-plane-o fa-4x fa-home-icon" aria-hidden="true"></span>
+                <p className="how-it-works-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+              </div>
+            </div>
+          </div>
         </section>
+
+        <footer className="home-footer">
+          <div className="container-home-page">
+            <div className="col-sm-3">
+              <h4>About us</h4>
+            </div>
+          </div>
+        </footer>
       </div>
     );
   }
