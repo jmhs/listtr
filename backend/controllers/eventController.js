@@ -21,10 +21,14 @@ exports.getGuestlist = (eventId,  cb) => {
   })
 };
 
-exports.updateGuestlist = (eventId,  cb) => {
-  Event.findById(eventId, (err, guestlist) => {
-      cb(guestlist);
-  })
+exports.updateGuestlist = (event,  cb) => {
+  Event.findById(event._id, (err, receivedEvent) => {
+    receivedEvent.guests = event.guests;
+    receivedEvent.save((err) => {
+      if (err) { return (err); }
+    });
+    cb(receivedEvent);
+  });
 };
 
 
@@ -283,3 +287,27 @@ exports.postInvite = (req, res) => {
      res.json(event);
    })
 }
+
+exports.updateGuestResponse = (req, res) => {
+  console.log('Inside updateGuestResponse')
+  Event.findById({'_id': req.params.event_id}, (err, event) => {
+    if (err) { return err; }
+    // console.log(req.body.data.guestId)
+    let guestUpdated = event.guests.map((guest) => {
+      if (guest.id === req.body.data.guestId ) {
+        guest.response = req.body.data.response
+      }
+      return guest
+    })
+    event.guests = guestUpdated
+    event.markModified('guests');
+    event.save((err, saved) => {
+       if (err) {
+         console.log(err);
+         return (err);
+       }
+       console.log(saved);
+         res.json(saved);
+    });
+    });
+  }

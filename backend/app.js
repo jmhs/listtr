@@ -1,8 +1,6 @@
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
-import Debug from 'debug';
 import express from 'express';
-import logger from 'morgan';
 import passport from 'passport';
 // import favicon from 'serve-favicon';
 import path from 'path';
@@ -36,7 +34,6 @@ mongoose.connection.on('error', (err) => {
 });
 mongoose.Promise = global.Promise;
 const app = express();
-const debug = Debug('backend:app');
 
 cloudinary.config({
   cloud_name: "listtr",
@@ -55,7 +52,6 @@ app.set('view engine', 'pug');
 
 // uncomment after placing your favicon in /public
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
@@ -130,8 +126,45 @@ app.use((err, req, res, next) => {
 
 // Handle uncaughtException
 process.on('uncaughtException', (err) => {
-  debug('Caught exception: %j', err);
+  console.log(err);
   process.exit(1);
 });
+
+
+/*
+  Debug
+*/
+
+// import Event from './models/Event';
+//
+// var db = mongoose.connection;
+// db.on('error', console.error.bind(console, 'connection error:'));
+// db.once('open', function() {
+//   console.log("we are connected");
+// });
+//
+//
+// Event.findById("59801041f0a5bc72551a2029", (err, event) => {
+//
+//
+//     let guest = event.guests[0];
+//     guest.response = "yes";
+// 
+//     event.guests[0] = guest;
+//
+//     event.markModified('guests');
+//
+//     event.save((err, savedEvent) => {
+//       if(err){ return console.log(err); }
+//     //  console.log(event);
+//
+//       Event.findById("59801041f0a5bc72551a2029", (err, newEvent) => {
+//
+//           console.log(newEvent);
+//       });
+//
+//     });
+// });
+
 
 export default app;
