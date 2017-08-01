@@ -4,6 +4,9 @@ const ActiveHome = (state = {}, action) => {
     case 'ACTIVE_EVENT':
       return action.event
 
+    case 'ACTIVE_GUEST':
+      return action.guest
+
 
       break;
     case "STORE_GUEST_TO_ACTIVE":

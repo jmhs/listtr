@@ -13,6 +13,7 @@ import event from './routes/event';
 import email from './routes/email';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import cors from 'cors'; // enable CORS requests
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
  */
@@ -65,7 +66,6 @@ app.use(lessMiddleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-
 /**
  * use EXPRESS-SESSION.
  */
@@ -87,6 +87,15 @@ app.use(session({
  */
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Enable All CORS requests
+app.use(function(req, res, next) {
+  console.log('enabling cors in headers')
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 app.use(function(req, res, next){
   console.log( "Method: " + req.method +" Path: " + req.url)

@@ -12,6 +12,7 @@ class LiveRegistration extends React.Component {
   constructor(props) {
     super(props);
 
+
     // this.state = {
     //     isChecked: false
     // }

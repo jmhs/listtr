@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import { Link } from 'react-router-dom'
 import { activeEvent } from '../../Actions/Event';
-import { postInvite } from '../../Actions/Invite';
+import { postInvite, handleEmail } from '../../Actions/Invite';
 import axios from 'axios';
 
 import LogIn from '../LogIn/LogIn';
@@ -25,7 +25,7 @@ class InviteTemplate extends React.Component {
       inviteEndDate: this.props.events.endDate,
       inviteTimeStart: this.props.events.timeStart,
       inviteTimeEnd: this.props.events.timeEnd,
-      // inviteDressCode: this.props.events.dressCode,
+      inviteDressCode: this.props.events.dressCode,
       inviteLocation: this.props.events.location,
       inviteSubject: this.props.events.eventName,
       inviteDescription: this.props.events.description,
@@ -91,6 +91,14 @@ class InviteTemplate extends React.Component {
         // console.log('updating inviteDescription: ', e.target.value)
         break;
 
+        // TO DELETE, testing for emails
+        case 'getEventGuestEmails':
+          this.setState({
+            getEventGuestEmails: e.target.value
+          })
+          // console.log('updating inviteDescription: ', e.target.value)
+          break;
+
       default:
     }
   }
@@ -101,6 +109,21 @@ class InviteTemplate extends React.Component {
     console.log("Save Invite Clicked!");
     this.props.postInvite(this.props.events._id, this.state)
     console.log(this.state)
+  }
+
+  // To send email
+  emailSend = (e) => {
+    e.preventDefault();
+    console.log("clicked send email!");
+    this.props.postEmail(this.props.events._id, this.state)
+  }
+
+  // To POST GUEST EMAILS
+  handleEmail = (e) => {
+    e.preventDefault();
+    console.log("clicked sendGuestEmails!");
+    this.props.handleEmail(this.props.events._id, this.state)
+    console.log("dispatching to action... handleEmail")
   }
 
 // function to check if user is loggedin before accessing inviteTemplate page. if user not loggedin, redirect to '/login'
@@ -157,7 +180,7 @@ class InviteTemplate extends React.Component {
                        placeholder="Input Event End Date"
                        defaultValue={this.state.inviteEndDate}
                        onChange={this.onChange}
-                       name="inviteEnd"/>
+                       name="inviteEndDate"/>
               </div>
 
               <div className="form-group">
@@ -210,6 +233,7 @@ class InviteTemplate extends React.Component {
                          onChange={this.onChange}
                          name="inviteDescription"/>
                 </div>
+
                 <Link to="/invitepreview">
                 <button className="uk-button uk-button-default"
                         id="invitePreviewBtn" onClick={this.invitePreview}>Update and Preview Invitation</button>
@@ -223,6 +247,11 @@ class InviteTemplate extends React.Component {
                         id="saveInviteBtn" onClick={this.saveInvite}>Save and Update</button>
                 <button className="uk-button uk-button-danger"
                         id="updateAccountDetailsBtn" onClick=''>Delete Invite</button>
+
+                <hr />
+                <button className="uk-button uk-button-primary"
+                        id="sendGuestEmailsBtn" onClick={this.handleEmail}>SEND GUEST EMAILS!</button>
+
               </div>
             </div>
           </div>
@@ -257,6 +286,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     postInvite: (active_id, invite) => {dispatch(postInvite(active_id, invite))},
+    handleEmail: (active_id, event) => {dispatch(handleEmail(active_id, event))},
+
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(InviteTemplate);
