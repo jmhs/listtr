@@ -56,22 +56,30 @@ export default class SignUp extends React.Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container-signup">
         <div className="col-md-4 col-md-offset-4">
           <div className="panel panel-primary" id="signupContainer">
             <div className="panel-heading" id="formHeader">SIGNUP</div>
+
             <form id="signupForm" role="form">
+
               <div className="error">{this.state.error}</div>
+
               <label htmlFor="username">Username</label>
-              <input type="email" className="form-control" id="username" placeholder="Please enter username" value={this.state.username} onChange={this.onChange}/>
+              <input type="email" className="uk-input" id="username" placeholder="Please enter username" value={this.state.username} onChange={this.onChange}/>
+
               <label htmlFor="email">Email address</label>
-              <input type="email" className="form-control" id="email" placeholder="Please enter email" value={this.state.email} onChange={this.onChange}/>
+              <input type="email" className="uk-input" id="email" placeholder="Please enter email" value={this.state.email} onChange={this.onChange}/>
+
               <label htmlFor="password">Password</label>
-              <input type="password" className="form-control" id="password" placeholder="Please enter password" value={this.state.password} onChange={this.onChange}/>
+              <input type="password" className="uk-input" id="password" placeholder="Please enter password" value={this.state.password} onChange={this.onChange}/>
+
               <br/>
-              <button type="submit" className="btn btn-default submit" id="signupBtn" onClick={this.localSignup}>Sign me up!</button>
-              <button type="submit" className="btn btn-primary submit" id="loginBtn" onClick={this.backToLogin}>Back to Login</button>
-              <button type="submit" className="btn btn-default submit" id="homeBtn" onClick={this.backToHome}>Back To Home</button>
+              <button type="submit" className="uk-button uk-button-default login-button-green login-button-default" id="signupBtn" onClick={this.localSignup}>Sign me up!</button>
+
+              <button type="submit" className="uk-button uk-button-default login-button-default" id="loginBtn" onClick={this.backToLogin}>Back to Login</button>
+
+              <button type="submit" className="uk-button uk-button-default login-button-default" id="homeBtn" onClick={this.backToHome}>Back To Home</button>
             </form>
           </div>
         </div>
