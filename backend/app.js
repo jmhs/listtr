@@ -27,14 +27,14 @@ import cloudinary from 'cloudinary';
 /**
 * Setup Mongoose connection to MongoDB
 */
-mongoose.Promise = global.Promise;
+
 mongoose.connect('mongodb://admin:admin@ds115752.mlab.com:15752/listtr');
 mongoose.connection.on('error', (err) => {
   console.error(err);
   console.log('%s MongoDB connection error. Please make sure MongoDB is running.', chalk.red('✗'));
   process.exit();
 });
-
+mongoose.Promise = global.Promise;
 const app = express();
 const debug = Debug('backend:app');
 
