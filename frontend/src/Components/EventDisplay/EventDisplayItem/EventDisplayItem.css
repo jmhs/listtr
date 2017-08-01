@@ -1,51 +1,20 @@
-/*.grid-item {
-  width: 250px;
-  border: 2px solid hsla(0, 0%, 0%, 0.5);
-  display: inline-block;
-  padding: 10px;
-  border-radius: 10px;
-  margin: 10px;
-  float: left;
-  word-wrap: break-word;
-  height: 300px;
-}*/
 
 .grid-item-item{
   display: inline-block;
   background: #fff;
-  /*padding: 1.5em;*/
   margin: 0 0 1.5em;
   width: 100%;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-
   border: 1px solid rgba(0,0,0, 0.2);
   overflow: hidden;
   position: relative;
   max-height: 400px;
-  /*-webkit-transition: all 200ms ease-in;
-  -webkit-transform: scale(1);
-  -ms-transition: all 200ms ease-in;
-  -ms-transform: scale(1);
-  -moz-transition: all 200ms ease-in;
-  -moz-transform: scale(1);
-  transition: all 200ms ease-in;
-  transform: scale(1);*/
+
 }
 .grid-item-item:hover{
-  /*background-color: #d5dae2;*/
-  /*box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.4);*/
-  /*box-shadow: 0px 0px 150px #000000;*/
-    /*z-index: 1;
-    -webkit-transition: all 200ms ease-in;
-    -webkit-transform: scale(1.2);
-    -ms-transition: all 200ms ease-in;
-    -ms-transform: scale(1.2);
-    -moz-transition: all 200ms ease-in;
-    -moz-transform: scale(1.2);
-    transition: all 200ms ease-in;
-    transform: scale(1.2);*/
+
 }
 
 .event-display-item-image img{
@@ -54,19 +23,28 @@
   display: block;
 }
 .event-display-item-image{
-  min-height: 100px;
+  max-height: 400px;
   overflow: hidden;
 
 }
-
+.eventName-box{
+  height: 50px;
+  /*border: 1px solid black;*/
+}
 .event-grid-text{
-  position: relative;
-  top: -50px;
+  position: absolute;
+  top: 85%;
   background-color: white;
+  width: 100%;
+  height: 400px;
+  -webkit-transition:top .5s; /* Safari */
+    transition: top .5s;
 }
 .event-grid-text:hover{
-  height: 200px;
-  top: -200px;
+  /*height: 200px;*/
+  -webkit-transition:top .5s; /* Safari */
+    transition: top .5s;
+  top: 5%;
 }
 .eventName{
   font-weight: bold;
@@ -75,6 +53,20 @@
 .event-display-item-description{
   margin: 10px;
   /*line-height: 50px;*/
-  height: 100px;
+  height: 30vh;
   overflow: hidden;
+  text-align: justify;
+  /*overflow-x: hidden;*/
+}
+.link-to-preview{
+  color: #0FB28A;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 18px;
+  margin-left: 10px;
+  /*position: absolute;*/
+  /*bottom: 10px;*/
+}
+.link-to-preview:hover{
+  text-decoration: none;
 }

@@ -58,8 +58,7 @@ class MainContent extends React.Component {
   }
 }
 
-MainContent.propTypes = {
-};
+
 
 const mapStateToProps = (state) => {
   return {
