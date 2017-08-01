@@ -21,5 +21,5 @@ Open your terminal and type the following command:
 
 To run the web application, you will need to setup:
 
- 1. Cloudinary account
- 2. Sendgrid
+ 1. Cloudinary account - for image upload
+ 2. Sendgrid - to send email invitation
