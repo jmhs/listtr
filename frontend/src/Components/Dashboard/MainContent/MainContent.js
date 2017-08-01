@@ -51,7 +51,7 @@ class MainContent extends React.Component {
     return (
 
     <div className="main-content">
-    <Link to="/createevent"><button className="btn btn-default create-event-button">Create Event</button></Link>
+    <Link to="/createevent"><button className="btn btn-default create-event-button" id="createEventBtn">Create Event</button></Link>
       {componentToRender}
     </div>
     )

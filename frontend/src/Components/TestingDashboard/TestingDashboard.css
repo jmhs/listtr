@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+.container-fluid {
+  margin: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+#headerrownav {
+background: #0FB28A;
+color: white;
+height: 5vh;
+}
+
+#listtrLogo {
+  font-family: 'Lobster', cursive;
+  text-transform: none;
+  font-size: 25px;
+  color: white;
+  padding-left: 25px;
+}
+
+#sidebarNav {
+  background: #425A64;
+  color: white;
+  height: 95vh;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+#contentwrapper {
+  color: black;
+}
+
+#contentNavHeader {
+  color: black;
+  height: 15vh;
+  overflow: auto;
+}
+
+#contentToRender {
+  background: #DBE2E4;
+  color: white;
+  height: 80vh;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul li a {
+  display: block;
+}
+
+li:hover {
+  background-color: #354951;
+  color: #0FB28A;
+}
+
+.sidebarNavListItem {
+  font-size: 15px;
+  padding: 15px 10px 15px 0;
+  text-align: center;
+  width: auto;
+}

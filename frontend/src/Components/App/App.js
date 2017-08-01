@@ -25,6 +25,9 @@ import LiveRegistration from '../LiveRegistration/LiveRegistration'
 import ResponseVerification from '../Response/ResponseVerification/ResponseVerification'
 import ResponseDisplay from '../Response/ResponseDisplay'
 
+// FOR TestingDashboard
+import TestingDashboard from '../TestingDashboard/TestingDashboard'
+
 import logo from './logo.svg';
 import './App.css';
 
@@ -59,7 +62,10 @@ class App extends Component {
               <Route exact path="/liveregistration" component={LiveRegistration}/>
               <Route path="/responseverification/:event_id/:guest_id" component={ResponseVerification}/>
               <Route exact path="/responsedisplay" component={ResponseDisplay}/>
+              <Route exact path="/testingdashboard" component={TestingDashboard}/>
               <Route component={NotFound}/>
+
+
 
             </Switch>
             </RouteTransition>
