@@ -4,7 +4,8 @@ const LiveRegistration = (state = [], action) => {
     return action.event;
 
   break;
-    case 'DELETE_GUEST_FROM_EVENT_IN_STORE':
+  case "UPDATE_EVENT":
+    return action.event;
 
     default:
       return state;
