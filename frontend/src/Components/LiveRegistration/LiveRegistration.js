@@ -148,6 +148,7 @@ console.log(this.state)
 LiveRegistration.propTypes = {
 };
 
+
 const mapStateToProps = (state) => {
   return {
     active: state.active,
