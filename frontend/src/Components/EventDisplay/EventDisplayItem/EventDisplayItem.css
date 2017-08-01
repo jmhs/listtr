@@ -36,7 +36,9 @@
   top: 85%;
   background-color: white;
   width: 100%;
-  height: 400px;
+  height: 350px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
   -webkit-transition:top .5s; /* Safari */
     transition: top .5s;
 }
@@ -44,7 +46,7 @@
   /*height: 200px;*/
   -webkit-transition:top .5s; /* Safari */
     transition: top .5s;
-  top: 5%;
+  top: 30%;
 }
 .eventName{
   font-weight: bold;
@@ -53,7 +55,7 @@
 .event-display-item-description{
   margin: 10px;
   /*line-height: 50px;*/
-  height: 30vh;
+  height: 20vh;
   overflow: hidden;
   text-align: justify;
   /*overflow-x: hidden;*/
@@ -66,6 +68,7 @@
   margin-left: 10px;
   /*position: absolute;*/
   /*bottom: 10px;*/
+  /*top: 70%;*/
 }
 .link-to-preview:hover{
   text-decoration: none;
