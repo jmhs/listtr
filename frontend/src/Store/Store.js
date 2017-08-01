@@ -12,7 +12,7 @@ import Active from '../Reducers/Active'
 
 import Invites from '../Reducers/Invite'
 
-import ResponseActive from '../Reducers/Response
+import ResponseActive from '../Reducers/Response'
 
 import LiveRegistration from '../Reducers/LiveRegistration'
 
