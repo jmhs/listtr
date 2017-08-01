@@ -23,9 +23,12 @@ class EventDisplayItem extends React.Component {
           <img src={this.props.eventImage === "" ? "https://d13yacurqjgara.cloudfront.net/users/12668/screenshots/615481/thinkwallpaperpreview.jpg" : this.props.eventImage}/>
         </div>
       </Link>
-      <h4 className="eventName">{this.props.eventName}</h4>
-      <p className="event-display-item-description">{this.props.description === "" ? "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." : this.props.description}</p>
+      <div className="event-grid-text">
 
+        <h4 className="eventName">{this.props.eventName}</h4>
+
+        <p className="event-display-item-description">{this.props.description === "" ? "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." : this.props.description}</p>
+      </div>
       </div>
     );
   }
