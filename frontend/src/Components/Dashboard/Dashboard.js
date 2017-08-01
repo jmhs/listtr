@@ -64,10 +64,10 @@ class Dashboard extends React.Component {
 
             <ul className="sidebarNavList">
               <li className="sidebarNavListItem">
-                <a id="HostingNav" onClick={this.onClick}><i className="fa fa-fw fa-list"/> Hosting </a>
+                <a id="HostingNav" onClick={this.onClick}><i className="fa fa-fw fa-book"/> Hosting </a>
               </li>
               <li className="sidebarNavListItem">
-                <a id="AttendingNav" onClick={this.onClick}><i className="fa fa-fw fa-area-chart"/> Attending </a>
+                <a id="AttendingNav" onClick={this.onClick}><i className="fa fa-fw fa-ticket"/> Attending </a>
               </li>
               <li className="sidebarNavListItem">
                 <a id="AccountNav" onClick={this.onClick}><i className="fa fa-fw fa-user"/> Account </a>
