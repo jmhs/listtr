@@ -135,7 +135,7 @@ onEdit = (e) => {
 
         {this.props.response.createEvent === "success" ? renderNotifyCreateSuccess() : (<div></div>)}
 
-        
+
 
         <div className ='cardimage'>
           <img src={events.eventImage}/>
@@ -163,7 +163,7 @@ onEdit = (e) => {
             <button type="button"
                     className="btn-custom"
                     id="addGuest"
-                    onClick={this.onClick}>Add Guest</button>
+                    onClick={this.onClick}>Manage Guest and Collaborators</button>
 
             <button type="button"
                     className="btn-custom"

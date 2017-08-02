@@ -27,3 +27,7 @@ height: 100px;
 input[type='checkbox']{
 	width: 50px;
 }
+#sendReminderEmailsBtn{
+  padding: 5px;
+  /*font-size: 14px;*/
+}

@@ -8,7 +8,7 @@ import './AddGuest.css'
 import CreateGuestRow from './CreateGuestRow'
 import { reminderEmail } from '../../Actions/Invite';
 import {updateNavPath} from '../../Actions/Navigation'
-
+import AddCollab from './AddCollab'
 class AddGuest extends React.Component {
   constructor(props) {
     super(props);
@@ -69,7 +69,7 @@ class AddGuest extends React.Component {
       let percentageYes = numberOfGuestsYes / guests.length;
       yesBar.animate(percentageYes);
     }
-    
+
 
     var noBar = new ProgressBar.SemiCircle('#progress-bar-no', {
       strokeWidth: 6,
@@ -113,7 +113,7 @@ class AddGuest extends React.Component {
       let percentageNo = numberOfGuestsNo / guests.length;
       noBar.animate(percentageNo);
     }
-    
+
 
     var pendingBar = new ProgressBar.SemiCircle('#progress-bar-pending', {
       strokeWidth: 6,
@@ -185,6 +185,7 @@ class AddGuest extends React.Component {
     }
 
   }
+
   toggleViewPending = (e) => {
     console.log('toggle view pending')
     if(this.state.viewPending){
@@ -204,6 +205,7 @@ class AddGuest extends React.Component {
       query: e.target.value
     })
   }
+
   updateGuests = (guest) => {
     let guests = this.state.guests;
     guests.push(guest)
@@ -252,7 +254,7 @@ class AddGuest extends React.Component {
       <div className="container add-guest-container">
 
 
-          
+
 
         <div className="add-guest-header">
           <h1>Manage Guest</h1>
@@ -261,7 +263,7 @@ class AddGuest extends React.Component {
         <div className="row">
           <div className="col-sm-6">
             <input type="checkbox" name="view-pending" value="Car" onChange={this.toggleViewPending}/>View pending only<br/>
-            
+
           </div>
           <div className="col-sm-3">
             <input type="text" className="uk-input" placeholder="Search Name" onChange={this.searchName}/>
@@ -290,8 +292,16 @@ class AddGuest extends React.Component {
           {renderGuestsRows}
         </div>
         <CreateGuestRow updateGuests={this.updateGuests}/>
-        <button className="uk-button uk-button-primary"
-                id="sendReminderEmailsBtn" onClick={this.reminderEmail}>SEND REMINDER!</button>
+
+          <button className="uk-button uk-button-primary"
+                  id="sendReminderEmailsBtn" onClick={this.reminderEmail}>SEND REMINDER!</button>
+
+        <div className="col-sm-12">
+
+        </div>
+        <div className="col-sm-12">
+          <AddCollab/>
+        </div>
       </div>
 
 
@@ -321,6 +331,3 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddGuest);//to include guest population
-
-<Link to="/preview">
-</Link>
