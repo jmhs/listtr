@@ -13,7 +13,9 @@ class LiveRegistration extends React.Component {
     super(props);
 
     this.state = {
-        searchValue: ""
+        searchValue: "",
+        guests: this.props.liveEvent.guests,
+        filteredGuests:""
     }
   }
 
@@ -27,9 +29,6 @@ class LiveRegistration extends React.Component {
     // this.props.storeLiveEventDetails(data)
     console.log('component did wmount')
     this.props.fetchLiveEventData(this.props.active._id);
-
-
-
   }
 
   componentDidUpdate(){
@@ -37,10 +36,10 @@ class LiveRegistration extends React.Component {
 
   }
 
+  renderGuests = (filter) => {
+    let guests
+    filter ? guests = this.state.filteredGuests : guests = this.state.guests
 
-  renderGuests = () => {
-
-    let guests = this.props.liveEvent.guests
     console.log(guests)
     if (guests) {
     return guests.map((guest) => {
@@ -68,9 +67,7 @@ class LiveRegistration extends React.Component {
                  </tbody>
               )
       }
-      // else if (this.state.searchValue.len())
-
-      }
+    }
 
   // renderChecked = (guest) =>{
   //   if (guest.checkedIn === false){
@@ -111,16 +108,58 @@ Checkbox = (e) => {
 
 
 Search =(e)=>{
-  let state = this.state
-  state.searchValue = e.target.value;
-  this.setState(state)
-  console.log(this.state.searchValue.length)
+  let originalState = this.state.guests
+    let state = this.state
+    let filtered = ""
+    let queryText = e.target.value
+    console.log(queryText)
+    // If user is searching, filter
+    if (queryText !== '') {
+      filtered = this.state.guests.filter((el) => {
+        console.log(el.name)
+        return el.name.toLowerCase().includes(queryText.toLowerCase()) ||
+               el.email.toLowerCase().includes(queryText.toLowerCase()) ||
+               el.contact.toLowerCase().includes(queryText.toLowerCase())
+      })
+    } else {
+      // else, return back to original state
+      filtered = originalState
+    }
+
+    state.searchValue = queryText
+    state.filteredGuests = filtered
+    this.setState(state)
+  // let state = this.state
+  // state.searchValue = e.target.value;
+  // this.setState(state)
+  // let guests = this.state.guests
+  // // console.log(this.state.searchValue.length)
+  // // if (state.searchValue.length != 0) {
+  // let newguestArray =  guests.filter((el,index) => {
+  //   console.log(el,index)
+  //   if (el.name.includes(e.target.value)){
+  //     console.log(el)
+  //     return el;
+  //   }
+  //   this.setState({
+  //     guests: newguestArray
+  //   })
+  //
+  // })
+  // }
+
+  // if(state.searchValue.length === 0) {
+  //   this.setState({
+  //     guests: this.props.liveEvent.guests
+  //   })
+  // }
 
 }
 
+
+
   render() {
-    const renderGuests = this.renderGuests();
-console.log(this.state)
+    console.log(this.state)
     return (
     <div className="uk-container uk-container-small uk-position-relative">
     <div>
@@ -153,7 +192,7 @@ console.log(this.state)
                     <td className="uk-text-nowrap">Lorem ipsum dolor</td>
                   </tr>
                 </tbody>
-                {this.renderGuests()}
+                {this.state.filteredGuests !== '' ? this.renderGuests(true) : this.renderGuests(false)}
               </table>
               <button onClick={this.addGuests}>Add Guests</button>
               <button onClick={this.addGuests}>Back to dashboard</button>
