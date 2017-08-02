@@ -7,6 +7,7 @@ import RenderGuests from './RenderGuests'
 import './AddGuest.css'
 import CreateGuestRow from './CreateGuestRow'
 import { reminderEmail } from '../../Actions/Invite';
+import {updateNavPath} from '../../Actions/Navigation'
 
 class AddGuest extends React.Component {
   constructor(props) {
@@ -49,7 +50,7 @@ class AddGuest extends React.Component {
         } else {
           bar.setText(value +'%');
         }
-  
+
         bar.text.style.color = state.color;
       }
     });
@@ -93,7 +94,7 @@ class AddGuest extends React.Component {
         } else {
           bar.setText(value +'%');
         }
-  
+
         bar.text.style.color = state.color;
       }
     });
@@ -137,7 +138,7 @@ class AddGuest extends React.Component {
         } else {
           bar.setText(value +'%');
         }
-  
+
         bar.text.style.color = state.color;
       }
     });
@@ -145,6 +146,7 @@ class AddGuest extends React.Component {
     pendingBar.text.style.fontSize = '2rem';
     let numberOfGuestsPending = 0;
     // let guests = this.state.guests;
+
     if(guests.length===0){
       pendingBar.animate(0)
     } else {
@@ -156,6 +158,7 @@ class AddGuest extends React.Component {
       let percentagePending = numberOfGuestsPending / guests.length;
       pendingBar.animate(percentagePending);
     }
+
   }
 
   renderGuests = () => {
@@ -180,7 +183,7 @@ class AddGuest extends React.Component {
         return (<RenderGuests name={guest.name} email={guest.email} contact={guest.contact} response={guest.response} id={guest.id} key={guest.id} removeGuestRow={this.removeGuestRow} guestDetails={guest}/>)
       })
     }
-    
+
   }
   toggleViewPending = (e) => {
     console.log('toggle view pending')
@@ -193,7 +196,7 @@ class AddGuest extends React.Component {
         viewPending: true
       })
     }
-    
+
   }
 
   searchName = (e) => {
@@ -237,7 +240,11 @@ class AddGuest extends React.Component {
     console.log("dispatching to action... reminderEmail")
   }
 
-
+  onClick = (e) => {
+    console.log('clicked on: ', e.target.id);
+    this.setState({currentNav: e.target.id});
+    this.props.updateNavPath(e.target.id);
+  }
 
   render() {
     const renderGuestsRows = this.renderGuests()
@@ -245,12 +252,10 @@ class AddGuest extends React.Component {
       <div className="container add-guest-container">
 
 
-        <Link to="/preview">
-
           <div className="back-button">
-            <button className="btn btn-default" >Back</button>
+            <button className="btn btn-default" id="backToPreviewAddGuestBtn" onClick={this.onClick} >Back</button>
           </div>
-        </Link>
+
         <div className="add-guest-header">
           <h1>Manage Guest</h1>
           <hr/>
@@ -282,7 +287,7 @@ class AddGuest extends React.Component {
             </div>
           </div>
         </div>
-        
+
         <div className="row">
           {renderGuestsRows}
         </div>
@@ -313,7 +318,11 @@ const mapDispatchToProps = (dispatch) => {
     postGuest: (active_id, guest) => {dispatch(postGuest(active_id, guest))},
     deleteGuest: (active_id, guest) => {dispatch(deleteGuest(active_id, guest))},
     reminderEmail: (active_id, event) => {dispatch(reminderEmail(active_id, event))},
+    updateNavPath: (currentNav) => {dispatch(updateNavPath(currentNav))}
   }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddGuest);//to include guest population
+
+<Link to="/preview">
+</Link>

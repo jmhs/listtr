@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import { Link } from 'react-router-dom'
 import { activeEvent } from '../../Actions/Event';
 import { postInvite, handleEmail } from '../../Actions/Invite';
+import {updateNavPath} from '../../Actions/Navigation'
 import axios from 'axios';
 
 import LogIn from '../LogIn/LogIn';
@@ -66,12 +67,12 @@ class InviteTemplate extends React.Component {
         })
         // console.log('updating inviteTimeEnd: ', e.target.value)
         break;
-      // case 'inviteDressCode':
-      //   this.setState({
-      //     inviteDressCode: e.target.value
-      //   })
-      //   // console.log('updating eventDressCode: ', e.target.value)
-      //   break;
+      case 'inviteDressCode':
+        this.setState({
+          inviteDressCode: e.target.value
+        })
+        // console.log('updating eventDressCode: ', e.target.value)
+        break;
       case 'inviteLocation':
         this.setState({
           inviteLocation: e.target.value
@@ -115,21 +116,28 @@ class InviteTemplate extends React.Component {
   emailSend = (e) => {
     e.preventDefault();
     console.log("clicked send email!");
-    this.props.postEmail(this.props.events._id, this.state)
+    this.props.postEmail(this.props.events._id, this.state);
   }
 
   // To POST GUEST EMAILS
   handleEmail = (e) => {
     e.preventDefault();
     console.log("clicked sendGuestEmails!");
-    this.props.handleEmail(this.props.events._id, this.state)
-    console.log("dispatching to action... handleEmail")
+    this.props.handleEmail(this.props.events._id, this.state);
+    console.log("dispatching to action... handleEmail");
   }
+
+  onClick = (e) => {
+    console.log('clicked on: ', e.target.id);
+    this.setState({currentNav: e.target.id});
+    this.props.updateNavPath(e.target.id);
+  }
+
 
 // function to check if user is loggedin before accessing inviteTemplate page. if user not loggedin, redirect to '/login'
 // function also renders different invite template depending on whether its a new or existing invitation
   isLoggedInInviteTemplate = () => {
-
+    let hasInvite = this.props.events.invites._id
     if(this.props.user.hasOwnProperty('_id')){
 
         return (
@@ -234,23 +242,17 @@ class InviteTemplate extends React.Component {
                          name="inviteDescription"/>
                 </div>
 
-                <Link to="/invitepreview">
-                <button className="uk-button uk-button-default"
-                        id="invitePreviewBtn" onClick={this.invitePreview}>Update and Preview Invitation</button>
-                        </Link>
-                    <Link to="/preview">
                 <button className="uk-button uk-button-default"
                         id="inviteTemplateBackToEventBtn" onClick={this.onClick}>Back to Event Preview</button>
-                        </Link>
+
                 <hr/>
                 <button className="uk-button uk-button-primary"
-                        id="saveInviteBtn" onClick={this.saveInvite}>Save and Update</button>
-                <button className="uk-button uk-button-danger"
-                        id="updateAccountDetailsBtn" onClick=''>Delete Invite</button>
+                        id="saveInviteBtn" onClick={this.saveInvite}>Create Invite</button>
 
                 <hr />
-                <button className="uk-button uk-button-primary"
-                        id="sendGuestEmailsBtn" onClick={this.handleEmail}>SEND GUEST EMAILS!</button>
+
+                    <button className="uk-button uk-button-primary"
+                            id="sendGuestEmailsBtn" onClick={this.handleEmail}>SEND GUEST EMAILS!</button>
 
               </div>
             </div>
@@ -287,10 +289,29 @@ const mapDispatchToProps = (dispatch) => {
   return {
     postInvite: (active_id, invite) => {dispatch(postInvite(active_id, invite))},
     handleEmail: (active_id, event) => {dispatch(handleEmail(active_id, event))},
+    updateNavPath: (currentNav) => {dispatch(updateNavPath(currentNav))}
 
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(InviteTemplate);
+
+// <Link to="/preview">
+// </Link>
+
+// {hasInvite
+//   ? (  )
+//       : (<hr/>)
+//   }
+
+
+// <button className="uk-button uk-button-danger"
+//         id="updateAccountDetailsBtn" onClick=''>Delete Invite</button>
+
+// <Link to="/invitepreview">
+// <button className="uk-button uk-button-default"
+//         id="invitePreviewBtn" onClick={this.invitePreview}>Update and Preview Invitation</button>
+//         </Link>
+
 
 
 // {/*[if (gte mso 9)|(IE)]>
