@@ -20,13 +20,7 @@ class LiveRegistration extends React.Component {
   }
 
   componentDidMount(){
-    // this.props.active.
-    // const io = require('socket.io-client/dist/socket.io.js');
-    // const socket = io.connect('http://localhost:3001');
-    // socket.emit('getAllGuests', "597c13505c76595c4eaa469b");
-    // socket.on('guest list', (data) => {
-    // console.log(data);
-    // this.props.storeLiveEventDetails(data)
+    
     console.log('component did mount')
     this.props.fetchLiveEventData(this.props.active._id);
     this.props.fetchupdateLiveEventData()
@@ -59,13 +53,20 @@ class LiveRegistration extends React.Component {
             )
           })
         }
-      else if (guests == undefined){
+      else if (guests == ''){
         return (
-                <tbody key>
-                   <tr>
-                     <td className="uk-table-link"><h2>You do not have Any guests!</h2></td>
-                   </tr>
-                 </tbody>
+          <div>
+            <thead>
+              <tr>
+                <th className="uk-table-expand">Attd</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="uk-table-link"><h2>You do not have Any guests!</h2></td>
+              </tr>
+             </tbody>
+          </div>
               )
       }
     }
@@ -85,9 +86,7 @@ class LiveRegistration extends React.Component {
   // }
 
 Checkbox = (e) => {
-  // const io = require('socket.io-client/dist/socket.io.js');
-  // const socket = io.connect('http://localhost:3001');
-  // this.props.fetchupdateLiveEventData()
+
   console.log(e.target.checked)
   let guests = this.props.LiveRegistration.guests
   let guest = guests.filter( (guest,index) => {
@@ -160,17 +159,6 @@ Search =(e)=>{
                     <th className="uk-table-shrink uk-text-nowrap">RSVP Status</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td><input className="uk-checkbox" type="checkbox" /></td>
-                    <td><img className="uk-preserve-width uk-border-circle" src="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840/17015b52218827.5909281cb99f2.jpg" width={40} alt /></td>
-                    <td className="uk-table-link">
-                      <a className="uk-link-reset" href>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</a>
-                    </td>
-                    <td className="uk-text-truncate">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</td>
-                    <td className="uk-text-nowrap">Lorem ipsum dolor</td>
-                  </tr>
-                </tbody>
                 {this.state.filteredGuests !== '' ? this.renderGuests(true) : this.renderGuests(false)}
               </table>
               <button onClick={this.addGuests}>Add Guests</button>
