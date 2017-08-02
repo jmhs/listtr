@@ -4,6 +4,13 @@ import EventDisplay from '../../EventDisplay/EventDisplay'
 import {Link} from 'react-router-dom'
 import AccountPage from '../../AccountPage/AccountPage'
 import Billing from '../../Billing/Billing'
+import CreateEvent from '../../CreateEvent/CreateEvent'
+import Preview from '../../Preview/Preview'
+import AddGuest from '../../PopulateGuests/AddGuest'
+import InviteTemplate from '../../InviteTemplate/InviteTemplate'
+import UpdateEvent from '../../UpdateEvent/UpdateEvent'
+import LiveRegistration from '../../LiveRegistration/LiveRegistration'
+
 import './MainContent.css'
 class MainContent extends React.Component {
   constructor(props) {
@@ -38,8 +45,45 @@ class MainContent extends React.Component {
         return window.location.href = "/"
         break;
 
+      case "createEventBtn":
+        return (<CreateEvent />)
+        break;
+
+      case "postEventToPreview":
+        return (<Preview />)
+        break;
+
+      case "previewBackToDashboard":
+        return (<EventDisplay />)
+        break;
+
+      case "addGuest":
+        return (<AddGuest />)
+        break;
+
+      case "manageInvite":
+        return (<InviteTemplate />)
+        break;
+
+      case "updateEvent":
+        return (<UpdateEvent />)
+        break;
+
+      case "goLive":
+        return (<LiveRegistration />)
+        break;
+
+      case "eventDisplayItemImagePreview":
+        return (<Preview />)
+        break;
+
+      case "eventDisplayItemTextPreview":
+        return (<Preview />)
+        break;
+
+
       default:
-        <div> <EventDisplay /> </div>
+        <div> <CreateEvent /> </div>
     }
   }
 
