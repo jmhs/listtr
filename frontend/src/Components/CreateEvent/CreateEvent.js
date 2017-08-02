@@ -3,6 +3,8 @@ import React, {PropTypes} from 'react';
 import { connect } from 'react-redux';
 import {postEvents} from '../../Actions/Event'
 import { activeEvent} from '../../Actions/Event'
+import {updateNavPath} from '../../Actions/Navigation'
+
 import {Link} from 'react-router-dom'
 import './CreateEvent.css'
 class CreateEvent extends React.Component {
@@ -20,7 +22,9 @@ class CreateEvent extends React.Component {
     dressCode: "",
     timeStart: "",
     timeEnd: "",
-    user_id: this.props.user._id
+    user_id: this.props.user._id,
+
+    currentNav: this.props.navigation,
   };
 
 }
@@ -110,7 +114,9 @@ class CreateEvent extends React.Component {
 
 // if loop for when create button pressed with & without image(different actions)
   onClick = (e) => {
-
+    console.log('clicked on: ', e.target.id);
+    this.setState({currentNav: e.target.id});
+    this.props.updateNavPath(e.target.id);
     this.props.postEvents(this.state)
     // this.props.activeEvent(this.state)
   }
@@ -231,7 +237,7 @@ class CreateEvent extends React.Component {
           <Link to='/preview'>
           <button type="submit"
                   className="btn btn-success"
-                  id="preview-button"
+                  id="postEventToPreview"
                   onClick={this.onClick}>Create Event</button></Link>
 
 
@@ -249,7 +255,8 @@ CreateEvent.propTypes = {
 const mapStateToProps = (state) => {
   return {
     events: state.events,
-    user: state.user
+    user: state.user,
+    navigation: state.navigation,
   }
 }
 
@@ -260,6 +267,7 @@ const mapDispatchToProps = (dispatch) => {
     activeEvent: (event) => {
       dispatch(activeEvent(event))
     },
+    updateNavPath: (currentNav) => {dispatch(updateNavPath(currentNav))},
 
   }
 }
