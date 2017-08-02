@@ -51,15 +51,14 @@ class MainContent extends React.Component {
     return (
 
     <div className="main-content">
-    <Link to="/createevent"><button className="btn btn-default create-event-button">Create Event</button></Link>
+
       {componentToRender}
     </div>
     )
   }
 }
 
-MainContent.propTypes = {
-};
+
 
 const mapStateToProps = (state) => {
   return {
@@ -73,3 +72,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainContent);
+
+// <Link to="/createevent">
+//   <button className="button" id="createEventBtn"><span>Create Event </span></button>
+// </Link>
