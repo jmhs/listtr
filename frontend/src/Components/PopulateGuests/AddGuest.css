@@ -5,3 +5,22 @@
 .add-guest-container{
   margin-bottom: 75px;
 }
+#progress-bar-yes, #progress-bar-no,#progress-bar-pending{
+  margin: auto auto;
+  /*margin-left: 30px;*/
+  margin-top: 10px;
+width: 200px;
+height: 100px;
+}
+
+.progress-bar-box{
+	/*margin: auto auto;*/
+	/*border: 1px solid black;*/
+	padding-bottom: 20px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+.progress-bar-title{
+	margin: auto auto;
+	text-align: center;
+}
