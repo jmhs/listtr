@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import ProgressBar from 'progressbar.js'
 import {Link} from 'react-router-dom'
 import { activeEvent, deleteEvent, updateEvent} from '../../Actions/Event';
+import {storeLiveEventDetails} from '../../Actions/LiveRegistration'
 import './Preview.css';
 // import { Button, Modal } from 'semantic-ui-react'
 import Button from 'react-uikit-notify';
@@ -68,6 +69,10 @@ class Preview extends React.Component {
   }
 /*{this.props.response === "success" ? renderNotifyCreateSuccess : (<div>Not success</div>)}
 */
+
+onLive = () => {
+  this.props.storeLiveEventDetails(this.props.events)
+}
   render() {
 
     const { open, size } = this.state
@@ -145,7 +150,7 @@ class Preview extends React.Component {
             <Link to="/LiveRegistration">
               <button type="button"
                       className="btn-custom"
-                      onClick={this.onEdit}>Go Live!</button>
+                      onClick={this.OnLive}>Go Live!</button>
               </Link>
         </div>
 
@@ -165,7 +170,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     activeEvent: (event) => {dispatch(activeEvent(event))},
     deleteEvent: (event) => {dispatch(deleteEvent(event))},
-    updateEvent: (event) => {dispatch(updateEvent(event))}
+    updateEvent: (event) => {dispatch(updateEvent(event))},
+    storeLiveEventDetails:(event) => {dispatch(storeLiveEventDetails(event))}
 
   }
 }
