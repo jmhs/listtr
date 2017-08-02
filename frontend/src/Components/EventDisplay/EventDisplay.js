@@ -19,7 +19,7 @@ class EventDisplay extends React.Component {
 
   // onClick, updateNavPath is fired in the actions to send to reducer, to be exported as props for conditional rendering
   onClick = (e) => {
-    const state = this.state;
+    // const state = this.state;
     console.log('clicked on: ', e.target.id);
     this.setState({currentNav: e.target.id});
     //console.log('new component state', this.state)
@@ -48,9 +48,9 @@ class EventDisplay extends React.Component {
     const renderlist = this.renderEventDisplayItem();
     return (
       <div>
-      <Link to="/createevent">
-        <button className="button" id="createEventBtn" onClick={this.onClick}><span>Create Event </span></button>
-      </Link>
+
+        <button className="button" id="createEventBtn" onClick={this.onClick}>Create Event</button>
+
         <div className="masonry">
           {renderlist}
         </div>
@@ -72,3 +72,6 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(EventDisplay);
+
+// <Link to="/createevent">
+// </Link>

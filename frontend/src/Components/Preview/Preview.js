@@ -2,9 +2,12 @@ import React, {PropTypes} from 'react';
 import { connect } from 'react-redux';
 import ProgressBar from 'progressbar.js'
 import {Link} from 'react-router-dom'
+
 import { activeEvent, deleteEvent, updateEvent} from '../../Actions/Event';
 import {storeLiveEventDetails} from '../../Actions/LiveRegistration'
+import {updateNavPath} from '../../Actions/Navigation'
 import './Preview.css';
+
 // import { Button, Modal } from 'semantic-ui-react'
 import Button from 'react-uikit-notify';
 
@@ -16,6 +19,7 @@ class Preview extends React.Component {
     this.state = {
       open: false,
 
+      currentNav: this.props.navigation,
     }
   }
 
@@ -70,12 +74,34 @@ class Preview extends React.Component {
 /*{this.props.response === "success" ? renderNotifyCreateSuccess : (<div>Not success</div>)}
 */
 
+
 onLive = () => {
+  this.setState({currentNav: e.target.id});
+  this.props.updateNavPath(e.target.id);
   this.props.storeLiveEventDetails(this.props.events)
+  
 }
+
+// onClick, updateNavPath is fired in the actions to send to reducer, to be exported as props for conditional rendering
+onClick = (e) => {
+  // const state = this.state;
+  console.log('clicked on: ', e.target.id)
+  this.setState({currentNav: e.target.id});
+  //console.log('new component state', this.state)
+  this.props.updateNavPath(e.target.id);
+  //console.log('curretNav state: ', this.state.currentNav)
+}
+
+onEdit = (e) => {
+  console.log('clicked on: ', e.target.id)
+  this.setState({currentNav: e.target.id});
+  this.props.updateNavPath(e.target.id);
+}
+
+
   render() {
 
-    const { open, size } = this.state
+    // const { open, size } = this.state
     let events = this.props.events
 
     const renderNotifyCreateSuccess = () => {
@@ -101,7 +127,7 @@ onLive = () => {
 
         {this.props.response.createEvent === "success" ? renderNotifyCreateSuccess() : (<div></div>)}
 
-        <a href="/dashboard">
+        <a href="" id="previewBackToDashboard" name="previewBackToDashboard" onClick={this.onClick}>
           <div className="back-button">
             <button className="btn-custom">Back to dashboard</button>
           </div>
@@ -129,29 +155,30 @@ onLive = () => {
         {this.props.response.deleteEvent === "success" ? renderNotifyDeleteSuccess() : (<div></div>)}
 
         <div className="event-preview-button">
-          <Link to="/guest">
+
             <button type="button"
                     className="btn-custom"
+                    id="addGuest"
                     onClick={this.onClick}>Add Guest</button>
-          </Link>
-          <Link to="/invitetemplate">
+
             <button type="button"
                     className="btn-custom"
+                    id="manageInvite"
                     onClick={this.onClick}>Manage Invite</button>
-          </Link>
+
             <button type="button"
                     className="btn-custom"
                     onClick={this.onDelete}>Delete</button>
-          <Link to="/updateEvent">
+
             <button type="button"
                     className="btn-custom"
+                    id="updateEvent"
                     onClick={this.onEdit}>Edit</button>
-            </Link>
-            <Link to="/LiveRegistration">
+
               <button type="button"
                       className="btn-custom"
+                      id="goLive"
                       onClick={this.OnLive}>Go Live!</button>
-              </Link>
         </div>
 
        </div>
@@ -161,7 +188,8 @@ onLive = () => {
 const mapStateToProps = (state) => {
   return {
     events: state.active,
-    response: state.response
+    response: state.response,
+    navigation: state.navigation,
   }
 }
 
@@ -171,9 +199,24 @@ const mapDispatchToProps = (dispatch) => {
     activeEvent: (event) => {dispatch(activeEvent(event))},
     deleteEvent: (event) => {dispatch(deleteEvent(event))},
     updateEvent: (event) => {dispatch(updateEvent(event))},
+
     storeLiveEventDetails:(event) => {dispatch(storeLiveEventDetails(event))}
+    updateNavPath: (currentNav) => {dispatch(updateNavPath(currentNav))}
+
 
   }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Preview);
+
+// <Link to="/guest">
+// </Link>
+
+// <Link to="/invitetemplate">
+// </Link>
+
+// <Link to="/updateEvent">
+// </Link>
+
+// <Link to="/LiveRegistration">
+// </Link>

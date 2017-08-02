@@ -56,7 +56,7 @@ export default class CreateGuestRow extends React.Component {
             <input type="text"
                    name="name"
                    placeholder="Name"
-                   className="form-control"
+                   className="uk-input"
                    onChange={this.onChange}
                    defaultValue={this.state.name}
                    value={this.state.name}/>
@@ -66,7 +66,7 @@ export default class CreateGuestRow extends React.Component {
           <div className="form-group">
             <input name="email"
                    placeholder="Email"
-                   className="form-control"
+                   className="uk-input"
                    onChange={this.onChange}
                    defaultValue={this.state.email}
                    value={this.state.email}/>
@@ -76,7 +76,7 @@ export default class CreateGuestRow extends React.Component {
           <div className="form-group">
             <input name="contact"
                    placeholder="Contact"
-                   className="form-control"
+                   className="uk-input"
                    onChange={this.onChange}
                    defaultValue={this.state.contact}
                    value={this.state.contact}/>
@@ -85,7 +85,7 @@ export default class CreateGuestRow extends React.Component {
 
         <div className="col-md-2 PopulateGuests">
           <button type="button"
-                  className="btn btn-success"
+                  className="uk-button uk-button-default green-add-guest-button"
                   onClick={this.onClick}>Add Guest</button>
         </div>
 

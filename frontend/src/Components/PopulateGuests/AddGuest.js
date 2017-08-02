@@ -21,7 +21,7 @@ class AddGuest extends React.Component {
   renderGuests = () => {
     let guests = this.state.guests;
     return guests.map( (guest) => {
-      return <RenderGuests name={guest.name} email={guest.email} contact={guest.contact} id={guest.id} key={guest.id} removeGuestRow={this.removeGuestRow}/>
+      return (<RenderGuests name={guest.name} email={guest.email} contact={guest.contact} id={guest.id} key={guest.id} removeGuestRow={this.removeGuestRow}/>)
     })
   }
 
