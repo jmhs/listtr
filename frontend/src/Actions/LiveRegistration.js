@@ -2,43 +2,38 @@ const io = require('socket.io-client/dist/socket.io.js');
 const socket = io.connect('http://localhost:3001');
 
 export const fetchLiveEventData = (eventID) => {
-  return (dispatch)=>{
-  socket.emit('getAllGuests', eventID);
-  socket.on('guest list', (data) => {
-  console.log(data);
-  dispatch(storeLiveEventDetails(data))
-  })
- }
+  return (dispatch) => {
+    socket.emit('getAllGuests', eventID);
+    socket.on('guest list', (data) => {
+      console.log(data);
+      dispatch(storeLiveEventDetails(data))
+    })
+  }
 }
 
 export const updateLiveEventData = (newevent) => {
-  return (dispatch)=>{
-  socket.emit('updateGuestlist', newevent);
-  // socket.on('updatedEvent', (data) => {
-  // console.log(data);
-  // dispatch(storeLiveEventDetails(data))
-  // })
- }
-}
-
-export const fetchupdateLiveEventData = (eventID) => {
-  return (dispatch)=>{
-  socket.on(eventID, (data) => {
-  console.log("updatedEvent", data);
-  dispatch(updateLiveEventDetails(data))
-})}}
-
-
-export const storeLiveEventDetails = (event) =>{
-  return {
-  type:"STORE_DETAILS",
-  event
+  return (dispatch) => {
+    socket.emit('updateGuestlist', newevent);
+    // socket.on('updatedEvent', (data) => {
+    // console.log(data);
+    // dispatch(storeLiveEventDetails(data))
+    // })
   }
 }
 
-export const updateLiveEventDetails = (event) =>{
-  return {
-  type:"UPDATE_EVENT",
-  event
+export const fetchupdateLiveEventData = () => {
+  return (dispatch) => {
+    socket.on("updatedEvent", (data) => {
+      console.log("updatedEvent", data);
+      dispatch(updateLiveEventDetails(data))
+    })
   }
+}
+
+export const storeLiveEventDetails = (event) => {
+  return {type: "STORE_DETAILS", event}
+}
+
+export const updateLiveEventDetails = (event) => {
+  return {type: "UPDATE_EVENT", event}
 }

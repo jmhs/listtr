@@ -14,7 +14,7 @@ class LiveRegistration extends React.Component {
 
     this.state = {
         searchValue: "",
-        guests: this.props.liveEvent.guests,
+        guests: this.props.LiveRegistration.guests,
         filteredGuests:""
     }
   }
@@ -29,16 +29,17 @@ class LiveRegistration extends React.Component {
     // this.props.storeLiveEventDetails(data)
     console.log('component did mount')
     this.props.fetchLiveEventData(this.props.active._id);
+    this.props.fetchupdateLiveEventData()
   }
 
   componentDidUpdate(){
-    console.log('c will update')
+
 
   }
 
   renderGuests = (filter) => {
     let guests
-    filter ? guests = this.state.filteredGuests : guests = this.state.guests
+    filter ? guests = this.state.filteredGuests : guests = this.props.LiveRegistration.guests
 
     console.log(guests)
     if (guests) {
@@ -86,22 +87,24 @@ class LiveRegistration extends React.Component {
 Checkbox = (e) => {
   // const io = require('socket.io-client/dist/socket.io.js');
   // const socket = io.connect('http://localhost:3001');
-  this.props.fetchupdateLiveEventData(this.props.active._id)
+  // this.props.fetchupdateLiveEventData()
   console.log(e.target.checked)
-  let guests = this.props.liveEvent.guests
+  let guests = this.props.LiveRegistration.guests
   let guest = guests.filter( (guest,index) => {
       return guest.id === e.target.name;
     })
-        // console.log(guest)
+
   if(e.target.checked == true){
 
     guest[0].checkedIn = true
-    this.props.updateLiveEventData(this.props.liveEvent);
+    this.props.updateLiveEventData(this.props.LiveRegistration);
+
     console.log("TRUEEE")
 
   }else if (e.target.checked == false) {
     guest[0].checkedIn = false
-    this.props.updateLiveEventData(this.props.liveEvent);
+    this.props.updateLiveEventData(this.props.LiveRegistration);
+
     console.log("FALSE")
   }
 }
@@ -112,11 +115,11 @@ Search =(e)=>{
     let state = this.state
     let filtered = ""
     let queryText = e.target.value
-    console.log(queryText)
+
     // If user is searching, filter
     if (queryText !== '') {
       filtered = this.state.guests.filter((el) => {
-        console.log(el.name)
+
         return el.name.toLowerCase().includes(queryText.toLowerCase()) ||
                el.email.toLowerCase().includes(queryText.toLowerCase()) ||
                el.contact.toLowerCase().includes(queryText.toLowerCase())
@@ -187,7 +190,7 @@ const mapStateToProps = (state) => {
   return {
     active: state.active,
     user: state.user,
-    liveEvent: state.LiveRegistration
+    LiveRegistration: state.LiveRegistration
   }
 }
 const mapDispatchToProps = (dispatch) => {
@@ -195,7 +198,7 @@ const mapDispatchToProps = (dispatch) => {
     storeLiveEventDetails: (data) => { dispatch(storeLiveEventDetails(data))},
     fetchLiveEventData: (eventID) => {dispatch(fetchLiveEventData(eventID))},
     updateLiveEventData: (data) => {dispatch(updateLiveEventData(data))},
-    fetchupdateLiveEventData: (data) => {dispatch(fetchupdateLiveEventData(data))}
+    fetchupdateLiveEventData: () => {dispatch(fetchupdateLiveEventData())}
 }}
 
 export default connect(mapStateToProps, mapDispatchToProps)(LiveRegistration);
