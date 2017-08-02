@@ -71,7 +71,7 @@ componentDidMount(){
 
           <div className="col-sm-6 col-sm-offset-3" id="responseVerificationHeader">
             <h1>RESPONSE VERIFICATION</h1>
-            <p>Click on the button below to verify you are human!</p>
+            <p>Can't wait to hear from you!</p>
             <hr/>
           </div>
 
