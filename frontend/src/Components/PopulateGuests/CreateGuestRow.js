@@ -52,31 +52,31 @@ export default class CreateGuestRow extends React.Component {
     return (
       <section className="row create">
         <div className="col-md-2 title">
-          <div className="uk-input">
+          <div className="form-group">
             <input type="text"
                    name="name"
                    placeholder="Name"
-                   className="form-control"
+                   className="uk-input"
                    onChange={this.onChange}
                    defaultValue={this.state.name}
                    value={this.state.name}/>
           </div>
         </div>
         <div className="col-md-2 price">
-          <div className="uk-input">
+          <div className="form-group">
             <input name="email"
                    placeholder="Email"
-                   className="form-control"
+                   className="uk-input"
                    onChange={this.onChange}
                    defaultValue={this.state.email}
                    value={this.state.email}/>
           </div>
         </div>
         <div className="col-md-2 title">
-          <div className="uk-input">
+          <div className="form-group">
             <input name="contact"
                    placeholder="Contact"
-                   className="form-control"
+                   className="uk-input"
                    onChange={this.onChange}
                    defaultValue={this.state.contact}
                    value={this.state.contact}/>
@@ -85,7 +85,7 @@ export default class CreateGuestRow extends React.Component {
 
         <div className="col-md-2 PopulateGuests">
           <button type="button"
-                  className="btn btn-success"
+                  className="uk-button uk-button-default green-add-guest-button"
                   onClick={this.onClick}>Add Guest</button>
         </div>
 
