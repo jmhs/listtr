@@ -133,67 +133,62 @@ onEdit = (e) => {
 
       <div className="container-fluid">
 
-
         {this.props.response.createEvent === "success" ? renderNotifyCreateSuccess() : (<div></div>)}
+
       <div className="row">
-        <a href="" id="previewBackToDashboard" name="previewBackToDashboard" onClick={this.onClick}>
-          <div className="back-button">
-            <button className="btn-custom">Back to dashboard</button>
+
+        <div className="card eventCoverCard">
+          <div className="card-header">
+            <p id="eventCoverCardHeader"><i className="fa fa-picture-o fa-lg previewIcons" aria-hidden="true"/> {events.eventName}</p>
           </div>
-        </a>
+          <div className="card-block">
+            <img src={events.eventImage} id="previewImg"/>
+          </div>
+        </div>
+
+        <div className="card eventActions">
+          <div className="card-header">
+          <p id="eventActionsHeader">ACTIONS</p>
+          </div>
+        <ul className="list-group">
+          <a><li className="list-group-item" id="goLive" onClick={this.onLive}>GO LIVE!</li></a>
+          <a><li className="list-group-item" id="addGuest" onClick={this.onClick}>Manage Guests</li></a>
+          <a><li className="list-group-item" id="manageInvite" onClick={this.onClick}>Manage Invitation</li></a>
+          <a><li className="list-group-item" id="updateEvent" onClick={this.onEdit}>Edit Event</li></a>
+          <a><li className="list-group-item" onClick={this.onDelete}>Delete</li></a>
+          <a><li className="list-group-item" id="previewBackToDashboard" onClick={this.onClick}>Back to Dashboard</li></a>
+        </ul>
       </div>
 
-        <div className="row">
-          <div className="imageRowWrapper">
-          <div className ='imageRow'>
-            <img src={events.eventImage}/>
-          </div>
-          </div>
+      {this.props.response.deleteEvent === "success" ? renderNotifyDeleteSuccess() : (<div></div>)}
+
+      </div>
+
+      <div className="row">
+
+      <div className="card eventDetailsCard">
+        <div className="card-header">
+          <p id="eventDetailsHeader"><i className="fa fa-picture-o fa-lg previewIcons" aria-hidden="true"/> DETAILS</p>
         </div>
-
-        <div id="progress-bar">
-
+        <div className="card-block">
+          <p><strong>Location:</strong> {events.location}</p>
+          <p><strong>Start Date:</strong> {events.startDate}</p>
+          <p><strong>End Date:</strong> {events.endDate}</p>
+          <p><strong>Time Start:</strong> {events.timeStart}</p>
+          <p><strong>Time End:</strong> {events.timeEnd}</p>
         </div>
+      </div>
 
-        <div id="event-preview-info">
-          <h2 id="event-preview-title">{events.eventName}</h2>
-          <h3 className="event-preview-location">{events.location}</h3>
-
-          <h4>Start: {events.startDate}</h4>
-          <h4>End: {events.endDate}</h4>
-          <h4>Time Start: {events.timeStart}</h4>
-          <h4>Time End: {events.timeEnd}</h4>
-          <h4>{events.description}</h4>
+      <div className="card eventDescriptionCard">
+        <div className="card-header">
+          <p id="eventDescriptionHeader"><i className="fa fa-picture-o fa-lg previewIcons" aria-hidden="true"/> DESCRIPTION</p>
         </div>
-
-        {this.props.response.deleteEvent === "success" ? renderNotifyDeleteSuccess() : (<div></div>)}
-
-        <div className="event-preview-button">
-
-            <button type="button"
-                    className="btn-custom"
-                    id="addGuest"
-                    onClick={this.onClick}>Manage Guests</button>
-
-            <button type="button"
-                    className="btn-custom"
-                    id="manageInvite"
-                    onClick={this.onClick}>Manage Invite</button>
-
-            <button type="button"
-                    className="btn-custom"
-                    onClick={this.onDelete}>Delete</button>
-
-            <button type="button"
-                    className="btn-custom"
-                    id="updateEvent"
-                    onClick={this.onEdit}>Edit</button>
-
-              <button type="button"
-                      className="btn-custom"
-                      id="goLive"
-                      onClick={this.onLive}>Go Live!</button>
+        <div className="card-block">
+          <p><strong>Description:</strong> {events.description}</p>
         </div>
+      </div>
+
+      </div>
 
        </div>
 

@@ -4,18 +4,53 @@
   color: black;
 }
 
-.imageRowWrapper {
-  border: 1px solid gray;
-  margin-left: 18vw;
-  height: 50vh;
+/*#previewActionBtns {
+  background: green;
+}*/
+
+.eventCoverCard {
+  width: 55vw;
+  margin-top: 20px;
 }
 
-.imageRow {
-  height: 50vh;
-  width: 40vw;
-  text-align: center;
-  padding-left: 10px;
+#eventCoverCardHeader, #eventActionsHeader, #eventDetailsHeader, #eventDescriptionHeader {
+  font-size: 20px;
+  font-weight: bold;
+  vertical-align: middle;
 }
+
+#previewImg {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  padding: 3px;
+}
+
+.previewIcons {
+  color: black;
+}
+
+.eventActions {
+  margin-top: 20px;
+  margin-left: 5vw;
+  height: 5vh;
+  width: 15vw;
+}
+
+.eventDetailsCard, .eventDescriptionCard {
+  width: 80vw;
+  margin-top: 20px;
+}
+
+.eventDescriptionCard {
+  margin-bottom: 20px;
+}
+
+
+
+
+
+
 
 #event-preview-title{
   word-wrap: break-word;
