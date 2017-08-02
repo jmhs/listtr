@@ -191,55 +191,17 @@ export const updateEvent = (events) => {
 
 }
 
+export const updateGuestInfoToStore = (event_id, guest) => {
+  return (dispatch) => {
+    axios.put('/event/guest/update/' + event_id, guest)
+      .then( (response) => {
+        console.log(response.data);
 
+        // dispatch(storeGuests(response.data))
 
-
-
-
-
-
-// export const updateReviewWithPic = (picReview, review) => {
-//   return (dispatch) => {
-//     // here picReview is a file
-//     let picReviewToBackEnd = new FormData();
-//     picReviewToBackEnd.append('picReview', picReview);
-//     picReviewToBackEnd.append('title', review.title);
-//     picReviewToBackEnd.append('star', review.star);
-//     picReviewToBackEnd.append('description', review.description);
-//     picReviewToBackEnd.append('picReviewPublicId', review.picReviewPublicId)
-//
-//     // axios function to send info to backend database
-//     axios.put('/review/updateReviewWithPic/'+review._id,picReviewToBackEnd)
-//     .then( (response)=>{
-//       // here picReview is a new url
-//       dispatch(updateUserReviewInStore(response.data))
-//     }).catch( (error) =>{
-//       dispatch(loadingReviewError(error));
-//     })
-//   }
-// }
-// export const updateReviewWithoutPic = (review) => {
-//   return (dispatch) => {
-//     // axios function to send info to backend database
-//     axios.put('/review/updateReviewWithoutPic/'+review._id,review)
-//     .then( (response)=>{
-//       dispatch(updateUserReviewInStore(response.data))
-//     }).catch( (error) =>{
-//       dispatch(loadingReviewError(error));
-//     })
-//   }
-// }
-
-// export function uploadSuccess({ data }) {
-//   return {
-//     type: 'UPLOAD_DOCUMENT_SUCCESS',
-//     data,
-//   };
-// }
-//
-// export function uploadFail(error) {
-//   return {
-//     type: 'UPLOAD_DOCUMENT_FAIL',
-//     error,
-//   };
-// }
+      })
+      .catch((error)=> {
+        console.error("guest not posted to server'")
+      });
+  }
+}
