@@ -5,24 +5,31 @@ import eventController from '../controllers/eventController';
 //sockets are the sockets to listen to specific events wihtin io stream
 module.exports = (io) =>{
   io.on('connection', (socket) => {
-
     socket.on('getAllGuests', (eventId) => {
-      console.log('Id number:', eventId )
+      socket.join(eventId)
+      console.log('You are in', eventId )
       eventController.getGuestlist(eventId, (guestlist) => {
-        io.emit('guest list', guestlist);
+        io.to(eventId).emit('guest list', guestlist);
         console.log(guestlist)
        });
     });
 
+
+
     socket.on('updateGuestlist', (event) => {
       console.log('incoming event:', event )
       eventController.updateGuestlist(event, (updatedevent) => {
-        io.emit(updatedevent._id, updatedevent);
+        io.to(event._id).emit("updatedEvent", updatedevent);
         console.log("outgoing event")
        });
     });
 
-
+  //   let chat = (ID) => {io.of('/'+ ID).on('connection', (socket) => {
+  //   socket.emit('a message', {
+  //       that: 'only'
+  //     , '/chat': 'will get'
+  //   });
+  // });}
 
   });
 };
