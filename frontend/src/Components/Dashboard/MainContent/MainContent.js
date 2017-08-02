@@ -81,6 +81,14 @@ class MainContent extends React.Component {
         return (<Preview />)
         break;
 
+      case "inviteTemplateBackToEventBtn":
+        return (<Preview />)
+        break;
+
+        case "backToPreviewAddGuestBtn":
+          return (<Preview />)
+          break;
+
 
       default:
         <div> <CreateEvent /> </div>

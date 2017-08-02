@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom'
 import { activeEvent, deleteEvent, updateEvent} from '../../Actions/Event';
 import {storeLiveEventDetails} from '../../Actions/LiveRegistration'
 import {updateNavPath} from '../../Actions/Navigation'
+import Loading from '../LoadingPage/LoadingPage'
 import './Preview.css';
 
 // import { Button, Modal } from 'semantic-ui-react'
@@ -33,6 +34,10 @@ class Preview extends React.Component {
     this.props.deleteEvent(this.props.events)
 
   }
+
+componentWillMount() {
+
+}
 
   componentDidMount(){
     let events = this.props.events
@@ -69,6 +74,9 @@ class Preview extends React.Component {
     //
     //   bar.animate(1.0);
     // }
+
+
+
 
   }
 /*{this.props.response === "success" ? renderNotifyCreateSuccess : (<div>Not success</div>)}
@@ -188,7 +196,7 @@ onEdit = (e) => {
 const mapStateToProps = (state) => {
   return {
     events: state.active,
-    response: state.response,
+    response: state.responseAJAX,
     navigation: state.navigation,
   }
 }

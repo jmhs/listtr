@@ -7,6 +7,7 @@ import RenderGuests from './RenderGuests'
 import './AddGuest.css'
 import CreateGuestRow from './CreateGuestRow'
 import { reminderEmail } from '../../Actions/Invite';
+import {updateNavPath} from '../../Actions/Navigation'
 
 class AddGuest extends React.Component {
   constructor(props) {
@@ -16,7 +17,7 @@ class AddGuest extends React.Component {
       guests: this.props.active.guests,
       viewPending: false,
       query: "",
-      filteredGuests: this.props.active.guests
+      // filteredGuests: this.props.active.guests
     }
   }
   componentWillMount(){
@@ -45,11 +46,11 @@ class AddGuest extends React.Component {
         bar.path.setAttribute('stroke', state.color);
         var value = Math.round(bar.value() * 100);
         if (value === 0) {
-          bar.setText('');
+          bar.setText('0%');
         } else {
           bar.setText(value +'%');
         }
-  
+
         bar.text.style.color = state.color;
       }
     });
@@ -57,13 +58,18 @@ class AddGuest extends React.Component {
     yesBar.text.style.fontSize = '2rem';
     let numberOfGuestsYes = 0;
     let guests = this.state.guests;
-    guests.forEach((el, index) => {
-      if (el.response ==="yes"){
-        numberOfGuestsYes++
-      }
-    })
-    let percentageYes = numberOfGuestsYes / guests.length;
-    yesBar.animate(percentageYes);
+    if(guests.length===0){
+      yesBar.animate(0)
+    } else {
+      guests.forEach((el, index) => {
+        if (el.response ==="yes"){
+          numberOfGuestsYes++
+        }
+      })
+      let percentageYes = numberOfGuestsYes / guests.length;
+      yesBar.animate(percentageYes);
+    }
+    
 
     var noBar = new ProgressBar.SemiCircle('#progress-bar-no', {
       strokeWidth: 6,
@@ -88,7 +94,7 @@ class AddGuest extends React.Component {
         } else {
           bar.setText(value +'%');
         }
-  
+
         bar.text.style.color = state.color;
       }
     });
@@ -96,13 +102,18 @@ class AddGuest extends React.Component {
     noBar.text.style.fontSize = '2rem';
     let numberOfGuestsNo = 0;
     // let guests = this.state.guests;
-    guests.forEach((el, index) => {
-      if (el.response ==="no"){
-        numberOfGuestsNo++
-      }
-    })
-    let percentageNo = numberOfGuestsNo / guests.length;
-    noBar.animate(percentageNo);
+    if(guests.length===0){
+      noBar.animate(0)
+    } else {
+      guests.forEach((el, index) => {
+        if (el.response ==="no"){
+          numberOfGuestsNo++
+        }
+      })
+      let percentageNo = numberOfGuestsNo / guests.length;
+      noBar.animate(percentageNo);
+    }
+    
 
     var pendingBar = new ProgressBar.SemiCircle('#progress-bar-pending', {
       strokeWidth: 6,
@@ -127,7 +138,7 @@ class AddGuest extends React.Component {
         } else {
           bar.setText(value +'%');
         }
-  
+
         bar.text.style.color = state.color;
       }
     });
@@ -135,19 +146,26 @@ class AddGuest extends React.Component {
     pendingBar.text.style.fontSize = '2rem';
     let numberOfGuestsPending = 0;
     // let guests = this.state.guests;
-    guests.forEach((el, index) => {
-      if (el.response ==="pending"){
-        numberOfGuestsPending++
-      }
-    })
-    let percentagePending = numberOfGuestsPending / guests.length;
-    pendingBar.animate(percentagePending);
 
-    
+    if(guests.length===0){
+      pendingBar.animate(0)
+    } else {
+      guests.forEach((el, index) => {
+        if (el.response ==="pending"){
+          numberOfGuestsPending++
+        }
+      })
+      let percentagePending = numberOfGuestsPending / guests.length;
+      pendingBar.animate(percentagePending);
+    }
+
   }
+
   renderGuests = () => {
     let guests = this.state.guests;
-    if (this.state.viewPending){
+    if (guests.length === 0){
+      return (<div>No guests added!</div>)
+    } else if (this.state.viewPending){
       let filteredGuests = guests.filter((guest) => {
         return guest.response === "pending"
       })
@@ -155,17 +173,17 @@ class AddGuest extends React.Component {
         return (guest.name.toLowerCase().includes(this.state.query.toLowerCase()) ? guest : "")
       })
       return filteredAgainGuests.map( (guest) => {
-        return (<RenderGuests name={guest.name} email={guest.email} contact={guest.contact} response={guest.response} id={guest.id} key={guest.id} removeGuestRow={this.removeGuestRow}/>)
+        return (<RenderGuests name={guest.name} email={guest.email} contact={guest.contact} response={guest.response} id={guest.id} key={guest.id} removeGuestRow={this.removeGuestRow} guestDetails={guest}/>)
       })
     } else {
       let filteredAgainGuests = guests.filter((guest) => {
         return (guest.name.toLowerCase().includes(this.state.query.toLowerCase()) ? guest : "")
       })
       return filteredAgainGuests.map( (guest) => {
-        return (<RenderGuests name={guest.name} email={guest.email} contact={guest.contact} response={guest.response} id={guest.id} key={guest.id} removeGuestRow={this.removeGuestRow}/>)
+        return (<RenderGuests name={guest.name} email={guest.email} contact={guest.contact} response={guest.response} id={guest.id} key={guest.id} removeGuestRow={this.removeGuestRow} guestDetails={guest}/>)
       })
     }
-    
+
   }
   toggleViewPending = (e) => {
     console.log('toggle view pending')
@@ -178,7 +196,7 @@ class AddGuest extends React.Component {
         viewPending: true
       })
     }
-    
+
   }
 
   searchName = (e) => {
@@ -222,7 +240,11 @@ class AddGuest extends React.Component {
     console.log("dispatching to action... reminderEmail")
   }
 
-
+  onClick = (e) => {
+    console.log('clicked on: ', e.target.id);
+    this.setState({currentNav: e.target.id});
+    this.props.updateNavPath(e.target.id);
+  }
 
   render() {
     const renderGuestsRows = this.renderGuests()
@@ -230,12 +252,10 @@ class AddGuest extends React.Component {
       <div className="container add-guest-container">
 
 
-        <Link to="/preview">
-
           <div className="back-button">
-            <button className="btn btn-default" >Back</button>
+            <button className="btn btn-default" id="backToPreviewAddGuestBtn" onClick={this.onClick} >Back</button>
           </div>
-        </Link>
+
         <div className="add-guest-header">
           <h1>Manage Guest</h1>
           <hr/>
@@ -250,7 +270,7 @@ class AddGuest extends React.Component {
           </div>
         </div>
 
-        <div className="row">
+        <div className="row progress-bar-container">
           <div className="col-sm-4 progress-bar-box">
             <h4 className="progress-bar-title">Percentage Yes</h4>
             <div id="progress-bar-yes">
@@ -267,7 +287,7 @@ class AddGuest extends React.Component {
             </div>
           </div>
         </div>
-        
+
         <div className="row">
           {renderGuestsRows}
         </div>
@@ -298,7 +318,11 @@ const mapDispatchToProps = (dispatch) => {
     postGuest: (active_id, guest) => {dispatch(postGuest(active_id, guest))},
     deleteGuest: (active_id, guest) => {dispatch(deleteGuest(active_id, guest))},
     reminderEmail: (active_id, event) => {dispatch(reminderEmail(active_id, event))},
+    updateNavPath: (currentNav) => {dispatch(updateNavPath(currentNav))}
   }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddGuest);//to include guest population
+
+<Link to="/preview">
+</Link>
