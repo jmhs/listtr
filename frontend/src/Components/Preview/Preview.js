@@ -75,11 +75,11 @@ class Preview extends React.Component {
 */
 
 
-onLive = () => {
+onLive = (e) => {
   this.setState({currentNav: e.target.id});
   this.props.updateNavPath(e.target.id);
   this.props.storeLiveEventDetails(this.props.events)
-  
+
 }
 
 // onClick, updateNavPath is fired in the actions to send to reducer, to be exported as props for conditional rendering
@@ -200,7 +200,7 @@ const mapDispatchToProps = (dispatch) => {
     deleteEvent: (event) => {dispatch(deleteEvent(event))},
     updateEvent: (event) => {dispatch(updateEvent(event))},
 
-    storeLiveEventDetails:(event) => {dispatch(storeLiveEventDetails(event))}
+    storeLiveEventDetails:(event) => {dispatch(storeLiveEventDetails(event))},
     updateNavPath: (currentNav) => {dispatch(updateNavPath(currentNav))}
 
 
