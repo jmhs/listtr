@@ -12,7 +12,9 @@ class AddGuest extends React.Component {
 
     this.state = {
       guests: this.props.active.guests,
-      viewPending: false
+      viewPending: false,
+      query: "",
+      filteredGuests: this.props.active.guests
     }
   }
   componentWillMount(){
@@ -35,7 +37,7 @@ class AddGuest extends React.Component {
         alignToBottom: false
       },
       from: {color: '#ED6A5A'},
-      to: {color: '#FFEA82'},
+      to: {color: '#00ad1f'},
       // Set default step function for all animate calls
       step: (state, bar) => {
         bar.path.setAttribute('stroke', state.color);
@@ -74,7 +76,7 @@ class AddGuest extends React.Component {
         alignToBottom: false
       },
       from: {color: '#ED6A5A'},
-      to: {color: '#FFEA82'},
+      to: {color: '#00ad1f'},
       // Set default step function for all animate calls
       step: (state, bar) => {
         bar.path.setAttribute('stroke', state.color);
@@ -113,7 +115,7 @@ class AddGuest extends React.Component {
         alignToBottom: false
       },
       from: {color: '#ED6A5A'},
-      to: {color: '#FFEA82'},
+      to: {color: '#00ad1f'},
       // Set default step function for all animate calls
       step: (state, bar) => {
         bar.path.setAttribute('stroke', state.color);
@@ -147,11 +149,17 @@ class AddGuest extends React.Component {
       let filteredGuests = guests.filter((guest) => {
         return guest.response === "pending"
       })
-      return filteredGuests.map( (guest) => {
+      let filteredAgainGuests = filteredGuests.filter((guest) => {
+        return (guest.name.toLowerCase().includes(this.state.query.toLowerCase()) ? guest : "")
+      })
+      return filteredAgainGuests.map( (guest) => {
         return (<RenderGuests name={guest.name} email={guest.email} contact={guest.contact} response={guest.response} id={guest.id} key={guest.id} removeGuestRow={this.removeGuestRow}/>)
       })
     } else {
-      return guests.map( (guest) => {
+      let filteredAgainGuests = guests.filter((guest) => {
+        return (guest.name.toLowerCase().includes(this.state.query.toLowerCase()) ? guest : "")
+      })
+      return filteredAgainGuests.map( (guest) => {
         return (<RenderGuests name={guest.name} email={guest.email} contact={guest.contact} response={guest.response} id={guest.id} key={guest.id} removeGuestRow={this.removeGuestRow}/>)
       })
     }
@@ -169,6 +177,12 @@ class AddGuest extends React.Component {
       })
     }
     
+  }
+
+  searchName = (e) => {
+    this.setState({
+      query: e.target.value
+    })
   }
   updateGuests = (guest) => {
     let guests = this.state.guests;
@@ -215,9 +229,15 @@ class AddGuest extends React.Component {
           <hr/>
         </div>
         <div className="row">
-          <input type="checkbox" name="view-pending" value="Car" onChange={this.toggleViewPending}/>View pending only<br/>
-          <button className="btn btn-default" >Send reminder</button>
+          <div className="col-sm-6">
+            <input type="checkbox" name="view-pending" value="Car" onChange={this.toggleViewPending}/>View pending only<br/>
+            <button className="btn btn-default" >Send reminder</button>
+          </div>
+          <div className="col-sm-3">
+            <input type="text" className="uk-input" placeholder="Search Name" onChange={this.searchName}/>
+          </div>
         </div>
+
         <div className="row">
           <div className="col-sm-4 progress-bar-box">
             <h4 className="progress-bar-title">Percentage Yes</h4>
