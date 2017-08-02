@@ -27,7 +27,7 @@ class LiveRegistration extends React.Component {
     // socket.on('guest list', (data) => {
     // console.log(data);
     // this.props.storeLiveEventDetails(data)
-    console.log('component did wmount')
+    console.log('component did mount')
     this.props.fetchLiveEventData(this.props.active._id);
   }
 
@@ -129,30 +129,6 @@ Search =(e)=>{
     state.searchValue = queryText
     state.filteredGuests = filtered
     this.setState(state)
-  // let state = this.state
-  // state.searchValue = e.target.value;
-  // this.setState(state)
-  // let guests = this.state.guests
-  // // console.log(this.state.searchValue.length)
-  // // if (state.searchValue.length != 0) {
-  // let newguestArray =  guests.filter((el,index) => {
-  //   console.log(el,index)
-  //   if (el.name.includes(e.target.value)){
-  //     console.log(el)
-  //     return el;
-  //   }
-  //   this.setState({
-  //     guests: newguestArray
-  //   })
-  //
-  // })
-  // }
-
-  // if(state.searchValue.length === 0) {
-  //   this.setState({
-  //     guests: this.props.liveEvent.guests
-  //   })
-  // }
 
 }
 
