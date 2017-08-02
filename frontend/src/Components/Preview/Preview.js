@@ -79,7 +79,7 @@ onLive = (e) => {
   this.setState({currentNav: e.target.id});
   this.props.updateNavPath(e.target.id);
   this.props.storeLiveEventDetails(this.props.events)
-  
+
 }
 
 // onClick, updateNavPath is fired in the actions to send to reducer, to be exported as props for conditional rendering
@@ -178,7 +178,7 @@ onEdit = (e) => {
               <button type="button"
                       className="btn-custom"
                       id="goLive"
-                      onClick={this.OnLive}>Go Live!</button>
+                      onClick={this.onLive}>Go Live!</button>
         </div>
 
        </div>
