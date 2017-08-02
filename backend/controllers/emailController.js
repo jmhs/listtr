@@ -22,26 +22,16 @@ exports.handleEmail = (req, res) => {
         let eventResponseId = event._id;
         let guestResponseId = event.guests[i].id;
         let inviteEventImage = event.invites[0].inviteEventImage;
-        // console.log('inviteEventImage is: ', inviteEventImage)
         let inviteName = event.invites[0].inviteName;
-        // console.log('inviteName is: ', inviteName)
         let inviteStartDate = event.invites[0].inviteStartDate;
-        // console.log('inviteStartDate is: ', inviteStartDate);
         let inviteEndDate = event.invites[0].inviteEndDate;
-        // console.log('inviteEndDate is: ', inviteEndDate);
         let inviteTimeStart = event.invites[0].inviteTimeStart;
-        // console.log('inviteTimeStart is: ', inviteTimeStart);
         let inviteTimeEnd = event.invites[0].inviteTimeEnd;
-        // console.log('inviteTimeEnd is: ', inviteTimeEnd);
         let inviteLocation = event.invites[0].inviteLocation;
-        // console.log('inviteLocation is: ', inviteLocation);
         let inviteSubject = "You are invited to " + event.invites[0].inviteName + " !";
-        // console.log('inviteSubject is: ', inviteSubject);
         let inviteDescription = event.invites[0].inviteDescription;
-        // console.log('inviteDescription is: ', inviteDescription);
         let eventResponseLink = 'http://localhost:3000/responseverification/' + eventResponseId + '/' + guestResponseId;
-        // console.log('eventResponseLink is: ', eventResponseLink);
-        // console.log('guestEmail is: ', guestEmail);
+
         let helper = require('sendgrid').mail;
 
         // Email address to send FROM
@@ -108,6 +98,29 @@ exports.handleEmail = (req, res) => {
   })
   //res.json(event);
 }
+
+exports.reminderEmail = (req, res) => {
+  Event.findById(req.params.event_id, (err, event) => {
+    if (err) { return err; }
+  console.log(event.guests.response)
+})
+    res.json({message: ' Reminder email successfully sent!'})
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

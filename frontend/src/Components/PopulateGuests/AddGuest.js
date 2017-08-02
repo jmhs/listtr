@@ -5,6 +5,8 @@ import {storeGuestsToActive, postGuest, deleteGuest} from '../../Actions/Event'
 import RenderGuests from './RenderGuests'
 import './AddGuest.css'
 import CreateGuestRow from './CreateGuestRow'
+import { reminderEmail } from '../../Actions/Invite';
+
 class AddGuest extends React.Component {
   constructor(props) {
     super(props);
@@ -53,6 +55,16 @@ class AddGuest extends React.Component {
       guests: guests
     })
   }
+
+  reminderEmail = (e) => {
+    e.preventDefault();
+    console.log("clicked sendReminderEmails!");
+    this.props.reminderEmail(this.props.active._id, this.state)
+    console.log("dispatching to action... reminderEmail")
+  }
+
+
+
   render() {
     const renderGuestsRows = this.renderGuests()
     return (
@@ -73,7 +85,11 @@ class AddGuest extends React.Component {
           {renderGuestsRows}
         </div>
         <CreateGuestRow updateGuests={this.updateGuests}/>
+        <button className="uk-button uk-button-primary"
+                id="sendReminderEmailsBtn" onClick={this.reminderEmail}>SEND REMINDER!</button>
       </div>
+
+
     );
   }
 }
@@ -92,7 +108,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     storeGuestsToActive: (active, guests) => {dispatch(storeGuestsToActive(active, guests))},
     postGuest: (active_id, guest) => {dispatch(postGuest(active_id, guest))},
-    deleteGuest: (active_id, guest) => {dispatch(deleteGuest(active_id, guest))}
+    deleteGuest: (active_id, guest) => {dispatch(deleteGuest(active_id, guest))},
+    reminderEmail: (active_id, event) => {dispatch(reminderEmail(active_id, event))},
   }
 }
 
