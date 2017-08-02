@@ -234,11 +234,11 @@ class CreateEvent extends React.Component {
         <legend className="uk-legend">Event Image</legend>
 
           <input name="file" type="file" onChange={this.imageUpload}/>
-          <Link to='/preview'>
+
           <button type="submit"
                   className="btn btn-success"
                   id="postEventToPreview"
-                  onClick={this.onClick}>Create Event</button></Link>
+                  onClick={this.onClick}>Create Event</button>
 
 
         </div>
@@ -273,3 +273,6 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateEvent);
+
+// <Link to='/preview'>
+// </Link>

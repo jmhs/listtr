@@ -15,7 +15,6 @@ export const postInvite = (event_id, invite) => {
     .then((response) => {
       console.log(response);
       console.log("AJAX: Created New Invite @ '/invite/postInvite'");
-      window.location.href = "/dashboard";
     })
     .catch((error)=> {
       console.log(error);
