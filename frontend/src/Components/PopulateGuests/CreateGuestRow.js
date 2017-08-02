@@ -52,7 +52,7 @@ export default class CreateGuestRow extends React.Component {
     return (
       <section className="row create">
         <div className="col-md-2 title">
-          <div className="form-group">
+          <div className="uk-input">
             <input type="text"
                    name="name"
                    placeholder="Name"
@@ -63,7 +63,7 @@ export default class CreateGuestRow extends React.Component {
           </div>
         </div>
         <div className="col-md-2 price">
-          <div className="form-group">
+          <div className="uk-input">
             <input name="email"
                    placeholder="Email"
                    className="form-control"
@@ -73,7 +73,7 @@ export default class CreateGuestRow extends React.Component {
           </div>
         </div>
         <div className="col-md-2 title">
-          <div className="form-group">
+          <div className="uk-input">
             <input name="contact"
                    placeholder="Contact"
                    className="form-control"
