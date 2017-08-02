@@ -22,7 +22,10 @@ export default class RenderGuests extends React.Component {
         <div className="col-sm-3">
           {this.props.contact}
         </div>
-        <div className="col-sm-2">
+        <div className="col-sm-1">
+          {this.props.response}
+        </div>
+        <div className="col-sm-1">
           <button type="button" className="btn btn-danger" onClick={this.toDelete}>Delete</button>
         </div>
       </div>

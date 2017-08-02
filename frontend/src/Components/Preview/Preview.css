@@ -8,12 +8,6 @@
 .event-preview-location{
   word-wrap: break-word;
 }
-#progress-bar{
-  margin: auto auto;
-  margin-top: 10px;
-width: 200px;
-height: 100px;
-}
 
 .success-alert{
   border-radius: 0;
