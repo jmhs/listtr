@@ -13,6 +13,7 @@ router.post('/postEvents', eventController.postEvent);
 router.post('/postEventsWithImage',upload.single('eventImage'), eventController.postEventsWithImage);
 router.put('/postInvite/:event_id', eventController.postInvite);
 router.put('/guest/:event_id', eventController.postGuest);
+router.put('/guest/update/:event_id', eventController.updateGuestInfo);
 router.put('/guest/deleteGuest/:event_id', eventController.deleteGuest);
 router.put('/updateEvents/:event_id', eventController.updateEvents);
 router.put('/updateEventsWithImage/:event_id',upload.single('eventImage'), eventController.updateEventsWithImage);

@@ -1,6 +1,8 @@
 import React, {PropTypes} from 'react';
+import {connect} from 'react-redux'
 import './RenderGuests.css'
-export default class RenderGuests extends React.Component {
+import {updateGuestInfoToStore} from '../../Actions/Event'
+class RenderGuests extends React.Component {
   constructor(props) {
     super(props);
 
@@ -9,7 +11,10 @@ export default class RenderGuests extends React.Component {
       name: this.props.name,
       email: this.props.email,
       contact: this.props.contact,
-      response: this.props.response
+      response: this.props.response,
+      id: this.props.id,
+      checkedIn: this.props.guestDetails.checkedIn
+
     }
   }
   toDelete = () => {
@@ -23,6 +28,15 @@ export default class RenderGuests extends React.Component {
       this.setState({
         editing: false
       })
+      let guest = {
+        name: this.state.name,
+        email: this.state.email,
+        contact: this.state.contact,
+        response: this.state.response,
+        id: this.state.id,
+        checkedIn: this.state.checkedIn
+      }
+      this.props.updateGuestInfoToStore(this.props.active._id, guest)
     } else {
       this.setState({
         editing: true
@@ -80,3 +94,18 @@ export default class RenderGuests extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    active: state.active
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  console.log(dispatch)
+  return {
+    updateGuestInfoToStore: (active_id, event) => {dispatch(updateGuestInfoToStore(active_id, event))},
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(RenderGuests);//to include guest population

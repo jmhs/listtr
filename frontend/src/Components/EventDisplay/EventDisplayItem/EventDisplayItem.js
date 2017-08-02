@@ -22,7 +22,11 @@ class EventDisplayItem extends React.Component {
   console.log('clicked on: ', e.target.id);
   this.setState({currentNav: e.target.id});
   this.props.updateNavPath(e.target.id);
-  this.props.activeEvent(this.props.everything)
+  let events = this.props.events;
+  let eventToBeActive = events.filter((event) => {
+    return event._id === this.props.id
+  })
+  this.props.activeEvent(eventToBeActive[0])
   console.log(this.props.everything)
   //everything refers to everything inherited from clicked event
 }
@@ -52,6 +56,7 @@ const mapStateToProps = (state) => {
   return {
     active: state.active,
     navigation: state.navigation,
+    events: state.events
   }
 };
 const mapDispatchToProps = (dispatch) => {

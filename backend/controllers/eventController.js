@@ -83,6 +83,40 @@ exports.postGuest = (req, res) => {
   })
 }
 
+exports.updateGuestInfo = (req, res) => {
+   console.log(req.body);
+   console.log('Inside if')
+  Event.findById(req.params.event_id, (err, event) => {
+    if (err) { return err; }
+    console.log('event', event)
+
+    let editedGuest = event.guests.filter((guest, index) => {
+      return guest.id === req.body.id
+    })
+
+    let guestOldArray = event.guests.filter((guest, index) => {
+      return guest.id !== req.body.id
+    })
+    editedGuest = editedGuest[0]
+    console.log(editedGuest)
+    console.log(guestOldArray)
+    editedGuest.name = req.body.name 
+    editedGuest.email = req.body.email
+    editedGuest.contact = req.body.contact
+    editedGuest.response = req.body.response
+
+    guestOldArray.push(editedGuest)
+    event.guests = guestOldArray;
+    event.markModified('guests');
+    event.save((err) => {
+      if (err) { return (err); }
+      console.log(event);
+
+    });
+    res.json(event);
+  })
+}
+
 // {
 //   '$pull':{'guests': { $elemMatch : {'id': req.body.id}}}
 // }
