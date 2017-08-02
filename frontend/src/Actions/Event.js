@@ -190,14 +190,19 @@ export const updateEvent = (events) => {
 
 
 }
-
+const updateGuestInfoToEventStateinStore = (event) => {
+  return {
+    type: 'UPDATE_GUEST_INFO_TO_STORE',
+    event
+  }
+}
 export const updateGuestInfoToStore = (event_id, guest) => {
   return (dispatch) => {
     axios.put('/event/guest/update/' + event_id, guest)
       .then( (response) => {
         console.log(response.data);
 
-        // dispatch(storeGuests(response.data))
+        dispatch(updateGuestInfoToEventStateinStore(response.data))
 
       })
       .catch((error)=> {

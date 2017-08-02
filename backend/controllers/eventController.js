@@ -97,16 +97,17 @@ exports.updateGuestInfo = (req, res) => {
     let guestOldArray = event.guests.filter((guest, index) => {
       return guest.id !== req.body.id
     })
-
+    editedGuest = editedGuest[0]
     console.log(editedGuest)
+    console.log(guestOldArray)
     editedGuest.name = req.body.name 
     editedGuest.email = req.body.email
     editedGuest.contact = req.body.contact
     editedGuest.response = req.body.response
 
     guestOldArray.push(editedGuest)
-    events.guests = guestOldArray;
-
+    event.guests = guestOldArray;
+    event.markModified('guests');
     event.save((err) => {
       if (err) { return (err); }
       console.log(event);
