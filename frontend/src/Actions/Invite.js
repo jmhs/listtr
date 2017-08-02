@@ -42,7 +42,7 @@ export const handleEmail = (event_id, event) => {
 // POSTING guest email invite request to server. Server will send out email invite.
 export const reminderEmail = (event_id, event) => {
   return (dispatch) => {
-    axios.post('/email/reminder' + event_id, event)
+    axios.post('/email/' + event_id +'/reminder', event)
     .then((response) => {
       console.log('sending reminderEmail action to server..');
       console.log(response);

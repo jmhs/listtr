@@ -59,7 +59,7 @@ class AddGuest extends React.Component {
   reminderEmail = (e) => {
     e.preventDefault();
     console.log("clicked sendReminderEmails!");
-    this.props.reminderEmail(this.props.active._id, this.state)
+    this.props.reminderEmail(this.props.events._id, this.state)
     console.log("dispatching to action... reminderEmail")
   }
 
@@ -99,7 +99,8 @@ class AddGuest extends React.Component {
 //export default PopulateGuests;
 const mapStateToProps = (state) => {
   return {
-    active: state.active
+    active: state.active,
+    events: state.active,
   }
 }
 
