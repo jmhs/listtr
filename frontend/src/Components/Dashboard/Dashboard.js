@@ -21,7 +21,7 @@ class Dashboard extends React.Component {
 
   // onClick, updateNavPath is fired in the actions to send to reducer, to be exported as props for conditional rendering
   onClick = (e) => {
-    const state = this.state;
+    // const state = this.state;
     console.log('clicked on: ', e.target.id)
 
     this.setState({currentNav: e.target.id});
@@ -53,7 +53,7 @@ class Dashboard extends React.Component {
       <div>
       <div className="row">
         <div id="headerrownav" className="col-xs-12">
-        <a className="logorow" id="listtrLogo" href="/">Listrr</a>
+        <a className="logorow" id="listtrLogo" href="/">Listtr</a>
         </div>
       </div>
 
