@@ -178,7 +178,7 @@ onEdit = (e) => {
               <button type="button"
                       className="btn-custom"
                       id="goLive"
-                      onClick={this.OnLive}>Go Live!</button>
+                      onClick={this.onLive}>Go Live!</button>
         </div>
 
        </div>
