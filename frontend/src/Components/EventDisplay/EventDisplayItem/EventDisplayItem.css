@@ -73,3 +73,14 @@
 .link-to-preview:hover{
   text-decoration: none;
 }
+@media only screen and (max-width: 400px) {
+  .event-grid-text{
+    top: 60%;
+  }
+  .event-grid-text:hover{
+    top: 60%;
+  }
+  .eventName{
+    font-size: 12px;
+  }
+}

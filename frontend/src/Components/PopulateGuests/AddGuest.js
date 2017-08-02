@@ -29,7 +29,7 @@ class AddGuest extends React.Component {
   componentDidMount(){
     var yesBar = new ProgressBar.SemiCircle('#progress-bar-yes', {
       strokeWidth: 6,
-      color: '#ED6A5A',
+      color: '#0FB28A',
       trailColor: '#eee',
       trailWidth: 1,
       easing: 'easeInOut',
@@ -39,8 +39,8 @@ class AddGuest extends React.Component {
         value: '',
         alignToBottom: false
       },
-      from: {color: '#ED6A5A'},
-      to: {color: '#00ad1f'},
+      from: {color: '#0FB28A'},
+      to: {color: '#0FB28A'},
       // Set default step function for all animate calls
       step: (state, bar) => {
         bar.path.setAttribute('stroke', state.color);
@@ -84,7 +84,7 @@ class AddGuest extends React.Component {
         alignToBottom: false
       },
       from: {color: '#ED6A5A'},
-      to: {color: '#00ad1f'},
+      to: {color: '#ED6A5A'},
       // Set default step function for all animate calls
       step: (state, bar) => {
         bar.path.setAttribute('stroke', state.color);
@@ -117,7 +117,7 @@ class AddGuest extends React.Component {
 
     var pendingBar = new ProgressBar.SemiCircle('#progress-bar-pending', {
       strokeWidth: 6,
-      color: '#ED6A5A',
+      color: '#939393',
       trailColor: '#eee',
       trailWidth: 1,
       easing: 'easeInOut',
@@ -127,8 +127,8 @@ class AddGuest extends React.Component {
         value: '',
         alignToBottom: false
       },
-      from: {color: '#ED6A5A'},
-      to: {color: '#00ad1f'},
+      from: {color: '#939393'},
+      to: {color: '#939393'},
       // Set default step function for all animate calls
       step: (state, bar) => {
         bar.path.setAttribute('stroke', state.color);
@@ -252,9 +252,7 @@ class AddGuest extends React.Component {
       <div className="container add-guest-container">
 
 
-          <div className="back-button">
-            <button className="btn btn-default" id="backToPreviewAddGuestBtn" onClick={this.onClick} >Back</button>
-          </div>
+          
 
         <div className="add-guest-header">
           <h1>Manage Guest</h1>
@@ -263,7 +261,7 @@ class AddGuest extends React.Component {
         <div className="row">
           <div className="col-sm-6">
             <input type="checkbox" name="view-pending" value="Car" onChange={this.toggleViewPending}/>View pending only<br/>
-            <button className="btn btn-default" >Send reminder</button>
+            
           </div>
           <div className="col-sm-3">
             <input type="text" className="uk-input" placeholder="Search Name" onChange={this.searchName}/>

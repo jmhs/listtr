@@ -87,8 +87,8 @@ class Dashboard extends React.Component {
           <div className="col-xs-10" id="contentwrapper">
 
             <div className="row">
-              <div className="col-md-12" id="contentNavHeader">
-                <h1>Welcome back, {this.props.user.username}!</h1>
+              <div className="row" id="contentNavHeader">
+                <h1 id="welcome-back-user">Welcome back, {this.props.user.username}!</h1>
                 <hr />
               </div>
               <div className="col-md-12" id="contentToRender">

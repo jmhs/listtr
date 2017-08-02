@@ -24,3 +24,6 @@ height: 100px;
 	margin: auto auto;
 	text-align: center;
 }
+input[type='checkbox']{
+	width: 50px;
+}
