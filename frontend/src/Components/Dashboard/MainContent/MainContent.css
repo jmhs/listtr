@@ -12,6 +12,7 @@
   margin: 5px;
 }
 
+
 #createEventBtn span {
   cursor: pointer;
   display: inline-block;
@@ -35,4 +36,5 @@
 #createEventBtn:hover span:after {
   opacity: 1;
   right: 0;
+
 }

@@ -12,10 +12,9 @@ class LiveRegistration extends React.Component {
   constructor(props) {
     super(props);
 
-
-    // this.state = {
-    //     isChecked: false
-    // }
+    this.state = {
+        searchValue: ""
+    }
   }
 
   componentDidMount(){
@@ -40,6 +39,7 @@ class LiveRegistration extends React.Component {
 
 
   renderGuests = () => {
+
     let guests = this.props.liveEvent.guests
     console.log(guests)
     if (guests) {
@@ -58,7 +58,19 @@ class LiveRegistration extends React.Component {
                </tbody>
             )
           })
-        }}
+        }
+      else if (guests == undefined){
+        return (
+                <tbody key>
+                   <tr>
+                     <td className="uk-table-link"><h2>You do not have Any guests!</h2></td>
+                   </tr>
+                 </tbody>
+              )
+      }
+      // else if (this.state.searchValue.len())
+
+      }
 
   // renderChecked = (guest) =>{
   //   if (guest.checkedIn === false){
@@ -77,7 +89,7 @@ class LiveRegistration extends React.Component {
 Checkbox = (e) => {
   // const io = require('socket.io-client/dist/socket.io.js');
   // const socket = io.connect('http://localhost:3001');
-  this.props.fetchupdateLiveEventData()
+  this.props.fetchupdateLiveEventData(this.props.active._id)
   console.log(e.target.checked)
   let guests = this.props.liveEvent.guests
   let guest = guests.filter( (guest,index) => {
@@ -87,24 +99,24 @@ Checkbox = (e) => {
   if(e.target.checked == true){
 
     guest[0].checkedIn = true
-    // this.setState({
-    //   isChecked: true
-    // })
     this.props.updateLiveEventData(this.props.liveEvent);
     console.log("TRUEEE")
 
   }else if (e.target.checked == false) {
     guest[0].checkedIn = false
-    // this.setState({
-    //   isChecked: false
-    // })
     this.props.updateLiveEventData(this.props.liveEvent);
     console.log("FALSE")
   }
-
-
 }
 
+
+Search =(e)=>{
+  let state = this.state
+  state.searchValue = e.target.value;
+  this.setState(state)
+  console.log(this.state.searchValue.length)
+
+}
 
   render() {
     const renderGuests = this.renderGuests();
@@ -115,6 +127,11 @@ console.log(this.state)
     <h1>Registrations</h1>
     </div>
       <div className="uk-overflow-auto uk-position-relative uk-margin-medium" >
+      <div className="uk-margin">
+          <form className="uk-search uk-search-default">
+            <input className="uk-search-input" type="search" placeholder="Search..." onChange={this.Search} />
+          </form>
+        </div>
               <table className="uk-table uk-table-hover uk-table-middle uk-table-divider">
                 <thead>
                   <tr>
@@ -139,6 +156,7 @@ console.log(this.state)
                 {this.renderGuests()}
               </table>
               <button onClick={this.addGuests}>Add Guests</button>
+              <button onClick={this.addGuests}>Back to dashboard</button>
 
             </div>
       </div>
@@ -162,7 +180,7 @@ const mapDispatchToProps = (dispatch) => {
     storeLiveEventDetails: (data) => { dispatch(storeLiveEventDetails(data))},
     fetchLiveEventData: (eventID) => {dispatch(fetchLiveEventData(eventID))},
     updateLiveEventData: (data) => {dispatch(updateLiveEventData(data))},
-    fetchupdateLiveEventData: () => {dispatch(fetchupdateLiveEventData())}
+    fetchupdateLiveEventData: (data) => {dispatch(fetchupdateLiveEventData(data))}
 }}
 
 export default connect(mapStateToProps, mapDispatchToProps)(LiveRegistration);
