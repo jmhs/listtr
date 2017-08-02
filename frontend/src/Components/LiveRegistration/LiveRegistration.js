@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import './LiveRegistration.css';
 import Table from 'react-uikit-table'
 import {storeLiveEventDetails, fetchLiveEventData, updateLiveEventData, fetchupdateLiveEventData} from '../../Actions/LiveRegistration'
+import {updateNavPath} from '../../Actions/Navigation'
 
 
 
@@ -135,12 +136,16 @@ Search =(e)=>{
 
 }
 
-
+onClick = (e) => {
+  console.log('clicked on: ', e.target.id)
+  this.setState({currentNav: e.target.id});
+  this.props.updateNavPath(e.target.id);
+}
 
   render() {
     console.log(this.state)
     return (
-    <div className="uk-container uk-container-small uk-position-relative">
+    <div className="uk-container uk-container-small uk-position-relative container">
     <div>
     <h1>Registrations</h1>
     </div>
@@ -174,7 +179,7 @@ Search =(e)=>{
                 {this.state.filteredGuests !== '' ? this.renderGuests(true) : this.renderGuests(false)}
               </table>
               <button onClick={this.addGuests}>Add Guests</button>
-              <button onClick={this.addGuests}>Back to dashboard</button>
+              <button id="liveRegistrationBackToDashboardBtn" onClick={this.onClick}>Back to dashboard</button>
 
             </div>
       </div>
@@ -198,7 +203,8 @@ const mapDispatchToProps = (dispatch) => {
     storeLiveEventDetails: (data) => { dispatch(storeLiveEventDetails(data))},
     fetchLiveEventData: (eventID) => {dispatch(fetchLiveEventData(eventID))},
     updateLiveEventData: (data) => {dispatch(updateLiveEventData(data))},
-    fetchupdateLiveEventData: () => {dispatch(fetchupdateLiveEventData())}
+    fetchupdateLiveEventData: () => {dispatch(fetchupdateLiveEventData())},
+    updateNavPath: (currentNav) => {dispatch(updateNavPath(currentNav))},
 }}
 
 export default connect(mapStateToProps, mapDispatchToProps)(LiveRegistration);

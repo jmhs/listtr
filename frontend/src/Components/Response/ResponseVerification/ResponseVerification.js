@@ -66,17 +66,20 @@ componentDidMount(){
 }
   render() {
     return (
-      <div className="container">
+      <div className="container-fluid" id="responseVerificationContainer">
         <div className="row">
-          <div className="col-sm-6 col-sm-offset-3">
+
+          <div className="col-sm-6 col-sm-offset-3" id="responseVerificationHeader">
             <h1>RESPONSE VERIFICATION</h1>
+            <p>Click on the button below to verify you are human!</p>
             <hr/>
           </div>
+
         </div>
         <div className="row">
           <div className="col-sm-6 col-sm-offset-3">
           <Link to="/responsedisplay">
-          <button className="uk-button uk-button-primary"
+          <button className="uk-button uk-button-default"
                   id="respondToInvitationBtn" onClick={this.onClick}>Respond to Invitation</button>
           </Link>
           </div>

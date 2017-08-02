@@ -5,6 +5,8 @@ import Button from 'react-uikit-button';
 
 import axios from 'axios';
 
+import './ResponseDisplay.css'
+
 class ResponseDisplay extends React.Component {
   constructor(props) {
     super(props);
@@ -69,82 +71,16 @@ class ResponseDisplay extends React.Component {
         });
 
         break;
-      // case 'rsvpMaybeBtn':
-      //   this.setState({
-      //     response: "maybe"
-      //   })
-      //   console.log('clicked rsvpMaybeBtn')
-      //   let data = {
-      //     response: "maybe",
-      //     guestId: this.state.guestId
-      //   }
-      //   console.log(data, this.props.events._id)
-      //   axios.put('/event/'+ this.props.events._id, {
-      //     data
-      //   })
-      //   .then( (response) => {
-      //     console.log(response);
-      //     console.log("AJAX: Updated guest response @ '/event/:event_id'");
-      //   })
-      //   .catch((error)=> {
-      //     console.log(error);
-      //   });
-      //   break;
+
       default:
     }
   }
-
-// updateGuestResponseY = (e) => {
-//   console.log('clicked rsvpYesBtn')
-//   let data = {
-//     response: "yes",
-//     guestId: this.state.guestId
-//   }
-//   console.log(data, this.props.events._id)
-//   axios.put('/event/'+ this.props.events._id, {
-//     data
-//   })
-//   .then( (response) => {
-//     console.log(response);
-//     console.log("AJAX: Updated guest response @ /event/+ this.props.events._id");
-//   })
-//   .catch((error)=> {
-//     console.log(error);
-//   });
-// }
-//
-// updateGuestResponseN = (e) => {
-//   console.log('clicked rsvpYesBtn')
-//   let data = {
-//     response: "no",
-//     guestId: this.state.guestId
-//   }
-//   console.log(data, this.props.events._id)
-//   axios.put('/event/'+ this.props.events._id, {
-//     data
-//   })
-//   .then( (response) => {
-//     console.log(response);
-//     console.log("AJAX: Updated guest response @ /event/+ this.props.events._id");
-//   })
-//   .catch((error)=> {
-//     console.log(error);
-//   });
-// }
-
-
-
 
   render() {
     console.log(this.state.response)
 
     return (
       <div>
-      <Link to="/">
-      <button className="uk-button uk-button-default"
-          id="backtoHomeBtnResponseDisplay" onClick={this.onClick}>Back to Home</button>
-          </Link>
-
 
       <center className="wrapper" style={{width: '100%', tableLayout: 'fixed', WebkitTextSizeAdjust: '100%', msTextSizeAdjust: '100%', backgroundColor: '#f3f2f0'}}>
               <table width="100%" cellPadding={0} cellSpacing={0}  style={{backgroundColor: '#f3f2f0'}} >
@@ -202,24 +138,28 @@ class ResponseDisplay extends React.Component {
 
                                         <p style={{color: '#000000', fontSize: 16, textAlign: 'left', fontFamily: 'Verdana, Geneva, sans-serif', lineHeight: 1}}><strong>Event Location:</strong> {this.props.events.location} </p>
                                         <p style={{color: '#000000', fontSize: 16, textAlign: 'left', fontFamily: 'Verdana, Geneva, sans-serif', lineHeight: 1}}><strong>Event Dress Code:</strong> {this.props.events.dressCode} </p>
-                                        <p style={{color: '#000000', fontSize: 16, textAlign: 'left', fontFamily: 'Verdana, Geneva, sans-serif', lineHeight: 1}}><strong>Event Type:</strong> {this.props.events.type} </p>
                                         <p style={{color: '#000000', fontSize: 16, textAlign: 'left', fontFamily: 'Verdana, Geneva, sans-serif', lineHeight: 1}}><strong>Event Start Date:</strong> {this.props.events.startDate} </p>
                                         <p style={{color: '#000000', fontSize: 16, textAlign: 'left', fontFamily: 'Verdana, Geneva, sans-serif', lineHeight: 1}}><strong>Event End Date:</strong> {this.props.events.endDate} </p>
                                         <p style={{color: '#000000', fontSize: 16, textAlign: 'left', fontFamily: 'Verdana, Geneva, sans-serif', lineHeight: 1}}><strong>Event Start Time:</strong> {this.props.events.timeStart} </p>
                                         <p style={{color: '#000000', fontSize: 16, textAlign: 'left', fontFamily: 'Verdana, Geneva, sans-serif', lineHeight: 1}}><strong>Event End Time:</strong> {this.props.events.timeEnd} </p>
                                         <p style={{color: '#000000', fontSize: 16, textAlign: 'left', fontFamily: 'Verdana, Geneva, sans-serif', lineHeight: 1, paddingTop: 20}}><strong>Description:</strong><br/><br/> {this.props.events.description} </p>
+
+                                        <hr/>
+
+                                        <h4><strong>Guest details :</strong></h4>
+                                        <p><strong>Name: </strong>{this.props.events.guests[0].name}</p>
+                                        <p><strong>Email: </strong>{this.props.events.guests[0].email}</p>
+                                        <p><strong>Contact: </strong>{this.props.events.guests[0].contact}</p>
+
+                                        <h4><strong>Click below to send your response:</strong></h4>
+                                        <button type="button" className="uk-button uk-button-default green-yes-button" id="rsvpYesBtn" onClick={this.updateGuestResponse}>Yes</button>
+                                        <button type="button" className="uk-button uk-button-default red-no-button" id="rsvpNoBtn" onClick={this.updateGuestResponse}>No</button>
+
                                         {/* START BUTTON */}
 
                                         {/* END BUTTON */}
                                         </td>
-                                        <h1>Guest details:</h1>
-                                        <h4>Name: {this.props.events.guests[0].name}</h4>
-                                        <h4>Email: {this.props.events.guests[0].email}</h4>
-                                        <h4>Contact: {this.props.events.guests[0].contact}</h4>
 
-                                        <h1>Click below to change it:</h1>
-                                        <Button context='success' body='Yes' margin='bottom right' id="rsvpYesBtn" onClick={this.updateGuestResponse}/>
-                                        <Button context='danger' body='No' margin='bottom right' id="rsvpNoBtn" onClick={this.updateGuestResponse}/>
 
 
                                     </tr>
@@ -308,6 +248,13 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(ResponseDisplay);
+
+// <Link to="/">
+// <button className="uk-button uk-button-default"
+//     id="backtoHomeBtnResponseDisplay" onClick={this.onClick}>Back to Home</button>
+//     </Link>
+
+// <p style={{color: '#000000', fontSize: 16, textAlign: 'left', fontFamily: 'Verdana, Geneva, sans-serif', lineHeight: 1}}><strong>Event Type:</strong> {this.props.events.type} </p>
 
 
 // <Button context='primary' body='Maybe' margin='bottom right' id="rsvpMaybeBtn" onClick={this.updateGuestResponse}/>

@@ -131,18 +131,24 @@ onEdit = (e) => {
 
     return (
 
-      <div className ='card'>
+      <div className="container-fluid">
+
 
         {this.props.response.createEvent === "success" ? renderNotifyCreateSuccess() : (<div></div>)}
-
+      <div className="row">
         <a href="" id="previewBackToDashboard" name="previewBackToDashboard" onClick={this.onClick}>
           <div className="back-button">
             <button className="btn-custom">Back to dashboard</button>
           </div>
         </a>
+      </div>
 
-        <div className ='cardimage'>
-          <img src={events.eventImage}/>
+        <div className="row">
+          <div className="imageRowWrapper">
+          <div className ='imageRow'>
+            <img src={events.eventImage}/>
+          </div>
+          </div>
         </div>
 
         <div id="progress-bar">
@@ -167,7 +173,7 @@ onEdit = (e) => {
             <button type="button"
                     className="btn-custom"
                     id="addGuest"
-                    onClick={this.onClick}>Add Guest</button>
+                    onClick={this.onClick}>Manage Guests</button>
 
             <button type="button"
                     className="btn-custom"
@@ -190,6 +196,7 @@ onEdit = (e) => {
         </div>
 
        </div>
+
      );
   }
 }
@@ -216,6 +223,9 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Preview);
+
+// <div className ='card'>
+//    </div>
 
 // <Link to="/guest">
 // </Link>

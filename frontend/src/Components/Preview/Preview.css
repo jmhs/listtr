@@ -1,5 +1,22 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 
+.container-fluid {
+  color: black;
+}
+
+.imageRowWrapper {
+  border: 1px solid gray;
+  margin-left: 18vw;
+  height: 50vh;
+}
+
+.imageRow {
+  height: 50vh;
+  width: 40vw;
+  text-align: center;
+  padding-left: 10px;
+}
+
 #event-preview-title{
   word-wrap: break-word;
   margin-left: 5px;
@@ -17,7 +34,7 @@
   margin-top: 10px;
   margin-bottom: 10px;
 }
-.card {
+/*.card {
   background: #FFFFFF;
   color: black;
   max-width: 500px;
@@ -27,8 +44,8 @@
   box-sizing: border-box;
   text-align: center;
   font-family: 'Montserrat', sans-serif;
-}
-.cardimage {
+}*/
+/*.cardimage {
     width: 100%;
     min-height: 200px;
     vertical-align: top;
@@ -41,7 +58,7 @@
   margin-left: auto;
   margin-right: auto;
   display: block;
-}
+}*/
 .event-preview-button{
   margin-bottom: 20px;
 }

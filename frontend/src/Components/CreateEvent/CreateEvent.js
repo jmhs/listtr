@@ -175,15 +175,7 @@ class CreateEvent extends React.Component {
 
           </div>
         </div>
-        <div className="create-row">
-          <legend className="uk-legend">Type</legend>
-          <div className="uk-margin">
-            <input className="uk-input" type="text"
-                   name="type"
-                   placeholder="Type"
-                   onChange={this.onChange}/>
-          </div>
-        </div>
+
         <div className="create-row">
           <legend className="uk-legend">Dresscode *</legend>
           <div className="uk-margin">
@@ -276,3 +268,13 @@ export default connect(mapStateToProps, mapDispatchToProps)(CreateEvent);
 
 // <Link to='/preview'>
 // </Link>
+
+// <div className="create-row">
+//   <legend className="uk-legend">Type</legend>
+//   <div className="uk-margin">
+//     <input className="uk-input" type="text"
+//            name="type"
+//            placeholder="Type"
+//            onChange={this.onChange}/>
+//   </div>
+// </div>
