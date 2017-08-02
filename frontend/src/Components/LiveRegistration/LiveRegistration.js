@@ -40,7 +40,9 @@ class LiveRegistration extends React.Component {
 
 
   renderGuests = () => {
+
     let guests = this.props.liveEvent.guests
+
     console.log(guests)
     if (guests) {
     return guests.map((guest) => {
@@ -77,7 +79,7 @@ class LiveRegistration extends React.Component {
 Checkbox = (e) => {
   // const io = require('socket.io-client/dist/socket.io.js');
   // const socket = io.connect('http://localhost:3001');
-  this.props.fetchupdateLiveEventData()
+  this.props.fetchupdateLiveEventData(this.props.active._id)
   console.log(e.target.checked)
   let guests = this.props.liveEvent.guests
   let guest = guests.filter( (guest,index) => {
@@ -87,17 +89,11 @@ Checkbox = (e) => {
   if(e.target.checked == true){
 
     guest[0].checkedIn = true
-    // this.setState({
-    //   isChecked: true
-    // })
     this.props.updateLiveEventData(this.props.liveEvent);
     console.log("TRUEEE")
 
   }else if (e.target.checked == false) {
     guest[0].checkedIn = false
-    // this.setState({
-    //   isChecked: false
-    // })
     this.props.updateLiveEventData(this.props.liveEvent);
     console.log("FALSE")
   }
@@ -162,7 +158,7 @@ const mapDispatchToProps = (dispatch) => {
     storeLiveEventDetails: (data) => { dispatch(storeLiveEventDetails(data))},
     fetchLiveEventData: (eventID) => {dispatch(fetchLiveEventData(eventID))},
     updateLiveEventData: (data) => {dispatch(updateLiveEventData(data))},
-    fetchupdateLiveEventData: () => {dispatch(fetchupdateLiveEventData())}
+    fetchupdateLiveEventData: (data) => {dispatch(fetchupdateLiveEventData(data))}
 }}
 
 export default connect(mapStateToProps, mapDispatchToProps)(LiveRegistration);

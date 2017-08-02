@@ -21,9 +21,9 @@ export const updateLiveEventData = (newevent) => {
  }
 }
 
-export const fetchupdateLiveEventData = () => {
+export const fetchupdateLiveEventData = (eventID) => {
   return (dispatch)=>{
-  socket.on('updatedEvent', (data) => {
+  socket.on(eventID, (data) => {
   console.log("updatedEvent", data);
   dispatch(updateLiveEventDetails(data))
 })}}

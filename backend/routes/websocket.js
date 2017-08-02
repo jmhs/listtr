@@ -15,9 +15,9 @@ module.exports = (io) =>{
     });
 
     socket.on('updateGuestlist', (event) => {
-      // console.log('incoming event:', event )
+      console.log('incoming event:', event )
       eventController.updateGuestlist(event, (updatedevent) => {
-        io.emit('updatedEvent', updatedevent);
+        io.emit(updatedevent._id, updatedevent);
         console.log("outgoing event")
        });
     });
