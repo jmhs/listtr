@@ -2,9 +2,10 @@ import React, {PropTypes} from 'react';
 import { connect } from 'react-redux';
 import ProgressBar from 'progressbar.js'
 import {Link} from 'react-router-dom'
-import { activeEvent, deleteEvent, updateEvent } from '../../Actions/Event';
-import {updateNavPath} from '../../Actions/Navigation'
 
+import { activeEvent, deleteEvent, updateEvent} from '../../Actions/Event';
+import {storeLiveEventDetails} from '../../Actions/LiveRegistration'
+import {updateNavPath} from '../../Actions/Navigation'
 import './Preview.css';
 
 // import { Button, Modal } from 'semantic-ui-react'
@@ -73,6 +74,14 @@ class Preview extends React.Component {
 /*{this.props.response === "success" ? renderNotifyCreateSuccess : (<div>Not success</div>)}
 */
 
+
+onLive = () => {
+  this.setState({currentNav: e.target.id});
+  this.props.updateNavPath(e.target.id);
+  this.props.storeLiveEventDetails(this.props.events)
+  
+}
+
 // onClick, updateNavPath is fired in the actions to send to reducer, to be exported as props for conditional rendering
 onClick = (e) => {
   // const state = this.state;
@@ -88,6 +97,7 @@ onEdit = (e) => {
   this.setState({currentNav: e.target.id});
   this.props.updateNavPath(e.target.id);
 }
+
 
   render() {
 
@@ -168,8 +178,7 @@ onEdit = (e) => {
               <button type="button"
                       className="btn-custom"
                       id="goLive"
-                      onClick={this.onEdit}>Go Live!</button>
-
+                      onClick={this.OnLive}>Go Live!</button>
         </div>
 
        </div>
@@ -190,7 +199,10 @@ const mapDispatchToProps = (dispatch) => {
     activeEvent: (event) => {dispatch(activeEvent(event))},
     deleteEvent: (event) => {dispatch(deleteEvent(event))},
     updateEvent: (event) => {dispatch(updateEvent(event))},
+
+    storeLiveEventDetails:(event) => {dispatch(storeLiveEventDetails(event))}
     updateNavPath: (currentNav) => {dispatch(updateNavPath(currentNav))}
+
 
   }
 }

@@ -5,7 +5,7 @@ const LiveRegistration = (state = [], action) => {
 
   break;
   case "UPDATE_EVENT":
-    return action.event;
+    return action.event
 
     default:
       return state;
