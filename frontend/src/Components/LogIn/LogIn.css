@@ -13,6 +13,12 @@
 .login-button-default{
   margin: 5px;
 }
+.happy-face-picture{
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  margin-left: -300px;
+}
 .text-input-line{
   background-color: transparent;
    color: #eeeeee;
