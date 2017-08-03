@@ -2,7 +2,8 @@ import React, {PropTypes} from 'react';
 import { connect } from 'react-redux';
 import ProgressBar from 'progressbar.js'
 import { Link } from 'react-router-dom'
-import {storeGuestsToActive, postGuest, deleteGuest} from '../../Actions/Event'
+import {storeGuestsToActive, postGuest, deleteGuest, addCollabToBackend} from '../../Actions/Event'
+
 import RenderGuests from './RenderGuests'
 import './AddGuest.css'
 import CreateGuestRow from './CreateGuestRow'
@@ -186,6 +187,10 @@ class AddGuest extends React.Component {
 
   }
 
+  addCollab = (event_id, email) => {
+    this.props.addCollabToBackend(event_id, email)
+  }
+
   toggleViewPending = (e) => {
     console.log('toggle view pending')
     if(this.state.viewPending){
@@ -250,6 +255,20 @@ class AddGuest extends React.Component {
 
   render() {
     const renderGuestsRows = this.renderGuests()
+    const renderNotifyAddCollabSuccess = () => {
+      return (<div className="col-sm-12">
+        <div className="success-alert">
+          <strong>Success!</strong> Collab Added
+        </div>
+      </div>)
+    }
+    const renderNotifyAddCollabFail = () => {
+      return (<div className="col-sm-12">
+        <div className="fail-alert">
+          <strong>Fail</strong> to add collab
+        </div>
+      </div>)
+    }
     return (
       <div className="container add-guest-container">
 
@@ -300,8 +319,10 @@ class AddGuest extends React.Component {
 
         </div>
         <div className="col-sm-12">
-          <AddCollab/>
+          <AddCollab addCollabFunction={this.addCollab} event={this.props.active}/>
         </div>
+        {this.props.responseAJAX.addCollab === "success" ? renderNotifyAddCollabSuccess() : (<div></div>)}
+        {this.props.responseAJAX.addCollab === "fail add collab" ? renderNotifyAddCollabFail() : (<div></div>)}
       </div>
 
 
@@ -316,6 +337,7 @@ const mapStateToProps = (state) => {
   return {
     active: state.active,
     events: state.active,
+    responseAJAX: state.responseAJAX
   }
 }
 
@@ -326,7 +348,9 @@ const mapDispatchToProps = (dispatch) => {
     postGuest: (active_id, guest) => {dispatch(postGuest(active_id, guest))},
     deleteGuest: (active_id, guest) => {dispatch(deleteGuest(active_id, guest))},
     reminderEmail: (active_id, event) => {dispatch(reminderEmail(active_id, event))},
-    updateNavPath: (currentNav) => {dispatch(updateNavPath(currentNav))}
+    updateNavPath: (currentNav) => {dispatch(updateNavPath(currentNav))},
+    addCollabToBackend: (event_id, email) => {dispatch(addCollabToBackend(event_id, email))},
+
   }
 }
 

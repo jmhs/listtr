@@ -26,11 +26,11 @@ export default class AddCollab extends React.Component {
   }
 
   onClick = (e) => {
-    // this.props.updateGuests(this.state)
+    this.props.addCollabFunction(this.props.event._id, this.state.email)
     this.setState({
       email: "",
     })
-    //axios call here
+
 
   }
   render() {
