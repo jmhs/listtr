@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import './LiveRegistration.css';
 import Table from 'react-uikit-table'
 import {storeLiveEventDetails, fetchLiveEventData, updateLiveEventData, fetchupdateLiveEventData} from '../../Actions/LiveRegistration'
-import CreateGuestRow from "../PopulateGuests/CreateGuestRow"
+import uuid from 'uuid'
 
 
 
@@ -18,9 +18,12 @@ class LiveRegistration extends React.Component {
         guests: this.props.LiveRegistration.guests,
         filteredGuests:"",
         addGuests: false,
-        name:"",
-        email:"",
-        contact:""
+        id: uuid.v4(),
+        name: "",
+        email: "",
+        contact:"",
+        response: "local",
+        checkedIn: false
     }
   }
 
@@ -151,8 +154,6 @@ SendGuest = (e) => {
 renderAddGuests = () => {
   if (this.state.addGuests === true){
   return(
-    <div>
-    <CreateGuestRow/>
 
     <tbody>
        <tr>
@@ -163,7 +164,7 @@ renderAddGuests = () => {
          <td><button className="uk-button uk-button-small" onClick={this.SendGuest}>Add</button></td>
        </tr>
      </tbody>
-</div>
+
 
   )}
 }
@@ -173,6 +174,19 @@ GuestField = (e) => {
     this.setState(this.state)
   }
   console.log(this.state.name)
+  else if (e.target.placeholder = "email"){
+    this.state.name = e.target.value
+    this.setState(this.state)
+  }
+  console.log(this.state.name)
+}
+else if (e.target.placeholder = "contact"){
+  this.state.name = e.target.value
+  this.setState(this.state)
+}
+console.log(this.state.name)
+}
+
 }
 
 
