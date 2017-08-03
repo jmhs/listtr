@@ -5,7 +5,7 @@ A fullstack web application built with Node.js & Express.js as the server, React
 Background
 ----------
 Why listtr? <br/>
-Flipping through pages of RSVPs can be a tedious process for hosts. Listtr provides a simple platform for events' hosts to create their guest lists, send out invites, and manage their RSVPs as the event goes live. 
+Flipping through pages of RSVPs for your events can be a tedious process. Listtr provides a simple platform for hosts to create their guest lists, send out invites, and manage their RSVPs in real-time as the event goes live. 
 
 How to install
 -------------
