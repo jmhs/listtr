@@ -150,7 +150,7 @@ onEdit = (e) => {
 
         <div className="card eventActions">
           <div className="card-header">
-          <p id="eventActionsHeader">ACTIONS</p>
+          <p id="eventActionsHeader"><i className="fa fa-superpowers fa-lg previewIcons" aria-hidden="true"/>  ACTIONS</p>
           </div>
         <ul className="list-group">
           <a><li className="list-group-item" id="goLive" onClick={this.onLive}>GO LIVE!</li></a>
@@ -176,7 +176,7 @@ onEdit = (e) => {
 
       <div className="card eventDetailsCard">
         <div className="card-header">
-          <p id="eventDetailsHeader"><i className="fa fa-picture-o fa-lg previewIcons" aria-hidden="true"/> DETAILS</p>
+          <p id="eventDetailsHeader"><i className="fa fa-archive fa-lg previewIcons" aria-hidden="true"/> DETAILS</p>
         </div>
         <div className="card-block">
           <p><strong>Location:</strong> {events.location}</p>
@@ -189,10 +189,12 @@ onEdit = (e) => {
 
       <div className="card eventDescriptionCard">
         <div className="card-header">
-          <p id="eventDescriptionHeader"><i className="fa fa-picture-o fa-lg previewIcons" aria-hidden="true"/> DESCRIPTION</p>
+          <p id="eventDescriptionHeader"><i className="fa fa-pencil-square-o fa-lg previewIcons" aria-hidden="true"/> DESCRIPTION</p>
         </div>
         <div className="card-block">
-          <p><strong>Description:</strong> {events.description}</p>
+          <p><strong>Description:</strong>
+          <br/>
+           {events.description}</p>
         </div>
       </div>
 

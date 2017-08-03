@@ -273,21 +273,77 @@ class AddGuest extends React.Component {
       <div className="container add-guest-container">
 
 
-
-
         <div className="add-guest-header">
           <h1>Manage Guest</h1>
           <hr/>
         </div>
+
         <div className="row">
+
+        <div className="card progressbarContainer" id="yesProgressBar">
+          <div className="card-header">
+          <p id="eventActionsHeader">  YES</p>
+          </div>
+          <div className="card-block">
+            <p><strong>Description:</strong>
+            <br/>
+             Yes Progressbar</p>
+          </div>
+          </div>
+
+          <div className="card progressbarContainer" id="noProgressBar">
+            <div className="card-header">
+            <p id="eventActionsHeader">  NO</p>
+            </div>
+            <div className="card-block">
+              <p><strong>Description:</strong>
+              <br/>
+               No Progressbar</p>
+            </div>
+            </div>
+
+          <div className="card progressbarContainer" id="pendingProgressBar">
+            <div className="card-header">
+            <p id="eventActionsHeader">  PENDING</p>
+            </div>
+            <div className="card-block">
+              <p><strong>Description:</strong>
+              <br/>
+               Pending Progressbar</p>
+            </div>
+            </div>
+
+            </div>
+
+          <br/>
+          <br/>
+
+        <div className="row">
+
+        <div className="col-sm-3 searchName">
+          <input type="text" className="uk-input" placeholder="Search Name" onChange={this.searchName}/>
+        </div>
+
           <div className="col-sm-6">
             <input type="checkbox" name="view-pending" value="Car" onChange={this.toggleViewPending}/>View pending only<br/>
+          </div>
 
-          </div>
-          <div className="col-sm-3">
-            <input type="text" className="uk-input" placeholder="Search Name" onChange={this.searchName}/>
-          </div>
+          <button className="uk-button uk-button-primary"
+                  id="sendReminderEmailsBtn" onClick={this.reminderEmail}>SEND REMINDER!</button>
+
         </div>
+
+        <div className="row">
+        <div className="card guestRowContainer" id="">
+          <div className="card-header">
+          <p id="eventActionsHeader">  PENDING</p>
+          </div>
+          <div className="card-block">
+            <p><strong>Description:</strong>Pending Progressbar</p>
+          </div>
+          </div>
+          </div>
+
 
         <div className="row progress-bar-container">
           <div className="col-sm-4 progress-bar-box">
@@ -312,8 +368,7 @@ class AddGuest extends React.Component {
         </div>
         <CreateGuestRow updateGuests={this.updateGuests}/>
 
-          <button className="uk-button uk-button-primary"
-                  id="sendReminderEmailsBtn" onClick={this.reminderEmail}>SEND REMINDER!</button>
+
 
         <div className="col-sm-12">
 
@@ -355,5 +410,3 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddGuest);//to include guest population
-
-

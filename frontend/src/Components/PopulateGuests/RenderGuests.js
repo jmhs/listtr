@@ -42,7 +42,7 @@ class RenderGuests extends React.Component {
         editing: true
       })
     }
-    
+
   }
   onChange = (e) => {
     switch(e.target.name){
