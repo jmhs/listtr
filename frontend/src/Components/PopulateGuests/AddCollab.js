@@ -1,7 +1,11 @@
 import React, {PropTypes} from 'react';
+import {connect} from 'react-redux';
 import uuid from 'uuid'
+import {updateNavPath} from '../../Actions/Navigation'
+
 import './AddCollab.css'
-export default class AddCollab extends React.Component {
+
+class AddCollab extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,13 +30,19 @@ export default class AddCollab extends React.Component {
   }
 
   onClick = (e) => {
+
     this.props.addCollabFunction(this.props.event._id, this.state.email)
     this.setState({
       email: "",
     })
-
-
   }
+
+  backToEventPreview = (e) => {
+    this.setState({currentNav: e.target.id});
+    //console.log('new component state', this.state)
+    this.props.updateNavPath(e.target.id);
+  }
+
   render() {
     return (
       <section className="row create">
@@ -48,13 +58,30 @@ export default class AddCollab extends React.Component {
         </div>
 
 
-        <div className="col-md-2 PopulateGuests">
+        <div className="col-md-8 PopulateGuests">
           <button type="button"
                   className="uk-button uk-button-default" id="add-collab-button"
                   onClick={this.onClick}>Add Collaborators</button>
+          <button type="button"
+                  className="uk-button uk-button-default" id="collabBackToHome"
+                  onClick={this.backToEventPreview}>Back to Event Preview</button>
         </div>
+
 
       </section>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateNavPath: (currentNav) => {dispatch(updateNavPath(currentNav))}
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddCollab);
