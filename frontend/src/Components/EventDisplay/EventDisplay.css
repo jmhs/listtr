@@ -15,40 +15,11 @@
 }
 
 #createEventBtn {
-  border-radius: 4px;
   background-color: #0FB28A;
-  border: none;
-  color: #FFFFFF;
+  color: white;
   text-align: center;
-  font-size: 20px;
-  padding: 10px;
-  width: 200px;
-  transition: all 0.3s;
-  cursor: pointer;
-  margin: 5px;
 }
 
-#createEventBtn span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.3s;
-}
-
-#createEventBtn span:after {
-  content: '\00bb';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.3s;
-}
-
-#createEventBtn:hover span {
-  padding-right: 25px;
-}
-
-#createEventBtn:hover span:after {
-  opacity: 1;
-  right: 0;
+#createEventBtn:hover {
+  background-color: #17ddac;
 }

@@ -2,7 +2,9 @@ import React, {PropTypes} from 'react';
 
 import { connect } from 'react-redux';
 
-import { getUser} from '../../Actions/User';
+import { getUser, localLogin} from '../../Actions/User';
+
+import {Link} from 'react-router-dom';
 
 import axios from 'axios';
 
@@ -32,9 +34,8 @@ class LogIn extends React.Component {
 
   localLogin = (e) => {
     e.preventDefault();
-
     var state = this.state
-
+    // this.props.localLogin(this.state);
     axios.post('/auth/login', this.state).then((response) => {
       let data = response.data;
       if (data.error) {
@@ -84,6 +85,7 @@ class LogIn extends React.Component {
                 <input type="password" className="uk-input" id="password" placeholder="Please enter password" value={this.state.password} onChange={this.onChange}/>
 
                 <br />
+
                 <button type="submit" className="uk-button uk-button-default login-button-green login-button-default" id="loginBtnl" onClick={this.localLogin}>{'Login'}</button>
 
                 <button type="submit" className="uk-button uk-button-default login-button-default" id="signupBtnl" onClick={this.signUp}>{"Don't have an account yet? Sign up here!"}</button>
@@ -107,8 +109,10 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getUser: () => {dispatch(getUser())},
     //updateUser: (user) => {dispatch(updateUser(user))},
+    localLogin: (credentials) => {dispatch(localLogin(credentials))},
   }
 }
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(LogIn);
 
