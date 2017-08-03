@@ -62,33 +62,40 @@ class Home extends React.Component {
 
               <div className="col-sm-3 how-it-works-icon">
                 <span className="fa fa-user-o fa-4x fa-home-icon" aria-hidden="true"></span>
-                <p className="how-it-works-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                <h4 className="how-it-works-title">Create Account</h4>
+                <p className="how-it-works-desc">Sign up as a user to get started. This way, we can keep track events that you have hosted.</p>
               </div>
               <div className="col-sm-3 how-it-works-icon">
                 <span className="fa fa-pencil fa-4x fa-home-icon" aria-hidden="true"></span>
-                <p className="how-it-works-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                <h4 className="how-it-works-title">Get started</h4>
+                <p className="how-it-works-desc">Create your new event and list all the event details. Update details before event and delete after your event has ended.</p>
               </div>
               <div className="col-sm-3 how-it-works-icon">
                 <span className="fa fa-users fa-4x fa-home-icon" aria-hidden="true"></span>
-                <p className="how-it-works-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                <h4 className="how-it-works-title">Guest Management</h4>
+                <p className="how-it-works-desc">List your guests and send your invites. Add your fellow hosts as collaborators. </p>
               </div>
               <div className="col-sm-3 how-it-works-icon">
                 <span className="fa fa-paper-plane-o fa-4x fa-home-icon" aria-hidden="true"></span>
-                <p className="how-it-works-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                <h4 className="how-it-works-title">Go Live!</h4>
+                <p className="how-it-works-desc">Do your live registration online! There is no need to flip through pages of RSVPs.</p>
               </div>
             </div>
           </div>
         </section>
 
-        <footer className="home-footer">
-          <div className="container-home-page">
-            <div className="col-sm-3">
-              <h4>About us</h4>
-            </div>
-          </div>
-        </footer>
+
       </div>
     );
   }
 }
+/*
+<footer className="home-footer">
+  <div className="container-home-page">
+    <div className="col-sm-3">
+      <h4>About us</h4>
+    </div>
+  </div>
+</footer>
+*/
 export default Home;

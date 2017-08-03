@@ -67,14 +67,9 @@ class Dashboard extends React.Component {
                 <a id="HostingNav" onClick={this.onClick}><i className="fa fa-fw fa-book"/> Hosting </a>
               </li>
               <li className="sidebarNavListItem">
-                <a id="AttendingNav" onClick={this.onClick}><i className="fa fa-fw fa-ticket"/> Attending </a>
-              </li>
-              <li className="sidebarNavListItem">
                 <a id="AccountNav" onClick={this.onClick}><i className="fa fa-fw fa-user"/> Account </a>
               </li>
-              <li className="sidebarNavListItem">
-                <a id="Billing" onClick={this.onClick}><i className="fa fa-fw fa-credit-card"/> Billing </a>
-              </li>
+
               <li className="sidebarNavListItem">
                 <a id="Logout" onClick={this.logout}><i className="fa fa-fw fa-sign-out"/> Logout </a>
               </li>

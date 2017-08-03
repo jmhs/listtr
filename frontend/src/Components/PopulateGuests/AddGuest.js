@@ -265,7 +265,7 @@ class AddGuest extends React.Component {
     const renderNotifyAddCollabFail = () => {
       return (<div className="col-sm-12">
         <div className="fail-alert">
-          <strong>Fail</strong> to add collab
+          <strong>Fail</strong> to add collab. Email is not a user!
         </div>
       </div>)
     }
