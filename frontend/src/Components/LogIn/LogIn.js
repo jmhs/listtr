@@ -74,7 +74,7 @@ class LogIn extends React.Component {
           <h1 className="brand-title-auth">Listtr</h1>
           <div className="col-md-4 col-md-offset-4">
             <div className="panel panel-primary" id="loginContainer">
-              <div className="panel-heading" id="formHeader">LOGIN</div>
+              <h4 className="panel-heading" id="formHeader">LOGIN</h4>
               <form id="loginForm" role="form">
 
                 <div className="error">{this.state.error}</div>
