@@ -51,7 +51,9 @@ class LiveRegistration extends React.Component {
     this.state.total = 0
     return guests.map((guest) => {
       this.state.total++
+      console.log(this.state.total)
       if(guest.checkedIn === true){this.state.here++}
+      console.log(this.state.here)
       return (
               <tbody key={guest.id}>
                  <tr>
