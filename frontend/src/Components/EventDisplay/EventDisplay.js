@@ -48,9 +48,8 @@ class EventDisplay extends React.Component {
     const renderlist = this.renderEventDisplayItem();
     return (
       <div>
-
-        <button className="button" id="createEventBtn" onClick={this.onClick}>Create Event</button>
-
+      <button className="uk-button uk-button-default"
+               id="createEventBtn" onClick={this.onClick}>Create Event</button>
         <div className="masonry">
           {renderlist}
         </div>

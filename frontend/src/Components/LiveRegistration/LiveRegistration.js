@@ -3,7 +3,10 @@ import { connect } from 'react-redux';
 import './LiveRegistration.css';
 import Table from 'react-uikit-table'
 import {storeLiveEventDetails, fetchLiveEventData, updateLiveEventData, fetchupdateLiveEventData} from '../../Actions/LiveRegistration'
-import CreateGuestRow from "../PopulateGuests/CreateGuestRow"
+
+import {updateNavPath} from '../../Actions/Navigation'
+import uuid from 'uuid'
+
 
 
 
@@ -18,9 +21,12 @@ class LiveRegistration extends React.Component {
         guests: this.props.LiveRegistration.guests,
         filteredGuests:"",
         addGuests: false,
-        name:"",
-        email:"",
-        contact:""
+        id: uuid.v4(),
+        name: "",
+        email: "",
+        contact:"",
+        response: "local",
+        checkedIn: false
     }
   }
 
@@ -143,6 +149,13 @@ Search =(e)=>{
 
 }
 
+
+onClick = (e) => {
+  console.log('clicked on: ', e.target.id)
+  this.setState({currentNav: e.target.id});
+  this.props.updateNavPath(e.target.id);
+}
+
 SendGuest = (e) => {
   this.state.addGuests = false
   this.setState(this.state)
@@ -151,8 +164,6 @@ SendGuest = (e) => {
 renderAddGuests = () => {
   if (this.state.addGuests === true){
   return(
-    <div>
-    <CreateGuestRow/>
 
     <tbody>
        <tr>
@@ -163,7 +174,7 @@ renderAddGuests = () => {
          <td><button className="uk-button uk-button-small" onClick={this.SendGuest}>Add</button></td>
        </tr>
      </tbody>
-</div>
+
 
   )}
 }
@@ -173,14 +184,28 @@ GuestField = (e) => {
     this.setState(this.state)
   }
   console.log(this.state.name)
+  else if (e.target.placeholder = "email"){
+    this.state.name = e.target.value
+    this.setState(this.state)
+  }
+  console.log(this.state.name)
 }
+else if (e.target.placeholder = "contact"){
+  this.state.name = e.target.value
+  this.setState(this.state)
+}
+console.log(this.state.name)
+}
+
+}
+
 
 
 
   render() {
     console.log(this.state)
     return (
-    <div className="uk-container uk-container-small uk-position-relative">
+    <div className="uk-container uk-container-small uk-position-relative container">
     <div>
     <h1>Registrations</h1>
     </div>
@@ -205,7 +230,7 @@ GuestField = (e) => {
                 {this.renderAddGuests()}
               </table>
               <button onClick={this.addGuests}>Add Guests</button>
-              <button onClick={this.addGuests}>Back to dashboard</button>
+              <button id="liveRegistrationBackToDashboardBtn" onClick={this.onClick}>Back to dashboard</button>
 
             </div>
       </div>
@@ -230,6 +255,7 @@ const mapDispatchToProps = (dispatch) => {
     fetchLiveEventData: (eventID) => {dispatch(fetchLiveEventData(eventID))},
     updateLiveEventData: (data) => {dispatch(updateLiveEventData(data))},
     fetchupdateLiveEventData: () => {dispatch(fetchupdateLiveEventData())},
+    updateNavPath: (currentNav) => {dispatch(updateNavPath(currentNav))},
 
 }}
 

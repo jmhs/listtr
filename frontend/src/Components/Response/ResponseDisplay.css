@@ -145,6 +145,26 @@ p {
   vertical - align: middle;
 }
 
+#rsvpYesBtn {
+  background-color: #0FB28A;
+  color: white;
+}
+
+#rsvpYesBtn:hover {
+  background-color: #17ddac;
+}
+
+#rsvpNoBtn {
+  background-color: #D60027;
+  color: white;
+  margin-left: 20px;
+}
+
+#rsvpNoBtn:hover {
+  background-color: #ff002e;
+}
+
+
 @media only screen and(max - device - width: 480 px) {
   table[class=hide], img[class=hide], td[class=hide] {
     display: none !important;
@@ -155,4 +175,16 @@ p {
   .contents1 {
     width: 100 %;
   }
+}
+
+#respondToInvitationBtn:hover {
+  background-color: #17ddac;
+}
+
+#eventIdResponse {
+  display: none;
+}
+
+#guestIdResponse {
+  display: none;
 }
