@@ -18,9 +18,9 @@
 }
 
 #updateAccountDetailsBtn:hover, #updatePasswordBtn:hover {
-  background: #46A187;
+  background: #17ddac;
 }
 
 #deleteAccountBtn:hover {
-  background:#8A0019;
+  background:#ff002e;
 }

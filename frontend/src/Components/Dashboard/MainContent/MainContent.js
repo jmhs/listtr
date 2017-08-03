@@ -85,9 +85,13 @@ class MainContent extends React.Component {
         return (<Preview />)
         break;
 
-        case "backToPreviewAddGuestBtn":
-          return (<Preview />)
-          break;
+      case "backToPreviewAddGuestBtn":
+        return (<Preview />)
+        break;
+
+      case "liveRegistrationBackToDashboardBtn":
+        return (<EventDisplay />)
+        break;
 
 
       default:

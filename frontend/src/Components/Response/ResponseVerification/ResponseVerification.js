@@ -55,6 +55,7 @@ onClick = (e) => {
     return guest.id === this.props.match.params.guest_id
   })
   console.log(guest)
+  guest.id=this.props.match.params.guest_id
   // this.props.getSpecificEvent(this.props.match.params.event_id)
   this.props.activeGuest(guest)
 
@@ -66,17 +67,20 @@ componentDidMount(){
 }
   render() {
     return (
-      <div className="container">
+      <div className="container-fluid" id="responseVerificationContainer">
         <div className="row">
-          <div className="col-sm-6 col-sm-offset-3">
+
+          <div className="col-sm-6 col-sm-offset-3" id="responseVerificationHeader">
             <h1>RESPONSE VERIFICATION</h1>
+            <p>Can't wait to hear from you!</p>
             <hr/>
           </div>
+
         </div>
         <div className="row">
           <div className="col-sm-6 col-sm-offset-3">
           <Link to="/responsedisplay">
-          <button className="uk-button uk-button-primary"
+          <button className="uk-button uk-button-default"
                   id="respondToInvitationBtn" onClick={this.onClick}>Respond to Invitation</button>
           </Link>
           </div>

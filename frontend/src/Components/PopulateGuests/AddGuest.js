@@ -355,3 +355,5 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddGuest);//to include guest population
+
+
