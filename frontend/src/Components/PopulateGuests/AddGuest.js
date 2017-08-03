@@ -282,34 +282,37 @@ class AddGuest extends React.Component {
 
         <div className="card progressbarContainer" id="yesProgressBar">
           <div className="card-header">
-          <p id="eventActionsHeader">  YES</p>
+          <p id="progressbarHeaderYes">  YES</p>
           </div>
           <div className="card-block">
-            <p><strong>Description:</strong>
-            <br/>
-             Yes Progressbar</p>
+          <div className="col-sm-4 progress-bar-box">
+            <div id="progress-bar-yes">
+            </div>
+          </div>
           </div>
           </div>
 
           <div className="card progressbarContainer" id="noProgressBar">
             <div className="card-header">
-            <p id="eventActionsHeader">  NO</p>
+            <p id="progressbarHeaderNo">  NO</p>
             </div>
             <div className="card-block">
-              <p><strong>Description:</strong>
-              <br/>
-               No Progressbar</p>
+            <div className="col-sm-4 progress-bar-box">
+              <div id="progress-bar-no">
+              </div>
+            </div>
             </div>
             </div>
 
           <div className="card progressbarContainer" id="pendingProgressBar">
             <div className="card-header">
-            <p id="eventActionsHeader">  PENDING</p>
+            <p id="progressbarHeaderPending">  PENDING</p>
             </div>
             <div className="card-block">
-              <p><strong>Description:</strong>
-              <br/>
-               Pending Progressbar</p>
+            <div className="col-sm-4 progress-bar-box">
+              <div id="progress-bar-pending">
+              </div>
+            </div>
             </div>
             </div>
 
@@ -334,47 +337,28 @@ class AddGuest extends React.Component {
         </div>
 
         <div className="row">
-        <div className="card guestRowContainer" id="">
-          <div className="card-header">
-          <p id="eventActionsHeader">  PENDING</p>
-          </div>
-          <div className="card-block">
-            <p><strong>Description:</strong>Pending Progressbar</p>
-          </div>
-          </div>
-          </div>
-
-
-        <div className="row progress-bar-container">
-          <div className="col-sm-4 progress-bar-box">
-            <h4 className="progress-bar-title">Percentage Yes</h4>
-            <div id="progress-bar-yes">
+          <div className="card guestRowContainer" id="">
+            <div className="card-header">
+              <p id="eventActionsHeader">  PENDING</p>
+            </div>
+            <div className="card-block guestRows">
+            <div className="row">
+              {renderGuestsRows}
+            </div>
+            </div>
             </div>
           </div>
-          <div className="col-sm-4 progress-bar-box">
-            <h4 className="progress-bar-title">Percentage No</h4>
-            <div id="progress-bar-no">
-            </div>
-          </div>
-          <div className="col-sm-4 progress-bar-box">
-            <h4 className="progress-bar-title">Percentage Pending</h4>
-            <div id="progress-bar-pending">
-            </div>
-          </div>
+
+      <div className="row">
+        <div className="col-sm-12 createGuests">
+          <CreateGuestRow updateGuests={this.updateGuests}/>
         </div>
+      </div>
 
-        <div className="row">
-          {renderGuestsRows}
-        </div>
-        <CreateGuestRow updateGuests={this.updateGuests}/>
-
-
-
-        <div className="col-sm-12">
-
-        </div>
-        <div className="col-sm-12">
+      <div className="row">
+        <div className="col-sm-12 addCollabRow">
           <AddCollab addCollabFunction={this.addCollab} event={this.props.active}/>
+        </div>
         </div>
         {this.props.responseAJAX.addCollab === "success" ? renderNotifyAddCollabSuccess() : (<div></div>)}
         {this.props.responseAJAX.addCollab === "fail add collab" ? renderNotifyAddCollabFail() : (<div></div>)}

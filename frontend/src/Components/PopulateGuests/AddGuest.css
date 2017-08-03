@@ -42,7 +42,7 @@ height: 100px;
 .progressbarContainer {
   background: white;
   width: 20vw;
-  height: 40vh;
+  height: 25vh;
 }
 
 #yesProgressBar {
@@ -57,6 +57,19 @@ height: 100px;
   margin-left: 7vw;
 }
 
+#progress-bar-yes {
+  object-fit: contain;
+}
+
+#progressbarHeaderYes, #progressbarHeaderNo, #progressbarHeaderPending {
+  text-align: center;
+  font-weight: bold;
+}
+
+.progress-bar-box {
+  margin: auto;
+}
+
 .searchName {
   margin-left: 2vw;
 }
@@ -67,4 +80,22 @@ height: 100px;
   width: 74vw;
   max-height: 50vh;
   overflow: auto;
+}
+
+.view-pending {
+  margin-left: 10px;
+}
+
+.guestRows {
+  overflow: auto;
+}
+
+.createGuests {
+  margin-top: 2vh;
+  margin-left: 1vw;
+}
+
+.addCollabRow {
+  margin-top: 2vh;
+  margin-left: 2vw;
 }

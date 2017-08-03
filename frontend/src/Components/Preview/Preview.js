@@ -165,11 +165,6 @@ onEdit = (e) => {
 
       {this.props.response.deleteEvent === "success" ? renderNotifyDeleteSuccess() : (<div></div>)}
 
-            <button type="button"
-                    className="btn-custom"
-                    id="addGuest"
-                    onClick={this.onClick}>Manage Guest and Collaborators</button>
-
       </div>
 
       <div className="row">
