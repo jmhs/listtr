@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Lobster');
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css?family=Abril+Fatface');
 body{
   font-family: 'Arial', sans-serif;
 }
+
 #landing-page{
   background-image: url("getting-started.jpg");
   background-size: cover;
@@ -109,6 +111,7 @@ body{
 #home-title{
   color: black;
   font-family: 'Lobster', cursive;
+  /*font-family: 'Abril Fatface', cursive;*/
   font-size: 100px;
   position: relative;
   top:50%;
@@ -119,6 +122,7 @@ body{
 }
 #navbar-title{
   font-family: 'Lobster', cursive;
+  /*font-family: 'Abril Fatface', cursive;*/
   text-transform: none;
   font-size: 25px;
   color: white;

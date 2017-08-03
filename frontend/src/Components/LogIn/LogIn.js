@@ -71,6 +71,7 @@ class LogIn extends React.Component {
   render() {
       return (
         <div className="container-login">
+          <h1 className="brand-title-auth">Listtr</h1>
           <div className="col-md-4 col-md-offset-4">
             <div className="panel panel-primary" id="loginContainer">
               <div className="panel-heading" id="formHeader">LOGIN</div>
@@ -88,9 +89,11 @@ class LogIn extends React.Component {
 
                 <button type="submit" className="uk-button uk-button-default login-button-green login-button-default" id="loginBtnl" onClick={this.localLogin}>{'Login'}</button>
 
-                <button type="submit" className="uk-button uk-button-default login-button-default" id="signupBtnl" onClick={this.signUp}>{"Don't have an account yet? Sign up here!"}</button>
+                <button type="submit" className="uk-button uk-button-default login-button-default" id="signupBtnl" onClick={this.signUp}>Sign up here!</button>
 
                 <button type="submit" className="uk-button uk-button-default login-button-default" id="homeBtnl" onClick={this.backToHome}>{'Back to home'}</button>
+
+
               </form>
             </div>
           </div>
