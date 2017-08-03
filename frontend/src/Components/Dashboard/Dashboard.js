@@ -21,7 +21,7 @@ class Dashboard extends React.Component {
 
   // onClick, updateNavPath is fired in the actions to send to reducer, to be exported as props for conditional rendering
   onClick = (e) => {
-    const state = this.state;
+    // const state = this.state;
     console.log('clicked on: ', e.target.id)
 
     this.setState({currentNav: e.target.id});
@@ -46,86 +46,63 @@ class Dashboard extends React.Component {
     // console.log("current user id: ", isLoggedIn);
 
     return (
-      <div className="main-container">
-        <div>
+      <div className="container-fluid">
+      {isLoggedIn
+        ? (
 
-        {isLoggedIn
-          ? (
-              <div>
-                <nav className="navbar fixed-top navbar-toggleable-sm navbar-inverse bg-primary mb-3" id="navbar-dashboard">
-                  <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
-                    <span className="navbar-toggler-icon"/>
-                  </button>
-                  <div className="flex-row d-flex">
-                    <a className="navbar-brand mb-1" href="/dashboard" title="LISTT" id="dashboardHeaderTitle">Listtr</a>
-                    <button type="button" className="hidden-md-up navbar-toggler" data-toggle="offcanvas" title="Toggle responsive left sidebar">
-                      <span className="navbar-toggler-icon"/>
-                    </button>
-                  </div>
-                  <div className="navbar-collapse collapse" id="collapsingNavbar">
-                    <ul className="navbar-nav">
-                      <li className="nav-item active">
-                        <a className="nav-link" href="">Hosting
-                          <span className="sr-only">Hosting</span>
-                        </a>
-                      </li>
-                      <li className="nav-item">
-                        <a className="nav-link" href="">Attending</a>
-                      </li>
-                      <li className="nav-item">
-                        <a className="nav-link" href="" data-toggle="collapse">Account</a>
-                      </li>
-                    </ul>
-                  </div>
-
-                </nav>
-                <div id="main">
-                  <div className="row-offcanvas row-offcanvas-left">
-                    <div className="col-md-3 col-lg-2 sidebar-offcanvas" id="sidebar" role="navigation">
-                      <div className="list-group">
-                        <ul className="nav flex-column pl-1">
-                          <a href="#" className="list-group-item disabled">
-                            Events
-                          </a>
-                          <li className="nav-item">
-                            <a href="#" className="list-group-item" id="HostingNav" onClick={this.onClick}>Hosting</a>
-                          </li>
-                          <li className="nav-item">
-                            <a href="#" className="list-group-item" id="AttendingNav" onClick={this.onClick}>Attending</a>
-                          </li>
-                          <a href="#" className="list-group-item disabled">
-                            Settings
-                          </a>
-                          <li className="nav-item">
-                            <a href="#" className="list-group-item" id="AccountNav" onClick={this.onClick}>Account</a>
-                          </li>
-                          <li className="nav-item">
-                            <a href="#" className="list-group-item" id="Billing" onClick={this.onClick}>Billing</a>
-                          </li>
-                          <li className="nav-item">
-                            <a href="#" className="list-group-item" id="Logout" onClick={this.logout}>Logout</a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    {/*/col*/}
-                    <div className="col-md-9 col-lg-10 main">
-                      {/*toggle sidebar button
-                          <p class="hidden-md-up">
-                              <button type="button" class="btn btn-primary-outline btn-sm" data-toggle="offcanvas"><i class="fa fa-chevron-left"></i> Menu</button>
-                          </p>*/}
-                      <MainContent/>
-                    </div>
-                  </div>
-                </div>
-                {/*scripts loaded here*/}
-              </div>
-            )
-              : (<Loading/>)}
+      <div>
+      <div className="row">
+        <div id="headerrownav" className="col-xs-12">
+        <a className="logorow" id="listtrLogo" href="/">Listtr</a>
         </div>
       </div>
-    );
+
+      {/*CONTENT AND SIDEBAR SEGMENT*/}
+        <div className="row">
+        {/*start SIDEBARNAV SEGMENT*/}
+          <div className="col-xs-2" id="sidebarNav">
+
+            <ul className="sidebarNavList">
+              <li className="sidebarNavListItem">
+
+                <a id="HostingNav" onClick={this.onClick}><i className="fa fa-fw fa-book fa-lg"/> Hosting </a>
+              </li>
+
+              <li className="sidebarNavListItem">
+                <a id="AccountNav" onClick={this.onClick}><i className="fa fa-fw fa-user fa-lg"/> Account </a>
+              </li>
+
+
+              <li className="sidebarNavListItem">
+                <a id="Logout" onClick={this.logout}><i className="fa fa-fw fa-sign-out fa-lg"/> Logout </a>
+              </li>
+            </ul>
+
+          </div>
+        {/*end SIDEBARNAV SEGMENT*/}
+
+
+          <div className="col-xs-10" id="contentwrapper">
+
+            <div className="row">
+              <div className="row" id="contentNavHeader">
+                <h1 id="welcome-back-user">Welcome back, {this.props.user.username}!</h1>
+                <hr />
+              </div>
+              <div className="col-md-12" id="contentToRender">
+              <MainContent />
+              </div>
+            </div>
+
+          </div>
+        </div>
+        </div>
+
+    )
+    : (<Loading />)
   }
+    </div>
+  )}
 }
 
 Dashboard.propTypes = {};
@@ -143,3 +120,10 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+
+// <li className="sidebarNavListItem">
+//   <a id="AttendingNav" onClick={this.onClick}><i className="fa fa-fw fa-ticket"/> Attending </a>
+// </li>
+// <li className="sidebarNavListItem">
+//   <a id="Billing" onClick={this.onClick}><i className="fa fa-fw fa-credit-card"/> Billing </a>
+// </li>

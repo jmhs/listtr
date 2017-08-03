@@ -1,0 +1,26 @@
+.container {
+  color: black;
+}
+
+.uk-button {
+  width: 140px;
+  font-weight: bold;
+  font-size: 10px;
+}
+
+#updateAccountDetailsBtn, #updatePasswordBtn {
+  background: #0FB28A;
+}
+
+#deleteAccountBtn {
+  margin-left: 20px;
+  background: #D60027;
+}
+
+#updateAccountDetailsBtn:hover, #updatePasswordBtn:hover {
+  background: #17ddac;
+}
+
+#deleteAccountBtn:hover {
+  background:#ff002e;
+}

@@ -18,8 +18,15 @@ import AccountPage from '../AccountPage/AccountPage'
 import MainContent from '../Dashboard/MainContent/MainContent'
 import Preview from '../Preview/Preview'
 import InviteTemplate from '../InviteTemplate/InviteTemplate'
+import NotFound from '../NotFound/NotFound'
 import InvitePreview from '../InviteTemplate/InvitePreview/InvitePreview'
 import updateEvent from '../UpdateEvent/UpdateEvent'
+import LiveRegistration from '../LiveRegistration/LiveRegistration'
+import ResponseVerification from '../Response/ResponseVerification/ResponseVerification'
+import ResponseDisplay from '../Response/ResponseDisplay'
+
+// FOR TestingDashboard
+import TestingDashboard from '../TestingDashboard/TestingDashboard'
 
 import logo from './logo.svg';
 import './App.css';
@@ -48,11 +55,17 @@ class App extends Component {
               <Route exact path="/dashboard" component={Dashboard}/>
               <Route exact path="/account" component={AccountPage}/>
               <Route exact path="/maincontent" component={MainContent}/>
-
               <Route exact path="/invitetemplate" component={InviteTemplate}/>
               <Route exact path="/invitepreview" component={InvitePreview}/>
               <Route exact path="/updateEvent" component={updateEvent}/>
-              <Route exact path="/preview" component={Preview}/>
+              <Route path="/preview" component={Preview}/>
+              <Route exact path="/liveregistration" component={LiveRegistration}/>
+              <Route path="/responseverification/:event_id/:guest_id" component={ResponseVerification}/>
+              <Route exact path="/responsedisplay/" component={ResponseDisplay}/>
+              <Route exact path="/testingdashboard" component={TestingDashboard}/>
+              <Route component={NotFound}/>
+
+
 
             </Switch>
             </RouteTransition>

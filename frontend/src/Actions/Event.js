@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import {successResponse, successDeleteEvent, successAddCollab, failAddCollab} from './ResponseAJAX.js'
 export const activeEvent = (event) => {
   return {
     type: 'ACTIVE_EVENT',
@@ -60,7 +60,27 @@ export const postGuest = (event_id, guest) => {
       });
   }
 }
+export const addCollabToBackend = (event_id, email) => {
+  let data = {
+    email: email
+  }
+  return (dispatch) => {
+    axios.put('/event/host/' + event_id, data)
+      .then( (response) => {
+        console.log(response.data);
+        if(response.data ==="user"){
+          dispatch(successAddCollab())
+        } else {
+          dispatch(failAddCollab())
+        }
+        // dispatch(storeGuests(response.data))
 
+      })
+      .catch((error)=> {
+        console.error("host not posted to server'")
+      });
+  }
+}
 //in-charge of defining the action to store the event into the store
 export const getEvents = () => {
   return (dispatch) => {
@@ -87,6 +107,8 @@ export const postEvents = (events) => {
       .then( (response) => {
         console.log(response.data);
         dispatch(storeEvents(response.data))
+        dispatch(activeEvent(response.data))
+        dispatch(successResponse())
       })
       .catch((error)=> {
         console.error("event not posted to server'")
@@ -112,8 +134,9 @@ export const postEvents = (events) => {
       axios.post('/event/postEventsWithImage', EventDataWithImage)
         .then( (response) => {
           console.log(response.data);
-
+          dispatch(activeEvent(response.data))
           dispatch(storeEvents(response.data))
+          dispatch(successResponse())
         })
         .catch((error)=> {
           console.error("event not posted to server'")
@@ -129,6 +152,8 @@ export const deleteEvent = (event) => {
       //t inlcue mechanism to updae store
       axios.delete('/event/'+ event._id )
       .then((response)=>{
+        dispatch(successDeleteEvent())
+        setTimeout(window.location.href="/dashboard", 2000);
 
       })
       .catch((error)=>{
@@ -185,56 +210,23 @@ export const updateEvent = (events) => {
 
 
 }
+const updateGuestInfoToEventStateinStore = (event) => {
+  return {
+    type: 'UPDATE_GUEST_INFO_TO_STORE',
+    event
+  }
+}
+export const updateGuestInfoToStore = (event_id, guest) => {
+  return (dispatch) => {
+    axios.put('/event/guest/update/' + event_id, guest)
+      .then( (response) => {
+        console.log(response.data);
 
+        dispatch(updateGuestInfoToEventStateinStore(response.data))
 
-
-
-
-
-
-
-// export const updateReviewWithPic = (picReview, review) => {
-//   return (dispatch) => {
-//     // here picReview is a file
-//     let picReviewToBackEnd = new FormData();
-//     picReviewToBackEnd.append('picReview', picReview);
-//     picReviewToBackEnd.append('title', review.title);
-//     picReviewToBackEnd.append('star', review.star);
-//     picReviewToBackEnd.append('description', review.description);
-//     picReviewToBackEnd.append('picReviewPublicId', review.picReviewPublicId)
-//
-//     // axios function to send info to backend database
-//     axios.put('/review/updateReviewWithPic/'+review._id,picReviewToBackEnd)
-//     .then( (response)=>{
-//       // here picReview is a new url
-//       dispatch(updateUserReviewInStore(response.data))
-//     }).catch( (error) =>{
-//       dispatch(loadingReviewError(error));
-//     })
-//   }
-// }
-// export const updateReviewWithoutPic = (review) => {
-//   return (dispatch) => {
-//     // axios function to send info to backend database
-//     axios.put('/review/updateReviewWithoutPic/'+review._id,review)
-//     .then( (response)=>{
-//       dispatch(updateUserReviewInStore(response.data))
-//     }).catch( (error) =>{
-//       dispatch(loadingReviewError(error));
-//     })
-//   }
-// }
-
-// export function uploadSuccess({ data }) {
-//   return {
-//     type: 'UPLOAD_DOCUMENT_SUCCESS',
-//     data,
-//   };
-// }
-//
-// export function uploadFail(error) {
-//   return {
-//     type: 'UPLOAD_DOCUMENT_FAIL',
-//     error,
-//   };
-// }
+      })
+      .catch((error)=> {
+        console.error("guest not posted to server'")
+      });
+  }
+}

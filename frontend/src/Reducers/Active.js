@@ -1,8 +1,11 @@
-let update = require('react/lib/update')
+// let update = require('react/lib/update')
 const ActiveHome = (state = {}, action) => {
   switch (action.type) {
     case 'ACTIVE_EVENT':
       return action.event
+
+    case 'ACTIVE_GUEST':
+      return action.guest
 
 
       break;

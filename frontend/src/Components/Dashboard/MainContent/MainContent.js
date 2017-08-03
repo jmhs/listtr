@@ -4,6 +4,13 @@ import EventDisplay from '../../EventDisplay/EventDisplay'
 import {Link} from 'react-router-dom'
 import AccountPage from '../../AccountPage/AccountPage'
 import Billing from '../../Billing/Billing'
+import CreateEvent from '../../CreateEvent/CreateEvent'
+import Preview from '../../Preview/Preview'
+import AddGuest from '../../PopulateGuests/AddGuest'
+import InviteTemplate from '../../InviteTemplate/InviteTemplate'
+import UpdateEvent from '../../UpdateEvent/UpdateEvent'
+import LiveRegistration from '../../LiveRegistration/LiveRegistration'
+
 import './MainContent.css'
 class MainContent extends React.Component {
   constructor(props) {
@@ -38,8 +45,57 @@ class MainContent extends React.Component {
         return window.location.href = "/"
         break;
 
+      case "createEventBtn":
+        return (<CreateEvent />)
+        break;
+
+      case "postEventToPreview":
+        return (<Preview />)
+        break;
+
+      case "previewBackToDashboard":
+        return (<EventDisplay />)
+        break;
+
+      case "addGuest":
+        return (<AddGuest />)
+        break;
+
+      case "manageInvite":
+        return (<InviteTemplate />)
+        break;
+
+      case "updateEvent":
+        return (<UpdateEvent />)
+        break;
+
+      case "goLive":
+        return (<LiveRegistration />)
+        break;
+
+      case "eventDisplayItemImagePreview":
+        return (<Preview />)
+        break;
+
+      case "eventDisplayItemTextPreview":
+        return (<Preview />)
+        break;
+
+      case "inviteTemplateBackToEventBtn":
+        return (<Preview />)
+        break;
+
+      case "backToPreviewAddGuestBtn":
+        return (<Preview />)
+        break;
+
+      case "liveRegistrationBackToDashboardBtn":
+        return (<EventDisplay />)
+        break;
+
+
       default:
-        <div> <EventDisplay /> </div>
+        <div> <CreateEvent /> </div>
     }
   }
 
@@ -51,15 +107,14 @@ class MainContent extends React.Component {
     return (
 
     <div className="main-content">
-    <Link to="/createevent"><button className="btn btn-default create-event-button">Create Event</button></Link>
+
       {componentToRender}
     </div>
     )
   }
 }
 
-MainContent.propTypes = {
-};
+
 
 const mapStateToProps = (state) => {
   return {
@@ -73,3 +128,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainContent);
+
+// <Link to="/createevent">
+//   <button className="button" id="createEventBtn"><span>Create Event </span></button>
+// </Link>

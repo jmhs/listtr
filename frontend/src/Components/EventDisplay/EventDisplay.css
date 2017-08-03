@@ -8,3 +8,18 @@
       font-size: .85em;
       column-count: 3;
 }
+@media only screen and (max-width: 400px){
+  .masonry{
+    column-count: 2;
+  }
+}
+
+#createEventBtn {
+  background-color: #0FB28A;
+  color: white;
+  text-align: center;
+}
+
+#createEventBtn:hover {
+  background-color: #17ddac;
+}

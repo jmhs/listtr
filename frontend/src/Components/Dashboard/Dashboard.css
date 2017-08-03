@@ -1,123 +1,82 @@
 @import url('https://fonts.googleapis.com/css?family=Lobster');
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
-/*body, html {
-  height:100%;
-  overflow: auto;
-}*/
-.main-container{
-  height:100%;
-  overflow: hidden;
-  width: 100%;
-}
-/*body {
-    padding-top: 70px;
-}*/
-
-/* workaround modal-open padding issue */
-body.modal-open {
-    padding-right:0 !important;
-}
-#navbar-dashboard{
-  position: fixed;
-
-}
-#sidebar {
-   padding-left:0;
-   position: fixed;
-   top: 80px;
-
+.container-fluid {
+  margin: 0;
+  margin-left: 0;
+  margin-right: 0;
 }
 
-#main {
-  width: 100vw;
-  position:relative;
+#headerrownav {
+background: #0FB28A;
+color: white;
+height: 5vh;
 }
-.main{
-  position: absolute;
-  left: 200px;
-  top: 80px;
-  bottom: 100px;
-  margin-bottom: 100px;
-}
-#dashboardHeaderTitle {
+
+#listtrLogo {
   font-family: 'Lobster', cursive;
   text-transform: none;
   font-size: 25px;
+  color: white;
+  padding-left: 25px;
 }
 
-/*
- * Off Canvas at medium breakpoint
- * --------------------------------------------------
- */
-@media screen and (max-width: 48em) {
-
-  .row-offcanvas {
-    position: relative;
-    -webkit-transition: all 0.25s ease-out;
-    -moz-transition: all 0.25s ease-out;
-    transition: all 0.25s ease-out;
-  }
-
-  .row-offcanvas-left
-  .sidebar-offcanvas {
-    left: -33%;
-  }
-
-  .row-offcanvas-left.active {
-    left: 33%;
-    margin-left: -6px;
-  }
-
-  .sidebar-offcanvas {
-    position: absolute;
-    top: 0;
-    width: 33%;
-    height: 100%;
-  }
+#sidebarNav {
+  background: #425A64;
+  color: white;
+  height: 95vh;
+  padding-left: 0;
+  padding-right: 0;
 }
 
-/*
- * Off Canvas wider at sm breakpoint
- * --------------------------------------------------
- */
-@media screen and (max-width: 34em) {
-  .row-offcanvas-left
-  .sidebar-offcanvas {
-    left: -45%;
-  }
-
-  .row-offcanvas-left.active {
-    left: 45%;
-    margin-left: -6px;
-  }
-
-  .sidebar-offcanvas {
-    width: 45%;
-  }
+#contentwrapper {
+  color: black;
 }
 
-.card {
-    overflow:hidden;
+#contentNavHeader {
+  color: black;
+  height: 15vh;
+  overflow: hidden;
+  margin-left: 5%;
 }
 
-.card-block .rotate {
-    z-index: 8;
-    float: right;
-    height: 100%;
+#contentToRender {
+  background: #DBE2E4;
+  color: white;
+  height: 80vh;
+  overflow: auto;
+
 }
 
-.card-block .rotate i {
-    color: rgba(20, 20, 20, 0.15);
-    position: absolute;
-    left: 0;
-    left: auto;
-    right: -10px;
-    bottom: 0;
-    display: block;
-    -webkit-transform: rotate(-44deg);
-    -moz-transform: rotate(-44deg);
-    -o-transform: rotate(-44deg);
-    -ms-transform: rotate(-44deg);
-    transform: rotate(-44deg);
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
+
+ul li a {
+  display: block;
+}
+
+li:hover {
+  background-color: #354951;
+  color: #0FB28A;
+}
+
+.sidebarNavListItem {
+  font-size: 15px;
+  padding: 15px 10px 15px 0;
+  text-align: center;
+  width: auto;
+}
+
+
+
+
+
+@media only screen and (max-width: 400px) {
+    #welcome-back-user{
+      font-size: 25px;
+    }
+}
+

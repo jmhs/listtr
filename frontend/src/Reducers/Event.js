@@ -12,7 +12,15 @@ const Events = (state = [], action) => {
               }
               return event
             })
-
+      break;
+    case 'UPDATE_GUEST_INFO_TO_STORE':
+      return state.map((event,index) => {
+              if(event._id===action.event._id){
+                event = action.event
+              }
+              return event
+            })
+      break;
 
 
     default:

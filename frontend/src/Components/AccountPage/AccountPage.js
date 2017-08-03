@@ -6,6 +6,7 @@ import { getUser} from '../../Actions/User';
 
 import LogIn from '../LogIn/LogIn';
 
+import './AccountPage.css'
 
 class AccountPage extends React.Component {
   constructor(props) {
@@ -123,7 +124,7 @@ class AccountPage extends React.Component {
         <div className="container">
           <div className="row">
             <div className="col-sm-6 col-sm-offset-3">
-              <h1>Account</h1>
+              <h1>Account Details</h1>
               <hr/>
             </div>
           </div>

@@ -1,8 +1,6 @@
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
-import Debug from 'debug';
 import express from 'express';
-import logger from 'morgan';
 import passport from 'passport';
 // import favicon from 'serve-favicon';
 import path from 'path';
@@ -11,9 +9,9 @@ import index from './routes/index';
 import auth from './routes/auth';
 import event from './routes/event';
 import email from './routes/email';
-import invite from './routes/invite';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import cors from 'cors'; // enable CORS requests
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
  */
@@ -27,16 +25,15 @@ import cloudinary from 'cloudinary';
 /**
 * Setup Mongoose connection to MongoDB
 */
-mongoose.Promise = global.Promise;
+
 mongoose.connect('mongodb://admin:admin@ds115752.mlab.com:15752/listtr');
 mongoose.connection.on('error', (err) => {
   console.error(err);
   console.log('%s MongoDB connection error. Please make sure MongoDB is running.', chalk.red('✗'));
   process.exit();
 });
-
+mongoose.Promise = global.Promise;
 const app = express();
-const debug = Debug('backend:app');
 
 cloudinary.config({
   cloud_name: "listtr",
@@ -55,7 +52,6 @@ app.set('view engine', 'pug');
 
 // uncomment after placing your favicon in /public
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
@@ -64,7 +60,6 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(lessMiddleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
-
 
 
 /**
@@ -89,6 +84,15 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Enable All CORS requests
+app.use(function(req, res, next) {
+  console.log('enabling cors in headers')
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 app.use(function(req, res, next){
   console.log( "Method: " + req.method +" Path: " + req.url)
   next();
@@ -101,7 +105,6 @@ app.use('/', index);
 app.use('/auth', auth);
 app.use('/event',event);
 app.use('/email',email);
-app.use('/invite',invite);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -123,8 +126,45 @@ app.use((err, req, res, next) => {
 
 // Handle uncaughtException
 process.on('uncaughtException', (err) => {
-  debug('Caught exception: %j', err);
+  console.log(err);
   process.exit(1);
 });
+
+
+/*
+  Debug
+*/
+
+// import Event from './models/Event';
+//
+// var db = mongoose.connection;
+// db.on('error', console.error.bind(console, 'connection error:'));
+// db.once('open', function() {
+//   console.log("we are connected");
+// });
+//
+//
+// Event.findById("59801041f0a5bc72551a2029", (err, event) => {
+//
+//
+//     let guest = event.guests[0];
+//     guest.response = "yes";
+// 
+//     event.guests[0] = guest;
+//
+//     event.markModified('guests');
+//
+//     event.save((err, savedEvent) => {
+//       if(err){ return console.log(err); }
+//     //  console.log(event);
+//
+//       Event.findById("59801041f0a5bc72551a2029", (err, newEvent) => {
+//
+//           console.log(newEvent);
+//       });
+//
+//     });
+// });
+
 
 export default app;

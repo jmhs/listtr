@@ -13,6 +13,24 @@ exports.getEvents = (req, res) => {
   })
 }
 
+// Controller accepts callback 'cb' as an argument
+// Cb will only exceute on completion of async database operation 'Queue.find()'
+exports.getGuestlist = (eventId,  cb) => {
+  Event.findById(eventId, (err, guestlist) => {
+      cb(guestlist);
+  })
+};
+
+exports.updateGuestlist = (event,  cb) => {
+  Event.findById(event._id, (err, receivedEvent) => {
+    receivedEvent.guests = event.guests;
+    receivedEvent.save((err) => {
+      if (err) { return (err); }
+    });
+    cb(receivedEvent);
+  });
+};
+
 exports.getSpecificEvent = (req, res) => {
   Event.findOne({'_id':req.params.event_id},(err,event) => {
     if(err){console.log(err); return;}
@@ -36,9 +54,40 @@ exports.postGuest = (req, res) => {
   })
 }
 
-// {
-//   '$pull':{'guests': { $elemMatch : {'id': req.body.id}}}
-// }
+exports.updateGuestInfo = (req, res) => {
+   console.log(req.body);
+   console.log('Inside if')
+  Event.findById(req.params.event_id, (err, event) => {
+    if (err) { return err; }
+    console.log('event', event)
+
+    let editedGuest = event.guests.filter((guest, index) => {
+      return guest.id === req.body.id
+    })
+
+    let guestOldArray = event.guests.filter((guest, index) => {
+      return guest.id !== req.body.id
+    })
+    editedGuest = editedGuest[0]
+    console.log(editedGuest)
+    console.log(guestOldArray)
+    editedGuest.name = req.body.name
+    editedGuest.email = req.body.email
+    editedGuest.contact = req.body.contact
+    editedGuest.response = req.body.response
+
+    guestOldArray.push(editedGuest)
+    event.guests = guestOldArray;
+    event.markModified('guests');
+    event.save((err) => {
+      if (err) { return (err); }
+      console.log(event);
+
+    });
+    res.json(event);
+  })
+}
+
 exports.deleteGuest =(req, res) => {
   Event.findOne({'_id':req.params.event_id},(err, event) => {
 
@@ -57,6 +106,49 @@ exports.deleteGuest =(req, res) => {
 
     });
   })
+
+}
+
+exports.addNewHost = (req, res) => {
+  let userId = "";
+  console.log('email is', req.body.email)
+  User.findOne({'email':req.body.email}, (err, user) => {
+    if (err){
+      console.log('error!', err);
+      res.json('notuser')
+      return;
+    }
+    else{
+      if(user === null){
+        res.json('not user')
+      }
+
+      else if(user !== null){
+        res.json('user')
+        userId = user._id
+        user.hostFor.push(req.params.event_id)
+        user.save((err) => {
+          if (err) { console.log('error!', err); return; }
+          console.log('updated user');
+
+        });
+      }
+
+    }
+
+  });
+  if(userId !== ""){
+    Event.findOne({'_id':req.params.event_id},(err, event) => {
+
+      if(err){console.log(err); return;}
+      event.hosts.push(userId)
+      event.save((err) => {
+        if (err) { return (err); }
+        console.log(event);
+
+      });
+    })
+  }
 
 }
 //logic for incoming data for events
@@ -208,13 +300,64 @@ exports.deleteEvent = (req,res) => {
     //   if(err){console.log(err); return;}
     // })
     //
-    // User.findOneAndUpdate({'_id':event.user},{
-    //   '$pull':{'events': req.params.id}
-    // },(err, user) => {
-    //   if(err){console.log(err); return;}
-    // })
+    User.findOneAndUpdate({'_id':event.hosts},{
+      '$pull':{'hostFor': req.params.event_id}
+    },(err, user) => {
+      if(err){console.log(err); return;}
+    })
     if(err){console.log(err); return;}
     res.json(event);
   })
 
 }
+
+//logic for incoming data for events
+exports.postInvite = (req, res) => {
+   console.log(req.body);
+   console.log('Inside if')
+   Event.findById(req.params.event_id, (err, event) => {
+     if (err) { return err; }
+     console.log('event', event)
+     if (event.invites.length > 0) {
+       event.invites.pop(req.body)
+       event.invites.push(req.body)
+     } else {
+       event.invites.push(req.body)
+     }
+     event.save((err) => {
+       if (err) { return (err); }
+       console.log(event);
+
+     });
+     res.json(event);
+   })
+}
+
+exports.updateGuestResponse = (req, res) => {
+  console.log('Inside updateGuestResponse')
+  Event.findById({'_id': req.params.event_id}, (err, event) => {
+    if (err) { return err; }
+    // console.log(req.body.data.guestId)
+    let guestUpdated = event.guests.map((guest) => {
+
+      if (guest.id === req.body.data.guestId ) {
+        guest.response = req.body.data.response
+        // console.log(guest.id)
+        // console.log(req.body.data.guestId)
+        // console.log(guest.response)
+      }
+      return guest
+    })
+    event.guests = guestUpdated
+    // console.log(guestUpdated)
+    event.markModified('guests');
+    event.save((err, saved) => {
+       if (err) {
+         console.log(err);
+         return (err);
+       }
+       console.log(saved);
+         res.json(saved);
+    });
+    });
+  }

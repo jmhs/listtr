@@ -5,7 +5,8 @@ const router = express.Router();
 // router.get('/',emailController.getEvents);
 // router.get('/:event_id', emailController);
 
-router.post('/', emailController.handleEmail); // handle the route at yourdomain.com/sayHello
+router.post('/:event_id', emailController.handleEmail);
+router.post('/:event_id/reminder', emailController.reminderEmail);
 
 // router.post('/',emailController.postEvent);
 

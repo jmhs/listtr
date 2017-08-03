@@ -1,0 +1,30 @@
+#responseVerificationContainer {
+  background: #DBE2E4;
+  margin-left: 0;
+  margin-right: 0;
+  height: 100vh;
+  background-size: cover;
+}
+
+#responseVerificationHeader {
+  text-align: center;
+}
+
+#respondToInvitationBtn {
+  text-align: center;
+  margin-left: 40%;
+  background-color: #0FB28A;
+  color: white;
+}
+
+#respondToInvitationBtn:hover {
+  background-color: #17ddac;
+}
+
+#eventIdResponse {
+  display: none;
+}
+
+#guestIdResponse {
+  display: none;
+}

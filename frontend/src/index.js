@@ -11,8 +11,11 @@ import { getEvents} from './Actions/Event';
 import { Provider } from 'react-redux';   // yarn add react-redux
 import { initStore } from './Store/Store';
 
+const storeAndHistory = initStore()
+export const store = storeAndHistory[0];
+export const history = storeAndHistory[1];
 
-const store = initStore();
+// const store = initStore();
 store.dispatch(getUser());
 store.dispatch(getEvents());
 ReactDOM.render(

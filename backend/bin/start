@@ -15,6 +15,9 @@ const app = require('../app').default;
 const debug = require('debug')('backend:server');
 const http = require('http');
 
+// import socket.io
+
+
 /**
  * Normalize a port into a number, string, or false.
  */
@@ -47,12 +50,35 @@ app.set('port', port);
  */
 
 const server = http.createServer(app);
+const io = require('socket.io')(server);
 
-/**
+// var chat = io
+//   .of('/chat').on('connection', function (socket) {
+//     socket.emit('a message', {that: 'only', '/chat': 'will get'});
+//     chat.emit('a message', {everyone: 'in', '/chat': 'will get'});
+//   });
+//
+//   var chat = io.connect('/chat')
+//
+//   chat.on('connect', function () {
+//     chat.emit('hi!');
+//   });
+
+/*
  * Listen on provided port, on all network interfaces.
  */
 
 server.listen(port);
+
+
+// const io = socket(server);
+//
+io.on('connection',(socket)=>{
+  console.log('madee connection')
+});
+
+const socketIO = require('../routes/websocket')(io);
+
 
 /**
  * Event listener for HTTP server "error" event.
