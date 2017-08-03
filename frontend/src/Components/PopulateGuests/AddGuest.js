@@ -2,13 +2,14 @@ import React, {PropTypes} from 'react';
 import { connect } from 'react-redux';
 import ProgressBar from 'progressbar.js'
 import { Link } from 'react-router-dom'
-import {storeGuestsToActive, postGuest, deleteGuest} from '../../Actions/Event'
+import {storeGuestsToActive, postGuest, deleteGuest, addCollabToBackend} from '../../Actions/Event'
+
 import RenderGuests from './RenderGuests'
 import './AddGuest.css'
 import CreateGuestRow from './CreateGuestRow'
 import { reminderEmail } from '../../Actions/Invite';
 import {updateNavPath} from '../../Actions/Navigation'
-
+import AddCollab from './AddCollab'
 class AddGuest extends React.Component {
   constructor(props) {
     super(props);
@@ -29,7 +30,7 @@ class AddGuest extends React.Component {
   componentDidMount(){
     var yesBar = new ProgressBar.SemiCircle('#progress-bar-yes', {
       strokeWidth: 6,
-      color: '#ED6A5A',
+      color: '#0FB28A',
       trailColor: '#eee',
       trailWidth: 1,
       easing: 'easeInOut',
@@ -39,8 +40,8 @@ class AddGuest extends React.Component {
         value: '',
         alignToBottom: false
       },
-      from: {color: '#ED6A5A'},
-      to: {color: '#00ad1f'},
+      from: {color: '#0FB28A'},
+      to: {color: '#0FB28A'},
       // Set default step function for all animate calls
       step: (state, bar) => {
         bar.path.setAttribute('stroke', state.color);
@@ -69,7 +70,7 @@ class AddGuest extends React.Component {
       let percentageYes = numberOfGuestsYes / guests.length;
       yesBar.animate(percentageYes);
     }
-    
+
 
     var noBar = new ProgressBar.SemiCircle('#progress-bar-no', {
       strokeWidth: 6,
@@ -84,7 +85,7 @@ class AddGuest extends React.Component {
         alignToBottom: false
       },
       from: {color: '#ED6A5A'},
-      to: {color: '#00ad1f'},
+      to: {color: '#ED6A5A'},
       // Set default step function for all animate calls
       step: (state, bar) => {
         bar.path.setAttribute('stroke', state.color);
@@ -113,11 +114,11 @@ class AddGuest extends React.Component {
       let percentageNo = numberOfGuestsNo / guests.length;
       noBar.animate(percentageNo);
     }
-    
+
 
     var pendingBar = new ProgressBar.SemiCircle('#progress-bar-pending', {
       strokeWidth: 6,
-      color: '#ED6A5A',
+      color: '#939393',
       trailColor: '#eee',
       trailWidth: 1,
       easing: 'easeInOut',
@@ -127,8 +128,8 @@ class AddGuest extends React.Component {
         value: '',
         alignToBottom: false
       },
-      from: {color: '#ED6A5A'},
-      to: {color: '#00ad1f'},
+      from: {color: '#939393'},
+      to: {color: '#939393'},
       // Set default step function for all animate calls
       step: (state, bar) => {
         bar.path.setAttribute('stroke', state.color);
@@ -185,6 +186,11 @@ class AddGuest extends React.Component {
     }
 
   }
+
+  addCollab = (event_id, email) => {
+    this.props.addCollabToBackend(event_id, email)
+  }
+
   toggleViewPending = (e) => {
     console.log('toggle view pending')
     if(this.state.viewPending){
@@ -204,6 +210,7 @@ class AddGuest extends React.Component {
       query: e.target.value
     })
   }
+
   updateGuests = (guest) => {
     let guests = this.state.guests;
     guests.push(guest)
@@ -248,13 +255,25 @@ class AddGuest extends React.Component {
 
   render() {
     const renderGuestsRows = this.renderGuests()
+    const renderNotifyAddCollabSuccess = () => {
+      return (<div className="col-sm-12">
+        <div className="success-alert">
+          <strong>Success!</strong> Collab Added
+        </div>
+      </div>)
+    }
+    const renderNotifyAddCollabFail = () => {
+      return (<div className="col-sm-12">
+        <div className="fail-alert">
+          <strong>Fail</strong> to add collab. Email is not a user!
+        </div>
+      </div>)
+    }
     return (
       <div className="container add-guest-container">
 
 
-          <div className="back-button">
-            <button className="btn btn-default" id="backToPreviewAddGuestBtn" onClick={this.onClick} >Back</button>
-          </div>
+
 
         <div className="add-guest-header">
           <h1>Manage Guest</h1>
@@ -263,7 +282,7 @@ class AddGuest extends React.Component {
         <div className="row">
           <div className="col-sm-6">
             <input type="checkbox" name="view-pending" value="Car" onChange={this.toggleViewPending}/>View pending only<br/>
-            <button className="btn btn-default" >Send reminder</button>
+
           </div>
           <div className="col-sm-3">
             <input type="text" className="uk-input" placeholder="Search Name" onChange={this.searchName}/>
@@ -292,8 +311,18 @@ class AddGuest extends React.Component {
           {renderGuestsRows}
         </div>
         <CreateGuestRow updateGuests={this.updateGuests}/>
-        <button className="uk-button uk-button-primary"
-                id="sendReminderEmailsBtn" onClick={this.reminderEmail}>SEND REMINDER!</button>
+
+          <button className="uk-button uk-button-primary"
+                  id="sendReminderEmailsBtn" onClick={this.reminderEmail}>SEND REMINDER!</button>
+
+        <div className="col-sm-12">
+
+        </div>
+        <div className="col-sm-12">
+          <AddCollab addCollabFunction={this.addCollab} event={this.props.active}/>
+        </div>
+        {this.props.responseAJAX.addCollab === "success" ? renderNotifyAddCollabSuccess() : (<div></div>)}
+        {this.props.responseAJAX.addCollab === "fail add collab" ? renderNotifyAddCollabFail() : (<div></div>)}
       </div>
 
 
@@ -308,6 +337,7 @@ const mapStateToProps = (state) => {
   return {
     active: state.active,
     events: state.active,
+    responseAJAX: state.responseAJAX
   }
 }
 
@@ -318,11 +348,10 @@ const mapDispatchToProps = (dispatch) => {
     postGuest: (active_id, guest) => {dispatch(postGuest(active_id, guest))},
     deleteGuest: (active_id, guest) => {dispatch(deleteGuest(active_id, guest))},
     reminderEmail: (active_id, event) => {dispatch(reminderEmail(active_id, event))},
-    updateNavPath: (currentNav) => {dispatch(updateNavPath(currentNav))}
+    updateNavPath: (currentNav) => {dispatch(updateNavPath(currentNav))},
+    addCollabToBackend: (event_id, email) => {dispatch(addCollabToBackend(event_id, email))},
+
   }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddGuest);//to include guest population
-
-<Link to="/preview">
-</Link>

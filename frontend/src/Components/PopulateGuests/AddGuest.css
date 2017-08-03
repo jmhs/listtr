@@ -12,7 +12,14 @@
 width: 200px;
 height: 100px;
 }
-
+.fail-alert{
+  border-radius: 0;
+  background-color: rgba(255, 165, 169,.3);
+  color: rgb(255, 0, 11);
+  padding: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 .progress-bar-box{
 	/*margin: auto auto;*/
 	/*border: 1px solid black;*/
@@ -23,4 +30,11 @@ height: 100px;
 .progress-bar-title{
 	margin: auto auto;
 	text-align: center;
+}
+input[type='checkbox']{
+	width: 50px;
+}
+#sendReminderEmailsBtn{
+  padding: 5px;
+  /*font-size: 14px;*/
 }
