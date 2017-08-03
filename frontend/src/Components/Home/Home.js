@@ -83,19 +83,20 @@ class Home extends React.Component {
             </div>
           </div>
         </section>
-
+        <footer className="home-footer">
+          <div className="container-home-page">
+            <div className="col-sm-3 footer-column">
+              <p>Powered by Listtr © 2017<br/>
+                All rights reserved.</p>
+            </div>
+          </div>
+        </footer>
 
       </div>
     );
   }
 }
 /*
-<footer className="home-footer">
-  <div className="container-home-page">
-    <div className="col-sm-3">
-      <h4>About us</h4>
-    </div>
-  </div>
-</footer>
+
 */
 export default Home;

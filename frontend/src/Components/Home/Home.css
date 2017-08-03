@@ -6,7 +6,7 @@ body{
 #landing-page{
   background-image: url("getting-started.jpg");
   background-size: cover;
-  height:500px;
+  height:100vh;
   background-position: center;
   overflow: hidden;
 }
@@ -43,8 +43,9 @@ body{
   margin-top: -100px;
 }
 .dark-home-background{
-  height: 500px;
+  height: 100vh;
   background-color: #425A64;
+  padding-top: 10%;
 }
 .fa-pencil{
   color: white;
@@ -87,7 +88,7 @@ body{
 }
 .home-footer{
   background-color: #0FB28A;
-  height: 400px;
+  height: 70px;
   color: white;
 }
 
@@ -97,8 +98,12 @@ body{
   margin-right: auto;
   margin-left: auto;
 }
+.footer-column{
+  margin-left: 50px;
+  margin-top: 10px;
+}
 #typedjs{
-  height:500px;
+  height:100vh;
   background-color: #0FB28A;
 }
 #home-title{
@@ -126,6 +131,6 @@ body{
 }
 .home-nav{
   font-size: 15px;
-  font-family: 'Montserrat', sans-serif;
+  /*font-family: 'Montserrat', sans-serif;*/
   color: white;
 }
