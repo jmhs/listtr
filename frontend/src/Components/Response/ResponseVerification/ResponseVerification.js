@@ -55,6 +55,7 @@ onClick = (e) => {
     return guest.id === this.props.match.params.guest_id
   })
   console.log(guest)
+  guest.id=this.props.match.params.guest_id
   // this.props.getSpecificEvent(this.props.match.params.event_id)
   this.props.activeGuest(guest)
 

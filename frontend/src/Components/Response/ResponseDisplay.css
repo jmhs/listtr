@@ -176,3 +176,15 @@ p {
     width: 100 %;
   }
 }
+
+#respondToInvitationBtn:hover {
+  background-color: #17ddac;
+}
+
+#eventIdResponse {
+  display: none;
+}
+
+#guestIdResponse {
+  display: none;
+}

@@ -100,7 +100,7 @@ exports.updateGuestInfo = (req, res) => {
     editedGuest = editedGuest[0]
     console.log(editedGuest)
     console.log(guestOldArray)
-    editedGuest.name = req.body.name 
+    editedGuest.name = req.body.name
     editedGuest.email = req.body.email
     editedGuest.contact = req.body.contact
     editedGuest.response = req.body.response
@@ -328,12 +328,17 @@ exports.updateGuestResponse = (req, res) => {
     if (err) { return err; }
     // console.log(req.body.data.guestId)
     let guestUpdated = event.guests.map((guest) => {
+
       if (guest.id === req.body.data.guestId ) {
         guest.response = req.body.data.response
+        // console.log(guest.id)
+        // console.log(req.body.data.guestId)
+        // console.log(guest.response)
       }
       return guest
     })
     event.guests = guestUpdated
+    // console.log(guestUpdated)
     event.markModified('guests');
     event.save((err, saved) => {
        if (err) {

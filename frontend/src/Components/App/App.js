@@ -61,7 +61,7 @@ class App extends Component {
               <Route path="/preview" component={Preview}/>
               <Route exact path="/liveregistration" component={LiveRegistration}/>
               <Route path="/responseverification/:event_id/:guest_id" component={ResponseVerification}/>
-              <Route exact path="/responsedisplay" component={ResponseDisplay}/>
+              <Route exact path="/responsedisplay/" component={ResponseDisplay}/>
               <Route exact path="/testingdashboard" component={TestingDashboard}/>
               <Route component={NotFound}/>
 

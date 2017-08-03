@@ -27,8 +27,8 @@ class ResponseDisplay extends React.Component {
       guestEmail: "",
       guestContact: "",
 
-      guestId: this.props.events.guests[0].id,
-      response: this.props.events.guests[0].response,
+      guestId: this.props.response[0].guest[0].id,
+      response: this.props.response[0].guest[0].response,
     }
   }
 
@@ -37,18 +37,20 @@ class ResponseDisplay extends React.Component {
       response: '',
       guestId: this.state.guestId
     }
+    console.log(e.target.id)
     switch (e.target.id) {
       case 'rsvpYesBtn':
         console.log('clicked rsvpYesBtn')
 
         console.log(data, this.props.events._id)
         data.response = "yes"
-        axios.put('/event/'+ this.props.events._id, {
-          data
-        })
+        console.log('before axios', data)
+        axios.put('/event/'+ this.props.events._id, {data})
         .then( (response) => {
+          console.log('after axios is returned', data)
           console.log(response);
           console.log("AJAX: Updated guest response @ /event/+ this.props.events._id");
+          // dispatch()
         })
         .catch((error)=> {
           console.log(error);
@@ -147,9 +149,9 @@ class ResponseDisplay extends React.Component {
                                         <hr/>
 
                                         <h4><strong>Guest details :</strong></h4>
-                                        <p><strong>Name: </strong>{this.props.events.guests[0].name}</p>
-                                        <p><strong>Email: </strong>{this.props.events.guests[0].email}</p>
-                                        <p><strong>Contact: </strong>{this.props.events.guests[0].contact}</p>
+                                        <p><strong>Name: </strong>{this.props.response[0].guest[0].name}</p>
+                                        <p><strong>Email: </strong>{this.props.response[0].guest[0].email}</p>
+                                        <p><strong>Contact: </strong>{this.props.response[0].guest[0].contact}</p>
 
                                         <h4><strong>Click below to send your response:</strong></h4>
                                         <button type="button" className="uk-button uk-button-default green-yes-button" id="rsvpYesBtn" onClick={this.updateGuestResponse}>Yes</button>
@@ -240,6 +242,7 @@ ResponseDisplay.propTypes = {
 const mapStateToProps = (state) => {
   return {
     events: state.active,
+    response: state.response,
   }
 }
 const mapDispatchToProps = (dispatch) => {
