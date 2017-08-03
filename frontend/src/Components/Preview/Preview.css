@@ -4,10 +4,15 @@
   color: black;
 }
 
+
 .eventCoverCard {
   width: 55vw;
   margin-top: 20px;
   min-height: 40vh;
+
+.event-preview-location, .event-preview-description{
+  word-wrap: break-word;
+
 }
 
 #eventCoverCardHeader, #eventActionsHeader, #eventDetailsHeader, #eventDescriptionHeader {

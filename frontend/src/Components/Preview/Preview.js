@@ -135,6 +135,7 @@ onEdit = (e) => {
 
         {this.props.response.createEvent === "success" ? renderNotifyCreateSuccess() : (<div></div>)}
 
+
       <div className="row">
 
         <div className="card eventCoverCard">
@@ -144,6 +145,7 @@ onEdit = (e) => {
           <div className="card-block">
             <img src={events.eventImage} id="previewImg"/>
           </div>
+
         </div>
 
         <div className="card eventActions">
@@ -160,7 +162,13 @@ onEdit = (e) => {
         </ul>
       </div>
 
+
       {this.props.response.deleteEvent === "success" ? renderNotifyDeleteSuccess() : (<div></div>)}
+
+            <button type="button"
+                    className="btn-custom"
+                    id="addGuest"
+                    onClick={this.onClick}>Manage Guest and Collaborators</button>
 
       </div>
 

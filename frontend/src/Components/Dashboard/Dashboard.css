@@ -36,7 +36,8 @@ height: 5vh;
 #contentNavHeader {
   color: black;
   height: 15vh;
-  overflow: auto;
+  overflow: hidden;
+  margin-left: 5%;
 }
 
 #contentToRender {
@@ -44,6 +45,7 @@ height: 5vh;
   color: white;
   height: 80vh;
   overflow: auto;
+
 }
 
 ul {
@@ -67,3 +69,14 @@ li:hover {
   text-align: center;
   width: auto;
 }
+
+
+
+
+
+@media only screen and (max-width: 400px) {
+    #welcome-back-user{
+      font-size: 25px;
+    }
+}
+

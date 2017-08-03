@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {successResponse, successDeleteEvent} from './ResponseAJAX.js'
+import {successResponse, successDeleteEvent, successAddCollab, failAddCollab} from './ResponseAJAX.js'
 export const activeEvent = (event) => {
   return {
     type: 'ACTIVE_EVENT',
@@ -60,7 +60,27 @@ export const postGuest = (event_id, guest) => {
       });
   }
 }
+export const addCollabToBackend = (event_id, email) => {
+  let data = {
+    email: email
+  }
+  return (dispatch) => {
+    axios.put('/event/host/' + event_id, data)
+      .then( (response) => {
+        console.log(response.data);
+        if(response.data ==="user"){
+          dispatch(successAddCollab())
+        } else {
+          dispatch(failAddCollab())
+        }
+        // dispatch(storeGuests(response.data))
 
+      })
+      .catch((error)=> {
+        console.error("host not posted to server'")
+      });
+  }
+}
 //in-charge of defining the action to store the event into the store
 export const getEvents = () => {
   return (dispatch) => {
