@@ -183,21 +183,21 @@ GuestField = (e) => {
     this.state.name = e.target.value
     this.setState(this.state)
   }
-  console.log(this.state.name)
+
   else if (e.target.placeholder = "email"){
     this.state.name = e.target.value
     this.setState(this.state)
   }
-  console.log(this.state.name)
-}
+
+
 else if (e.target.placeholder = "contact"){
   this.state.name = e.target.value
-  this.setState(this.state)
 }
 console.log(this.state.name)
 }
 
-}
+
+
 
 
 
