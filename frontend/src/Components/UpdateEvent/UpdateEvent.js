@@ -22,8 +22,8 @@ class UpdateEvent extends React.Component {
     location: this.props.active.location,
     type: this.props.active.type,
     dressCode: this.props.active.dressCode,
-    startTime: this.props.active.startTime,
-    endTime: this.props.active.endTime,
+    timeStart: this.props.active.timeStart,
+    timeEnd: this.props.active.timeEnd,
     user_id: this.props.user._id
   };
 
@@ -52,14 +52,6 @@ class UpdateEvent extends React.Component {
       case 'description':
         this.setState({
           description: e.target.value
-        })
-      case 'startTime':
-        this.setState({
-          startTime: e.target.value
-        })
-      case 'endTime':
-        this.setState({
-          endTime: e.target.value
         })
       case 'location':
         this.setState({
@@ -104,7 +96,36 @@ class UpdateEvent extends React.Component {
     })
   }
 
+  onTimeChangeHandler = (e) => {
+    console.log(e.target.value)
+    let string = e.target.value;
+    let dateAndTime = string.split("T");
+    dateAndTime[0] = dateAndTime[0].split("-")
 
+    //put year at the back
+    dateAndTime[0].push(dateAndTime[0].shift())
+
+    //swap month and date
+    let month = dateAndTime[0][0]
+    dateAndTime[0][0] = dateAndTime[0][1];
+    dateAndTime[0][1] = month;
+
+    let date = dateAndTime[0].join('-');
+
+    console.log(dateAndTime[0].join('-'))
+    if(e.target.name === "startDateAndTime"){
+      this.setState({
+        startDate: date,
+        timeStart: dateAndTime[1]
+      })
+      // console.log(dateAndTime[0])
+    } else {
+      this.setState({
+        endDate: date,
+        timeEnd: dateAndTime[1]
+      })
+    }
+   }
 
   render() {
     let active = this.props.active
@@ -115,14 +136,14 @@ class UpdateEvent extends React.Component {
           <h1 id="create-event-brand">Listtr</h1>
           <h1 id="create-event">Edit Event</h1>
         </div>
-
+        <div>* required</div>
         <div className="create-row">
 
           <legend className="uk-legend">Title</legend>
           <div className="uk-margin">
             <input className="uk-input" type="text"
                    name="title"
-                   placeholder={active.eventName}
+                   value={this.state.eventName}
                    onChange={this.onChange}/>
           </div>
         </div>
@@ -131,7 +152,7 @@ class UpdateEvent extends React.Component {
           <div className="uk-margin">
             <input className="uk-input" type="text"
                    name="type"
-                   placeholder={active.type}
+                   value={this.state.type}
                    onChange={this.onChange}/>
           </div>
         </div>
@@ -140,56 +161,32 @@ class UpdateEvent extends React.Component {
           <div className="uk-margin">
             <input className="uk-input" type="text"
                    name="dresscode"
-                   placeholder={active.dressCode}
+                   value={this.state.dressCode}
                    onChange={this.onChange}/>
           </div>
         </div>
-        <div className="create-row calendar-form">
+        <div className="create-row">
           <legend className="uk-legend">Start Date</legend>
           <div className="uk-margin">
-            <Calendar
-                dateFormat="YYYY-MM-DD"
-                date={date}
-                onChange={this.startdateChange}
-                name="startDate"
-                />
+            <input type="datetime-local" name="startDateAndTime" id="date-and-time" onChange={this.onTimeChangeHandler}
+            />
+
           </div>
         </div>
-        <div className="create-row calendar-form">
+        <div className="create-row">
           <legend className="uk-legend">End Date</legend>
           <div className="uk-margin">
-          <Calendar
-              dateFormat="YYYY-MM-DD"
-              date={date}
-              onChange={this.enddateChange}
-              name="startDate"
-              />
-          </div>
-        </div>
-        <div className="create-row">
-          <legend className="uk-legend">Start Time</legend>
-          <div className="uk-margin">
-            <input className="uk-input" type="text"
-                   name="startTime"
-                   placeholder={active.startTime}
-                   onChange={this.onChange}/>
-          </div>
+          <input type="datetime-local" name="endDateAndTime" id="date-and-time" onChange={this.onTimeChangeHandler}
+          />
 
-        </div>
-        <div className="create-row">
-          <legend className="uk-legend">End Time</legend>
-          <div className="uk-margin">
-            <input className="uk-input" type="text"
-                   name="endTime"
-                   placeholder={active.endTime}
-                   onChange={this.onChange}/>
           </div>
         </div>
+
         <div className="create-row">
           <legend className="uk-legend">Description</legend>
           <div className="uk-margin">
             <textarea className="uk-textarea" rows={5} name="description"
-                   placeholder={active.description}
+                   value={this.state.description}
                    onChange={this.onChange}
                    />
           </div>
@@ -199,7 +196,7 @@ class UpdateEvent extends React.Component {
           <legend className="uk-legend">Location</legend>
           <div className="uk-margin">
             <input className="uk-input" name="location"
-                   placeholder={active.location}
+                   value={this.state.location}
                    onChange={this.onChange}
                    />
           </div>

@@ -57,6 +57,7 @@ export default class SignUp extends React.Component {
   render() {
     return (
       <div className="container-signup">
+        <h1 className="brand-title-auth">Listtr</h1>
         <div className="col-md-4 col-md-offset-4">
           <div className="panel panel-primary" id="signupContainer">
             <div className="panel-heading" id="formHeader">SIGNUP</div>
@@ -66,13 +67,13 @@ export default class SignUp extends React.Component {
               <div className="error">{this.state.error}</div>
 
               <label htmlFor="username">Username</label>
-              <input type="email" className="uk-input" id="username" placeholder="Please enter username" value={this.state.username} onChange={this.onChange}/>
+              <input type="email" className="text-input-line" id="username" placeholder="Please enter username" value={this.state.username} onChange={this.onChange}/>
 
               <label htmlFor="email">Email address</label>
-              <input type="email" className="uk-input" id="email" placeholder="Please enter email" value={this.state.email} onChange={this.onChange}/>
+              <input type="email" className="text-input-line" id="email" placeholder="Please enter email" value={this.state.email} onChange={this.onChange}/>
 
               <label htmlFor="password">Password</label>
-              <input type="password" className="uk-input" id="password" placeholder="Please enter password" value={this.state.password} onChange={this.onChange}/>
+              <input type="password" className="text-input-line" id="password" placeholder="Please enter password" value={this.state.password} onChange={this.onChange}/>
 
               <br/>
               <button type="submit" className="uk-button uk-button-default login-button-green login-button-default" id="signupBtn" onClick={this.localSignup}>Sign me up!</button>
