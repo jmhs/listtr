@@ -76,12 +76,21 @@ body{
   text-align: justify;
   margin-left: 5px;
   margin-right: 5px;
+  font-size: 16px;
+}
+.how-it-works-title{
+  font-size: 20px;
+  text-align: center;
+  color: white;
+  margin-top: 20px;
+  font-weight: bold;
 }
 .home-footer{
   background-color: #0FB28A;
   height: 400px;
   color: white;
 }
+
 .home-footer.container-home-page{
   padding-right: 15px;
   padding-left: 15px;

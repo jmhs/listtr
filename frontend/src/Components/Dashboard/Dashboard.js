@@ -67,14 +67,9 @@ class Dashboard extends React.Component {
                 <a id="HostingNav" onClick={this.onClick}><i className="fa fa-fw fa-book"/> Hosting </a>
               </li>
               <li className="sidebarNavListItem">
-                <a id="AttendingNav" onClick={this.onClick}><i className="fa fa-fw fa-ticket"/> Attending </a>
-              </li>
-              <li className="sidebarNavListItem">
                 <a id="AccountNav" onClick={this.onClick}><i className="fa fa-fw fa-user"/> Account </a>
               </li>
-              <li className="sidebarNavListItem">
-                <a id="Billing" onClick={this.onClick}><i className="fa fa-fw fa-credit-card"/> Billing </a>
-              </li>
+
               <li className="sidebarNavListItem">
                 <a id="Logout" onClick={this.logout}><i className="fa fa-fw fa-sign-out"/> Logout </a>
               </li>
@@ -87,8 +82,8 @@ class Dashboard extends React.Component {
           <div className="col-xs-10" id="contentwrapper">
 
             <div className="row">
-              <div className="col-md-12" id="contentNavHeader">
-                <h1>Welcome back, {this.props.user.username}!</h1>
+              <div className="row" id="contentNavHeader">
+                <h1 id="welcome-back-user">Welcome back, {this.props.user.username}!</h1>
                 <hr />
               </div>
               <div className="col-md-12" id="contentToRender">

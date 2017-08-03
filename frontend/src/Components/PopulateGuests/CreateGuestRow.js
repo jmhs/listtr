@@ -50,7 +50,7 @@ export default class CreateGuestRow extends React.Component {
   }
   render() {
     return (
-      <section className="row create">
+      <section>
         <div className="col-md-2 title">
           <div className="form-group">
             <input type="text"
@@ -58,7 +58,6 @@ export default class CreateGuestRow extends React.Component {
                    placeholder="Name"
                    className="uk-input"
                    onChange={this.onChange}
-                   defaultValue={this.state.name}
                    value={this.state.name}/>
           </div>
         </div>
@@ -68,7 +67,6 @@ export default class CreateGuestRow extends React.Component {
                    placeholder="Email"
                    className="uk-input"
                    onChange={this.onChange}
-                   defaultValue={this.state.email}
                    value={this.state.email}/>
           </div>
         </div>
@@ -78,7 +76,6 @@ export default class CreateGuestRow extends React.Component {
                    placeholder="Contact"
                    className="uk-input"
                    onChange={this.onChange}
-                   defaultValue={this.state.contact}
                    value={this.state.contact}/>
           </div>
         </div>

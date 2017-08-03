@@ -31,41 +31,12 @@ exports.updateGuestlist = (event,  cb) => {
   });
 };
 
-
-// Event.findOne({'_id':req.params.event_id},(err, event) => {
-//
-//   if(err){console.log(err); return;}
-//
-//
-//   // let newArray = event.guests;
-//   let newArray = event.guests.filter( (guest,index) => {
-//     return guest.id === req.body.id;
-//   })
-//
-//   event.guests = newArray;
-//   event.save((err) => {
-//     if (err) { return (err); }
-//     console.log(event);
-//
-//   });
-// })
-
-
-
-
 exports.getSpecificEvent = (req, res) => {
   Event.findOne({'_id':req.params.event_id},(err,event) => {
     if(err){console.log(err); return;}
     res.json(event);
   })
 }
-
-// exports.getSpecificGuest = (req, res) => {
-//     Guest.findOne({'_id':req.params.guest_id},(err,guest) => {
-//       if(err){console.log(err); return;}
-//       res.json(guest);
-//     })
-// }
 
 exports.postGuest = (req, res) => {
    console.log(req.body);
@@ -100,7 +71,7 @@ exports.updateGuestInfo = (req, res) => {
     editedGuest = editedGuest[0]
     console.log(editedGuest)
     console.log(guestOldArray)
-    editedGuest.name = req.body.name 
+    editedGuest.name = req.body.name
     editedGuest.email = req.body.email
     editedGuest.contact = req.body.contact
     editedGuest.response = req.body.response
@@ -117,9 +88,6 @@ exports.updateGuestInfo = (req, res) => {
   })
 }
 
-// {
-//   '$pull':{'guests': { $elemMatch : {'id': req.body.id}}}
-// }
 exports.deleteGuest =(req, res) => {
   Event.findOne({'_id':req.params.event_id},(err, event) => {
 
@@ -138,6 +106,49 @@ exports.deleteGuest =(req, res) => {
 
     });
   })
+
+}
+
+exports.addNewHost = (req, res) => {
+  let userId = "";
+  console.log('email is', req.body.email)
+  User.findOne({'email':req.body.email}, (err, user) => {
+    if (err){
+      console.log('error!', err);
+      res.json('notuser')
+      return;
+    }
+    else{
+      if(user === null){
+        res.json('not user')
+      }
+
+      else if(user !== null){
+        res.json('user')
+        userId = user._id
+        user.hostFor.push(req.params.event_id)
+        user.save((err) => {
+          if (err) { console.log('error!', err); return; }
+          console.log('updated user');
+
+        });
+      }
+
+    }
+
+  });
+  if(userId !== ""){
+    Event.findOne({'_id':req.params.event_id},(err, event) => {
+
+      if(err){console.log(err); return;}
+      event.hosts.push(userId)
+      event.save((err) => {
+        if (err) { return (err); }
+        console.log(event);
+
+      });
+    })
+  }
 
 }
 //logic for incoming data for events
