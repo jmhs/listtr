@@ -153,7 +153,7 @@ onEdit = (e) => {
           <h4>End: {events.endDate}</h4>
           <h4>Time Start: {events.timeStart}</h4>
           <h4>Time End: {events.timeEnd}</h4>
-          <h4>{events.description}</h4>
+          <h4 className="event-preview-description">{events.description}</h4>
         </div>
 
         {this.props.response.deleteEvent === "success" ? renderNotifyDeleteSuccess() : (<div></div>)}
