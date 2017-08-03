@@ -69,7 +69,7 @@ class AddGuest extends React.Component {
       let percentageYes = numberOfGuestsYes / guests.length;
       yesBar.animate(percentageYes);
     }
-    
+
 
     var noBar = new ProgressBar.SemiCircle('#progress-bar-no', {
       strokeWidth: 6,
@@ -113,7 +113,7 @@ class AddGuest extends React.Component {
       let percentageNo = numberOfGuestsNo / guests.length;
       noBar.animate(percentageNo);
     }
-    
+
 
     var pendingBar = new ProgressBar.SemiCircle('#progress-bar-pending', {
       strokeWidth: 6,
