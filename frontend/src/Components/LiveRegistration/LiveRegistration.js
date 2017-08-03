@@ -21,12 +21,12 @@ class LiveRegistration extends React.Component {
         guests: this.props.LiveRegistration.guests,
         filteredGuests:"",
         addGuests: false,
-        id: uuid.v4(),
         name: "",
         email: "",
         contact:"",
-        response: "local",
-        checkedIn: false
+        here:0,
+        total:0,
+
     }
   }
 
@@ -47,7 +47,11 @@ class LiveRegistration extends React.Component {
     filter ? guests = this.state.filteredGuests : guests = this.props.LiveRegistration.guests
     console.log(guests)
     if (guests.length>0) {
+    this.state.here = 0
+    this.state.total = 0
     return guests.map((guest) => {
+      this.state.total++
+      if(guest.checkedIn === true){this.state.here++}
       return (
               <tbody key={guest.id}>
                  <tr>
@@ -82,13 +86,6 @@ class LiveRegistration extends React.Component {
       }
     }
 
-  // renderChecked = (guest) =>{
-  //   if (guest.checkedIn === false){
-  //     return false
-  //   }else if(guest.checkedIn===true){
-  //     return true
-  //   }
-  // }
   addGuests = (e) => {
     let state = this.state
 
@@ -157,6 +154,17 @@ onClick = (e) => {
 }
 
 SendGuest = (e) => {
+  let currentEvent = this.props.LiveRegistration
+  let newGuest = {
+    id: uuid.v4(),
+    name: this.state.name,
+    email: this.state.email,
+    contact:this.state.contact,
+    response: "yes",
+    checkedIn: false
+  };
+  currentEvent.guests.push(newGuest)
+  this.props.updateLiveEventData(currentEvent)
   this.state.addGuests = false
   this.setState(this.state)
 }
@@ -181,19 +189,18 @@ renderAddGuests = () => {
 GuestField = (e) => {
   if (e.target.placeholder = "Name"){
     this.state.name = e.target.value
+
+    }
+  if (e.target.placeholder = "Email"){
+    this.state.email = e.target.value
+
+    }
+  if (e.target.placeholder = "Contact"){
+    this.state.contact = e.target.value
+
+    }
     this.setState(this.state)
-  }
 
-  else if (e.target.placeholder = "email"){
-    this.state.name = e.target.value
-    this.setState(this.state)
-  }
-
-
-else if (e.target.placeholder = "contact"){
-  this.state.name = e.target.value
-}
-console.log(this.state.name)
 }
 
 
@@ -215,6 +222,7 @@ console.log(this.state.name)
             <input className="uk-search-input" type="search" placeholder="Search..." onChange={this.Search} />
           </form>
         </div>
+        <progress id="progressbar" class="uk-progress" value={this.state.here} max={this.state.total}></progress>
               <table className="uk-table uk-table-hover uk-table-middle uk-table-divider">
                 <thead>
                   <tr>
