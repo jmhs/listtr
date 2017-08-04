@@ -43,15 +43,14 @@ class LiveRegistration extends React.Component {
   renderGuests = (filter) => {
     let guests
     filter ? guests = this.state.filteredGuests : guests = this.props.LiveRegistration.guests
-    console.log(guests)
     if (guests.length>0) {
-    this.state.here = 0
-    this.state.total = 0
+    let state = this.state
+    state.here = 0
+    state.total = 0
     return guests.map((guest) => {
-      this.state.total++
-      console.log(this.state.total)
-      if(guest.checkedIn === true){this.state.here++}
-      console.log(this.state.here)
+      state.total++
+      if(guest.checkedIn === true){state.here++}
+      this.setState(state)
       return (
               <tbody key={guest.id}>
                  <tr>
@@ -189,17 +188,16 @@ renderAddGuests = () => {
 GuestField = (e) => {
   if (e.target.placeholder = "Name"){
     this.state.name = e.target.value
-
+    this.setState(this.state.name)
     }
   if (e.target.placeholder = "Email"){
     this.state.email = e.target.value
-
+    this.setState(this.state.email)
     }
   if (e.target.placeholder = "Contact"){
     this.state.contact = e.target.value
-
     }
-    this.setState(this.state)
+    this.setState(this.state.contact)
 
 }
 
