@@ -329,7 +329,7 @@ exports.postInvite = (req, res) => {
        console.log(event);
 
      });
-     res.json(event);
+     res.json("success");
    })
 }
 
