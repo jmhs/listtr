@@ -6196,6 +6196,16 @@ react-uikit-notify@^2.0.0:
     react-uikit-base "~2.0.2"
     ufunc "~2.0.1"
 
+react-uikit-progress@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/react-uikit-progress/-/react-uikit-progress-2.0.1.tgz#3c96ae4fdb36411cd8244d36a0eb01c1d2acccbf"
+  dependencies:
+    cuid "~1.3.8"
+    react "~15.3.2"
+    react-dom "~15.3.2"
+    react-uikit-base "~2.0.2"
+    ufunc "~2.0.1"
+
 react-uikit-table@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/react-uikit-table/-/react-uikit-table-2.0.1.tgz#08a7eca3a23596d70005faea30d9d7450fa4dc96"

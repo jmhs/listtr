@@ -12,3 +12,24 @@
   border-bottom: 1px solid #ddd;
 }
 
+#updateGuestDetailsBtn {
+  padding: 5px;
+  font-size: 10px;
+  width: 50px;
+  background-color: #425A64;
+}
+
+#updateGuestDetailsBtn:hover {
+  background-color: #5b7d8b;
+}
+
+#deleteGuestDetailsBtn {
+  padding: 5px;
+  font-size: 10px;
+  width: 50px;
+  background-color: #D60027;
+}
+
+#deleteGuestDetailsBtn:hover {
+  background-color: #ff002e;
+}

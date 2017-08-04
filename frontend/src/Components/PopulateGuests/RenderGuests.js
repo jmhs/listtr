@@ -85,10 +85,10 @@ class RenderGuests extends React.Component {
           {this.state.editing ? <input className="uk-input" name="response" value={this.state.response} onChange={this.onChange}/> : this.state.response}
         </div>
         <div className="col-sm-1">
-          <button type="button" className="uk-button uk-button-primary" onClick={this.toUpdate}>Update</button>
+          <button type="button" className="uk-button uk-button-primary" id="updateGuestDetailsBtn" onClick={this.toUpdate}>Update</button>
         </div>
         <div className="col-sm-1">
-          <button type="button" className="uk-button uk-button-danger" onClick={this.toDelete}>Delete</button>
+          <button type="button" className="uk-button uk-button-danger" id="deleteGuestDetailsBtn" onClick={this.toDelete}>Delete</button>
         </div>
       </div>
     );

@@ -262,7 +262,7 @@ class InviteTemplate extends React.Component {
                 <hr />
 
                     <button className="uk-button uk-button-primary"
-                            id="sendGuestEmailsBtn" onClick={this.handleEmail}>SEND GUEST EMAILS!</button>
+                            id="sendGuestEmailsBtn" onClick={this.handleEmail}>Send Guest Invitations</button>
 
               </div>
             </div>

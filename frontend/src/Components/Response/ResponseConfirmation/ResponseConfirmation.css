@@ -1,0 +1,15 @@
+#responseConfirmationContainer {
+  background: #DBE2E4;
+  margin-left: 0;
+  margin-right: 0;
+  height: 100vh;
+  background-size: cover;
+}
+
+#responseConfirmationHeader {
+  text-align: center;
+}
+
+.backToHomeRow {
+  text-align: center;
+}
