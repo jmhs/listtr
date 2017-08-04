@@ -228,7 +228,7 @@ class CreateEvent extends React.Component {
           <input name="file" type="file" onChange={this.imageUpload}/>
 
           <button type="submit"
-                  className="btn btn-success"
+                  className="uk-button uk-button-primary"
                   id="postEventToPreview"
                   onClick={this.onClick}>Create Event</button>
 
