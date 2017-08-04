@@ -3,7 +3,7 @@ import React, {PropTypes} from 'react';
 import { connect } from 'react-redux';
 
 import { getUser, localLogin} from '../../Actions/User';
-
+import happy from './happy-face.jpeg'
 import {Link} from 'react-router-dom';
 
 import axios from 'axios';
@@ -71,29 +71,33 @@ class LogIn extends React.Component {
   render() {
       return (
         <div className="container-login">
+          <h1 className="brand-title-auth">Listtr</h1>
           <div className="col-md-4 col-md-offset-4">
             <div className="panel panel-primary" id="loginContainer">
-              <div className="panel-heading" id="formHeader">LOGIN</div>
+              <h4 className="panel-heading" id="formHeader">LOGIN</h4>
               <form id="loginForm" role="form">
 
                 <div className="error">{this.state.error}</div>
 
                 <label htmlFor="email">Email address</label>
-                <input type="email" className="uk-input" id="email" placeholder="Please enter email" value={this.state.email} onChange={this.onChange}/>
+                <input type="email" className="text-input-line" id="email" placeholder="Please enter email" value={this.state.email} onChange={this.onChange}/>
 
                 <label htmlFor="password">Password</label>
-                <input type="password" className="uk-input" id="password" placeholder="Please enter password" value={this.state.password} onChange={this.onChange}/>
+                <input type="password" className="text-input-line" id="password" placeholder="Please enter password" value={this.state.password} onChange={this.onChange}/>
 
                 <br />
 
                 <button type="submit" className="uk-button uk-button-default login-button-green login-button-default" id="loginBtnl" onClick={this.localLogin}>{'Login'}</button>
 
-                <button type="submit" className="uk-button uk-button-default login-button-default" id="signupBtnl" onClick={this.signUp}>{"Don't have an account yet? Sign up here!"}</button>
+                <button type="submit" className="uk-button uk-button-default login-button-default" id="signupBtnl" onClick={this.signUp}>Sign up here!</button>
 
                 <button type="submit" className="uk-button uk-button-default login-button-default" id="homeBtnl" onClick={this.backToHome}>{'Back to home'}</button>
+
+
               </form>
             </div>
           </div>
+          <div><img className="happy-face-picture" src={happy}/></div>
         </div>
       );
   }

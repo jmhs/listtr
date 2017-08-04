@@ -273,53 +273,92 @@ class AddGuest extends React.Component {
       <div className="container add-guest-container">
 
 
-
-
         <div className="add-guest-header">
           <h1>Manage Guest</h1>
           <hr/>
         </div>
+
         <div className="row">
-          <div className="col-sm-6">
-            <input type="checkbox" name="view-pending" value="Car" onChange={this.toggleViewPending}/>View pending only<br/>
 
+        <div className="card progressbarContainer" id="yesProgressBar">
+          <div className="card-header">
+          <p id="progressbarHeaderYes">  YES</p>
           </div>
-          <div className="col-sm-3">
-            <input type="text" className="uk-input" placeholder="Search Name" onChange={this.searchName}/>
-          </div>
-        </div>
-
-        <div className="row progress-bar-container">
+          <div className="card-block">
           <div className="col-sm-4 progress-bar-box">
-            <h4 className="progress-bar-title">Percentage Yes</h4>
             <div id="progress-bar-yes">
             </div>
           </div>
-          <div className="col-sm-4 progress-bar-box">
-            <h4 className="progress-bar-title">Percentage No</h4>
-            <div id="progress-bar-no">
-            </div>
           </div>
-          <div className="col-sm-4 progress-bar-box">
-            <h4 className="progress-bar-title">Percentage Pending</h4>
-            <div id="progress-bar-pending">
-            </div>
           </div>
+
+          <div className="card progressbarContainer" id="noProgressBar">
+            <div className="card-header">
+            <p id="progressbarHeaderNo">  NO</p>
+            </div>
+            <div className="card-block">
+            <div className="col-sm-4 progress-bar-box">
+              <div id="progress-bar-no">
+              </div>
+            </div>
+            </div>
+            </div>
+
+          <div className="card progressbarContainer" id="pendingProgressBar">
+            <div className="card-header">
+            <p id="progressbarHeaderPending">  PENDING</p>
+            </div>
+            <div className="card-block">
+            <div className="col-sm-4 progress-bar-box">
+              <div id="progress-bar-pending">
+              </div>
+            </div>
+            </div>
+            </div>
+
+            </div>
+
+          <br/>
+          <br/>
+
+        <div className="row">
+
+        <div className="col-sm-3 searchName">
+          <input type="text" className="uk-input" placeholder="Search Name" onChange={this.searchName}/>
+        </div>
+
+          <div className="col-sm-6">
+            <input type="checkbox" name="view-pending" value="Car" onChange={this.toggleViewPending}/>View pending only<br/>
+          </div>
+
+          <button className="uk-button uk-button-primary"
+                  id="sendReminderEmailsBtn" onClick={this.reminderEmail}>Send Reminder</button>
+
         </div>
 
         <div className="row">
-          {renderGuestsRows}
+          <div className="card guestRowContainer" id="">
+            <div className="card-header">
+              <p id="eventActionsHeader">  INVITED GUESTS</p>
+            </div>
+            <div className="card-block guestRows">
+            <div className="row">
+              {renderGuestsRows}
+            </div>
+            </div>
+            </div>
+          </div>
+
+      <div className="row">
+        <div className="col-sm-12 createGuests">
+          <CreateGuestRow updateGuests={this.updateGuests}/>
         </div>
-        <CreateGuestRow updateGuests={this.updateGuests}/>
+      </div>
 
-          <button className="uk-button uk-button-primary"
-                  id="sendReminderEmailsBtn" onClick={this.reminderEmail}>SEND REMINDER!</button>
-
-        <div className="col-sm-12">
-
-        </div>
-        <div className="col-sm-12">
+      <div className="row">
+        <div className="col-sm-12 addCollabRow">
           <AddCollab addCollabFunction={this.addCollab} event={this.props.active}/>
+        </div>
         </div>
         {this.props.responseAJAX.addCollab === "success" ? renderNotifyAddCollabSuccess() : (<div></div>)}
         {this.props.responseAJAX.addCollab === "fail add collab" ? renderNotifyAddCollabFail() : (<div></div>)}
@@ -355,5 +394,3 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddGuest);//to include guest population
-
-

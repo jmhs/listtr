@@ -83,6 +83,7 @@ export default class CreateGuestRow extends React.Component {
         <div className="col-md-2 PopulateGuests">
           <button type="button"
                   className="uk-button uk-button-default green-add-guest-button"
+                  id="createGuestRowAddGuestBtn"
                   onClick={this.onClick}>Add Guest</button>
         </div>
 

@@ -37,7 +37,14 @@
   color: white;
   margin-top: 10px;
 }
+.happy-face-picture-signup{
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  margin-left: -200px;
+  width: 400px;
 
+}
 #homeBtn {
   background: white;
   border-color: #0FB28A;
@@ -46,7 +53,8 @@
 }
 
 #signupContainer {
-  border: 2px solid #0FB28A;
+  /*border: 2px solid #0FB28A;*/
+  border: transparent;
   background-color: #425A64;
   color: white;
 }
