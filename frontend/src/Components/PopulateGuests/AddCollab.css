@@ -1,4 +1,16 @@
 #add-collab-button{
+  color: white;
   padding: 5px;
+  font-size: 12px;
+  background-color: #0FB28A;
+}
 
+#add-collab-button:hover {
+  background-color: #17ddac;
+}
+
+#collabBackToHome {
+  padding: 5px;
+  font-size: 12px;
+  margin-left: 20px
 }

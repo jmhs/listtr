@@ -6,3 +6,14 @@
 	padding: 5px;
 	font-size: 14px;
 }
+
+#createGuestRowAddGuestBtn {
+  padding: 5px;
+  font-size: 12px;
+  background-color: #0FB28A;
+  color: white;
+}
+
+#createGuestRowAddGuestBtn:hover {
+  background-color: #17ddac;
+}

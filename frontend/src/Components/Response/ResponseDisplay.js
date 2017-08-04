@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import { Link } from 'react-router-dom'
 import Button from 'react-uikit-button';
 
+
 import axios from 'axios';
 
 import './ResponseDisplay.css'
@@ -154,8 +155,12 @@ class ResponseDisplay extends React.Component {
                                         <p><strong>Contact: </strong>{this.props.response[0].guest[0].contact}</p>
 
                                         <h4><strong>Click below to send your response:</strong></h4>
+                                        <Link to="/responseconfirmation">
                                         <button type="button" className="uk-button uk-button-default green-yes-button" id="rsvpYesBtn" onClick={this.updateGuestResponse}>Yes</button>
+                                        </Link>
+                                        <Link to="/responseconfirmation">
                                         <button type="button" className="uk-button uk-button-default red-no-button" id="rsvpNoBtn" onClick={this.updateGuestResponse}>No</button>
+                                        </Link>
 
                                         {/* START BUTTON */}
 

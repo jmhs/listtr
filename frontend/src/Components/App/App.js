@@ -23,6 +23,7 @@ import InvitePreview from '../InviteTemplate/InvitePreview/InvitePreview'
 import updateEvent from '../UpdateEvent/UpdateEvent'
 import LiveRegistration from '../LiveRegistration/LiveRegistration'
 import ResponseVerification from '../Response/ResponseVerification/ResponseVerification'
+import ResponseConfirmation from '../Response/ResponseConfirmation/ResponseConfirmation'
 import ResponseDisplay from '../Response/ResponseDisplay'
 
 // FOR TestingDashboard
@@ -63,6 +64,7 @@ class App extends Component {
               <Route path="/responseverification/:event_id/:guest_id" component={ResponseVerification}/>
               <Route exact path="/responsedisplay/" component={ResponseDisplay}/>
               <Route exact path="/testingdashboard" component={TestingDashboard}/>
+              <Route exact path="/responseconfirmation" component={ResponseConfirmation}/>
               <Route component={NotFound}/>
 
 
