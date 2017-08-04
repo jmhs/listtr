@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3001",
+  "proxy": "http://172.16.31.45:3001",
   "dependencies": {
     "antd": "^2.12.2",
     "axios": "^0.16.2",
