@@ -133,7 +133,20 @@ class InviteTemplate extends React.Component {
     this.props.updateNavPath(e.target.id);
   }
 
-
+  renderNotifyCreateInviteSuccess = () => {
+    return (<div className="col-sm-12">
+      <div className="success-alert">
+        <strong>Success!</strong> Invitation created
+      </div>
+    </div>)
+  }
+  renderNotifySendInviteSuccess = () => {
+    return (<div className="col-sm-12">
+      <div className="success-alert">
+        <strong>Success!</strong> Invitation sent!
+      </div>
+    </div>)
+  }
 // function to check if user is loggedin before accessing inviteTemplate page. if user not loggedin, redirect to '/login'
 // function also renders different invite template depending on whether its a new or existing invitation
   isLoggedInInviteTemplate = () => {
@@ -256,13 +269,14 @@ class InviteTemplate extends React.Component {
                         id="inviteTemplateBackToEventBtn" onClick={this.onClick}>Back to Event Preview</button>
 
                 <hr/>
+                {this.props.responseAJAX.createInvite === "success" ? this.renderNotifyCreateInviteSuccess() : (<div></div>)}
                 <button className="uk-button uk-button-primary"
                         id="saveInviteBtn" onClick={this.saveInvite}>Create Invite</button>
 
                 <hr />
-
+                {this.props.responseAJAX.sendInvite === "success" ? this.renderNotifySendInviteSuccess() : (<div></div>)}
                     <button className="uk-button uk-button-primary"
-                            id="sendGuestEmailsBtn" onClick={this.handleEmail}>SEND GUEST EMAILS!</button>
+                            id="sendGuestEmailsBtn" onClick={this.handleEmail}>Send Guest Invitations</button>
 
               </div>
             </div>
@@ -278,6 +292,7 @@ class InviteTemplate extends React.Component {
   }
 
   render() {
+
     return (
       <div>
       {this.isLoggedInInviteTemplate()}
@@ -293,6 +308,7 @@ const mapStateToProps = (state) => {
   return {
     events: state.active,
     user: state.user,
+    responseAJAX: state.responseAJAX
   }
 }
 const mapDispatchToProps = (dispatch) => {

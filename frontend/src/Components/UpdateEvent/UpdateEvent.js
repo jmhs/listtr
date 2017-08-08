@@ -6,8 +6,11 @@ import { activeEvent} from '../../Actions/Event'
 import 'react-date-picker/index.css'
 import {Link} from 'react-router-dom'
 import { DateField, Calendar } from 'react-date-picker'
+import {updateNavPath} from '../../Actions/Navigation'
 // import PopulateGuests from '../PopulateGuests/PopulateGuests'
+
 import './UpdateEvent.css'
+
 class UpdateEvent extends React.Component {
   constructor(props) {
     super(props);
@@ -76,6 +79,8 @@ class UpdateEvent extends React.Component {
 
 // if loop for when create button pressed with & without image(different actions)
   onClick = (e) => {
+    this.setState({currentNav: e.target.id});
+    this.props.updateNavPath(e.target.id);
     this.props.updateEvent(this.state)
 
   }
@@ -209,10 +214,14 @@ class UpdateEvent extends React.Component {
 
           <Link to='/dashboard'>
           <button type="button"
-                  className="btn btn-success"
-                  id="preview-button"
-                  onClick={this.onClick}>Update Event!</button></Link>
-
+                  className="uk-button uk-button-primary"
+                  id="updateEventDetailsBtn"
+                  onClick={this.onClick}>Update Event Details</button>
+                  </Link>
+          <button type="button"
+                  className="uk-button uk-button-default"
+                  id="updatEventBackToPreviewBtn"
+                  onClick={this.onClick}>Back to Event Preview</button>
 
         </div>
       </div>
@@ -235,6 +244,7 @@ const mapDispatchToProps = (dispatch) => {
   console.log(dispatch)
   return {
     updateEvent: (event) => {dispatch(updateEvent(event))},
+    updateNavPath: (currentNav) => {dispatch(updateNavPath(currentNav))},
 
   }
 }

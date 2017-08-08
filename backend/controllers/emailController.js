@@ -96,7 +96,7 @@ exports.handleEmail = (req, res) => {
           // res.json <--- cannot have res.json() here
         });
       }
-      res.json({message: 'email successfully sent!'})
+      res.json("success")
   })
   //res.json(event);
 }

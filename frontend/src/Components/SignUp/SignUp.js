@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 
 import axios from 'axios';
-
+import happy from '../LogIn/happy-face.jpeg'
 import './SignUp.css';
 
 export default class SignUp extends React.Component {
@@ -58,9 +58,9 @@ export default class SignUp extends React.Component {
     return (
       <div className="container-signup">
         <h1 className="brand-title-auth">Listtr</h1>
-        <div className="col-md-4 col-md-offset-4">
+        <div className="col-md-4 col-md-offset-4 form-container">
           <div className="panel panel-primary" id="signupContainer">
-            <div className="panel-heading" id="formHeader">SIGNUP</div>
+            <h4 className="panel-heading" id="formHeader">SIGNUP</h4>
 
             <form id="signupForm" role="form">
 
@@ -84,6 +84,7 @@ export default class SignUp extends React.Component {
             </form>
           </div>
         </div>
+        <div className="happy-face-picture-signup"><img className="happy-face-picture-signup" src={happy}/></div>
       </div>
     );
   }

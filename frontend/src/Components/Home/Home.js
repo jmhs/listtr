@@ -85,7 +85,7 @@ class Home extends React.Component {
         </section>
         <footer className="home-footer">
           <div className="container-home-page">
-            <div className="col-sm-3 footer-column">
+            <div className="col-sm-12 footer-column">
               <p>Powered by Listtr © 2017<br/>
                 All rights reserved.</p>
             </div>

@@ -64,7 +64,7 @@ body{
 #how-it-works{
   color: white;
   font-size: 50px;
-  margin: auto auto;
+  margin-left: 47vw;
   padding-top: 50px;
   /*margin-left: -150px;*/
   width: 300px;
@@ -103,6 +103,7 @@ body{
 .footer-column{
   margin-left: 50px;
   margin-top: 10px;
+  text-align: center;
 }
 #typedjs{
   height:100vh;
