@@ -73,7 +73,7 @@ class LogIn extends React.Component {
       return (
         <div className="container-login">
           <h1 className="brand-title-auth">Listtr</h1>
-          <div className="col-md-4 col-md-offset-4">
+          <div className="col-md-4 col-md-offset-4 form-container">
             <div className="panel panel-primary" id="loginContainer">
               <h4 className="panel-heading" id="formHeader">LOGIN</h4>
               <form id="loginForm" role="form">
@@ -98,7 +98,9 @@ class LogIn extends React.Component {
               </form>
             </div>
           </div>
-          <div><img className="happy-face-picture" src={happy}/></div>
+          <div className="happy-face-picture">
+          <img className="happy-face-picture" src={happy}/>
+          </div>
         </div>
       );
   }
