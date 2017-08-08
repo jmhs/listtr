@@ -94,3 +94,14 @@
     left: 90px;
   }
 }
+
+#postEventToPreview {
+  margin: 20px 0 20px;
+  background-color: #0FB28A;
+  color: white;
+  text-align: center;
+}
+
+#postEventToPreview:hover {
+  background-color: #17ddac;
+}
