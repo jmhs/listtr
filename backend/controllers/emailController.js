@@ -30,7 +30,7 @@ exports.handleEmail = (req, res) => {
         let inviteDressCode = event.invites[0].inviteDressCode;
         let inviteSubject = "You are invited to " + event.invites[0].inviteName + " !";
         let inviteDescription = event.invites[0].inviteDescription;
-        let eventResponseLink = 'http://localhost:3000/responseverification/' + eventResponseId + '/' + guestResponseId;
+        let eventResponseLink = 'http://13.229.53.198:3000/responseverification/' + eventResponseId + '/' + guestResponseId;
 
         let helper = require('sendgrid').mail;
 
@@ -122,7 +122,7 @@ exports.reminderEmail = (req, res) => {
         let inviteDressCode = event.invites[0].inviteDressCode;
         let inviteSubject = "You are invited to " + event.invites[0].inviteName + " !";
         let inviteDescription = event.invites[0].inviteDescription;
-        let eventResponseLink = 'http://localhost:3000/responseverification/' + eventResponseId + '/' + guestResponseId;
+        let eventResponseLink = 'http://13.229.53.198:3000/responseverification/' + eventResponseId + '/' + guestResponseId;
 
         let helper = require('sendgrid').mail;
 

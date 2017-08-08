@@ -1,15 +1,15 @@
 # listtr
 *Manage your RSVPs with listtr* <br/>
-A fullstack web application built with Node.js & Express.js as the server, React.js for frontend and mongoDB for the Backend
+A fullstack web application built with Node.js & Express.js as the server, React.js as the frontend framework and MongoDB as the backend infrastructure.
 
 Background
 ----------
 Why listtr? <br/>
-Flipping through pages of RSVPs for your events can be a tedious process. Listtr provides a simple platform for hosts to create their guest lists, send out invites, and manage their RSVPs in real-time as the event goes live. 
+Flipping through pages of RSVPs for your events can be a tedious process. Listtr provides a simple platform for hosts to create their guest lists, send out invites and manage their RSVPs in real-time as the event goes live. 
 
 How to install
 -------------
-Open your terminal and type the following command:
+Open your terminal and type the following commands:
 
     $ git clone https://github.com/jmhs/listtr.git
     $ cd listtr
