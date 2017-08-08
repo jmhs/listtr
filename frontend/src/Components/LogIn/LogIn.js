@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { getUser, localLogin} from '../../Actions/User';
 import happy from './happy-face.jpeg'
 import {Link} from 'react-router-dom';
+// import Chat from '../Chat/Chat';
 
 import axios from 'axios';
 
