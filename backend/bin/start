@@ -14,6 +14,16 @@ require('babel-polyfill');
 const app = require('../app').default;
 const debug = require('debug')('backend:server');
 const http = require('http');
+const fs = require('fs')
+
+// Keys
+const key = fs.readFileSync('./listtr-key.pem')
+const cert = fs.readFileSync('./listtr-cert.pem')
+
+const option = {
+key: key,
+cert: cert
+}
 
 // import socket.io
 
@@ -42,14 +52,14 @@ const normalizePort = function(val) {
  * Get port from environment and store in Express.
  */
 
-const port = normalizePort(process.env.PORT || '3001');
+const port = 443;
 app.set('port', port);
 
 /**
  * Create HTTP server.
  */
 
-const server = http.createServer(app);
+const server = require('https').Server(option, app);
 const io = require('socket.io')(server);
 
 // var chat = io
@@ -68,7 +78,7 @@ const io = require('socket.io')(server);
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
+server.listen(443);
 
 
 // const io = socket(server);
