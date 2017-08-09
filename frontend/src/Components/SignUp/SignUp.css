@@ -2,15 +2,17 @@
   /*margin-top: 5%;*/
   height: 100vh;
   width: 100vw;
+  /*width: 100vw;*/
   /*padding: 10px 0 0 0;*/
   /*margin: 0;*/
   border-color: #0FB28A;
-  margin-right: auto;
-  margin-left: auto;
+  /*margin-right: auto;*/
+  /*margin-left: auto;*/
   padding-left: 15px;
   padding-right: 15px;
   background-color: #425A64;
   padding: 100px 0 0 0;
+  position: absolute;
 }
 
 #signupForm {
@@ -37,7 +39,14 @@
   color: white;
   margin-top: 10px;
 }
+.happy-face-picture-signup{
+  position: relative;
+  /*bottom: 0;*/
+  left: 50%;
+  margin-left: -200px;
+  width: 400px;
 
+}
 #homeBtn {
   background: white;
   border-color: #0FB28A;
@@ -46,7 +55,8 @@
 }
 
 #signupContainer {
-  border: 2px solid #0FB28A;
+  /*border: 2px solid #0FB28A;*/
+  border: transparent;
   background-color: #425A64;
   color: white;
 }

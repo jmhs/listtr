@@ -1,16 +1,14 @@
 import React, {PropTypes} from 'react';
 import { connect } from 'react-redux';
 import './LiveRegistration.css';
-import Table from 'react-uikit-table'
+import Table from 'react-uikit-table';
+import Progress from 'react-uikit-progress';
 import {storeLiveEventDetails, fetchLiveEventData, updateLiveEventData, fetchupdateLiveEventData} from '../../Actions/LiveRegistration'
 
 import {updateNavPath} from '../../Actions/Navigation'
 import uuid from 'uuid'
 
-
-
-
-
+import './LiveRegistration.css'
 
 class LiveRegistration extends React.Component {
   constructor(props) {
@@ -45,20 +43,19 @@ class LiveRegistration extends React.Component {
   renderGuests = (filter) => {
     let guests
     filter ? guests = this.state.filteredGuests : guests = this.props.LiveRegistration.guests
-    console.log(guests)
     if (guests.length>0) {
-    this.state.here = 0
-    this.state.total = 0
+    let state = this.state
+    state.here = 0
+    state.total = 0
     return guests.map((guest) => {
-      this.state.total++
-      console.log(this.state.total)
-      if(guest.checkedIn === true){this.state.here++}
-      console.log(this.state.here)
+      state.total++
+      if(guest.checkedIn === true){state.here++}
+      this.setState(state)
       return (
               <tbody key={guest.id}>
                  <tr>
                    <td><input className="uk-checkbox" type="checkbox" onChange={this.Checkbox} name={guest.id} checked={guest.checkedIn}/></td>
-                   <td><img className="uk-preserve-width uk-border-circle" src="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840/17015b52218827.5909281cb99f2.jpg" width={40} alt /></td>
+
                    <td className="uk-table-link">
                      <a className="uk-link-reset" href>{guest.name}</a>
                    </td>
@@ -191,17 +188,16 @@ renderAddGuests = () => {
 GuestField = (e) => {
   if (e.target.placeholder = "Name"){
     this.state.name = e.target.value
-
+    this.setState(this.state.name)
     }
   if (e.target.placeholder = "Email"){
     this.state.email = e.target.value
-
+    this.setState(this.state.email)
     }
   if (e.target.placeholder = "Contact"){
     this.state.contact = e.target.value
-
     }
-    this.setState(this.state)
+    this.setState(this.state.contact)
 
 }
 
@@ -221,15 +217,15 @@ GuestField = (e) => {
       <div className="uk-overflow-auto uk-position-relative uk-margin-medium" >
       <div className="uk-margin">
           <form className="uk-search uk-search-default">
-            <input className="uk-search-input" type="search" placeholder="Search..." onChange={this.Search} />
+            <input className="uk-search-input" type="search" placeholder="Search..." onChange={this.Search} id="liveRegistrationSearch"/>
           </form>
         </div>
         <progress id="progressbar" class="uk-progress" value={this.state.here} max={this.state.total}></progress>
-              <table className="uk-table uk-table-hover uk-table-middle uk-table-divider">
+              <table className="uk-table uk-table-hover uk-table-middle uk-table-divider guestTable">
                 <thead>
                   <tr>
                     <th className="uk-table-shrink">Attd</th>
-                    <th className="uk-table-shrink"></th>
+
                     <th className="uk-table-shrink">Name</th>
                     <th className="uk-table-expand">Email</th>
                     <th className="uk-width-small">Contact No.</th>
@@ -239,8 +235,8 @@ GuestField = (e) => {
                 {this.state.filteredGuests !== '' ? this.renderGuests(true) : this.renderGuests(false)}
                 {this.renderAddGuests()}
               </table>
-              <button onClick={this.addGuests}>Add Guests</button>
-              <button id="liveRegistrationBackToDashboardBtn" onClick={this.onClick}>Back to dashboard</button>
+              <button className="uk-button uk-button-default" id ="liveRegAddGuestsBtn" onClick={this.addGuests}>Add Guests</button>
+              <button className="uk-button uk-button-default" id="liveRegistrationBackToDashboardBtn" onClick={this.onClick}>Back To Dashboard</button>
 
             </div>
       </div>
@@ -270,3 +266,6 @@ const mapDispatchToProps = (dispatch) => {
 }}
 
 export default connect(mapStateToProps, mapDispatchToProps)(LiveRegistration);
+
+// <td><img className="uk-preserve-width uk-border-circle" src="https://mir-s3-cdn-cf.behance.net/project_modules/max_3840/17015b52218827.5909281cb99f2.jpg" width={40} alt /></td>
+// <th className="uk-table-shrink"></th>

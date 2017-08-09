@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import {successCreateInvite, successSendInvite} from './ResponseAJAX'
 //in-charge of sending invite to store
 export const storeInvites = (invites) => {
   return {
@@ -14,6 +14,9 @@ export const postInvite = (event_id, invite) => {
     axios.put('/event/postInvite/' + event_id, invite)
     .then((response) => {
       console.log(response);
+      if(response.data === "success"){
+        dispatch(successCreateInvite())
+      }
       console.log("AJAX: Created New Invite @ '/invite/postInvite'");
     })
     .catch((error)=> {
@@ -29,6 +32,9 @@ export const handleEmail = (event_id, event) => {
     .then((response) => {
       console.log('sending handleEmail action to server..');
       console.log(response);
+      if(response.data === "success"){
+        dispatch(successSendInvite())
+      }
       console.log("AJAX: Posting guest emails @ '/email'");
       // window.location.href = "/dashboard";
     })

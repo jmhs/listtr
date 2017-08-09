@@ -10,6 +10,7 @@ import AddGuest from '../../PopulateGuests/AddGuest'
 import InviteTemplate from '../../InviteTemplate/InviteTemplate'
 import UpdateEvent from '../../UpdateEvent/UpdateEvent'
 import LiveRegistration from '../../LiveRegistration/LiveRegistration'
+import AddCollab from '../../PopulateGuests/AddCollab'
 
 import './MainContent.css'
 class MainContent extends React.Component {
@@ -93,6 +94,13 @@ class MainContent extends React.Component {
         return (<EventDisplay />)
         break;
 
+      case "collabBackToHome":
+        return (<Preview />)
+        break;
+
+      case "updatEventBackToPreviewBtn":
+        return (<Preview />)
+        break;
 
       default:
         <div> <CreateEvent /> </div>

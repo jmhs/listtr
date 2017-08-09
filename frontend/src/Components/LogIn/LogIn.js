@@ -3,8 +3,9 @@ import React, {PropTypes} from 'react';
 import { connect } from 'react-redux';
 
 import { getUser, localLogin} from '../../Actions/User';
-
+import happy from './happy-face.jpeg'
 import {Link} from 'react-router-dom';
+// import Chat from '../Chat/Chat';
 
 import axios from 'axios';
 
@@ -72,18 +73,18 @@ class LogIn extends React.Component {
       return (
         <div className="container-login">
           <h1 className="brand-title-auth">Listtr</h1>
-          <div className="col-md-4 col-md-offset-4">
+          <div className="col-md-4 col-md-offset-4 form-container">
             <div className="panel panel-primary" id="loginContainer">
-              <div className="panel-heading" id="formHeader">LOGIN</div>
+              <h4 className="panel-heading" id="formHeader">LOGIN</h4>
               <form id="loginForm" role="form">
 
                 <div className="error">{this.state.error}</div>
 
                 <label htmlFor="email">Email address</label>
-                <input type="email" className="uk-input" id="email" placeholder="Please enter email" value={this.state.email} onChange={this.onChange}/>
+                <input type="email" className="text-input-line" id="email" placeholder="Please enter email" value={this.state.email} onChange={this.onChange}/>
 
                 <label htmlFor="password">Password</label>
-                <input type="password" className="uk-input" id="password" placeholder="Please enter password" value={this.state.password} onChange={this.onChange}/>
+                <input type="password" className="text-input-line" id="password" placeholder="Please enter password" value={this.state.password} onChange={this.onChange}/>
 
                 <br />
 
@@ -96,6 +97,9 @@ class LogIn extends React.Component {
 
               </form>
             </div>
+          </div>
+          <div className="happy-face-picture">
+          <img className="happy-face-picture" src={happy}/>
           </div>
         </div>
       );

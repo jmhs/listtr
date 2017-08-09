@@ -89,14 +89,14 @@ exports.handleEmail = (req, res) => {
             console.log('Error response received');
             console.log(error)
           }
-          // console.log(response.statusCode);
-          // console.log(response.body);
-          // console.log(response.headers);
-          // console.log('response', response)
+          console.log(response.statusCode);
+          console.log(response.body);
+          console.log(response.headers);
+          console.log('response', response)
           // res.json <--- cannot have res.json() here
         });
       }
-      res.json({message: 'email successfully sent!'})
+      res.json("success")
   })
   //res.json(event);
 }

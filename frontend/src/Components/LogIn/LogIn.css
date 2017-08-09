@@ -6,12 +6,24 @@
   height: 100vh;
   width: 100vw;
   padding: 100px 0 0 0;
-
+  position: absolute;
   border-color: #0FB28A;
   background-color: #425A64;
 }
 .login-button-default{
   margin: 5px;
+}
+.happy-face-picture{
+  position: relative;
+  /*bottom: 0;*/
+  left: 50%;
+  margin-left: -250px;
+  width: 500px;
+  /*z-index: 1;*/
+}
+.form-container{
+  position: relative;
+  z-index: 1;
 }
 .text-input-line{
   background-color: transparent;
@@ -25,6 +37,11 @@
    padding: 3px 10px;
    display: block;
    margin-bottom: 15px;
+
+}
+
+.text-input-line::placeholder{
+  color: #cccccc;
 }
 .login-button-green{
   background-color:  #0FB28A;
@@ -41,7 +58,7 @@
 }
 
 #formHeader {
-  background: #0FB28A;
+  background: transparent;
   border-color: #0FB28A;
 }
 
@@ -61,10 +78,11 @@
 .brand-title-auth{
   font-size: 60px;
   width: 20%;
-  margin: 10px auto 30px auto;
+  margin: -50px auto 30px auto;
   color: white;
   font-family: 'Lobster', cursive;
   text-align: center;
+  position: relative;
 }
 #homeBtnl {
   background: white;
@@ -75,9 +93,11 @@
 
 #loginContainer {
   /*border-color: #0FB28A;*/
-  border: 2px solid #0FB28A;
+  /*border: 2px solid #0FB28A;*/
+  border: transparent;
   background-color: #425A64;
   color: white;
+  position: relative;
   /*box-shadow: 2px 2px 2px lightgray;*/
 }
 

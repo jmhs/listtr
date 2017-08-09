@@ -25,3 +25,18 @@ export const failAddCollab = () => {
     response: "fail add collab"
   }
 }
+
+export const successCreateInvite = () => {
+  return {
+    type: 'SUCCESS_CREATE_INVITE',
+    response: "success"
+  }
+}
+
+
+export const successSendInvite = () => {
+  return {
+    type: 'SUCCESS_SEND_INVITE',
+    response: "success"
+  }
+}

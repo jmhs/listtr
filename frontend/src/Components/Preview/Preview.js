@@ -132,9 +132,9 @@ onEdit = (e) => {
     return (
 
       <div className="container-fluid previewContainer">
-
+        <div className="row">
         {this.props.response.createEvent === "success" ? renderNotifyCreateSuccess() : (<div></div>)}
-
+        </div>
 
       <div className="row">
 

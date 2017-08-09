@@ -75,3 +75,21 @@ select{
     left: 25px;
   }
 }*/
+
+#updateEventDetailsBtn {
+  padding: 5px;
+  margin: 20px 0 20px 0;
+  font-size: 12px;
+  background-color: #0FB28A;
+}
+
+#updateEventDetailsBtn:hover {
+  background-color: #17ddac;
+}
+
+#updatEventBackToPreviewBtn {
+  padding: 5px;
+  width: 200px;
+  margin: 20px 0 20px 20px;
+  font-size: 12px;
+}

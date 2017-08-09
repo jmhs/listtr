@@ -1,3 +1,30 @@
 .container {
   color: black;
 }
+
+#liveRegistrationSearch {
+  background: white;
+}
+
+.guestTable {
+  background: white;
+}
+
+#progressbar {
+  width: 79vw;
+}
+
+#liveRegAddGuestsBtn {
+  color: white;
+  font-size: 12px;
+  background-color: #0FB28A;
+}
+
+#liveRegAddGuestsBtn:hover {
+  background-color: #17ddac;
+}
+
+#liveRegistrationBackToDashboardBtn {
+  margin-left: 20px;
+  font-size: 12px;
+}

@@ -332,14 +332,14 @@ class AddGuest extends React.Component {
           </div>
 
           <button className="uk-button uk-button-primary"
-                  id="sendReminderEmailsBtn" onClick={this.reminderEmail}>SEND REMINDER!</button>
+                  id="sendReminderEmailsBtn" onClick={this.reminderEmail}>Send Reminder</button>
 
         </div>
 
         <div className="row">
           <div className="card guestRowContainer" id="">
             <div className="card-header">
-              <p id="eventActionsHeader">  PENDING</p>
+              <p id="eventActionsHeader">  INVITED GUESTS</p>
             </div>
             <div className="card-block guestRows">
             <div className="row">
