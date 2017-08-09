@@ -6,6 +6,10 @@ import {
 } from 'react-router-dom';
 import {connect} from 'react-redux'
 import { RouteTransition } from 'react-router-transition';
+import {ConnectedRouter} from 'react-router-redux';
+import { history } from '../../index';
+import {createHistory}  from "history"
+
 
 import Home from '../Home/Home'
 import LogIn from '../LogIn/LogIn'
@@ -35,19 +39,10 @@ import './App.css';
 class App extends Component {
   render() {
     return (
-      <Router>
 
-        <Route render={({location, history, match}) => {
-          return (
-            <RouteTransition
-              pathname={location.pathname}
-              atEnter={{ opacity: 0 }}
-              atLeave={{ opacity: 0 }}
-              atActive={{ opacity: 1 }}
-            >
-            <Switch key={location.key} location={location}>
+      <ConnectedRouter history={history}>
+            <Switch>
               <Route exact path="/" component={Home}/>
-
               <Route exact path="/login" component={LogIn}/>
               <Route exact path="/signup" component={SignUp}/>
               <Route exact path="/eventdisplay" component={EventDisplay}/>
@@ -67,15 +62,22 @@ class App extends Component {
               <Route exact path="/responseconfirmation" component={ResponseConfirmation}/>
               <Route component={NotFound}/>
 
-
-
             </Switch>
-            </RouteTransition>
-          );
-        }}/>
-      </Router>
+      </ConnectedRouter>
     );
   }
 }
 
 export default App;
+
+// <Switch key={location.key} location={location}>
+// <Route render={({location, history, match}) => {
+//   return (
+//     <RouteTransition
+//       pathname={location.pathname}
+//       atEnter={{ opacity: 0 }}
+//       atLeave={{ opacity: 0 }}
+//       atActive={{ opacity: 1 }}>
+//     </RouteTransition>
+//   );
+// }}/>

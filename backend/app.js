@@ -29,7 +29,7 @@ import cloudinary from 'cloudinary';
 mongoose.connect('mongodb://admin:admin@ds115752.mlab.com:15752/listtr');
 mongoose.connection.on('error', (err) => {
   console.error(err);
-  console.log('%s MongoDB connection error. Please make sure MongoDB is running.', chalk.red('✗'));
+  console.log('%s MongoDB connection error. Please make sure MongoDB is running.');
   process.exit();
 });
 mongoose.Promise = global.Promise;
@@ -61,6 +61,7 @@ app.use(cookieParser());
 app.use(lessMiddleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/', index);
 
 /**
  * use EXPRESS-SESSION.
@@ -98,10 +99,11 @@ app.use(function(req, res, next){
   next();
 });
 
+
 /**
  * Use AUTH routes.
  */
-app.use('/', index);
+
 app.use('/auth', auth);
 app.use('/event',event);
 app.use('/email',email);
@@ -149,7 +151,7 @@ process.on('uncaughtException', (err) => {
 //
 //     let guest = event.guests[0];
 //     guest.response = "yes";
-// 
+//
 //     event.guests[0] = guest;
 //
 //     event.markModified('guests');

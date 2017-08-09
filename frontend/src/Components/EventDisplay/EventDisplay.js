@@ -29,11 +29,28 @@ class EventDisplay extends React.Component {
 
   renderEventDisplayItem = () => {
     console.log(this.props.navigation)
-    let events = this.props.user.hostFor;
+    let usersEvents
+    let events = this.props.events
+    console.log(events)
+    if (typeof (this.props.user.hostFor[0]) === Object) {
+      console.log('true')
+      usersEvents = this.props.user.hostFor;
+    } else {
+      console.log(events)
+      usersEvents = events.filter((item) => {
+        console.log(item._id)
+        return this.props.user.hostFor.includes(item._id)
+      })
+    }
+
+    console.log(usersEvents)
+
+
     // console.log(events)
     // console.log(events.length)
 
-    return events.map( (event) => {
+    return usersEvents.map( (event) => {
+      console.log(event)
       return <EventDisplayItem key={event._id}
                                id={event._id}
                                eventName={event.eventName}
