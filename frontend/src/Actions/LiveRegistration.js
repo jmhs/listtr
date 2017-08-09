@@ -1,5 +1,5 @@
 const io = require('socket.io-client/dist/socket.io.js');
-const socket = io.connect('/');
+const socket = io.connect('https://13.229.53.198/');
 
 export const fetchLiveEventData = (eventID) => {
   return (dispatch) => {
