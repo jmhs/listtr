@@ -2,9 +2,11 @@ import React, {PropTypes} from 'react';
 
 import { connect } from 'react-redux';
 
-import { getUser, localLogin} from '../../Actions/User';
+import { getUser, localLogin, updateUser} from '../../Actions/User';
 import happy from './happy-face.jpeg'
 import {Link} from 'react-router-dom';
+import {store} from "../../index";
+import {push} from 'react-router-redux';
 // import Chat from '../Chat/Chat';
 
 import axios from 'axios';
@@ -37,17 +39,16 @@ class LogIn extends React.Component {
     e.preventDefault();
     var state = this.state
     // this.props.localLogin(this.state);
-    axios.post('/auth/login', this.state).then((response) => {
+    axios.post('/auth/login', state).then((response) => {
       let data = response.data;
       if (data.error) {
         console.log(data.message)
       } else {
         console.log("AJAX: Logged in @ '/auth/user'");
-        // this.props.updateUser(data)
-        this.props.getUser()
+        this.props.updateUser(data)
       }
     })
-    .then(()=> {window.location.href = '/dashboard'})
+    .then(()=> {store.dispatch(push('/dashboard'))})
     .catch((error) => {
       console.error("AJAX: Could not login @ '/auth/login'")
       this.setState({error: "Login error, notify the dev team!"});
@@ -113,7 +114,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getUser: () => {dispatch(getUser())},
-    //updateUser: (user) => {dispatch(updateUser(user))},
+    updateUser: (user) => {dispatch(updateUser(user))},
     localLogin: (credentials) => {dispatch(localLogin(credentials))},
   }
 }

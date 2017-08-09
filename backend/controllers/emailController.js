@@ -14,6 +14,7 @@ dotenv.load({ path: '.env' });
 exports.handleEmail = (req, res) => {
   Event.findById(req.params.event_id, (err, event) => {
     if (err) { return err; }
+    console.log(req.headers)
 
       for (var i=0; i < event.guests.length; i++) {
         let guestEmail = event.guests[i].email;

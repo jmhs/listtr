@@ -2,7 +2,7 @@ import axios from 'axios';
 import { store } from '../index.js';
 import { push, replace } from 'react-router-redux';
 
-const updateUser = (user) => {
+export const updateUser = (user) => {
   return {
     type: "USER_UPDATE",
     user
@@ -37,7 +37,7 @@ export const localLogin = (credentials) => {
       }else {
         console.error("AJAX: Logged on @ '/auth/user'");
         //react-router-redux to dispatch routes from non-components
-        store.dispatch(replace('/dashboard'));
+        //store.dispatch(replace('/dashboard'));
         // get user credentials here; dispatch notification as callback after user has been authenticated by passport
         // const cbArray = [
         //   () => {dispatch(triggerNotification())},
