@@ -6,7 +6,7 @@
   height: 100vh;
   width: 100vw;
   padding: 100px 0 0 0;
-
+  position: absolute;
   border-color: #0FB28A;
   background-color: #425A64;
 }
@@ -14,12 +14,16 @@
   margin: 5px;
 }
 .happy-face-picture{
-  position: fixed;
-  bottom: 0;
+  position: relative;
+  /*bottom: 0;*/
   left: 50%;
   margin-left: -250px;
   width: 500px;
-
+  /*z-index: 1;*/
+}
+.form-container{
+  position: relative;
+  z-index: 1;
 }
 .text-input-line{
   background-color: transparent;
@@ -78,6 +82,7 @@
   color: white;
   font-family: 'Lobster', cursive;
   text-align: center;
+  position: relative;
 }
 #homeBtnl {
   background: white;
@@ -92,6 +97,7 @@
   border: transparent;
   background-color: #425A64;
   color: white;
+  position: relative;
   /*box-shadow: 2px 2px 2px lightgray;*/
 }
 
